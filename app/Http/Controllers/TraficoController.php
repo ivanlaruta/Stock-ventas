@@ -181,7 +181,7 @@ class TraficoController extends Controller
 
     public function add_encuestas(Request $request)
     {
-        // dd($request->all());
+        
         $nueva_encuesta = new Trf_Encuesta();
         $nueva_encuesta -> descripcion = strtoupper($request->DESCRIPCION);
         $nueva_encuesta -> observaciones = $request->OBSERVACIONES;
@@ -258,7 +258,7 @@ class TraficoController extends Controller
     public function add_visita(Request $request)
     {
         $hoy = Carbon::now('America/La_Paz')->format('Ymd H:i:s');
-        // dd($request->all());
+        dd($request->all());
 
         if($request->tipo_cliente=='Antiguo')
         {

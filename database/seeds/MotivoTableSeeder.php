@@ -16,14 +16,28 @@ class MotivoTableSeeder extends Seeder
         
         DB::table('trf_motivos')->insert
         ([
-			'descripcion'=>'VEHICULOS',
-			'estado'=>'1',
+            'descripcion'=>'VEHICULOS TOYOTA',
+            'estado'=>'1',
         ]);
+
+        DB::table('trf_motivos')->insert
+        ([
+            'descripcion'=>'VEHICULOS LEXUS',
+            'estado'=>'1',
+        ]);
+
+        DB::table('trf_motivos')->insert
+        ([
+            'descripcion'=>'VEHICULOS HINO',
+            'estado'=>'1',
+        ]);
+
         DB::table('trf_motivos')->insert
         ([
 			'descripcion'=>'MOTOS Y CUADRAS',
 			'estado'=>'1',
         ]);
+
         DB::table('trf_motivos')->insert
         ([
 			'descripcion'=>'TRAMITES DE VENTA',
