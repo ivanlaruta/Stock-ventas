@@ -54,7 +54,7 @@
                     <td>@if(is_null($det->id_cliente))---@else{{$det->cliente->edad->descripcion}}@endif</td>
                     <td>@if(is_null($det->id_cliente))---@else{{$det->cliente->genero}}@endif</td>
                     <td>@if(is_null($det->id_cliente))---@else{{$det->cliente->telefono}}@endif</td>
-                    <td>@if($det->id_ejecutivo==null)---@else{{strtoupper($det->ejecutivo->nom_vendedor)}}@endif</td>
+                    <td>@if($det->id_ejecutivo==null)---@else{{strtoupper($det->ejecutivo->nombre ." ".$det->ejecutivo->paterno)}}@endif</td>
                     <td>{{$det->created_by}}</td>
                    
                       <td align="right">

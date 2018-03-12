@@ -697,12 +697,12 @@ function grafico_diario (data,dates,nomdias){
       },
 
       regions: [
-          {start: '2017-01-01', end: '2017-01-31', class: 'regionX'},
-          {start: '2017-03-01', end: '2017-03-31', class: 'regionX'},
-          {start: '2017-05-01', end: '2017-05-31', class: 'regionX'},
-          {start: '2017-07-01', end: '2017-07-31', class: 'regionX'},
-          {start: '2017-09-01', end: '2017-09-31', class: 'regionX'},
-          {start: '2017-11-01', end: '2017-11-31', class: 'regionX'}
+          {start: '2018-01-01', end: '2018-01-31', class: 'regionX'},
+          {start: '2018-03-01', end: '2018-03-31', class: 'regionX'},
+          {start: '2018-05-01', end: '2018-05-31', class: 'regionX'},
+          {start: '2018-07-01', end: '2018-07-31', class: 'regionX'},
+          {start: '2018-09-01', end: '2018-09-31', class: 'regionX'},
+          {start: '2018-11-01', end: '2018-11-31', class: 'regionX'}
       ],
       
        subchart: {

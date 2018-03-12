@@ -19,7 +19,7 @@
     <div class="clearfix"></div>
     
 @if(sizeof($encuesta)>0)
-{!! Form::open(array('route' => ['trafico.add_visita'], 'method' => 'get' , 'id'=>'VisitaForm', 'class'=>'form-horizontal form-label-left')) !!}
+{!! Form::open(array('route' => ['trafico.add_visita2'], 'method' => 'get' , 'id'=>'VisitaForm', 'class'=>'form-horizontal form-label-left')) !!}
 <input type="text" hidden class="form-control" value="{{Auth::user()->id_ubicacion}}" name="id_sucursal" id="id_sucursal">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
@@ -52,12 +52,20 @@
                       
                       <div class="form-group dato_antiguo">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Cliente</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control select2" name="expedido" id="expedido" data-width="100%">
+                        {{-- <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control select2" name="clientes_ant" id="clientes_ant" data-width="100%" autocomplete="off">
                           @foreach($clientes as $det)
                             <option value="{{$det->id}}" tel="{{$det->telefono}}">  {{$det->nombre}} {{$det->paterno}} {{$det->materno}}</option>
                           @endforeach
                         </select>
+                        </div> --}}
+                        
+                          <div class="col-md-9 col-sm-9 col-xs-12">
+                            <select class="form-control select2"  style="width: 100%;"  name="clientes_ant" id="clientes_ant">
+                              @foreach($clientes as $det)
+                                <option value="{{$det->id}}" tel="{{$det->telefono}}">  {{$det->nombre}} {{$det->paterno}} {{$det->materno}}</option>
+                              @endforeach
+                            </select>
                         </div>
                       </div>
                       <div class="form-group dato_nuevo">
@@ -161,7 +169,8 @@
             <h2>Ejecutivo asignado.</h2>
             <div class="clearfix" ></div>
           </div>
-          <div class="x_content">
+
+          {{-- <div class="x_content">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="row" align="center"> 
               <select class="form-control select3 col-md-6 col-lg-offset-3 col-sm-6 col-xs- req_vendedor"  style="width: 50%;" name="id_ejecutivo" id="id_ejecutivo">
@@ -172,7 +181,24 @@
               </select>
               </div>
             </div>
+          </div> --}}
+
+          <div class="x_content">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="row" align="center"> 
+              <select class="form-control select3 col-md-12 col-sm-12 col-xs-12 req_vendedor"  data-width="50%" name="id_ejecutivo" id="id_ejecutivo">
+              <option value="">Selecione un Ejecutivo de venta</option>
+              @foreach($vendedores as $det)
+                {{-- <option value="{{$det->cod_vendedor}}">{{strtoupper($det->nom_vendedor)}}</option> --}}
+                <option value="{{$det->id}}">{{strtoupper($det->nombre.' '.$det->paterno)}}</option>
+              @endforeach
+            </select>
+              </div>
+            </div>
           </div>
+
+        
+
           <div class="x_title">
             <h2>Finalizar.</h2>
             <div class="clearfix" ></div>
@@ -301,10 +327,10 @@ $(document).ready(function() {
   };
 
   $('.select2').change(function() {
-    
     var telef = $(this).find("option:selected").attr('tel');
     $("#telefono").val(telef);
   });
+
 
   $('.select2').select2({
     placeholder: 'Seleccione un cliente',

@@ -154,7 +154,8 @@
             <select class="form-control select3 col-md-12 col-sm-12 col-xs-12 req_vendedor"  data-width="100%" name="id_ejecutivo" id="id_ejecutivo">
               <option value="">Selecione un Ejecutivo de venta</option>
               @foreach($vendedores as $det)
-                <option value="{{$det->cod_vendedor}}">{{strtoupper($det->nom_vendedor)}}</option>
+                {{-- <option value="{{$det->cod_vendedor}}">{{strtoupper($det->nom_vendedor)}}</option> --}}
+                <option value="{{$det->id}}">{{strtoupper($det->nombre.' '.$det->paterno)}}</option>
               @endforeach
             </select>
           </div>
@@ -235,6 +236,8 @@ $('.select3').select2({placeholder: 'Seleccione un cliente'});
               $('.panel_ejecutivo').show();
               $('.cat-1').show();
               $('.cat-2').hide();
+              $('.cat-3').hide();
+              $('.cat-4').hide();
               $("#antiguo").prop("checked", true);
               $('.nuevo').hide();
               $('.existente').show();
@@ -252,6 +255,8 @@ $('.select3').select2({placeholder: 'Seleccione un cliente'});
               $('.panel_ejecutivo').show();
               $('.cat-1').hide();
               $('.cat-2').show();
+              $('.cat-3').hide();
+              $('.cat-4').hide();
               $("#antiguo").prop("checked", true);
               $('.nuevo').hide();
               $('.existente').show();
@@ -264,6 +269,44 @@ $('.select3').select2({placeholder: 'Seleccione un cliente'});
 
               break;
           case '3':
+              $('.panelcliente').show();
+              $('.panel_categorias').show();
+              $('.panel_ejecutivo').show();
+              $('.cat-1').hide();
+              $('.cat-2').hide();
+              $('.cat-3').show();
+              $('.cat-4').hide();
+              $("#antiguo").prop("checked", true);
+              $('.nuevo').hide();
+              $('.existente').show();
+              $(".req_nuevo").prop('required',false);
+              $(".req_antiguo").prop('required',true);
+              $(".opciones").attr('checked', false)
+              $('.datos_nuevo').hide();
+              $(".req_vendedor").prop('required',true);
+              $(".txt_otros_8").val(' ');
+
+              break;
+          case '4':
+              $('.panelcliente').show();
+              $('.panel_categorias').show();
+              $('.panel_ejecutivo').show();
+              $('.cat-1').hide();
+              $('.cat-2').hide();
+              $('.cat-3').hide();
+              $('.cat-4').show();
+              $("#antiguo").prop("checked", true);
+              $('.nuevo').hide();
+              $('.existente').show();
+              $(".req_nuevo").prop('required',false);
+              $(".req_antiguo").prop('required',true);
+              $(".opciones").attr('checked', false)
+              $('.datos_nuevo').hide();
+              $(".req_vendedor").prop('required',true);
+              $(".txt_otros_8").val(' ');
+
+              break;
+          case '5':
              
               $('.panelcliente').hide();
               $('.panel_categorias').hide();

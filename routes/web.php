@@ -578,6 +578,10 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'uses' =>'TraficoController@add_visita',
 		'as'   =>	'trafico.add_visita'
 	]);
+	route::get('trafico/add_visita2',[
+		'uses' =>'TraficoController@add_visita2',
+		'as'   =>	'trafico.add_visita2'
+	]);
 
 	route::get('trafico/detalle_visita',[
 		'uses' =>'TraficoController@detalle_visita',

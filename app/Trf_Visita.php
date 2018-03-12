@@ -14,6 +14,10 @@ class Trf_Visita extends Model
     {
         return $this->belongsTo('App\Trf_Ejecutivo','id_ejecutivo');
     }
+    // public function ejecutivo()
+    // {
+    //     return $this->belongsTo('App\Vendedores','id_ejecutivo');
+    // }
     public function motivo()
     {
         return $this->belongsTo('App\Trf_Motivo','id_motivo');

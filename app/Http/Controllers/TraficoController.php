@@ -13,6 +13,7 @@ use App\Trf_Sucursal_Encuesta;
 use App\Trf_Visita_Modelo;
 use App\Trf_Sucursal;
 use App\Trf_Visita;
+use App\Trf_Ejecutivo;
 use App\Vendedores;
 use App\Trf_Cliente;
 use Carbon\Carbon;
@@ -34,7 +35,7 @@ class TraficoController extends Controller
             $edades = Trf_Parametrica::where('tabla','rango_edades')->get();
             $motivo_Categoria=Trf_Motivo_Categoria::all();
             $modelos=Trf_Modelo::all();
-            $vendedores=Vendedores::where('cod_ubicacion',$id_suc)->orderBy('nom_vendedor')->get();
+            $vendedores=Trf_Ejecutivo::where('id_sucursal',$id_suc)->orderBy('id')->get();
             
             return view('trafico.formulario')
             ->with('encuesta',$encuesta)
@@ -66,7 +67,7 @@ class TraficoController extends Controller
             $edades = Trf_Parametrica::where('tabla','rango_edades')->get();
             $motivo_Categoria=Trf_Motivo_Categoria::all();
             $modelos=Trf_Modelo::all();
-            $vendedores=Vendedores::where('cod_ubicacion',$id_suc)->orderBy('nom_vendedor')->get();
+            $vendedores=Trf_Ejecutivo::where('id_sucursal',$id_suc)->orderBy('id')->get();
             
             return view('trafico.formulario2')
             ->with('encuesta',$encuesta)
@@ -241,6 +242,15 @@ class TraficoController extends Controller
         $sucursales_encuesta =Trf_Sucursal_Encuesta::all();
         $motivos_encuesta =Trf_Motivo_Encuesta::all();
 
+// dd($encuestas);
+// dd($motivos);
+// dd($categorias);
+// dd($modelos);
+// dd($parametricas);
+// dd($motivos_categoria);
+// dd($sucursales_encuesta);
+// dd($motivos_encuesta);
+
         return view('trafico.administracion.index')
         ->with('encuestas',$encuestas) 
         ->with('motivos',$motivos) 
@@ -258,7 +268,7 @@ class TraficoController extends Controller
     public function add_visita(Request $request)
     {
         $hoy = Carbon::now('America/La_Paz')->format('Ymd H:i:s');
-        dd($request->all());
+//        dd($request->all());
 
         if($request->tipo_cliente=='Antiguo')
         {
@@ -273,7 +283,7 @@ class TraficoController extends Controller
             $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;
             $nuevo_visita -> save();
 
-            if($request->id_motivo=='1' || $request->id_motivo=='2')
+            if($request->id_motivo=='1' || $request->id_motivo=='2' || $request->id_motivo=='3' || $request->id_motivo=='4')
             {
                 for ($i=0; $i < sizeof($request->modelos); $i++) 
                 {
@@ -316,7 +326,7 @@ class TraficoController extends Controller
                 $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;
                 $nuevo_visita -> save();
 
-                if($request->id_motivo=='1' || $request->id_motivo=='2')
+                if($request->id_motivo=='1' || $request->id_motivo=='2' || $request->id_motivo=='3' || $request->id_motivo=='4')
                 {
                     for ($i=0; $i < sizeof($request->modelos); $i++) 
                     {
@@ -346,6 +356,11 @@ class TraficoController extends Controller
                 return redirect()->route('trafico.formulario')->with('mensaje',"Creado exitosamente.");
             }
         }
+    }
+
+    public function add_visita2(Request $request)
+    {
+        dd($request->all());
     }
 
     public function lista_visitas()

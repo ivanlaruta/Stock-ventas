@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trf_Ejecutivo extends Model
 {
-    protected $table = "v_vendedores";
-    protected $primaryKey ='cod_vendedor';
+    protected $table = "trf_ejecutivos";
+    //protected $primaryKey ='cod_vendedor';
     // protected $dateFormat = 'Ymd H:i:s';
     // public $timestamps = true;
 
