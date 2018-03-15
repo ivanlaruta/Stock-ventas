@@ -49,12 +49,14 @@
                     <td>{{$det->fecha}}</td>
                     <td>{{$det->id_sucursal}} - {{$det->sucursal->nom_sucursal}}</td>
                     <td>{{$det->motivo->descripcion}}</td>
-                    <td>@if(is_null($det->id_cliente))---@else{{$det->tipo_cliente}}@endif</td>
-                    <td>@if(is_null($det->id_cliente))---@else{{$det->cliente->nombre}} {{$det->cliente->paterno}} {{$det->cliente->materno}}@endif</td>
-                    <td>@if(is_null($det->id_cliente))---@else{{$det->cliente->edad->descripcion}}@endif</td>
-                    <td>@if(is_null($det->id_cliente))---@else{{$det->cliente->genero}}@endif</td>
-                    <td>@if(is_null($det->id_cliente))---@else{{$det->cliente->telefono}}@endif</td>
-                    <td>@if($det->id_ejecutivo==null)---@else{{strtoupper($det->ejecutivo->nombre ." ".$det->ejecutivo->paterno)}}@endif</td>
+                    <td>{{$det->tipo_cliente}}</td>
+                    <td>@if(is_null($det->id_cliente)) Sin dato @else{{$det->cliente->nombre}} {{$det->cliente->paterno}} @endif</td>
+                    <td>@if(is_null($det->id_cliente) ) Sin dato @else @if(is_null($det->cliente->rango_edad)) Sin dato @else {{$det->cliente->edad->descripcion}}@endif @endif</td>
+                    <td>@if(is_null($det->id_cliente)) Sin dato @else @if(is_null($det->cliente->genero)) Sin dato @else {{$det->cliente->genero}}@endif @endif</td>
+
+                    <td>@if(is_null($det->id_cliente)) Sin dato @else @if(is_null($det->cliente->telefono)) Sin dato @else{{$det->cliente->telefono}}@endif @endif</td>
+                    
+                    <td>@if($det->id_ejecutivo==null) No asignado @else{{strtoupper($det->ejecutivo->nombre ." ".$det->ejecutivo->paterno)}}@endif</td>
                     <td>{{$det->created_by}}</td>
                    
                       <td align="right">

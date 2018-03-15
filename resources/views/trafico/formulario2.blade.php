@@ -33,7 +33,7 @@
               <div class="row" align="center">
                 <strong>NUEVO <input type="radio" name="tipo_cliente" value="Nuevo" id="nuevo" class="radio_nuevo" autocomplete="off"> </strong> |
                 <strong>ANTIGUO <input type="radio" name="tipo_cliente" value="Antiguo" id="antiguo"  class="radio_antiguo" autocomplete="off"> </strong> 
-                <button type="button" class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target=".bs-example-modal"  a-toggle="tooltip" data-placement="bottom" title="Agregar informacion de cliente"><span class="fa fa-user"></span> Datos cliente</button>
+                <button type="button" class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target=".bs-example-modal"  a-toggle="tooltip" data-placement="bottom" title="Agregar informacion de cliente"><span class="fa fa-user"></span> Agregar datos de cliente</button>
               </div>
             </div>
           </div>
@@ -61,11 +61,16 @@
                         </div> --}}
                         
                           <div class="col-md-9 col-sm-9 col-xs-12">
+                           
                             <select class="form-control select2"  style="width: 100%;"  name="clientes_ant" id="clientes_ant">
+                              <option value="" selected="">Selecione un Ejecutivo de venta</option>
                               @foreach($clientes as $det)
-                                <option value="{{$det->id}}" tel="{{$det->telefono}}">  {{$det->nombre}} {{$det->paterno}} {{$det->materno}}</option>
-                              @endforeach
+                            <option value="{{$det->id}}" tel="{{$det->telefono}}" a_ci="{{$det->ci}}" a_exp="{{$det->expedido}}" a_rango="{{$det->rango_edad}}" a_genero="{{$det->genero}}">  
+                            {{$det->nombre}} {{$det->paterno}} {{$det->materno}}
+                            </option>
+                          @endforeach
                             </select>
+                           
                         </div>
                       </div>
                       <div class="form-group dato_nuevo">
@@ -93,11 +98,11 @@
                         </div>
                       </div>
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" name="ci" class="form-control has-feedback-left" placeholder="CI">
+                        <input type="text" name="ci" id="ci" class="form-control has-feedback-left" placeholder="CI">
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                       </div>
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <select class="form-control" name="expedido" id="expedido">
+                        <select class="form-control" name="exp" id="exp">
                             <option value="EX" disabled="">Expedido</option>
                             <option value="LP">LP</option>
                             <option value="OR">OR</option>
@@ -119,7 +124,7 @@
                           </select>
                       </div>
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <select class="form-control" name="genero" id="genero">
+                        <select class="form-control" name="gen" id="gen">
                           <option value=" ">Genero</option>
                           <option value="F">FEMENINO</option>
                           <option value="M">MASCULINO</option>
@@ -129,7 +134,8 @@
                 </div>
                 <div class="ln_solid"></div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                 </div>
               </div>
             </div>
@@ -149,9 +155,9 @@
                         @foreach($motivos as $det) 
                         <tr>
                           <td style="width: 40%; padding: 2px; " ><strong>{{$det->motivo->descripcion}} </strong> 
-                          <td style="width: 1%; padding: 2px; " > <input type="radio" name="motivo" value="{{$det->motivo->id}}" id="{{$det->motivo->id}}" class="" autocomplete="off"></td>
+                          <td style="width: 1%; padding: 2px; " > <input type="radio" name="motivo" value="{{$det->motivo->id}}" id="{{$det->motivo->id}}" class="" autocomplete="off" required></td>
                           <td style="width: 30%; padding: 2px; " >
-                            <a class=" ver ver_{{$det->motivo->id}}"href="#myModal" data-toggle="modal" data-target="#myModal">
+                            <a class=" ver ver_{{$det->motivo->id}}" href="#myModal" data-toggle="modal" data-target="#myModal">
                               <span class="fa fa-car fa-lg"></span> Ver seleccion
                             </a>
                             
@@ -165,42 +171,43 @@
               </div>
             </div>
           </div>
-          <div class="x_title">
-            <h2>Ejecutivo asignado.</h2>
-            <div class="clearfix" ></div>
-          </div>
 
-          {{-- <div class="x_content">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="row" align="center"> 
-              <select class="form-control select3 col-md-6 col-lg-offset-3 col-sm-6 col-xs- req_vendedor"  style="width: 50%;" name="id_ejecutivo" id="id_ejecutivo">
+          <div class="ejecutivo">  
+            <div class="x_title">
+              <h2>Ejecutivo asignado.</h2>
+              <div class="clearfix" ></div>
+            </div>
+
+            {{-- <div class="x_content">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="row" align="center"> 
+                <select class="form-control select3 col-md-6 col-lg-offset-3 col-sm-6 col-xs- req_vendedor"  style="width: 50%;" name="id_ejecutivo" id="id_ejecutivo">
+                  <option value="">Selecione un Ejecutivo de venta</option>
+                  @foreach($vendedores as $det)
+                    <option value="{{$det->cod_vendedor}}">{{strtoupper($det->nom_vendedor)}}</option>
+                  @endforeach
+                </select>
+                </div>
+              </div>
+            </div> --}}
+
+            <div class="x_content">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="row" align="center"> 
+                <select class="form-control select3 col-md-12 col-sm-12 col-xs-12 req_vendedor"  data-width="50%" name="id_ejecutivo" id="id_ejecutivo">
                 <option value="">Selecione un Ejecutivo de venta</option>
                 @foreach($vendedores as $det)
-                  <option value="{{$det->cod_vendedor}}">{{strtoupper($det->nom_vendedor)}}</option>
+                  {{-- <option value="{{$det->cod_vendedor}}">{{strtoupper($det->nom_vendedor)}}</option> --}}
+                  <option value="{{$det->id}}">{{strtoupper($det->nombre.' '.$det->paterno)}}</option>
                 @endforeach
               </select>
-              </div>
-            </div>
-          </div> --}}
-
-          <div class="x_content">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="row" align="center"> 
-              <select class="form-control select3 col-md-12 col-sm-12 col-xs-12 req_vendedor"  data-width="50%" name="id_ejecutivo" id="id_ejecutivo">
-              <option value="">Selecione un Ejecutivo de venta</option>
-              @foreach($vendedores as $det)
-                {{-- <option value="{{$det->cod_vendedor}}">{{strtoupper($det->nom_vendedor)}}</option> --}}
-                <option value="{{$det->id}}">{{strtoupper($det->nombre.' '.$det->paterno)}}</option>
-              @endforeach
-            </select>
+                </div>
               </div>
             </div>
           </div>
 
-        
-
           <div class="x_title">
-            <h2>Finalizar.</h2>
+            {{-- <h2>Finalizar.</h2> --}}
             <div class="clearfix" ></div>
           </div>
           <div class="x_content">
@@ -217,11 +224,12 @@
     </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> --}}
+                Seleccione al menos un modelo
               </div>
               <div class="modal-body" >
                 
@@ -251,7 +259,8 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                <button type="button" class="btn btn-default btn_cancela_modelos" id='btn_cancela_modelos' >Cancelar</button>
+                <button type="button" class="btn btn-primary btn_acepta_modelos" id='btn_acepta_modelos' {{-- data-dismiss="modal" --}}>Aceptar</button>
               </div>
             </div>
           </div>
@@ -265,8 +274,6 @@
 </div>
 </div>
 
-
-
 @endsection
 
 @section('scripts')
@@ -278,18 +285,52 @@ $(document).ready(function() {
   $('.txt_otros').hide();
   $('.ver').hide();
   $('.categorias').hide();
+  $('.ejecutivo').hide();
+  // $('#myModal').modal({backdrop: 'static', keyboard: false})  
+  // document.getElementById("btn_acepta_modelos").disabled = true;
   opcionesnuevo();
 
+  document.getElementById("btn_acepta_modelos").onclick = function() {myFunction()};
+
+  function myFunction() {
+      var numberOfChecked = $('input:checkbox:checked').length;
+      if (numberOfChecked > 0) {$('#myModal').modal('hide');}
+      else{alert('Seleccione al menos un modelo')};
+      
+  }
+   document.getElementById("btn_cancela_modelos").onclick = function() {
+    $('.modelos').attr('checked',false);
+    $('input[name="motivo"]').attr('checked',false);
+    $('#myModal').modal('hide');
+    $('.ejecutivo').hide();
+   };
+  
   $('input[name="motivo"]').change(function() {
     var id_motivo=$(this).is(':checked') && $(this).val();
     $('.modelos').attr('checked',false);
     $('.ver').hide();
     $('.categorias').hide();
     if(id_motivo < 5){
+      // alert('mostrar clientes');
       $('.ver_'+id_motivo).show();
       $('.categoria_'+id_motivo).show();
       $('#myModal').modal('show');
+      $('.ejecutivo').show();
+      $('.req_vendedor').attr('required',true);
     }
+    else
+    {
+      if(id_motivo ==5){
+        $('.ejecutivo').show();
+        $('.req_vendedor').attr('required',true);
+      }
+      else
+      {
+        $('.ejecutivo').hide();
+        $('.req_vendedor').attr('required',false);
+      }
+    }
+
   });
 
    $('.mod_OTROS').change(function() {
@@ -302,8 +343,6 @@ $(document).ready(function() {
              $('.txt_otros').hide();
         }
     });
-
-
   $('#nuevo').change(function() {
    opcionesnuevo();
   });
@@ -317,6 +356,16 @@ $(document).ready(function() {
     document.getElementById("nuevo").setAttribute("checked", "");
     $('.dato_antiguo').hide();
     $('.dato_nuevo').show();
+        document.getElementById("telefono").value = '';
+    document.getElementById("ci").value = '';
+    document.getElementById("exp").value = '';
+    document.getElementById("edad").value = '';
+    document.getElementById("gen").value = '';
+    document.getElementById("telefono").disabled = false;
+    document.getElementById("ci").disabled = false;
+    document.getElementById("exp").disabled = false;
+    document.getElementById("edad").disabled = false;
+    document.getElementById("gen").disabled = false;
   };
 
   function opcionesantiguo()
@@ -324,13 +373,25 @@ $(document).ready(function() {
     document.getElementById("antiguo").setAttribute("checked", "");
     $('.dato_nuevo').hide();
     $('.dato_antiguo').show();
+    document.getElementById("telefono").disabled = true;
+    document.getElementById("ci").disabled = true;
+    document.getElementById("exp").disabled = true;
+    document.getElementById("edad").disabled = true;
+    document.getElementById("gen").disabled = true;
   };
 
   $('.select2').change(function() {
     var telef = $(this).find("option:selected").attr('tel');
+    var ci = $(this).find("option:selected").attr('a_ci');
+    var exp = $(this).find("option:selected").attr('a_exp');
+    var edad = $(this).find("option:selected").attr('a_rango');
+    var gen = $(this).find("option:selected").attr('a_genero');
     $("#telefono").val(telef);
+    $("#ci").val(ci);
+    document.getElementById('exp').value=exp;
+    document.getElementById('edad').value=edad;
+    document.getElementById('gen').value=gen;
   });
-
 
   $('.select2').select2({
     placeholder: 'Seleccione un cliente',
@@ -343,7 +404,6 @@ $(document).ready(function() {
   });
 
  $('.select3').select2({placeholder: 'Seleccione un vendedor'});
-
 
 } );
 

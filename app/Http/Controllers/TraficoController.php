@@ -360,7 +360,66 @@ class TraficoController extends Controller
 
     public function add_visita2(Request $request)
     {
-        dd($request->all());
+        $hoy = Carbon::now('America/La_Paz')->format('Ymd H:i:s');
+        // dd($request->all());
+
+        if($request->tipo_cliente=='Nuevo' &&  !empty($request->nombre))
+            {
+                $nuevo_cliente = new Trf_Cliente();
+                $nuevo_cliente -> ci = $request->ci;
+                $nuevo_cliente -> expedido = $request->exp;
+                $nuevo_cliente -> nombre = strtoupper($request->nombre);
+                $nuevo_cliente -> paterno = strtoupper($request->paterno);
+                $nuevo_cliente -> materno = strtoupper($request->materno);
+                $nuevo_cliente -> genero = $request->gen;
+                $nuevo_cliente -> rango_edad = $request->edad;
+                $nuevo_cliente -> telefono = $request->telefono;
+                $nuevo_cliente -> created_by = $suc=Auth::user()->usuario;
+                $nuevo_cliente -> updated_by = $suc=Auth::user()->usuario;
+                $nuevo_cliente -> save();
+            }
+        
+            $nuevo_visita = new Trf_Visita();
+            $nuevo_visita -> tipo_cliente = $request->tipo_cliente;
+            if($request->tipo_cliente=='Nuevo' &&  !empty($request->nombre))
+            {
+                $nuevo_visita -> id_cliente = $nuevo_cliente->id;
+            }
+            else
+            {
+                if($request->tipo_cliente=='Antiguo')
+                {
+                    $nuevo_visita -> id_cliente = $request->clientes_ant;
+                }
+            }
+            $nuevo_visita -> id_sucursal = $request->id_sucursal;
+            $nuevo_visita -> id_motivo = $request->motivo;
+            $nuevo_visita -> id_ejecutivo = $request->id_ejecutivo;
+            $nuevo_visita -> fecha = $hoy;
+            $nuevo_visita -> created_by = $suc=Auth::user()->usuario;
+            $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;
+            $nuevo_visita -> save();
+
+
+            if($request->motivo=='1' || $request->motivo=='2' || $request->motivo=='3' || $request->motivo=='4')
+            {
+                for ($i=0; $i < sizeof($request->modelos); $i++) 
+                {
+                    $nuevo_visita_modelo = new Trf_Visita_Modelo();
+                    $nuevo_visita_modelo -> id_visita = $nuevo_visita ->id;
+                    $nuevo_visita_modelo -> id_modelo = $request->modelos[$i];
+                    if($request->modelos[$i]=='33' || $request->modelos[$i]=='38')
+                    {
+                        $nuevo_visita_modelo -> descripcion = strtoupper($request->txt_otros_8).strtoupper($request->txt_otros_9);
+                    }
+                    $nuevo_visita_modelo ->save();
+                }
+            }
+
+            return redirect()->route('trafico.formulario2')->with('mensaje',"Creado exitosamente."); 
+        
+        
+        
     }
 
     public function lista_visitas()
