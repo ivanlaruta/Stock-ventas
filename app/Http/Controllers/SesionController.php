@@ -39,7 +39,7 @@ class SesionController extends Controller
         }
         if (Auth::user()->rol == '100')
         {
-            return redirect()->route('trafico.formulario');
+            return redirect()->route('trafico.formulario2');
         }
 
     }

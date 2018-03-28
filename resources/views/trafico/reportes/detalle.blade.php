@@ -8,11 +8,33 @@
  <!-- page content -->
 <div class="right_col" role="main">
   <div class="">
-    <div class="page-title">
-      <div class="title">
-        <h3><a href="">TRAFICO CLIENTES</a></h3>
+   <div class="row">
+    <div class="clearfix"></div>
+    <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+        <h2>REPORTE TRAFICO / 
+              <a href="{{ route('trafico.reporte2').'?mes='.$request->mes}}">{{$desc_mes}}</a>
+               /
+                <a href="{{ route('trafico.reporte2').'?pantalla=regional&mes='.$request->mes.'&regional='.$regional}}">
+                {{$regional}}
+                </a> 
+              / 
+              <a href="{{ route('trafico.reporte2').'?pantalla=sucursal&mes='.$request->mes.'&sucursal='.$request->sucursal}}">
+                {{$sucursal}} 
+              </a>
+              /
+              @if(is_null($request->nom))
+                Sin dato de vendedor
+              @else
+                {{strtoupper($request->nom ." ".$request->pat)}}
+              @endif
+
+            </h2>
+          <div class="clearfix"></div>
       </div>
-    </div>
+   
     <hr>
     <div class="clearfix"></div>
     <div class="row">
@@ -37,9 +59,9 @@
                   <th>RANGO EDAD</th>
                   <th>GENERO</th>
                   <th>TELEFONO</th>
-                  <th>EJECUTIVO</th>
+                  {{-- <th>EJECUTIVO</th> --}}
                   <th>ANFITRION</th>
-                  <th style="text-align: right;">DETALLE</th>
+                  <th style="text-align: right;">TOTALIZADOR DE MODELOS</th>
                 </tr>
               </thead>
               <tbody>
@@ -56,7 +78,7 @@
 
                     <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->telefono)) -- @else{{$det->cliente->telefono}}@endif @endif</td>
                     
-                    <td>@if($det->id_ejecutivo==null) No asignado @else{{strtoupper($det->ejecutivo->nombre ." ".$det->ejecutivo->paterno)}}@endif</td>
+                    {{-- <td>@if($det->id_ejecutivo==null) No asignado @else{{strtoupper($det->ejecutivo->nombre ." ".$det->ejecutivo->paterno)}}@endif</td> --}}
                     <td>{{$det->created_by}}</td>
                    
                       <td align="right">
@@ -83,7 +105,13 @@
           </div>
         </div>
       </div>
+
+
     </div>
+  </div>
+    </div>
+    </div>
+    {{-- </div> --}}
   </div>
 </div>
 

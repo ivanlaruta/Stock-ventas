@@ -75,7 +75,6 @@ class SeguimientoController extends Controller
         $produccion = DB::select( DB::raw("select * from  gtauto.dbo.ct_vehiculos where chassis LIKE '%".$id."%'"));
 
         $reserva =Reserva::where('CHASIS','LIKE', '%'.$id.'%')->first();
-
         if(sizeof($reserva)>0)
         {
             $nro_cot=rtrim($reserva->NRO_COTIZACION);
@@ -221,5 +220,6 @@ class SeguimientoController extends Controller
         ->with('dias_total',$dias_total)
         ->with('dias_cod_b',$dias_cod_b)
         ->with('cod_b',$cod_b);
+        
     }
 }

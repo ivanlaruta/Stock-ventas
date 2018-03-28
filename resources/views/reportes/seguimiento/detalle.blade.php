@@ -847,7 +847,7 @@
           </div>
           <div class="row">
             <strong class="col-md-4 col-lg-offset-1">DESCUENTO: </strong>
-            <span class="col-md-3 text-right"><u class="red"> - {{number_format($cotizacion->montoPorcentajeDescuento,2)}}</u></span> <span class="col-md-3 text-warning">({{$cotizacion->PorcentajeDescuento}}%)</span>
+            {{-- <span class="col-md-3 text-right"><u class="red"> - {{number_format($cotizacion->montoPorcentajeDescuento,2)}}</u></span> <span class="col-md-3 text-warning">({{$cotizacion->PorcentajeDescuento}}%)</span> --}}
           </div>
 
           <div class="row">
