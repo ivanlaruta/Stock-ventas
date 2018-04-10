@@ -82,7 +82,7 @@
                     <td>{{$det->created_by}}</td>
                    
                       <td align="right">
-                        @if($det->id_motivo<=2)
+                        @if($det->id_motivo<=4)
                           <div class="btn-group" role="group" >
                             <a href="#" class="ver_detalle" data-toggle="tooltip" data-placement="bottom" title="Ver modelos selccionados " id_visita='{{$det->id}}'>
                               <span class="fa fa-files-o fa-lg"></span> 

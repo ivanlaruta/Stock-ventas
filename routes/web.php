@@ -598,5 +598,10 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.reporte2'
 	]);
 
+	route::get('trafico/totalizador',[
+		'uses' =>'TraficoController@totalizador',
+		'as'   =>	'trafico.totalizador'
+	]);
+
 	route::resource('trafico','TraficoController');
 });
