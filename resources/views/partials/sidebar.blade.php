@@ -126,10 +126,10 @@
                     <ul class="nav child_menu">
                       {{-- <li><a href="{{ route('trafico.formulario')}}">Formulario</a></li> --}}
                       <li><a href="{{ route('trafico.formulario2')}}">Nuevo trafico</a></li>
+                       <li><a href="{{ route('trafico.lista_visitas')}}">Lista de visitas</a></li>
                        @if(Auth::user()->rol=='101' || Auth::user()->rol=='1')
                        {{-- <li><a href="{{ route('trafico.reporte')}}">Reportes</a></li> --}}
                        <li><a href="{{ route('trafico.reporte2')}}">Reporte</a></li>
-                       <li><a href="{{ route('trafico.lista_visitas')}}">Lista de visitas</a></li>
                        <li><a href="{{ route('trafico.admin_index')}}">Administracion</a></li>
                        @endif
                     </ul>

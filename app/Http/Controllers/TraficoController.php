@@ -240,7 +240,9 @@ class TraficoController extends Controller
         $parametricas =Trf_Parametrica::all();
         $motivos_categoria =Trf_Motivo_Categoria::all();
         $sucursales_encuesta =Trf_Sucursal_Encuesta::all();
+        
         $motivos_encuesta =Trf_Motivo_Encuesta::all();
+        
 
 // dd($encuestas);
 // dd($motivos);
@@ -361,7 +363,7 @@ class TraficoController extends Controller
     public function add_visita2(Request $request)
     {
         $hoy = Carbon::now('America/La_Paz')->format('Ymd H:i:s');
-        // dd($request->all());
+        dd($request->all());
 
         if($request->tipo_cliente=='Nuevo' &&  !empty($request->nombre))
             {
@@ -400,7 +402,6 @@ class TraficoController extends Controller
             $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;
             $nuevo_visita -> save();
 
-
             if($request->motivo=='1' || $request->motivo=='2' || $request->motivo=='3' || $request->motivo=='4')
             {
                 for ($i=0; $i < sizeof($request->modelos); $i++) 
@@ -416,17 +417,23 @@ class TraficoController extends Controller
                 }
             }
 
-            return redirect()->route('trafico.formulario2')->with('mensaje',"Creado exitosamente."); 
-        
-        
-        
+           return redirect()->route('trafico.formulario2')->with('mensaje',"Creado exitosamente."); 
     }
 
     public function lista_visitas()
     {
-        $visitas = Trf_Visita::all();    // dd($visitas);
+        $usuario = Auth::user()->usuario;
+        $inicio_sem=Carbon::now('America/La_Paz')->startOfWeek()->format('d/m/Y');   //inicio de semana
+        $hoy = Carbon::now('America/La_Paz')->format('d/m/Y');  //fecha actual
+        $visitas = Trf_Visita::where('created_by',$usuario)
+        ->where(DB::raw('CAST(fecha AS date)'),'>=',$inicio_sem)
+        ->get();
         return view('trafico.lista_visitas')
-        ->with('visitas',$visitas);
+        ->with('visitas',$visitas)
+        ->with('inicio_sem',$inicio_sem)
+        ->with('hoy',$hoy)
+        ->with('usuario',$usuario)
+        ;
     }
 
     public function detalle_visita(Request $request)

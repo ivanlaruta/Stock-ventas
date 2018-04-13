@@ -10,7 +10,7 @@
   <div class="">
     <div class="page-title">
       <div class="title">
-        <h3><a href="{{ route('trafico.formulario')}}">TRAFICO CLIENTES</a><small> / {{Auth::user()->id_ubicacion}} - {{Auth::user()->sucursal2->nom_sucursal}} /
+        <h3><a href="{{ route('trafico.formulario2')}}">TRAFICO CLIENTES</a><small> / {{Auth::user()->id_ubicacion}} - {{Auth::user()->sucursal2->nom_sucursal}} /
         @if(sizeof($encuesta)>0) {{$encuesta->descripcion}} @endif
         </small></h3>
       </div>
@@ -37,21 +37,19 @@
               </div>
             </div>
           </div>
-
-          <div class="modal fade bs-example-modal" role="dialog" aria-hidden="true">
+          <div class="modal fade bs-example-modal m_cli" id="m_cli" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                  {{-- <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> --}}
                   </button>
                   <h4 class="modal-title" id="myModalLabel">Datos de cliente</h4>
                 </div>
                 <div class="modal-body">
-                    <br />
+                    
                     <div class="form-horizontal form-label-left input_mask">
                       
-                      <div class="form-group dato_antiguo">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Cliente</label>
+                     
                         {{-- <div class="col-md-9 col-sm-9 col-xs-12">
                           <select class="form-control select2" name="clientes_ant" id="clientes_ant" data-width="100%" autocomplete="off">
                           @foreach($clientes as $det)
@@ -59,21 +57,45 @@
                           @endforeach
                         </select>
                         </div> --}}
-                        
-                          <div class="col-md-9 col-sm-9 col-xs-12">
-                           
-                            <select class="form-control select2"  style="width: 100%;"  name="clientes_ant" id="clientes_ant">
-                              <option value="" selected="">Selecione un Ejecutivo de venta</option>
+                      <div class="form-group dato_antiguo ">
+                        <div class="col-md-6">
+                          <select class="form-control select2"  style="width: 100%;"  name="clientes_ant" id="clientes_ant">
+                           <option value="" disabled selected>Seleccione un cliente:</option>
                               @foreach($clientes as $det)
-                            <option value="{{$det->id}}" tel="{{$det->telefono}}" a_ci="{{$det->ci}}" a_exp="{{$det->expedido}}" a_rango="{{$det->rango_edad}}" a_genero="{{$det->genero}}">  
-                            {{$det->nombre}} {{$det->paterno}} {{$det->materno}}
-                            </option>
-                          @endforeach
+                                <option value="{{$det->id}}" tel="{{$det->telefono}}">  
+                                {{$det->nombre}} {{$det->paterno}} {{$det->materno}}
+                                </option>
+                              @endforeach
                             </select>
-                           
+                        </div>
+                        <div class="col-md-6">
+                          <input type="text" name="telefono2" id="telefono2" class="form-control" placeholder="Telefono " autocomplete="off" style="background: #eeebfc;">
+                        </div>
+                      </div>
+
+                      
+                      <div class="form-group dato_nuevo">
+                        
+                        <div class="col-md-6">
+                          <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre *" autocomplete="off" style="background: #eeebfc;">
+                        </div>
+                      
+                        
+                        <div class="col-md-6">
+                          <input type="text" name="paterno" id="paterno" class="form-control" placeholder="Paterno *" autocomplete="off" style="background: #eeebfc;">
                         </div>
                       </div>
                       <div class="form-group dato_nuevo">
+                        
+                        <div class="col-md-6">
+                          <input type="text" name="materno" id="materno" class="form-control" placeholder="Materno" autocomplete="off">
+                        </div>
+                     
+                        <div class="col-md-6">
+                          <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Telefono *" autocomplete="off" style="background: #eeebfc;">
+                        </div>
+                      </div>
+                      {{-- <div class="form-group dato_nuevo">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombres</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                           <input type="text" name="nombre" class="form-control" placeholder="Nombres" autocomplete="off">
@@ -96,14 +118,15 @@
                         <div class="col-md-9 col-sm-9 col-xs-12">
                           <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Telefono" autocomplete="off">
                         </div>
-                      </div>
-                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" name="ci" id="ci" class="form-control has-feedback-left" placeholder="CI">
-                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                      </div>
-                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <select class="form-control" name="exp" id="exp">
-                            <option value="EX" disabled="">Expedido</option>
+                      </div> --}}
+                      <div class="ln_solid dato_nuevo"></div>
+                      <div class="form-group dato_nuevo">
+                        <div class="col-md-6">
+                          <input type="text" name="ci" id="ci" class="form-control " placeholder="Nro CI">
+                        </div>
+                        <div class="col-md-6">
+                          <select class="form-control" name="exp" id="exp" >
+                          <option value="" disabled selected>Expedido</option>
                             <option value="LP">LP</option>
                             <option value="OR">OR</option>
                             <option value="PT">PT</option>
@@ -114,28 +137,47 @@
                             <option value="BN">BN</option>
                             <option value="PA">PA</option>
                           </select>
+                        </div>
                       </div>
-                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+
+                  <div class="ln_solid dato_nuevo"></div>
+                  <div class="row dato_nuevo">
+                    <div class="col-md-6 form-group has-feedback">
+                    <p>RANGO DE EDAD</p>
+                      @foreach($edades as $det)
+                        <input type="radio" name="edad" id="edad" value="{{$det->codigo}}" class="radio_edad req_nuevo"> {{$det->descripcion}}<br>
+                      @endforeach
+                    </div>
+                    <div class="col-md-6 form-group has-feedback">
+                    <p>GENERO</p>
+                      <input type="radio" name="gen" id="gen" value="M" > Masculino<br>
+                      <input type="radio" name="gen" id="gen" value="F" > Femenino
+                    </div>
+                  </div>
+                    
+                  </div>
+                </div>
+                      {{-- <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                         <select class="form-control" name="edad" id="edad">
                             <option value=" ">Rango de edad</option>
                             @foreach($edades as $det)
                                <option value="{{$det->codigo}}"> {{$det->descripcion}}</option>
                             @endforeach
                           </select>
-                      </div>
-                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                      </div> --}}
+                     {{--  <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                         <select class="form-control" name="gen" id="gen">
                           <option value=" ">Genero</option>
                           <option value="F">FEMENINO</option>
                           <option value="M">MASCULINO</option>
                         </select>
-                      </div>
-                    </div>
-                </div>
-                <div class="ln_solid"></div>
+                      </div> --}}
+              
+                
+                      <small class="dato_nuevo">(*) Datos obligatorios</small>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                  <button type="button" class="btn btn-default cancelar_cliente" id="cancelar_cliente" >Cancelar</button>
+                  <button type="button" class="btn btn-primary aceptar_cliente" id="aceptar_cliente" >Aceptar</button>
                 </div>
               </div>
             </div>
@@ -290,6 +332,49 @@ $(document).ready(function() {
   // document.getElementById("btn_acepta_modelos").disabled = true;
   opcionesnuevo();
 
+
+  document.getElementById("cancelar_cliente").onclick = function() {cancela_clientes()};
+
+  function cancela_clientes() {
+
+
+    document.getElementById("nombre").value = '';
+    document.getElementById("paterno").value = '';
+    document.getElementById("materno").value = '';
+    document.getElementById("telefono").value = '';
+    document.getElementById("ci").value = '';
+    document.getElementById("exp").value = '';
+    document.getElementById("edad").checked = false;
+    document.getElementById("gen").checked = false;
+    // document.getElementById("m_cli").hide = true;
+// $("#clientes_ant").select2("val", "");
+$('#clientes_ant').val(null).trigger("change")
+//  if ( $("#clientes_ant").val()  != null )
+//  {
+
+//     $(".select2").each(function () {
+//         $(this).select2('destroy').val("").select2();
+//     });
+    
+// }
+    $('#m_cli').modal('hide');
+  }
+
+  document.getElementById("aceptar_cliente").onclick = function() {acepta_clientes()};
+function acepta_clientes() {
+  if(document.querySelector('input[name="tipo_cliente"]:checked').value == 'Antiguo')
+  {
+    $('#m_cli').modal('hide');
+  }
+  else{
+    
+      if ( $("#nombre").val().length>0 && $("#nombre").val().length>0 && $("#nombre").val().length>0 )
+        $('#m_cli').modal('hide');
+      else
+        alert('los campos marcados con (*) son obligatorios');
+  }
+ }
+
   document.getElementById("btn_acepta_modelos").onclick = function() {myFunction()};
 
   function myFunction() {
@@ -356,11 +441,13 @@ $(document).ready(function() {
     document.getElementById("nuevo").setAttribute("checked", "");
     $('.dato_antiguo').hide();
     $('.dato_nuevo').show();
-        document.getElementById("telefono").value = '';
+    document.getElementById("telefono").value = '';
     document.getElementById("ci").value = '';
     document.getElementById("exp").value = '';
-    document.getElementById("edad").value = '';
-    document.getElementById("gen").value = '';
+    // document.getElementById("edad").value = '';
+    // document.getElementById("gen").value = '';
+    document.getElementById("edad").checked = false;
+    document.getElementById("gen").checked = false;
     document.getElementById("telefono").disabled = false;
     document.getElementById("ci").disabled = false;
     document.getElementById("exp").disabled = false;
@@ -381,26 +468,29 @@ $(document).ready(function() {
   };
 
   $('.select2').change(function() {
+
     var telef = $(this).find("option:selected").attr('tel');
-    var ci = $(this).find("option:selected").attr('a_ci');
-    var exp = $(this).find("option:selected").attr('a_exp');
-    var edad = $(this).find("option:selected").attr('a_rango');
-    var gen = $(this).find("option:selected").attr('a_genero');
-    $("#telefono").val(telef);
-    $("#ci").val(ci);
-    document.getElementById('exp').value=exp;
-    document.getElementById('edad').value=edad;
-    document.getElementById('gen').value=gen;
+    // var ci = $(this).find("option:selected").attr('a_ci');
+    // var exp = $(this).find("option:selected").attr('a_exp');
+    // var edad = $(this).find("option:selected").attr('a_rango');
+    // var gen = $(this).find("option:selected").attr('a_genero');
+    $("#telefono2").val(telef);
+    // $("#ci").val(ci);
+    // document.getElementById('exp').value=exp;
+    // document.getElementById('edad').value=edad;
+    // document.getElementById('gen').value=gen;
   });
 
   $('.select2').select2({
     placeholder: 'Seleccione un cliente',
+
     minimumInputLength: 2,
     language: {
       noResults: function() { return "No hay resultado";},
       searching: function() { return "Buscando.."; },
       inputTooShort: function() { return "Por favor ingrese 2 o mas caracteres"; }
     },
+
   });
 
  $('.select3').select2({placeholder: 'Seleccione un vendedor'});

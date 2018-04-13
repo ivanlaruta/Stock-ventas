@@ -163,7 +163,7 @@
                                @foreach($sucursales_encuesta as $det)
                                 <tr>
                                    {{-- <td>{{$det->id}}</td> --}}
-                                   <td>{{$det->id_encuesta}} - {{$det->encuesta->descripcion}}</td>
+                                   <td>{{$det->id_encuesta}} - {{-- {{$det->encuesta->descripcion}} --}}</td>
                                    <td>{{$det->id_sucursal}} - {{$det->sucursal->nom_sucursal}}</td>
                                    <td align="right">
                                    <div class="btn-group" role="group" >
