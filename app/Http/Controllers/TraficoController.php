@@ -363,7 +363,7 @@ class TraficoController extends Controller
     public function add_visita2(Request $request)
     {
         $hoy = Carbon::now('America/La_Paz')->format('Ymd H:i:s');
-        dd($request->all());
+        // dd($request->all());
 
         if($request->tipo_cliente=='Nuevo' &&  !empty($request->nombre))
             {

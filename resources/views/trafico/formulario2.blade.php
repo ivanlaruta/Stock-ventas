@@ -256,7 +256,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="row">
                 <div class="col-md-6 col-md-offset-3" align="center">
-                  <input type="submit" value="GUARDAR" class="btn btn-success btn-block">
+                  <input type="submit" value="GUARDAR" class="btn btn-success btn-block btn_subm"  >
                 </div>
               </div>
             </div>
@@ -347,16 +347,16 @@ $(document).ready(function() {
     document.getElementById("edad").checked = false;
     document.getElementById("gen").checked = false;
     // document.getElementById("m_cli").hide = true;
-// $("#clientes_ant").select2("val", "");
-$('#clientes_ant').val(null).trigger("change")
-//  if ( $("#clientes_ant").val()  != null )
-//  {
 
-//     $(".select2").each(function () {
-//         $(this).select2('destroy').val("").select2();
-//     });
-    
-// }
+    // $("#clientes_ant").select2("val", "");
+    $('#clientes_ant').val(null).trigger("change")
+    // if ( $("#clientes_ant").val()  != null )
+    // {
+    //     $(".select2").each(function () {
+    //         $(this).select2('destroy').val("").select2();
+    //     });
+        
+    // }
     $('#m_cli').modal('hide');
   }
 
@@ -368,7 +368,7 @@ function acepta_clientes() {
   }
   else{
     
-      if ( $("#nombre").val().length>0 && $("#nombre").val().length>0 && $("#nombre").val().length>0 )
+      if ( $("#nombre").val().length>0 && $("#paterno").val().length>0 && $("#telefono").val().length>0 )
         $('#m_cli').modal('hide');
       else
         alert('los campos marcados con (*) son obligatorios');
@@ -493,7 +493,10 @@ function acepta_clientes() {
 
   });
 
- $('.select3').select2({placeholder: 'Seleccione un vendedor'});
+ $('.select3').select2({
+   minimumResultsForSearch: -1,
+   placeholder: 'Seleccione un vendedor (*)'
+ });
 
 } );
 
