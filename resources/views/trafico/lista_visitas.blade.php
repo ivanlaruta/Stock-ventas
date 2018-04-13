@@ -10,7 +10,12 @@
   <div class="">
     <div class="page-title">
       <div class="title">
+        <div class="col-md-8">
         <h3><a href="">TRAFICO CLIENTES</a></h3>
+        </div>
+        <div class="col-md-2 pull-right">
+                              <a  href="{{ route('trafico.formulario2')}}" class="btn btn-success btn-sm btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="Agregar nuevo trafico" ><i class="fa fa-plus"></i> Nuevo</a>
+                            </div>
       </div>
     </div>
     <hr>

@@ -92,7 +92,7 @@
                         </div>
                      
                         <div class="col-md-6">
-                          <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Telefono *" autocomplete="off" style="background: #eeebfc;">
+                          <input type="number" name="telefono" id="telefono" class="form-control" placeholder="Telefono *" autocomplete="off" style="background: #eeebfc;">
                         </div>
                       </div>
                       {{-- <div class="form-group dato_nuevo">
