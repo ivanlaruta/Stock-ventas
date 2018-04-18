@@ -3,6 +3,12 @@
 @section('content')
 
 <style type="text/css">
+ul.msg_list li a .times {
+    font-size: 11px;
+    font-weight: 700;
+    position: absolute;
+    right: 35px;
+}
 
 </style>
  <!-- page content -->
@@ -145,13 +151,15 @@
                     <div class="col-md-6 form-group has-feedback">
                     <p>RANGO DE EDAD</p>
                       @foreach($edades as $det)
-                        <input type="radio" name="edad" id="edad" value="{{$det->codigo}}" class="radio_edad req_nuevo"> {{$det->descripcion}}<br>
+                        <label><input type="radio" name="edad" id="edad" value="{{$det->codigo}}" class="radio_edad req_nuevo"> 
+                        {{$det->descripcion}}</label>
+                        <br>
                       @endforeach
                     </div>
                     <div class="col-md-6 form-group has-feedback">
                     <p>GENERO</p>
-                      <input type="radio" name="gen" id="gen" value="M" > Masculino<br>
-                      <input type="radio" name="gen" id="gen" value="F" > Femenino
+                      <label><input type="radio" name="gen" id="gen" value="M" > Masculino</label><br>
+                      <label><input type="radio" name="gen" id="gen" value="F" > Femenino</label>
                     </div>
                   </div>
                     
@@ -196,11 +204,11 @@
                       <tbody> 
                         @foreach($motivos as $det) 
                         <tr>
-                          <td style="width: 40%; padding: 2px; " ><strong>{{$det->motivo->descripcion}} </strong> 
+                          <td style="width: 40%; padding: 2px; " ><label for="{{$det->motivo->id}}">{{$det->motivo->descripcion}} </label> </td>
                           <td style="width: 1%; padding: 2px; " > <input type="radio" name="motivo" value="{{$det->motivo->id}}" id="{{$det->motivo->id}}" class="" autocomplete="off" required></td>
-                          <td style="width: 30%; padding: 2px; " >
+                          <td style="width: 10%; padding: 2px; " >
                             <a class=" ver ver_{{$det->motivo->id}}" href="#myModal" data-toggle="modal" data-target="#myModal">
-                              <span class="fa fa-car fa-lg"></span> Ver seleccion
+                              <span class="fa fa-car fa-lg"></span> Ver
                             </a>
                             
                           </td>   
@@ -269,7 +277,7 @@
           <div class="x_content">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="row">
-                <div class="col-md-6 col-md-offset-3" align="center">
+                <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12" align="center">
                   <input type="submit" value="GUARDAR" class="btn btn-success btn-block btn_subm"  >
                 </div>
               </div>
@@ -290,27 +298,39 @@
               <div class="modal-body" >
                 
                 <div class="row">
-                   <?php $a = 0; $b = 2; ?>
                   @foreach($motivo_Categoria as $det2)
-                  <?php $a++;?>
-                  @if($a % $b <> 0) <div class="row">@endif
                   <div class="col-md-6 col-sm-12 col-xs-12 categorias categoria_{{$det2->motivo->id}}" style="border-radius: 25px; " >
-                    <div class="x_title">
-                      <strong> {{$det2->categoria->descripcion}}: </strong>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      @foreach($modelos as $det3)
-                        @if($det3->id_categoria == $det2->categoria->id)
-                        <input type="checkbox" name="modelos[]" class="modelos mod_{{$det3->descripcion}}" value="{{$det3->id}}"> {{$det3->descripcion}}<br>
-                          @if($det3->descripcion=='OTROS')
-                            <input type="text" class="form-control txt_otros" name="txt_otros_{{$det3->id_categoria}}" id="txt_otros" >
-                          @endif
-                        @endif
-                      @endforeach
-                      @if($a % $b ==0) </div> @endif
-                    </div>
+                    
+                    <ul class="list-unstyled msg_list">
+                    <li>
+                      <a>
+                          <span class="times">{{$det2->categoria->descripcion}}</span>
+                           <br>
+                            <span class="message">
+                              @foreach($modelos as $det3)
+                            @if($det3->id_categoria == $det2->categoria->id)
+                            <label class="mio"><input type="checkbox" name="modelos[]" class="modelos mod_{{$det3->descripcion}}" value="{{$det3->id}}"> {{$det3->descripcion}}</label><br>
+                              @if($det3->descripcion=='OTROS')
+                                <input type="text" class=" txt_otros" name="txt_otros_{{$det3->id_categoria}}" id="txt_otros" >
+                              @endif
+                            @endif
+                          @endforeach
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+
+
+
+
+
+                    
+                   
+                      
+
+                  
                   </div>
+                  <div class="clearfix visible-xs-block"></div>
                   @endforeach
                 </div>
               </div>

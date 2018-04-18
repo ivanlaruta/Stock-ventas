@@ -178,7 +178,7 @@
                               </tbody>
                             </table>
                           </div>
-                          <div class="modal fade modal_add_suc_encuesta" id="modal_add_suc_encuesta" role="dialog" >
+                          <div class="modal fade modal_add_suc_encuesta" id="modal_add_motivo" role="dialog" >
                             <div class="modal-dialog modal-lg">
                               <div class="modal-content contenido_add_suc_encuesta">
                               </div>
@@ -192,7 +192,7 @@
                             <p class="lead">Lista de motivos .</p>
                           </div>
                           <div class="col-md-2 pull-right">
-                                <a  href="#" class="btn btn-success btn-sm btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="Agregar nuevo motivo" ><i class="fa fa-plus"></i> Nuevo</a>
+                                <a  href="#" class="btn btn-success btn-sm btn_nuevo_add_motivo" data-toggle="tooltip" data-placement="bottom" title="Agregar nuevo motivo" ><i class="fa fa-plus"></i> Nuevo</a>
                           </div>
                         </div>
                         <div class="table-responsive">
@@ -225,9 +225,9 @@
                               </tbody>
                             </table>
                           </div>
-                          <div class="modal fade mi_modal" id="Modal_nuevo" role="dialog" >
+                          <div class="modal fade modal_add_motivo" id="Modal_nuevo" role="dialog" >
                             <div class="modal-dialog modal-lg">
-                              <div class="modal-content contenido">
+                              <div class="modal-content contenido_modal_add_motivo">
                               </div>
                             </div>
                           </div>
@@ -530,6 +530,53 @@
       cache: false,
       dataType: "html",
       url: "{{ route('trafico.modal_add_encuestas')}}",
+     
+      success: function(dataResult)
+      {
+        console.log(dataResult);
+        modalContent.empty().html(dataResult);                        
+        modal.modal('show');
+        NProgress.done();
+      },
+      error: function(jqXHR, exception)
+      {
+        var msg = '';
+        if (jqXHR.status === 0) {
+            msg = 'Not connect.\n Verify Network.';
+        } else if (jqXHR.status == 404) {
+            msg = 'Requested page not found. [404]';
+        } else if (jqXHR.status == 500) {
+            msg = 'Internal Server Error [500].';
+        } else if (exception === 'parsererror') {
+            msg = 'Requested JSON parse failed.';
+        } else if (exception === 'timeout') {
+            msg = 'Time out error.';
+        } else if (exception === 'abort') {
+            msg = 'Ajax request aborted.';
+        } else {
+            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+        }
+        alert(msg);
+        NProgress.done();
+      }
+    });
+  }
+
+
+  var btn_nuevo = $(".btn_nuevo_add_motivo");
+  btn_nuevo.on("click",function(){
+    frm_nuevo($(this));
+  });
+
+  var modalContent = $(".contenido_modal_add_motivo");
+  var modal=$(".modal_add_motivo");
+
+  var frm_nuevo = function(objeto){
+    $.ajax({
+      type: "GET",
+      cache: false,
+      dataType: "html",
+      url: "{{ route('trafico.modal_add_motivo')}}",
      
       success: function(dataResult)
       {

@@ -514,6 +514,11 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.modal_add_encuestas'
 	]);
 
+	route::get('trafico/modal_add_motivo',[
+		'uses' =>'TraficoController@modal_add_motivo',
+		'as'   =>	'trafico.modal_add_motivo'
+	]);
+
 	route::get('trafico/modal_add_motivo_encuesta',[
 		'uses' =>'TraficoController@modal_add_motivo_encuesta',
 		'as'   =>	'trafico.modal_add_motivo_encuesta'

@@ -65,7 +65,9 @@ class TraficoController extends Controller
             $motivos =Trf_Motivo_Encuesta::where('id_encuesta',$id_encuesta)->orderBy('id','ASC')->get();
             $clientes = Trf_Cliente::all();
             $edades = Trf_Parametrica::where('tabla','rango_edades')->get();
-            $motivo_Categoria=Trf_Motivo_Categoria::all();
+            $motivo_Categoria=Trf_Motivo_Categoria::
+            join('trf_categorias', 'trf_categorias.id', '=', 'trf_motivo_categoria.id_categoria')
+            ->orderBy('trf_categorias.observaciones', 'ASC')->get();
             $modelos=Trf_Modelo::all();
             $vendedores=Trf_Ejecutivo::where('id_sucursal',$id_suc)->orderBy('id')->get();
             
@@ -118,6 +120,21 @@ class TraficoController extends Controller
         ->with('sucursales',$sucursales)
         ->with('motivos',$motivos) 
         ;
+    }
+
+    public function modal_add_motivo()
+    {
+        dd("aqui el motivo");
+        // $sucursales =Trf_Sucursal::whereNotIn('id', DB::table('trf_sucursal_encuesta')->pluck('id_sucursal'))
+        // ->orderBy('id','ASC')
+        // ->get();
+
+        // $motivos =Trf_Motivo::orderBy('id','ASC')->get();
+
+        // return view('trafico.administracion.modal_add_encuestas')
+        // ->with('sucursales',$sucursales)
+        // ->with('motivos',$motivos) 
+        // ;
     }
 
     public function delete_encuesta(Request $request)
