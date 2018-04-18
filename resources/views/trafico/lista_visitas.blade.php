@@ -44,6 +44,7 @@
                   <th>TELEFONO</th>
                   <th>EJECUTIVO</th>
                   <th>ANFITRION</th>
+                  <th>OBS</th>
                   <th style="text-align: right;">DETALLE</th>
                 </tr>
               </thead>
@@ -58,14 +59,12 @@
                     <td>@if(is_null($det->id_cliente)) -- @else{{$det->cliente->nombre}} {{$det->cliente->paterno}} @endif</td>
                     <td>@if(is_null($det->id_cliente) ) -- @else @if(is_null($det->cliente->rango_edad)) -- @else {{$det->cliente->edad->descripcion}}@endif @endif</td>
                     <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->genero)) -- @else {{$det->cliente->genero}}@endif @endif</td>
-
                     <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->telefono)) -- @else{{$det->cliente->telefono}}@endif @endif</td>
-                    
                     <td>@if($det->id_ejecutivo==null) No asignado @else{{strtoupper($det->ejecutivo->nombre ." ".$det->ejecutivo->paterno)}}@endif</td>
+                    <td>{{$det->observaciones}}</td>
                     <td>{{$det->created_by}}</td>
-                   
                       <td align="right">
-                        @if($det->id_motivo<=2)
+                        @if($det->id_motivo<=6)
                           <div class="btn-group" role="group" >
                             <a href="#" class="ver_detalle" data-toggle="tooltip" data-placement="bottom" title="Ver modelos selccionados " id_visita='{{$det->id}}'>
                               <span class="fa fa-files-o fa-lg"></span> 

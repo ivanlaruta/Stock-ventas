@@ -397,6 +397,7 @@ class TraficoController extends Controller
             $nuevo_visita -> id_sucursal = $request->id_sucursal;
             $nuevo_visita -> id_motivo = $request->motivo;
             $nuevo_visita -> id_ejecutivo = $request->id_ejecutivo;
+            $nuevo_visita -> observaciones = $request->txt_obs;
             $nuevo_visita -> fecha = $hoy;
             $nuevo_visita -> created_by = $suc=Auth::user()->usuario;
             $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;

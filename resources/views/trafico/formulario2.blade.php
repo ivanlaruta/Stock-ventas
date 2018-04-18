@@ -248,6 +248,20 @@
             </div>
           </div>
 
+          <div class="observaciones">  
+            <div class="x_title">
+              <h2>Observaciones.</h2>
+              <div class="clearfix" ></div>
+            </div>
+            <div class="x_content">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="row" align="center"> 
+                  <input type="text" class="form-control" name="txt_obs" id="txt_obs" >
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="x_title">
             {{-- <h2>Finalizar.</h2> --}}
             <div class="clearfix" ></div>
