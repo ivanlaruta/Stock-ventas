@@ -519,6 +519,31 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.modal_add_motivo'
 	]);
 
+	route::get('trafico/add_motivo',[
+		'uses' =>'TraficoController@add_motivo',
+		'as'   =>	'trafico.add_motivo'
+	]);
+
+	route::get('trafico/modal_add_categoria',[
+		'uses' =>'TraficoController@modal_add_categoria',
+		'as'   =>	'trafico.modal_add_categoria'
+	]);
+
+	route::get('trafico/add_categoria',[
+		'uses' =>'TraficoController@add_categoria',
+		'as'   =>	'trafico.add_categoria'
+	]);
+
+	route::get('trafico/modal_add_modelo',[
+		'uses' =>'TraficoController@modal_add_modelo',
+		'as'   =>	'trafico.modal_add_modelo'
+	]);
+
+	route::get('trafico/add_modelo',[
+		'uses' =>'TraficoController@add_modelo',
+		'as'   =>	'trafico.add_modelo'
+	]);
+
 	route::get('trafico/modal_add_motivo_encuesta',[
 		'uses' =>'TraficoController@modal_add_motivo_encuesta',
 		'as'   =>	'trafico.modal_add_motivo_encuesta'

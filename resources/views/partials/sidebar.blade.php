@@ -1,4 +1,4 @@
-        <div class="col-md-3 left_col  ">
+        <div class="col-md-3 left_col   menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
             <a class="site_title" href="{{ url('/home') }}">
@@ -121,7 +121,7 @@
                     </ul>
                   </li>
              
- @endif
+          @endif
                   <li><a><i class="fa fa-users"></i> Trafico de clientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       {{-- <li><a href="{{ route('trafico.formulario')}}">Formulario</a></li> --}}

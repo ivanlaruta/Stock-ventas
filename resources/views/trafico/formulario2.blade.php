@@ -128,6 +128,26 @@ ul.msg_list li a .times {
                       <div class="ln_solid dato_nuevo"></div>
                       <div class="form-group dato_nuevo">
                         <div class="col-md-6">
+                          <input type="text" name="correo" id="correo" class="form-control " placeholder="Correo (Ej.: pedro.perez)">
+                        </div>
+                        
+                        <div class="col-md-6">
+                          <select class="form-control" name="ter_correo" id="ter_correo" >
+                          
+                            <option value="@hotmail.com">@hotmail.com</option>
+                            <option value="@gmail.com" selected>@gmail.com</option>
+                            <option value="@yahoo.com">@yahoo.com</option>
+                            <option value="@yahoo.com">@outlook.com</option>
+                            <option value="@yahoo.com">@zoho.com</option>
+
+                           
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="ln_solid dato_nuevo"></div>
+                      <div class="form-group dato_nuevo">
+                        <div class="col-md-6">
                           <input type="text" name="ci" id="ci" class="form-control " placeholder="Nro CI">
                         </div>
                         <div class="col-md-6">

@@ -59,6 +59,7 @@
                   <th>RANGO EDAD</th>
                   <th>GENERO</th>
                   <th>TELEFONO</th>
+                  <th>CORREO</th>
                   {{-- <th>EJECUTIVO</th> --}}
                   <th>ANFITRION</th>
                   <th style="text-align: right;">TOTALIZADOR DE MODELOS</th>
@@ -77,6 +78,8 @@
                     <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->genero)) -- @else {{$det->cliente->genero}}@endif @endif</td>
 
                     <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->telefono)) -- @else{{$det->cliente->telefono}}@endif @endif</td>
+
+                    <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->correo)) -- @else{{$det->cliente->correo}}@endif @endif</td>
                     
                     {{-- <td>@if($det->id_ejecutivo==null) No asignado @else{{strtoupper($det->ejecutivo->nombre ." ".$det->ejecutivo->paterno)}}@endif</td> --}}
                     <td>{{$det->created_by}}</td>
@@ -84,7 +87,7 @@
                       <td align="right">
                         @if($det->id_motivo<=4)
                           <div class="btn-group" role="group" >
-                            <a href="#" class="ver_detalle" data-toggle="tooltip" data-placement="bottom" title="Ver modelos selccionados " id_visita='{{$det->id}}'>
+                            <a href="#" class="ver_detalle" data-toggle="tooltip" data-placement="bottom" title="Ver modelos seleccionados " id_visita='{{$det->id}}'>
                               <span class="fa fa-files-o fa-lg"></span> 
                             </a>
                           </div>
@@ -96,6 +99,7 @@
               </tbody>
             </table>
             </div>
+            
             <div class="modal fade modal_detalle" id="modal_detalle" role="dialog" >
               <div class="modal-dialog modal-lg">
                 <div class="modal-content contenido_modal_detalle">

@@ -32,6 +32,7 @@
                         <li><a href="#modelos" data-toggle="tab">Modelos</a></li>
                         <li><a href="#motivos_categoria" data-toggle="tab">Categoria por motivo</a></li>
                         <li><a href="#parametricas" data-toggle="tab">Parametrica</a></li>
+                        <li><a href="#vendedores" data-toggle="tab">Vendedores</a></li>
                       </ul>
                     </div>
 
@@ -43,7 +44,7 @@
                               <p class="lead">Lista de encuestas .</p>
                             </div>
                             <div class="col-md-2 pull-right">
-                              <a  href="#" class="btn btn-success btn-sm btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva encuesta" ><i class="fa fa-plus"></i> Nuevo</a>
+                              <a  href="#" class="btn btn-success btn-sm btn_nuevo_e" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva encuesta" ><i class="fa fa-plus"></i> Nuevo</a>
                             </div>
                           </div>
                           <div class="table-responsive">
@@ -163,7 +164,7 @@
                                @foreach($sucursales_encuesta as $det)
                                 <tr>
                                    {{-- <td>{{$det->id}}</td> --}}
-                                   <td>{{$det->id_encuesta}} - {{-- {{$det->encuesta->descripcion}} --}}</td>
+                                   <td>{{$det->id_encuesta}} - {{$det->encuesta->descripcion}}</td>
                                    <td>{{$det->id_sucursal}} - {{$det->sucursal->nom_sucursal}}</td>
                                    <td align="right">
                                    <div class="btn-group" role="group" >
@@ -201,6 +202,7 @@
                                 <tr>
                                   <th>ID</th>
                                   <th>DESCRIPCION</th>
+                                  <th>OBS</th>
                                   <th style="text-align: right;">Operaciones</th>
                                 </tr>
                               </thead>
@@ -209,6 +211,7 @@
                                 <tr>
                                    <td>{{$det->id}}</td>
                                    <td>{{$det->descripcion}}</td>
+                                   <td>{{$det->observaciones}}</td>
                                    <td align="right">
                                    <div class="btn-group" role="group" >
                                       
@@ -239,7 +242,7 @@
                             <p class="lead">Lista de categorias .</p>
                           </div>
                           <div class="col-md-2 pull-right">
-                                <a  href="#" class="btn btn-success btn-sm btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva categoria" ><i class="fa fa-plus"></i> Nuevo</a>
+                                <a  href="#" class="btn btn-success btn-sm btn_nuevo_categoria" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva categoria" ><i class="fa fa-plus"></i> Nuevo</a>
                           </div>
                         </div>
                         <div class="table-responsive">
@@ -272,9 +275,9 @@
                               </tbody>
                             </table>
                           </div>
-                          <div class="modal fade mi_modal" id="Modal_nuevo" role="dialog" >
+                          <div class="modal fade modal_Categoria" id="Modal_nuevo" role="dialog" >
                             <div class="modal-dialog modal-lg">
-                              <div class="modal-content contenido">
+                              <div class="modal-content contenido_Categoria">
                               </div>
                             </div>
                           </div>
@@ -287,7 +290,7 @@
                             <p class="lead">Lista de modelos .</p>
                           </div>
                           <div class="col-md-2 pull-right">
-                                <a  href="#" class="btn btn-success btn-sm btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva categoria" ><i class="fa fa-plus"></i> Nuevo</a>
+                                <a  href="#" class="btn btn-success btn-sm btn_nuevo_modelo" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva categoria" ><i class="fa fa-plus"></i> Nuevo</a>
                           </div>
                         </div>
                         <div class="table-responsive">
@@ -324,14 +327,13 @@
                               </tbody>
                             </table>
                           </div>
-                          <div class="modal fade mi_modal" id="Modal_nuevo" role="dialog" >
+                          <div class="modal fade mi_modal_modelo" id="Modal_nuevo" role="dialog" >
                             <div class="modal-dialog modal-lg">
-                              <div class="modal-content contenido">
+                              <div class="modal-content contenido_modelo">
                               </div>
                             </div>
                           </div>
                         </div>
-
 
 
                         <div class="tab-pane" id="motivos_categoria">
@@ -340,7 +342,7 @@
                             <p class="lead">Lista de asignacion de categorias a motivos .</p>
                           </div>
                           <div class="col-md-2 pull-right">
-                                <a  href="#" class="btn btn-success btn-sm btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva categoria" ><i class="fa fa-plus"></i> Nuevo</a>
+                                <a  href="#" class="btn btn-success btn-sm btn_nuevo_catmot" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva categoria" ><i class="fa fa-plus"></i> Nuevo</a>
                           </div>
                         </div>
                         <div class="table-responsive">
@@ -423,6 +425,42 @@
                             </div>
                           </div>
                         </div>
+
+
+                        <div class="tab-pane" id="vendedores">
+                        <div class="row">
+                          <div class="col-md-10">
+                            <p class="lead">Lista de vendedores .</p>
+                          </div>
+                          {{-- <div class="col-md-2 pull-right">
+                                <a  href="#" class="btn btn-success btn-sm btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva categoria" ><i class="fa fa-plus"></i> Nuevo</a>
+                          </div> --}}
+                        </div>
+                        <div class="table-responsive">
+                            <table id="datatable_vendedores" class="table table-striped jambo_table bulk_action">
+                              <thead>
+                                <tr>
+                                  {{-- <th>ID</th> --}}
+                                  <th>NOMBRE</th>
+                                  <th>SUCURSAL</th>
+                                  <th>SUCURSAL TEROS</th>
+                                  {{-- <th style="text-align: right;">Operaciones</th> --}}
+                                </tr>
+                              </thead>
+                              <tbody>
+                              
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="modal fade mi_modal" id="Modal_nuevo" role="dialog" >
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content contenido">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        
                       </div>
                     </div>
                   <div class="clearfix"></div>
@@ -516,15 +554,15 @@
 
 
 
-  var btn_nuevo = $(".btn_nuevo");
-  btn_nuevo.on("click",function(){
-    frm_nuevo($(this));
+  var btn_nuevo_e = $(".btn_nuevo_e");
+  btn_nuevo_e.on("click",function(){
+    frm_nuevo_encuesta($(this));
   });
 
-  var modalContent = $(".contenido_add_encuestas");
-  var modal=$(".modal_add_encuestas");
+  var modalContent_e = $(".contenido_add_encuestas");
+  var modal_e=$(".modal_add_encuestas");
 
-  var frm_nuevo = function(objeto){
+  var frm_nuevo_encuesta = function(objeto){
     $.ajax({
       type: "GET",
       cache: false,
@@ -534,8 +572,8 @@
       success: function(dataResult)
       {
         console.log(dataResult);
-        modalContent.empty().html(dataResult);                        
-        modal.modal('show');
+        modalContent_e.empty().html(dataResult);                        
+        modal_e.modal('show');
         NProgress.done();
       },
       error: function(jqXHR, exception)
@@ -563,15 +601,15 @@
   }
 
 
-  var btn_nuevo = $(".btn_nuevo_add_motivo");
-  btn_nuevo.on("click",function(){
-    frm_nuevo($(this));
+  var btn_nuevo_mod = $(".btn_nuevo_add_motivo");
+  btn_nuevo_mod.on("click",function(){
+    frm_nuevo_motivo($(this));
   });
 
-  var modalContent = $(".contenido_modal_add_motivo");
-  var modal=$(".modal_add_motivo");
+  var modalContent_mot = $(".contenido_modal_add_motivo");
+  var modal_mot=$(".modal_add_motivo");
 
-  var frm_nuevo = function(objeto){
+  var frm_nuevo_motivo = function(objeto){
     $.ajax({
       type: "GET",
       cache: false,
@@ -581,33 +619,15 @@
       success: function(dataResult)
       {
         console.log(dataResult);
-        modalContent.empty().html(dataResult);                        
-        modal.modal('show');
-        NProgress.done();
-      },
-      error: function(jqXHR, exception)
-      {
-        var msg = '';
-        if (jqXHR.status === 0) {
-            msg = 'Not connect.\n Verify Network.';
-        } else if (jqXHR.status == 404) {
-            msg = 'Requested page not found. [404]';
-        } else if (jqXHR.status == 500) {
-            msg = 'Internal Server Error [500].';
-        } else if (exception === 'parsererror') {
-            msg = 'Requested JSON parse failed.';
-        } else if (exception === 'timeout') {
-            msg = 'Time out error.';
-        } else if (exception === 'abort') {
-            msg = 'Ajax request aborted.';
-        } else {
-            msg = 'Uncaught Error.\n' + jqXHR.responseText;
-        }
-        alert(msg);
+        modalContent_mot.empty().html(dataResult);                        
+        modal_mot.modal('show');
         NProgress.done();
       }
     });
   }
+
+
+
 
 
 
@@ -663,7 +683,66 @@ var frm_ver_encuesta = function(objeto){
 }
 
 
+  
 
+  var btn_nuevo = $(".btn_nuevo_categoria");
+  btn_nuevo.on("click",function(){
+    frm_nuevo_cate($(this));
+  });
+
+  var modalContent_cat = $(".contenido_Categoria");
+  var modal_cat=$(".modal_Categoria");
+
+  var frm_nuevo_cate = function(objeto){
+    $.ajax({
+      type: "GET",
+      cache: false,
+      dataType: "html",
+      url: "{{ route('trafico.modal_add_categoria')}}",
+     
+      success: function(dataResult)
+      {
+        console.log(dataResult);
+        modalContent_cat.empty().html(dataResult);                        
+        modal_cat.modal('show');
+        NProgress.done();
+      },
+      error: function(jqXHR, exception)
+      {
+        NProgress.done();
+      }
+    });
+  }
+
+
+  var btn_nuevo = $(".btn_nuevo_modelo");
+  btn_nuevo.on("click",function(){
+    frm_nuevo_mode($(this));
+  });
+
+  var modalContent_mode = $(".contenido_modelo");
+  var modal_mode=$(".mi_modal_modelo");
+
+  var frm_nuevo_mode = function(objeto){
+    $.ajax({
+      type: "GET",
+      cache: false,
+      dataType: "html",
+      url: "{{ route('trafico.modal_add_modelo')}}",
+     
+      success: function(dataResult)
+      {
+        console.log(dataResult);
+        modalContent_mode.empty().html(dataResult);                        
+        modal_mode.modal('show');
+        NProgress.done();
+      },
+      error: function(jqXHR, exception)
+      {
+        NProgress.done();
+      }
+    });
+  }
 
 
 

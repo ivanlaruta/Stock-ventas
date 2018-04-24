@@ -42,6 +42,7 @@
                   <th>RANGO EDAD</th>
                   <th>GENERO</th>
                   <th>TELEFONO</th>
+                  <th>CORREO</th>
                   <th>EJECUTIVO</th>
                   <th>OBS</th>
                   <th>ANFITRION</th>
@@ -60,6 +61,7 @@
                     <td>@if(is_null($det->id_cliente) ) -- @else @if(is_null($det->cliente->rango_edad)) -- @else {{$det->cliente->edad->descripcion}}@endif @endif</td>
                     <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->genero)) -- @else {{$det->cliente->genero}}@endif @endif</td>
                     <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->telefono)) -- @else{{$det->cliente->telefono}}@endif @endif</td>
+                     <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->correo)) -- @else{{$det->cliente->correo}}@endif @endif</td>
                     <td>@if($det->id_ejecutivo==null) No asignado @else{{strtoupper($det->ejecutivo->nombre ." ".$det->ejecutivo->paterno)}}@endif</td>
                     <td>{{$det->observaciones}}</td>
                     <td>{{$det->created_by}}</td>

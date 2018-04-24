@@ -122,21 +122,7 @@ class TraficoController extends Controller
         ;
     }
 
-    public function modal_add_motivo()
-    {
-        dd("aqui el motivo");
-        // $sucursales =Trf_Sucursal::whereNotIn('id', DB::table('trf_sucursal_encuesta')->pluck('id_sucursal'))
-        // ->orderBy('id','ASC')
-        // ->get();
-
-        // $motivos =Trf_Motivo::orderBy('id','ASC')->get();
-
-        // return view('trafico.administracion.modal_add_encuestas')
-        // ->with('sucursales',$sucursales)
-        // ->with('motivos',$motivos) 
-        // ;
-    }
-
+    
     public function delete_encuesta(Request $request)
     {
         $id_encuesta=$request->id_encuesta;
@@ -234,6 +220,87 @@ class TraficoController extends Controller
 
         return redirect()->route('trafico.admin_index')->with('mensaje',"Creado exitosamente."); 
     }
+
+    public function modal_add_motivo()
+    {
+        return view('trafico.administracion.modal_add_motivo');
+    }
+
+    public function add_motivo(Request $request)
+    {
+        $nuevo_motivo = new Trf_Motivo();
+        $nuevo_motivo->descripcion =  strtoupper($request->descripcion);
+        $nuevo_motivo->observaciones =  strtoupper($request->observaciones);
+        $nuevo_motivo->estado  = '1';
+        $nuevo_motivo->created_by  = Auth::user()->usuario;
+        // dd($nuevo_motivo);
+        $nuevo_motivo->save();
+
+        return redirect()->route('trafico.admin_index')->with('mensaje',"Creado exitosamente."); 
+    }
+    
+    public function modal_add_categoria()
+    {
+        return view('trafico.administracion.modal_add_categoria');
+    }
+
+    public function add_categoria(Request $request)
+    {
+        $nuevo_categoria = new Trf_Categoria();
+        $nuevo_categoria->descripcion =  strtoupper($request->descripcion);
+        // $nuevo_categoria->observaciones =  strtoupper($request->observaciones);
+        $nuevo_categoria->estado  = '1';
+        $nuevo_categoria->created_by  = Auth::user()->usuario;
+        // dd($nuevo_categoria);
+        $nuevo_categoria->save();
+
+        return redirect()->route('trafico.admin_index')->with('mensaje',"Creado exitosamente."); 
+    }
+        
+    public function modal_add_modelo()
+    {
+        $categorias =Trf_Categoria::all(); 
+
+        return view('trafico.administracion.modal_add_modelo')
+        ->with('categorias',$categorias) ;
+    }
+
+    public function add_modelo(Request $request)
+    {
+        // dd($request->all());
+
+        if($request->categoria =='1' || $request->categoria =='2' || $request->categoria =='3' || $request->categoria =='4'){
+             $marca ='TOYOTA';
+        }
+        else{
+            if ($request->categoria =='5' || $request->categoria =='6' ) {
+               $marca ='LEXUS';
+            }
+            else{
+                if ($request->categoria =='7') {
+                    $marca ='HINO';
+                }
+                else
+                    if ($request->categoria =='9') {
+                        $marca ='YAMAHA';
+                    }
+                    else{
+                        $marca ='OTROS';
+                    }
+            }
+        }
+
+        $nuevo_modelo = new Trf_Modelo();
+        $nuevo_modelo->descripcion =  strtoupper($request->descripcion);
+        $nuevo_modelo->id_categoria = $request->categoria;
+        $nuevo_modelo->observaciones =  $marca;
+        $nuevo_modelo->estado  = '1';
+        $nuevo_modelo->created_by  = Auth::user()->usuario;
+        // dd($nuevo_modelo);
+        $nuevo_modelo->save();
+
+        return redirect()->route('trafico.admin_index')->with('mensaje',"Creado exitosamente."); 
+    }
     
 
     public function add_suc_encuesta(Request $request)
@@ -257,7 +324,6 @@ class TraficoController extends Controller
         $parametricas =Trf_Parametrica::all();
         $motivos_categoria =Trf_Motivo_Categoria::all();
         $sucursales_encuesta =Trf_Sucursal_Encuesta::all();
-        
         $motivos_encuesta =Trf_Motivo_Encuesta::all();
         
 
@@ -393,6 +459,7 @@ class TraficoController extends Controller
                 $nuevo_cliente -> genero = $request->gen;
                 $nuevo_cliente -> rango_edad = $request->edad;
                 $nuevo_cliente -> telefono = $request->telefono;
+                $nuevo_cliente -> correo = $request->correo.$request->ter_correo;
                 $nuevo_cliente -> created_by = $suc=Auth::user()->usuario;
                 $nuevo_cliente -> updated_by = $suc=Auth::user()->usuario;
                 $nuevo_cliente -> save();
