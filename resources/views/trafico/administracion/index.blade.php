@@ -32,7 +32,7 @@
                         <li><a href="#modelos" data-toggle="tab">Modelos</a></li>
                         <li><a href="#motivos_categoria" data-toggle="tab">Categoria por motivo</a></li>
                         <li><a href="#parametricas" data-toggle="tab">Parametrica</a></li>
-                        <li><a href="#vendedores" data-toggle="tab">Vendedores</a></li>
+                        
                       </ul>
                     </div>
 
@@ -427,39 +427,7 @@
                         </div>
 
 
-                        <div class="tab-pane" id="vendedores">
-                        <div class="row">
-                          <div class="col-md-10">
-                            <p class="lead">Lista de vendedores .</p>
-                          </div>
-                          {{-- <div class="col-md-2 pull-right">
-                                <a  href="#" class="btn btn-success btn-sm btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva categoria" ><i class="fa fa-plus"></i> Nuevo</a>
-                          </div> --}}
-                        </div>
-                        <div class="table-responsive">
-                            <table id="datatable_vendedores" class="table table-striped jambo_table bulk_action">
-                              <thead>
-                                <tr>
-                                  {{-- <th>ID</th> --}}
-                                  <th>NOMBRE</th>
-                                  <th>SUCURSAL</th>
-                                  <th>SUCURSAL TEROS</th>
-                                  {{-- <th style="text-align: right;">Operaciones</th> --}}
-                                </tr>
-                              </thead>
-                              <tbody>
-                              
-                              </tbody>
-                            </table>
-                          </div>
-                          <div class="modal fade mi_modal" id="Modal_nuevo" role="dialog" >
-                            <div class="modal-dialog modal-lg">
-                              <div class="modal-content contenido">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
+                      
                         
                       </div>
                     </div>

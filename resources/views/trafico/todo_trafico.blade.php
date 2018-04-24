@@ -24,13 +24,13 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            Trafico generado de esta semana por : <strong>{{$usuario}}</strong> del lunes {{$inicio_sem}} a hoy  {{$hoy}}   
+            Todo el trafico generado de este mes del {{$inicio_mes}} hasta hoy {{$hoy}}
             <div class="clearfix" ></div>
           </div>
           <div class="x_content">
             <div class="table-responsive">
               
-            <table id="datatable_motivos" class="table table-striped jambo_table bulk_action">
+            <table id="datatable1" class="table table-striped jambo_table bulk_action">
               <thead>
                 <tr>
                   <th>NRO</th>
@@ -49,6 +49,24 @@
                   <th style="text-align: right;">DETALLE</th>
                 </tr>
               </thead>
+               <tfoot>
+                <tr>
+                  <th>NRO</th>
+                  <th>FECHA</th>
+                  <th>SUCURSAL</th>
+                  <th>MOTIVO</th>
+                  <th>TIPO CLIENTE</th>
+                  <th>CLIENTE</th>
+                  <th>RANGO EDAD</th>
+                  <th>GENERO</th>
+                  <th>TELEFONO</th>
+                  <th>CORREO</th>
+                  <th>EJECUTIVO</th>
+                  <th>OBS</th>
+                  <th>ANFITRION</th>
+                 
+                </tr>
+              </tfoot>
               <tbody>
                @foreach($visitas as $det)
                 <tr>
@@ -148,7 +166,8 @@ var frm_ver_detalle = function(objeto){
   });
 }
 
-$('#datatable_motivos').DataTable( { "language": {
+
+    $('#datatable1').DataTable( { "language": {
             
               "sProcessing":     "Procesando...",
               "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -181,7 +200,32 @@ $('#datatable_motivos').DataTable( { "language": {
        "buttons": [ 'copy', 'excel','pdf'],
 
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "TODO"]],
+        // "lengthMenu": [[-1], ["TODO"]],
 
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select class ="filtro"><option value="">Todos...</option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+
+             $('.filtro').select2();
+        }
     } );
+
+
 </script>
 @endsection

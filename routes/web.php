@@ -633,5 +633,25 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.totalizador'
 	]);
 
+	route::get('trafico/finder',[
+		'uses' =>'TraficoController@finder',
+		'as'   =>	'trafico.finder'
+	]);
+
+	route::get('trafico/todo_trafico',[
+		'uses' =>'TraficoController@todo_trafico',
+		'as'   =>	'trafico.todo_trafico'
+	]);
+
+	route::get('trafico/clientes',[
+		'uses' =>'TraficoController@clientes',
+		'as'   =>	'trafico.clientes'
+	]);
+
+	route::get('trafico/vendedores',[
+		'uses' =>'TraficoController@vendedores',
+		'as'   =>	'trafico.vendedores'
+	]);
+
 	route::resource('trafico','TraficoController');
 });

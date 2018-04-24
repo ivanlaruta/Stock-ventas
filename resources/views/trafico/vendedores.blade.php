@@ -11,11 +11,9 @@
     <div class="page-title">
       <div class="title">
         <div class="col-md-8">
-        <h3><a href="">TRAFICO CLIENTES</a></h3>
+        <h3><a href="">EJECUTIVOS</a></h3>
         </div>
-        <div class="col-md-2 pull-right">
-          <a  href="{{ route('trafico.formulario2')}}" class="btn btn-success btn-sm btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="Agregar nuevo trafico" ><i class="fa fa-plus"></i> Nuevo</a>
-        </div>
+       
       </div>
     </div>
     <hr>
@@ -24,57 +22,39 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            Trafico generado de esta semana por : <strong>{{$usuario}}</strong> del lunes {{$inicio_sem}} a hoy  {{$hoy}}   
+            Lista de ejecutivos
             <div class="clearfix" ></div>
           </div>
           <div class="x_content">
             <div class="table-responsive">
               
-            <table id="datatable_motivos" class="table table-striped jambo_table bulk_action">
+            <table id="vendedores" class="table table-striped jambo_table bulk_action">
               <thead>
                 <tr>
-                  <th>NRO</th>
-                  <th>FECHA</th>
-                  <th>SUCURSAL</th>
-                  <th>MOTIVO</th>
-                  <th>TIPO CLIENTE</th>
-                  <th>CLIENTE</th>
-                  <th>RANGO EDAD</th>
-                  <th>GENERO</th>
+                  
+                  <th>NOMBRE</th>
                   <th>TELEFONO</th>
                   <th>CORREO</th>
-                  <th>EJECUTIVO</th>
-                  <th>OBS</th>
-                  <th>ANFITRION</th>
-                  <th style="text-align: right;">DETALLE</th>
+                  <th>CARGO</th>
+                  <th>SUCURSAL</th>
+                  <th>ESTADO</th>
+                 
+                  <th>NOMBRE TEROS</th>
+                  <th>SUCURSAL TEROS</th>
+                 
                 </tr>
               </thead>
               <tbody>
-               @foreach($visitas as $det)
+               @foreach($vendedores as $det)
                 <tr>
-                    <td>{{$det->id}}</td>
-                    <td>{{$det->fecha}}</td>
-                    <td>{{$det->id_sucursal}} - {{$det->sucursal->nom_sucursal}}</td>
-                    <td>{{$det->motivo->descripcion}}</td>
-                    <td>{{$det->tipo_cliente}}</td>
-                    <td>@if(is_null($det->id_cliente)) -- @else{{$det->cliente->nombre}} {{$det->cliente->paterno}} @endif</td>
-                    <td>@if(is_null($det->id_cliente) ) -- @else @if(is_null($det->cliente->rango_edad)) -- @else {{$det->cliente->edad->descripcion}}@endif @endif</td>
-                    <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->genero)) -- @else {{$det->cliente->genero}}@endif @endif</td>
-                    <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->telefono)) -- @else{{$det->cliente->telefono}}@endif @endif</td>
-                     <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->correo)) -- @else{{$det->cliente->correo}}@endif @endif</td>
-                    <td>@if($det->id_ejecutivo==null) No asignado @else{{strtoupper($det->ejecutivo->nombre ." ".$det->ejecutivo->paterno)}}@endif</td>
-                    <td>{{$det->observaciones}}</td>
-                    <td>{{$det->created_by}}</td>
-                      <td align="right">
-                        @if($det->id_motivo<=6)
-                          <div class="btn-group" role="group" >
-                            <a href="#" class="ver_detalle" data-toggle="tooltip" data-placement="bottom" title="Ver modelos selccionados " id_visita='{{$det->id}}'>
-                              <span class="fa fa-files-o fa-lg"></span> 
-                            </a>
-                          </div>
-                        @endif
-                      </td>        
-                    {{-- <td>{{$det->descripcion}}</td> --}}
+                    <td>{{$det->nombre}} {{$det->paterno}} {{$det->materno}} </td>
+                    <td>{{$det->telefono}}</td>
+                    <td>{{$det->correo}}</td>
+                    <td>{{$det->cargo}}</td>
+                    <td>{{$det->id_sucursal}}-{{$det->sucursal->nom_sucursal}}</td>
+                    <td>{{$det->estado}}</td>
+                    <td>{{$det->nom_teros}}</td>
+                    <td>{{$det->suc_teros}}-{{$det->sucursal_teros->nom_sucursal}}</td>
                 </tr>
                 @endforeach
               </tbody>
@@ -148,7 +128,7 @@ var frm_ver_detalle = function(objeto){
   });
 }
 
-$('#datatable_motivos').DataTable( { "language": {
+$('#vendedores').DataTable( { "language": {
             
               "sProcessing":     "Procesando...",
               "sLengthMenu":     "Mostrar _MENU_ registros",

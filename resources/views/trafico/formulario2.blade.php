@@ -27,6 +27,7 @@ ul.msg_list li a .times {
 @if(sizeof($encuesta)>0)
 {!! Form::open(array('route' => ['trafico.add_visita2'], 'method' => 'get' , 'id'=>'VisitaForm', 'class'=>'form-horizontal form-label-left')) !!}
 <input type="text" hidden class="form-control" value="{{Auth::user()->id_ubicacion}}" name="id_sucursal" id="id_sucursal">
+
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
@@ -64,19 +65,20 @@ ul.msg_list li a .times {
                         </select>
                         </div> --}}
                       <div class="form-group dato_antiguo ">
-                        <div class="col-md-6">
-                          <select class="form-control select2"  style="width: 100%;"  name="clientes_ant" id="clientes_ant">
+                        <div class="col-md-12">
+                        <select id="clientes_ant" name="clientes_ant" class="form-control"  style="width: 100%;" ></select>
+                          {{-- <select class="form-control select2"  style="width: 100%;"  name="clientes_ant" id="clientes_ant">
                            <option value="" disabled selected>Seleccione un cliente:</option>
                               @foreach($clientes as $det)
                                 <option value="{{$det->id}}" tel="{{$det->telefono}}">  
                                 {{$det->nombre}} {{$det->paterno}} {{$det->materno}}
                                 </option>
                               @endforeach
-                            </select>
+                            </select> --}}
                         </div>
-                        <div class="col-md-6">
+                       {{--  <div class="col-md-6">
                           <input type="text" name="telefono2" id="telefono2" class="form-control" placeholder="Telefono " autocomplete="off" style="background: #eeebfc;">
-                        </div>
+                        </div> --}}
                       </div>
 
                       
@@ -98,8 +100,21 @@ ul.msg_list li a .times {
                         </div>
                      
                         <div class="col-md-6">
+                          
+                        </div>
+                      </div>
+
+                       <div class="form-group dato_nuevo">
+                        <div class="col-md-6">
                           <input type="number" name="telefono" id="telefono" class="form-control" placeholder="Telefono *" autocomplete="off" style="background: #eeebfc;">
                         </div>
+
+                        <div class="col-md-6">
+                          <input type="number" name="telefono2" id="telefono2" class="form-control" placeholder="Telefono adicional" autocomplete="off">
+                        </div>
+                        
+                
+                     
                       </div>
                       {{-- <div class="form-group dato_nuevo">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombres</label>
@@ -521,31 +536,31 @@ function acepta_clientes() {
     document.getElementById("gen").disabled = true;
   };
 
-  $('.select2').change(function() {
+  // $('.select2').change(function() {
 
-    var telef = $(this).find("option:selected").attr('tel');
-    // var ci = $(this).find("option:selected").attr('a_ci');
-    // var exp = $(this).find("option:selected").attr('a_exp');
-    // var edad = $(this).find("option:selected").attr('a_rango');
-    // var gen = $(this).find("option:selected").attr('a_genero');
-    $("#telefono2").val(telef);
-    // $("#ci").val(ci);
-    // document.getElementById('exp').value=exp;
-    // document.getElementById('edad').value=edad;
-    // document.getElementById('gen').value=gen;
-  });
+  //   var telef = $(this).find("option:selected").attr('tel');
+  //   // var ci = $(this).find("option:selected").attr('a_ci');
+  //   // var exp = $(this).find("option:selected").attr('a_exp');
+  //   // var edad = $(this).find("option:selected").attr('a_rango');
+  //   // var gen = $(this).find("option:selected").attr('a_genero');
+  //   $("#telefono2").val(telef);
+  //   // $("#ci").val(ci);
+  //   // document.getElementById('exp').value=exp;
+  //   // document.getElementById('edad').value=edad;
+  //   // document.getElementById('gen').value=gen;
+  // });
 
-  $('.select2').select2({
-    placeholder: 'Seleccione un cliente',
+  // $('.select2').select2({
+  //   placeholder: 'Seleccione un cliente',
 
-    minimumInputLength: 2,
-    language: {
-      noResults: function() { return "No hay resultado";},
-      searching: function() { return "Buscando.."; },
-      inputTooShort: function() { return "Por favor ingrese 2 o mas caracteres"; }
-    },
+  //   minimumInputLength: 3,
+  //   language: {
+  //     noResults: function() { return "No hay resultado";},
+  //     searching: function() { return "Buscando.."; },
+  //     inputTooShort: function() { return "Por favor ingrese 3 o mas caracteres"; }
+  //   },
 
-  });
+  // });
 
  $('.select3').select2({
    minimumResultsForSearch: -1,
@@ -554,6 +569,31 @@ function acepta_clientes() {
 
 } );
 
+
+$('#clientes_ant').select2({
+    placeholder: 'Seleccione un cliente',
+    minimumInputLength: 2,
+    language: {
+      noResults: function() { return "No hay resultado";},
+      searching: function() { return "Buscando.."; },
+      inputTooShort: function() { return "Por favor ingrese 2 o mas caracteres"; }
+    },
+    ajax: {
+        url: "{{ route('trafico.finder')}}",
+        dataType: 'json',
+        data: function (params) {
+            return {
+                q: $.trim(params.term)
+            };
+        },
+        processResults: function (data) {
+            return {
+                results: data
+            };
+        },
+        cache: true
+    }
+});
 
 
 

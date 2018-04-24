@@ -459,6 +459,7 @@ class TraficoController extends Controller
                 $nuevo_cliente -> genero = $request->gen;
                 $nuevo_cliente -> rango_edad = $request->edad;
                 $nuevo_cliente -> telefono = $request->telefono;
+                $nuevo_cliente -> telefono_aux = $request->telefono2;
                 $nuevo_cliente -> correo = $request->correo.$request->ter_correo;
                 $nuevo_cliente -> created_by = $suc=Auth::user()->usuario;
                 $nuevo_cliente -> updated_by = $suc=Auth::user()->usuario;
@@ -519,6 +520,38 @@ class TraficoController extends Controller
         ->with('hoy',$hoy)
         ->with('usuario',$usuario)
         ;
+    }
+
+    public function todo_trafico()
+    {
+       $usuario = Auth::user()->usuario;
+        $inicio_mes=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');   //inicio de semana
+        $hoy = Carbon::now('America/La_Paz')->format('d/m/Y');  //fecha actual
+        $visitas = Trf_Visita::where('created_by',$usuario)
+        ->where(DB::raw('CAST(fecha AS date)'),'>=',$inicio_mes)
+        ->get();
+        return view('trafico.todo_trafico')
+        ->with('visitas',$visitas)
+        ->with('inicio_mes',$inicio_mes)
+        ->with('hoy',$hoy)
+        ->with('usuario',$usuario)
+        ;
+    }
+
+    public function clientes()
+    {
+         $clientes = Trf_Cliente::paginate(20);
+        // dd($clientes);
+        return view('trafico.clientes')
+        ->with('clientes',$clientes);
+    }
+
+    public function vendedores()
+    {
+        $vendedores = Trf_Ejecutivo::all();
+        // dd($vendedores);
+        return view('trafico.vendedores')
+        ->with('vendedores',$vendedores);
     }
 
     public function detalle_visita(Request $request)
@@ -1165,6 +1198,30 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
         
         $fecha_fin=Carbon::parse($aux)->endOfMonth()->format('d/m/Y');
         return $fecha_fin;
+    }
+
+    public function finder(Request $request)
+    {
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            return \Response::json([]);
+        }
+
+        // $tags = Trf_Cliente::search($term)->limit(5)->get();
+        $tags =DB::select( DB::raw("
+           select top 15 * from trf_clientes
+            where nombre+paterno+materno like '%".$term."%'
+            "));
+       
+
+        $formatted_tags = [];
+
+        foreach ($tags as $tag) {
+            $formatted_tags[] = ['id' => $tag->id, 'text' => $tag->nombre.' '.$tag->paterno.' '.$tag->materno ,'telf' => $tag->telefono];
+        }
+
+        return \Response::json($formatted_tags);
     }
 
 }

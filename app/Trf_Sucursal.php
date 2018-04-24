@@ -8,6 +8,7 @@ class Trf_Sucursal extends Model
 {
     protected $table = "v_ubicaciones";
     public $incrementing=false;
+        // protected $primaryKey ='codigo';
     //  protected $dateFormat = 'Ymd H:i:s';
     // public $timestamps = true;
 

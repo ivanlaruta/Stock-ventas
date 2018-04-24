@@ -21,9 +21,14 @@ class Trf_Ejecutivo extends Model
         return $this->hasMany('App\Trf_Ejecutivo_Motivo');
     }
 
-    // public function sucursal()
-    // {
-    //     return $this->belongsTo('App\Trf_Sucursal','id_sucursal');
-    // }
+    public function sucursal()
+    {
+        return $this->belongsTo('App\Trf_Sucursal','id_sucursal');
+    }
+
+     public function sucursal_teros()
+    {
+        return $this->belongsTo('App\Trf_Sucursal','suc_teros');
+    }
 
 }
