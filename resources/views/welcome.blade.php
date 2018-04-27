@@ -101,9 +101,9 @@
     <header style="background-image: url('{{asset('vitality/assets/img/bg-header.jpg')}}');">
         <div class="intro-content">
             <img src="{{asset('vitality/assets/img/profile.png')}}" class="img-responsive img-centered" alt="">
-            <div class="brand-name">TOYOSA</div>
+            <div class="brand-name">S.I.T.</div>
             <hr class="colored">
-            <div class="brand-name-subtext">SOLICITUDES - ENVIOS, STOCK - VENTAS </div>
+            <div class="brand-name-subtext">SISTEMA INTEGRAL TOYOSA</div>
         </div>
         <div class="scroll-down">
             <a class="btn page-scroll" href="#about"><i class="fa fa-angle-down fa-fw"></i></a>

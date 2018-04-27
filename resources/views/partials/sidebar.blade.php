@@ -1,7 +1,7 @@
         <div class="col-md-3 left_col   menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-            <a class="site_title" href="{{ url('/home') }}">
+            <a class="site_title" href="#">
                 &nbsp<i class=" fa fa-gears fa-spin "></i>
                 <span> TOYOSA </span>
             </a>                            
@@ -124,13 +124,13 @@
                     <ul class="nav child_menu">
                       {{-- <li><a href="{{ route('trafico.formulario')}}">Formulario</a></li> --}}
                       <li><a href="{{ route('trafico.formulario2')}}">Nuevo trafico</a></li>
-                       <li><a href="{{ route('trafico.lista_visitas')}}">Trafico semanal anfitrion</a></li>
+                       <li><a href="{{ route('trafico.lista_visitas')}}">Detalle de Tráfico semanal</a></li>
                        @if(Auth::user()->rol=='101' || Auth::user()->rol=='1')
                        {{-- <li><a href="{{ route('trafico.reporte')}}">Reportes</a></li> --}}
-                       <li><a href="{{ route('trafico.todo_trafico')}}">Trafico mesual</a></li>
-                       <li><a href="{{ route('trafico.reporte2')}}">Reporte</a></li>
-                       <li><a href="{{ route('trafico.clientes')}}">lista Clientes</a></li>
-                       <li><a href="{{ route('trafico.vendedores')}}">lista Vendedores</a></li>
+                       <li><a href="{{ route('trafico.todo_trafico')}}">Detalle de Tráfico mensual</a></li>
+                       <li><a href="{{ route('trafico.reporte2')}}">Reporte consolidado</a></li>
+                       <li><a href="{{ route('trafico.clientes')}}">Lista de Clientes</a></li>
+                       <li><a href="{{ route('trafico.vendedores')}}">Lista de Vendedores</a></li>
                        @endif
                        @if(Auth::user()->rol=='1')
                        <li><a href="{{ route('trafico.admin_index')}}">Administracion</a></li>

@@ -54,7 +54,7 @@
                 <br />
 
                 <div>
-                <h1><i class="fa fa-cog fa-spin"></i> VENTAS E INVENTARIOS</h1>
+                <h1><i class="fa fa-cog fa-spin"></i> SISTEMA INTEGRAL</h1>
                 
                   <p>©2017 Todos los derechos reservados.TOYOSA S.A. </p>
                 </div>

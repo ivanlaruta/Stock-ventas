@@ -32,7 +32,9 @@ ul.msg_list li a .times {
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
           <div class="x_title">
-            <h2>Cliente.</h2>
+            <h2>Cliente: &nbsp</h2> 
+            <h2 class="no_cliente" id="no_cliente" style="color: #ed640d;"> SIN DATOS.</h2>
+            <h2 class="nombre_cliente" id="nombre_cliente" style="color: #29c291;" >&nbsp</h2> 
             <div class="clearfix" ></div>
           </div>
           <div class="x_content">
@@ -64,8 +66,12 @@ ul.msg_list li a .times {
                           @endforeach
                         </select>
                         </div> --}}
+                     {{--  <div class="form-group dato_antiguo ">
+                        <button type="button" class="btn btn-info btn-sm habilita pull-right" id="habilita" title="Habilitar edicion"><i class="fa fa-edit"></i></button>
+                        
+                      </div> --}}
                       <div class="form-group dato_antiguo ">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                         <select id="clientes_ant" name="clientes_ant" class="form-control"  style="width: 100%;" ></select>
                           {{-- <select class="form-control select2"  style="width: 100%;"  name="clientes_ant" id="clientes_ant">
                            <option value="" disabled selected>Seleccione un cliente:</option>
@@ -76,9 +82,25 @@ ul.msg_list li a .times {
                               @endforeach
                             </select> --}}
                         </div>
-                       {{--  <div class="col-md-6">
-                          <input type="text" name="telefono2" id="telefono2" class="form-control" placeholder="Telefono " autocomplete="off" style="background: #eeebfc;">
-                        </div> --}}
+                        <div class="col-md-6">
+                          <input type="text" name="telefono_ant" id="telefono_ant" class="form-control" placeholder="Telefono " autocomplete="off" style="background: #eeebfc;" disabled="">
+                        </div>
+                      </div>
+                      <div class="form-group dato_antiguo ">
+                        
+                        <div class="col-md-6">
+                          <input type="text" name="gen2" id="gen2" class="form-control" placeholder="Genero " autocomplete="off" style="background: #eeebfc;" disabled="">
+                        </div>
+                        <div class="col-md-6">
+                          <input type="text" name="edad2" id="edad2" class="form-control" placeholder="Rango de edad " autocomplete="off" style="background: #eeebfc;" disabled="">
+                        </div>
+                      </div>
+                      <div class="form-group dato_antiguo ">
+                        
+                        <div class="col-md-6">
+                          <input type="text" name="correo2" id="correo2" class="form-control" placeholder="Correo " autocomplete="off" style="background: #eeebfc;" disabled="">
+                        </div>
+                        
                       </div>
 
                       
@@ -152,8 +174,9 @@ ul.msg_list li a .times {
                             <option value="@hotmail.com">@hotmail.com</option>
                             <option value="@gmail.com" selected>@gmail.com</option>
                             <option value="@yahoo.com">@yahoo.com</option>
-                            <option value="@yahoo.com">@outlook.com</option>
-                            <option value="@yahoo.com">@zoho.com</option>
+                            <option value="@outlook.com">@outlook.com</option>
+                            <option value="@zoho.com">@zoho.com</option>
+                            <option value="@live.com">@live.com</option>
 
                            
                           </select>
@@ -183,18 +206,22 @@ ul.msg_list li a .times {
 
                   <div class="ln_solid dato_nuevo"></div>
                   <div class="row dato_nuevo">
-                    <div class="col-md-6 form-group has-feedback">
-                    <p>RANGO DE EDAD</p>
-                      @foreach($edades as $det)
-                        <label><input type="radio" name="edad" id="edad" value="{{$det->codigo}}" class="radio_edad req_nuevo"> 
-                        {{$det->descripcion}}</label>
-                        <br>
-                      @endforeach
+                    <div class="col-md-6 form-group has-feedback" style="padding:10px;">
+                      <div style="background-color: #eeebfc; padding:10px;">
+                        <p>RANGO DE EDAD *</p>
+                          @foreach($edades as $det)
+                            <label><input type="radio" name="edad" id="edad" value="{{$det->codigo}}" class="radio_edad req_nuevo"> 
+                            {{$det->descripcion}}</label>
+                            <br>
+                          @endforeach
+                      </div>
                     </div>
-                    <div class="col-md-6 form-group has-feedback">
-                    <p>GENERO</p>
-                      <label><input type="radio" name="gen" id="gen" value="M" > Masculino</label><br>
-                      <label><input type="radio" name="gen" id="gen" value="F" > Femenino</label>
+                    <div class="col-md-6 form-group has-feedback" style="padding:10px;">
+                      <div style="background-color: #eeebfc; padding:10px;">
+                      <p>GENERO *</p>
+                        <label><input type="radio" name="gen" id="gen" value="M" > Masculino</label><br>
+                        <label><input type="radio" name="gen" id="gen" value="F" > Femenino</label>
+                      </div>
                     </div>
                   </div>
                     
@@ -313,6 +340,7 @@ ul.msg_list li a .times {
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="row">
                 <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12" align="center">
+                  {{-- <button type="button" class="btn btn-success btn-block btn_submit" id='btn_submit'>GUARDAR</button> --}}
                   <input type="submit" value="GUARDAR" class="btn btn-success btn-block btn_subm"  >
                 </div>
               </div>
@@ -405,40 +433,64 @@ $(document).ready(function() {
   document.getElementById("cancelar_cliente").onclick = function() {cancela_clientes()};
 
   function cancela_clientes() {
-
-
-    document.getElementById("nombre").value = '';
-    document.getElementById("paterno").value = '';
-    document.getElementById("materno").value = '';
-    document.getElementById("telefono").value = '';
-    document.getElementById("ci").value = '';
-    document.getElementById("exp").value = '';
-    document.getElementById("edad").checked = false;
-    document.getElementById("gen").checked = false;
-    // document.getElementById("m_cli").hide = true;
-
-    // $("#clientes_ant").select2("val", "");
-    $('#clientes_ant').val(null).trigger("change")
-    // if ( $("#clientes_ant").val()  != null )
-    // {
-    //     $(".select2").each(function () {
-    //         $(this).select2('destroy').val("").select2();
-    //     });
+var r = confirm("Se pederan los datos seleccionados!");
+if (r == true) {
+        document.getElementById("nombre").value = '';
+        document.getElementById("paterno").value = '';
+        document.getElementById("materno").value = '';
+        document.getElementById("telefono").value = '';
+        document.getElementById("telefono2").value = '';
+        document.getElementById("telefono_ant").value = '';
+        document.getElementById("correo2").value = '';
+        document.getElementById("correo").value = '';
+        document.getElementById("edad2").value = '';
+        document.getElementById("gen2").value = '';
+        document.getElementById("ci").value = '';
+        document.getElementById("exp").value = '';
+        document.getElementById("edad").checked = false;
+        document.getElementById("gen").checked = false;
         
-    // }
-    $('#m_cli').modal('hide');
+
+        // document.getElementById("m_cli").hide = true;
+
+        // $("#clientes_ant").select2("val", "");
+        $('#clientes_ant').val(null).trigger("change")
+        // if ( $("#clientes_ant").val()  != null )
+        // {
+        //     $(".select2").each(function () {
+        //         $(this).select2('destroy').val("").select2();
+        //     });
+        // }
+        $('.no_cliente').show();
+        $('.nombre_cliente').hide();
+        $('#m_cli').modal('hide');
+       
+    } 
+
   }
 
   document.getElementById("aceptar_cliente").onclick = function() {acepta_clientes()};
 function acepta_clientes() {
   if(document.querySelector('input[name="tipo_cliente"]:checked').value == 'Antiguo')
   {
+    $('.nombre_cliente').show();
+    $('.no_cliente').hide();
+    var $sd = $('#clientes_ant');
+    var data = $sd.select2('data')[0]['text'];
+    document.getElementById('nombre_cliente').innerHTML = data;
+
     $('#m_cli').modal('hide');
   }
   else{
     
-      if ( $("#nombre").val().length>0 && $("#paterno").val().length>0 && $("#telefono").val().length>0 )
+      if ( $("#nombre").val().length>0 && $("#paterno").val().length>0 && $("#telefono").val().length>0 && $('input[name=edad]:checked').length > 0 && $('input[name=gen]:checked').length > 0)
+      {
+        $('.nombre_cliente').show();
+        $('.no_cliente').hide();
+        var data = $("#nombre").val()+' '+$("#paterno").val()+' '+$("#materno").val();
+        document.getElementById('nombre_cliente').innerHTML = data;
         $('#m_cli').modal('hide');
+      }
       else
         alert('los campos marcados con (*) son obligatorios');
   }
@@ -536,30 +588,56 @@ function acepta_clientes() {
     document.getElementById("gen").disabled = true;
   };
 
-  // $('.select2').change(function() {
+  // $('#clientes_ant').change(function() {
 
-  //   var telef = $(this).find("option:selected").attr('tel');
+  //   // var telef = $(this).find("option:selected").attr('tel');
   //   // var ci = $(this).find("option:selected").attr('a_ci');
   //   // var exp = $(this).find("option:selected").attr('a_exp');
   //   // var edad = $(this).find("option:selected").attr('a_rango');
   //   // var gen = $(this).find("option:selected").attr('a_genero');
-  //   $("#telefono2").val(telef);
+   
+  //  alert($("#clientes_ant").select2().find(":selected").data('text'));
+  //   // $("#telefono2").val(telef);
+
   //   // $("#ci").val(ci);
   //   // document.getElementById('exp').value=exp;
   //   // document.getElementById('edad').value=edad;
   //   // document.getElementById('gen').value=gen;
   // });
 
+  $('#clientes_ant').change(function() {   
+    fn_datos($(this));
+  });
+  // var txt_tel = $('#telefono_ant');
+  var fn_datos = function(objeto){
+    // alert(objeto.val());
+    $.ajax({
+      dataType: "JSON",
+      url: "{{ route('trafico.finder_tel')}}",
+      data: {
+        q: objeto.val()
+      },
+      success: function(dataResult)
+      {
+        console.log(dataResult);
+        
+        $("#telefono_ant").val(dataResult.telefono);
+        $("#edad2").val(dataResult.edad);
+        $("#gen2").val(dataResult.genero);
+        $("#correo2").val(dataResult.correo);
+      }
+    });
+
+  };
+
   // $('.select2').select2({
   //   placeholder: 'Seleccione un cliente',
-
   //   minimumInputLength: 3,
   //   language: {
   //     noResults: function() { return "No hay resultado";},
   //     searching: function() { return "Buscando.."; },
   //     inputTooShort: function() { return "Por favor ingrese 3 o mas caracteres"; }
   //   },
-
   // });
 
  $('.select3').select2({
@@ -583,7 +661,8 @@ $('#clientes_ant').select2({
         dataType: 'json',
         data: function (params) {
             return {
-                q: $.trim(params.term)
+                q: $.trim(params.term),
+                type: 'public'
             };
         },
         processResults: function (data) {
@@ -591,6 +670,13 @@ $('#clientes_ant').select2({
                 results: data
             };
         },
+        // processResults: function (data) {
+        //     return {
+        //         results: $.map(data, function(obj) {
+        //             return { id: obj.id, text: obj.text, telf: obj.telf };
+        //         })
+        //     };
+        // },
         cache: true
     }
 });
@@ -697,6 +783,18 @@ $('#clientes_ant').select2({
 //       $("#telefono").val(telef);
            
 //     });
+
+$('form input').on('keypress', function(e) {
+    return e.which !== 13;
+});
+
+
+
+// document.getElementById("btn_submit").onclick = function() {fn_submit()};
+
+// function fn_submit() {
+//     document.getElementById("myForm").submit();
+// }
 
 </script>
 @endsection

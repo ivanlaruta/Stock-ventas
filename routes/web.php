@@ -638,6 +638,11 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.finder'
 	]);
 
+	route::get('trafico/finder_tel',[
+		'uses' =>'TraficoController@finder_tel',
+		'as'   =>	'trafico.finder_tel'
+	]);
+
 	route::get('trafico/todo_trafico',[
 		'uses' =>'TraficoController@todo_trafico',
 		'as'   =>	'trafico.todo_trafico'
@@ -646,6 +651,11 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 	route::get('trafico/clientes',[
 		'uses' =>'TraficoController@clientes',
 		'as'   =>	'trafico.clientes'
+	]);
+
+	route::get('trafico/table_clientes',[
+		'uses' =>'TraficoController@table_clientes',
+		'as'   =>	'trafico.table_clientes'
 	]);
 
 	route::get('trafico/vendedores',[

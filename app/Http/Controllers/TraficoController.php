@@ -16,8 +16,10 @@ use App\Trf_Visita;
 use App\Trf_Ejecutivo;
 use App\Vendedores;
 use App\Trf_Cliente;
+use App\trf_v_clientes;
 use Carbon\Carbon;
 use DB;
+use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Auth;
 
 class TraficoController extends Controller
@@ -460,7 +462,8 @@ class TraficoController extends Controller
                 $nuevo_cliente -> rango_edad = $request->edad;
                 $nuevo_cliente -> telefono = $request->telefono;
                 $nuevo_cliente -> telefono_aux = $request->telefono2;
-                $nuevo_cliente -> correo = $request->correo.$request->ter_correo;
+                if(!is_null($request->correo))$nuevo_cliente -> correo = $request->correo.$request->ter_correo;
+                $nuevo_cliente -> estado = '1';
                 $nuevo_cliente -> created_by = $suc=Auth::user()->usuario;
                 $nuevo_cliente -> updated_by = $suc=Auth::user()->usuario;
                 $nuevo_cliente -> save();
@@ -538,12 +541,17 @@ class TraficoController extends Controller
         ;
     }
 
-    public function clientes()
+    public function clientes() 
     {
-         $clientes = Trf_Cliente::paginate(20);
-        // dd($clientes);
-        return view('trafico.clientes')
-        ->with('clientes',$clientes);
+        
+        return view('trafico.clientes');
+    }
+
+    public function table_clientes() 
+    {
+         $clientes = trf_v_clientes::select(['id','ci','ex','nombre','genero','descripcion','telf1','telf2','correo','us','estado']);
+ 
+        return Datatables::of($clientes)->make(true);
     }
 
     public function vendedores()
@@ -1211,7 +1219,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
         // $tags = Trf_Cliente::search($term)->limit(5)->get();
         $tags =DB::select( DB::raw("
            select top 15 * from trf_clientes
-            where nombre+paterno+materno like '%".$term."%'
+            where nombre+' '+paterno+' '+materno like '%".$term."%'
             "));
        
 
@@ -1222,6 +1230,49 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
         }
 
         return \Response::json($formatted_tags);
+    }
+
+    public function finder_tel(Request $request)
+    {
+        
+        $term = $request->q;
+       
+        $tel  = Trf_Cliente::find($term);
+
+
+        switch ($tel->genero) {
+            case 'M':
+                 $gen='MASCULINO';
+                break;
+            case 'F':
+               $gen='FEMENINO';
+                 break;
+            default:
+                $gen='SIN DATO';
+           
+        }
+
+         switch ($tel->rango_edad) {
+            case '1':
+                $edad='18-25 Años';
+                break;
+            case '2':
+                $edad='26-35 Años';
+                 break;
+            case '3':
+                $edad='36-45 Años';
+                 break;
+            case '4':
+               $edad='MAYOR A 46 Años';
+                 break;
+            default:
+                $edad='SIN DATO';
+           
+        }
+
+        return response()->json(['telefono'=>$tel->telefono,'genero'=>$gen,'edad'=>$edad,'correo'=>$tel->correo]);
+
+        
     }
 
 }
