@@ -54,7 +54,7 @@
                 <br />
 
                 <div>
-                <h1><i class="fa fa-cog fa-spin"></i> SISTEMA INTEGRAL</h1>
+                <h1><i class="fa fa-cog fa-spin"></i> SISTEMA INTEGRADO</h1>
                 
                   <p>©2017 Todos los derechos reservados.TOYOSA S.A. </p>
                 </div>

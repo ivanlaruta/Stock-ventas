@@ -64,7 +64,7 @@ class TraficoController extends Controller
         if(sizeof($encuesta)>0)
         {
             $id_encuesta=$encuesta->id;
-            $motivos =Trf_Motivo_Encuesta::where('id_encuesta',$id_encuesta)->orderBy('id','ASC')->get();
+            $motivos =Trf_Motivo_Encuesta::where('id_encuesta',$id_encuesta)->orderBy('observaciones','ASC')->get();
             $clientes = Trf_Cliente::all();
             $edades = Trf_Parametrica::where('tabla','rango_edades')->get();
             $motivo_Categoria=Trf_Motivo_Categoria::

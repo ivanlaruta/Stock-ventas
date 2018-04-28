@@ -58,29 +58,11 @@ ul.msg_list li a .times {
                     
                     <div class="form-horizontal form-label-left input_mask">
                       
-                     
-                        {{-- <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control select2" name="clientes_ant" id="clientes_ant" data-width="100%" autocomplete="off">
-                          @foreach($clientes as $det)
-                            <option value="{{$det->id}}" tel="{{$det->telefono}}">  {{$det->nombre}} {{$det->paterno}} {{$det->materno}}</option>
-                          @endforeach
-                        </select>
-                        </div> --}}
-                     {{--  <div class="form-group dato_antiguo ">
-                        <button type="button" class="btn btn-info btn-sm habilita pull-right" id="habilita" title="Habilitar edicion"><i class="fa fa-edit"></i></button>
-                        
-                      </div> --}}
+     
                       <div class="form-group dato_antiguo ">
                         <div class="col-md-6">
                         <select id="clientes_ant" name="clientes_ant" class="form-control"  style="width: 100%;" ></select>
-                          {{-- <select class="form-control select2"  style="width: 100%;"  name="clientes_ant" id="clientes_ant">
-                           <option value="" disabled selected>Seleccione un cliente:</option>
-                              @foreach($clientes as $det)
-                                <option value="{{$det->id}}" tel="{{$det->telefono}}">  
-                                {{$det->nombre}} {{$det->paterno}} {{$det->materno}}
-                                </option>
-                              @endforeach
-                            </select> --}}
+                         
                         </div>
                         <div class="col-md-6">
                           <input type="text" name="telefono_ant" id="telefono_ant" class="form-control" placeholder="Telefono " autocomplete="off" style="background: #eeebfc;" disabled="">
@@ -135,33 +117,8 @@ ul.msg_list li a .times {
                           <input type="number" name="telefono2" id="telefono2" class="form-control" placeholder="Telefono adicional" autocomplete="off">
                         </div>
                         
-                
-                     
                       </div>
-                      {{-- <div class="form-group dato_nuevo">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombres</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" name="nombre" class="form-control" placeholder="Nombres" autocomplete="off">
-                        </div>
-                      </div>
-                      <div class="form-group dato_nuevo">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Paterno</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" name="paterno" class="form-control" placeholder="Paterno" autocomplete="off">
-                        </div>
-                      </div>
-                      <div class="form-group dato_nuevo">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Materno</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" name="materno" class="form-control" placeholder="Materno" autocomplete="off">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Telefono</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Telefono" autocomplete="off">
-                        </div>
-                      </div> --}}
+                      
                       <div class="ln_solid dato_nuevo"></div>
                       <div class="form-group dato_nuevo">
                         <div class="col-md-6">
@@ -178,7 +135,6 @@ ul.msg_list li a .times {
                             <option value="@zoho.com">@zoho.com</option>
                             <option value="@live.com">@live.com</option>
 
-                           
                           </select>
                         </div>
                       </div>
@@ -227,24 +183,7 @@ ul.msg_list li a .times {
                     
                   </div>
                 </div>
-                      {{-- <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <select class="form-control" name="edad" id="edad">
-                            <option value=" ">Rango de edad</option>
-                            @foreach($edades as $det)
-                               <option value="{{$det->codigo}}"> {{$det->descripcion}}</option>
-                            @endforeach
-                          </select>
-                      </div> --}}
-                     {{--  <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <select class="form-control" name="gen" id="gen">
-                          <option value=" ">Genero</option>
-                          <option value="F">FEMENINO</option>
-                          <option value="M">MASCULINO</option>
-                        </select>
-                      </div> --}}
-              
-                
-                      <small class="dato_nuevo">(*) Datos obligatorios</small>
+                    <small class="dato_nuevo">(*) Datos obligatorios</small>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default cancelar_cliente" id="cancelar_cliente" >Cancelar</button>
                   <button type="button" class="btn btn-primary aceptar_cliente" id="aceptar_cliente" >Aceptar</button>
@@ -289,19 +228,6 @@ ul.msg_list li a .times {
               <h2>Ejecutivo asignado.</h2>
               <div class="clearfix" ></div>
             </div>
-
-            {{-- <div class="x_content">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="row" align="center"> 
-                <select class="form-control select3 col-md-6 col-lg-offset-3 col-sm-6 col-xs- req_vendedor"  style="width: 50%;" name="id_ejecutivo" id="id_ejecutivo">
-                  <option value="">Selecione un Ejecutivo de venta</option>
-                  @foreach($vendedores as $det)
-                    <option value="{{$det->cod_vendedor}}">{{strtoupper($det->nom_vendedor)}}</option>
-                  @endforeach
-                </select>
-                </div>
-              </div>
-            </div> --}}
 
             <div class="x_content">
               <div class="col-md-12 col-sm-12 col-xs-12">
@@ -382,14 +308,6 @@ ul.msg_list li a .times {
                       </a>
                     </li>
                   </ul>
-
-
-
-
-
-                    
-                   
-                      
 
                   
                   </div>
@@ -516,7 +434,7 @@ function acepta_clientes() {
     $('.modelos').attr('checked',false);
     $('.ver').hide();
     $('.categorias').hide();
-    if(id_motivo < 5){
+    if(id_motivo < 5 || id_motivo == 16){
       // alert('mostrar clientes');
       $('.ver_'+id_motivo).show();
       $('.categoria_'+id_motivo).show();
