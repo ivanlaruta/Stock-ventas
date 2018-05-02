@@ -74,6 +74,7 @@ class AdministracionController extends Controller
     {
         if($request->tipo=="nuevo")
         {
+            // dd($request->all());
             $user = new User($request->all());
             $user->password = bcrypt($request->password);
             $user->save();

@@ -25,7 +25,7 @@ ul.msg_list li a .times {
     <div class="clearfix"></div>
     
 @if(sizeof($encuesta)>0)
-{!! Form::open(array('route' => ['trafico.add_visita2'], 'method' => 'get' , 'id'=>'VisitaForm', 'class'=>'form-horizontal form-label-left')) !!}
+{!! Form::open(array('route' => ['trafico.add_visita2'], 'method' => 'get' , 'id'=>'VisitaForm', 'name'=>'VisitaForm', 'class'=>'form-horizontal form-label-left')) !!}
 <input type="text" hidden class="form-control" value="{{Auth::user()->id_ubicacion}}" name="id_sucursal" id="id_sucursal">
 
     <div class="row">
@@ -60,39 +60,26 @@ ul.msg_list li a .times {
                       
      
                       <div class="form-group dato_antiguo ">
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                         <select id="clientes_ant" name="clientes_ant" class="form-control"  style="width: 100%;" ></select>
                          
                         </div>
-                        <div class="col-md-6">
-                          <input type="text" name="telefono_ant" id="telefono_ant" class="form-control" placeholder="Telefono " autocomplete="off" style="background: #eeebfc;" disabled="">
+                        <div class="col-md-2">
+                          
                         </div>
                       </div>
                       <div class="form-group dato_antiguo ">
                         
-                        <div class="col-md-6">
-                          <input type="text" name="gen2" id="gen2" class="form-control" placeholder="Genero " autocomplete="off" style="background: #eeebfc;" disabled="">
-                        </div>
-                        <div class="col-md-6">
-                          <input type="text" name="edad2" id="edad2" class="form-control" placeholder="Rango de edad " autocomplete="off" style="background: #eeebfc;" disabled="">
-                        </div>
-                      </div>
-                      <div class="form-group dato_antiguo ">
                         
-                        <div class="col-md-6">
-                          <input type="text" name="correo2" id="correo2" class="form-control" placeholder="Correo " autocomplete="off" style="background: #eeebfc;" disabled="">
-                        </div>
                         
                       </div>
 
+
                       
                       <div class="form-group dato_nuevo">
-                        
                         <div class="col-md-6">
                           <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre *" autocomplete="off" style="background: #eeebfc;">
                         </div>
-                      
-                        
                         <div class="col-md-6">
                           <input type="text" name="paterno" id="paterno" class="form-control" placeholder="Paterno *" autocomplete="off" style="background: #eeebfc;">
                         </div>
@@ -108,7 +95,7 @@ ul.msg_list li a .times {
                         </div>
                       </div>
 
-                       <div class="form-group dato_nuevo">
+                       <div class="form-group ">
                         <div class="col-md-6">
                           <input type="number" name="telefono" id="telefono" class="form-control" placeholder="Telefono *" autocomplete="off" style="background: #eeebfc;">
                         </div>
@@ -119,7 +106,13 @@ ul.msg_list li a .times {
                         
                       </div>
                       
-                      <div class="ln_solid dato_nuevo"></div>
+                      <div class="ln_solid "></div>
+
+                      <div class="form-group dato_antiguo ">
+                        <div class="col-md-12">
+                          <input type="text" name="correo2" id="correo2" class="form-control" placeholder="Correo " >
+                        </div>
+                      </div>
                       <div class="form-group dato_nuevo">
                         <div class="col-md-6">
                           <input type="text" name="correo" id="correo" class="form-control " placeholder="Correo (Ej.: pedro.perez)">
@@ -139,8 +132,8 @@ ul.msg_list li a .times {
                         </div>
                       </div>
 
-                      <div class="ln_solid dato_nuevo"></div>
-                      <div class="form-group dato_nuevo">
+                      <div class="ln_solid "></div>
+                      <div class="form-group ">
                         <div class="col-md-6">
                           <input type="text" name="ci" id="ci" class="form-control " placeholder="Nro CI">
                         </div>
@@ -160,8 +153,8 @@ ul.msg_list li a .times {
                         </div>
                       </div>
 
-                  <div class="ln_solid dato_nuevo"></div>
-                  <div class="row dato_nuevo">
+                  <div class="ln_solid "></div>
+                  <div class="row ">
                     <div class="col-md-6 form-group has-feedback" style="padding:10px;">
                       <div style="background-color: #eeebfc; padding:10px;">
                         <p>RANGO DE EDAD *</p>
@@ -282,13 +275,13 @@ ul.msg_list li a .times {
             <div class="modal-content">
               <div class="modal-header">
                 {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> --}}
-                Seleccione al menos un modelo
+                Seleccione al menos una opcion
               </div>
               <div class="modal-body" >
                 
                 <div class="row">
                   @foreach($motivo_Categoria as $det2)
-                  <div class="col-md-6 col-sm-12 col-xs-12 categorias categoria_{{$det2->motivo->id}}" style="border-radius: 25px; " >
+                  <div class="col-md-6 col-sm-6 col-xs-6 categorias categoria_{{$det2->motivo->id}}" style="border-radius: 25px; " >
                     
                     <ul class="list-unstyled msg_list">
                     <li>
@@ -301,18 +294,27 @@ ul.msg_list li a .times {
                             <label class="mio"><input type="checkbox" name="modelos[]" class="modelos mod_{{$det3->descripcion}}" value="{{$det3->id}}"> {{$det3->descripcion}}</label><br>
                               @if($det3->descripcion=='OTROS')
                                 <input type="text" class=" txt_otros" name="txt_otros_{{$det3->id_categoria}}" id="txt_otros" >
+                              
                               @endif
+                                <select class="form-control observaciones" name="txt_otros" >
+                                  <option disabled selected>Como se enetero</option>
+                                  <option value="Television">Television</option>
+                                  <option value="Radio">Radio</option>
+                                  <option value="Internet">Internet</option>
+                                  <option value="Contacto">Contacto</option>
+                                </select>
                             @endif
                           @endforeach
                         </span>
+                                
                       </a>
                     </li>
                   </ul>
 
-                  
                   </div>
-                  <div class="clearfix visible-xs-block"></div>
+                  {{-- <div class="clearfix visible-xs-block"></div> --}}
                   @endforeach
+                
                 </div>
               </div>
               <div class="modal-footer">
@@ -358,16 +360,28 @@ if (r == true) {
         document.getElementById("materno").value = '';
         document.getElementById("telefono").value = '';
         document.getElementById("telefono2").value = '';
-        document.getElementById("telefono_ant").value = '';
-        document.getElementById("correo2").value = '';
+        
+        // document.getElementById("correo2").value = '';
         document.getElementById("correo").value = '';
-        document.getElementById("edad2").value = '';
-        document.getElementById("gen2").value = '';
+        
+        
         document.getElementById("ci").value = '';
         document.getElementById("exp").value = '';
-        document.getElementById("edad").checked = false;
-        document.getElementById("gen").checked = false;
-        
+
+        var radio=document.getElementsByName("edad");
+       var len=radio.length;
+       for(var i=0;i<len;i++)
+       {
+           radio[i].checked=false;
+       }
+
+    var radio2=document.getElementsByName("gen");
+       var len=radio2.length;
+       for(var i=0;i<len;i++)
+       {
+           radio2[i].checked=false;
+       }
+
 
         // document.getElementById("m_cli").hide = true;
 
@@ -416,10 +430,10 @@ function acepta_clientes() {
 
   document.getElementById("btn_acepta_modelos").onclick = function() {myFunction()};
 
-  function myFunction() {
+    function myFunction() {
       var numberOfChecked = $('input:checkbox:checked').length;
       if (numberOfChecked > 0) {$('#myModal').modal('hide');}
-      else{alert('Seleccione al menos un modelo')};
+      else{alert('Seleccione al menos una opcion')};
       
   }
    document.getElementById("btn_cancela_modelos").onclick = function() {
@@ -434,6 +448,13 @@ function acepta_clientes() {
     $('.modelos').attr('checked',false);
     $('.ver').hide();
     $('.categorias').hide();
+    if(id_motivo == 16){
+       $('.observaciones').show();
+    }
+    else{
+      $('.observaciones').hide();
+    }
+
     if(id_motivo < 5 || id_motivo == 16){
       // alert('mostrar clientes');
       $('.ver_'+id_motivo).show();
@@ -457,6 +478,7 @@ function acepta_clientes() {
 
   });
 
+
    $('.mod_OTROS').change(function() {
        if($(".mod_OTROS").is(':checked'))
        {
@@ -467,6 +489,8 @@ function acepta_clientes() {
              $('.txt_otros').hide();
         }
     });
+
+
   $('#nuevo').change(function() {
    opcionesnuevo();
   });
@@ -481,17 +505,31 @@ function acepta_clientes() {
     $('.dato_antiguo').hide();
     $('.dato_nuevo').show();
     document.getElementById("telefono").value = '';
+    document.getElementById("telefono2").value = '';
     document.getElementById("ci").value = '';
     document.getElementById("exp").value = '';
-    // document.getElementById("edad").value = '';
-    // document.getElementById("gen").value = '';
+    document.getElementById("correo2").value = '';
+    
     document.getElementById("edad").checked = false;
     document.getElementById("gen").checked = false;
     document.getElementById("telefono").disabled = false;
+    document.getElementById("telefono2").disabled = false;
     document.getElementById("ci").disabled = false;
     document.getElementById("exp").disabled = false;
-    document.getElementById("edad").disabled = false;
-    document.getElementById("gen").disabled = false;
+    
+    var radio=document.getElementsByName("edad");
+       var len=radio.length;
+       for(var i=0;i<len;i++)
+       {
+           radio[i].disabled=false;
+       }
+
+    var radio2=document.getElementsByName("gen");
+       var len=radio2.length;
+       for(var i=0;i<len;i++)
+       {
+           radio2[i].disabled=false;
+       }
   };
 
   function opcionesantiguo()
@@ -500,10 +538,27 @@ function acepta_clientes() {
     $('.dato_nuevo').hide();
     $('.dato_antiguo').show();
     document.getElementById("telefono").disabled = true;
+    document.getElementById("telefono2").disabled = true;
+    document.getElementById("correo2").disabled = true;
     document.getElementById("ci").disabled = true;
     document.getElementById("exp").disabled = true;
-    document.getElementById("edad").disabled = true;
-    document.getElementById("gen").disabled = true;
+
+
+    var radio=document.getElementsByName("edad");
+       var len=radio.length;
+       for(var i=0;i<len;i++)
+       {
+           radio[i].disabled=true;
+       }
+
+    var radio2=document.getElementsByName("gen");
+       var len=radio2.length;
+       for(var i=0;i<len;i++)
+       {
+           radio2[i].disabled=true;
+       }
+
+
   };
 
   // $('#clientes_ant').change(function() {
@@ -526,7 +581,7 @@ function acepta_clientes() {
   $('#clientes_ant').change(function() {   
     fn_datos($(this));
   });
-  // var txt_tel = $('#telefono_ant');
+  
   var fn_datos = function(objeto){
     // alert(objeto.val());
     $.ajax({
@@ -537,12 +592,15 @@ function acepta_clientes() {
       },
       success: function(dataResult)
       {
-        console.log(dataResult);
+        // console.log(dataResult);
         
-        $("#telefono_ant").val(dataResult.telefono);
-        $("#edad2").val(dataResult.edad);
-        $("#gen2").val(dataResult.genero);
+         $("#telefono").val(dataResult.telefono);
+         $("#telefono2").val(dataResult.telefono2);
         $("#correo2").val(dataResult.correo);
+        $("#ci").val(dataResult.ci);
+        $("#exp").val(dataResult.exp);
+        document.VisitaForm.edad.value=dataResult.edad;
+        document.VisitaForm.gen.value=dataResult.genero;
       }
     });
 
@@ -707,7 +765,7 @@ $('form input').on('keypress', function(e) {
 });
 
 
-
+$.fn.modal.Constructor.prototype.enforceFocus = function() {};
 // document.getElementById("btn_submit").onclick = function() {fn_submit()};
 
 // function fn_submit() {

@@ -32,7 +32,7 @@
               Nombres *
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="nombre" name="nombre" required="required" class="form-control col-md-7 col-xs-12">
+              <input type="text" id="nombre" name="nombre"  class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="form-group">
@@ -40,7 +40,7 @@
               Paterno *
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="paterno" name="paterno" required="required" class="form-control col-md-7 col-xs-12">
+              <input type="text" id="paterno" name="paterno"  class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="form-group">
@@ -48,7 +48,7 @@
               Materno
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="materno" name="materno" required="required" class="form-control col-md-7 col-xs-12">
+              <input type="text" id="materno" name="materno"  class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="form-group">
@@ -56,7 +56,7 @@
               Correo
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+              <input type="text" id="email" name="email"  required="required" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="form-group">
@@ -64,7 +64,7 @@
               Telefono
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="telefono" name="telefono" required="required" class="form-control col-md-7 col-xs-12">
+              <input type="text" id="telefono" name="telefono"  class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="form-group">
@@ -126,7 +126,7 @@
               Usuario *
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input value="{{$usuario->usuario}}" type="text" id="usuario" name="usuario" disabled required="required" class="form-control col-md-7 col-xs-12 disabled">
+              <input value="{{$usuario->usuario}}" type="text" id="usuario" name="usuario" disabled class="form-control col-md-7 col-xs-12 disabled">
             </div>
           </div>
           {{-- <div class="form-group">
@@ -134,7 +134,7 @@
               Password *
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input value="****" type="text" id="password" name="password" required="required" class="form-control col-md-7 col-xs-12">
+              <input value="****" type="text" id="password" name="password" class="form-control col-md-7 col-xs-12">
             </div>
           </div> --}}
           <div class="form-group">
@@ -142,7 +142,7 @@
               Nombres *
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input value="{{$usuario->nombre}}" type="text" id="nombre" name="nombre" required="required" class="form-control col-md-7 col-xs-12">
+              <input value="{{$usuario->nombre}}" type="text" id="nombre" name="nombre" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="form-group">
@@ -150,7 +150,7 @@
               Paterno *
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input value="{{$usuario->paterno}}" type="text" id="paterno" name="paterno" required="required" class="form-control col-md-7 col-xs-12">
+              <input value="{{$usuario->paterno}}" type="text" id="paterno" name="paterno" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="form-group">
@@ -158,7 +158,7 @@
               Materno
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input value="{{$usuario->materno}}" type="text" id="materno" name="materno" required="required" class="form-control col-md-7 col-xs-12">
+              <input value="{{$usuario->materno}}" type="text" id="materno" name="materno" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="form-group">
@@ -166,7 +166,7 @@
               Correo
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input value="{{$usuario->email}}" type="text" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+              <input value="{{$usuario->email}}" type="text" id="email" name="email" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="form-group">
@@ -174,7 +174,7 @@
               Telefono
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input value="{{$usuario->telefono}}" type="text" id="telefono" name="telefono" required="required" class="form-control col-md-7 col-xs-12">
+              <input value="{{$usuario->telefono}}" type="text" id="telefono" name="telefono" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="form-group">

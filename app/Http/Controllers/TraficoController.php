@@ -355,7 +355,7 @@ class TraficoController extends Controller
     public function add_visita(Request $request)
     {
         $hoy = Carbon::now('America/La_Paz')->format('Ymd H:i:s');
-//        dd($request->all());
+        dd($request->all());
 
         if($request->tipo_cliente=='Antiguo')
         {
@@ -370,14 +370,16 @@ class TraficoController extends Controller
             $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;
             $nuevo_visita -> save();
 
-            if($request->id_motivo=='1' || $request->id_motivo=='2' || $request->id_motivo=='3' || $request->id_motivo=='4')
+            if($request->id_motivo=='1' || $request->id_motivo=='2' || $request->id_motivo=='3' || $request->id_motivo=='4' || $request->id_motivo=='16' )
             {
                 for ($i=0; $i < sizeof($request->modelos); $i++) 
                 {
                     $nuevo_visita_modelo = new Trf_Visita_Modelo();
                     $nuevo_visita_modelo -> id_visita = $nuevo_visita ->id;
                     $nuevo_visita_modelo -> id_modelo = $request->modelos[$i];
-                    if($request->modelos[$i]=='33' || $request->modelos[$i]=='38')
+                    $nuevo_visita_modelo -> created_by = Auth::user()->usuario;
+                    $nuevo_visita_modelo -> updated_by = Auth::user()->usuario;
+                    if($request->modelos[$i]=='33' || $request->modelos[$i]=='38' || $request->modelos[$i]=='43' )
                     {
                         $nuevo_visita_modelo -> descripcion = strtoupper($request->txt_otros_8).strtoupper($request->txt_otros_9);
                     }
@@ -413,14 +415,16 @@ class TraficoController extends Controller
                 $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;
                 $nuevo_visita -> save();
 
-                if($request->id_motivo=='1' || $request->id_motivo=='2' || $request->id_motivo=='3' || $request->id_motivo=='4')
+                if($request->id_motivo=='1' || $request->id_motivo=='2' || $request->id_motivo=='3' || $request->id_motivo=='4' || $request->id_motivo=='16' )
                 {
                     for ($i=0; $i < sizeof($request->modelos); $i++) 
                     {
                         $nuevo_visita_modelo = new Trf_Visita_Modelo();
                         $nuevo_visita_modelo -> id_visita = $nuevo_visita ->id;
                         $nuevo_visita_modelo -> id_modelo = $request->modelos[$i];
-                        if($request->modelos[$i]=='33' || $request->modelos[$i]=='38')
+                        $nuevo_visita_modelo -> created_by = Auth::user()->usuario;
+                        $nuevo_visita_modelo -> updated_by = Auth::user()->usuario;
+                        if($request->modelos[$i]=='33' || $request->modelos[$i]=='38' || $request->modelos[$i]=='43' )
                         {
                             $nuevo_visita_modelo -> descripcion = strtoupper($request->txt_otros_8).strtoupper($request->txt_otros_9);
                         }
@@ -491,14 +495,16 @@ class TraficoController extends Controller
             $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;
             $nuevo_visita -> save();
 
-            if($request->motivo=='1' || $request->motivo=='2' || $request->motivo=='3' || $request->motivo=='4')
+            if($request->motivo=='1' || $request->motivo=='2' || $request->motivo=='3' || $request->motivo=='4' || $request->motivo=='16')
             {
                 for ($i=0; $i < sizeof($request->modelos); $i++) 
                 {
                     $nuevo_visita_modelo = new Trf_Visita_Modelo();
                     $nuevo_visita_modelo -> id_visita = $nuevo_visita ->id;
+                    $nuevo_visita_modelo -> created_by = Auth::user()->usuario;
+                    $nuevo_visita_modelo -> updated_by = Auth::user()->usuario;
                     $nuevo_visita_modelo -> id_modelo = $request->modelos[$i];
-                    if($request->modelos[$i]=='33' || $request->modelos[$i]=='38')
+                    if($request->modelos[$i]=='33' || $request->modelos[$i]=='38' || $request->modelos[$i]=='43')
                     {
                         $nuevo_visita_modelo -> descripcion = strtoupper($request->txt_otros_8).strtoupper($request->txt_otros_9);
                     }
@@ -530,8 +536,7 @@ class TraficoController extends Controller
        $usuario = Auth::user()->usuario;
         $inicio_mes=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');   //inicio de semana
         $hoy = Carbon::now('America/La_Paz')->format('d/m/Y');  //fecha actual
-        $visitas = Trf_Visita::where('created_by',$usuario)
-        ->where(DB::raw('CAST(fecha AS date)'),'>=',$inicio_mes)
+        $visitas = Trf_Visita::where(DB::raw('CAST(fecha AS date)'),'>=',$inicio_mes)
         ->get();
         return view('trafico.todo_trafico')
         ->with('visitas',$visitas)
@@ -1270,7 +1275,15 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
            
         }
 
-        return response()->json(['telefono'=>$tel->telefono,'genero'=>$gen,'edad'=>$edad,'correo'=>$tel->correo]);
+        return response()->json([
+            'telefono'=>$tel->telefono,
+            'telefono2'=>$tel->telefono_aux,
+            'genero'=>$tel->genero,
+            'edad'=>$tel->rango_edad,
+            'ci'=>$tel->ci,
+            'exp'=>$tel->expedido,
+            'correo'=>$tel->correo
+        ]);
 
         
     }

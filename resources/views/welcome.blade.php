@@ -188,8 +188,8 @@
                         <div class="media-body">
                             <h3 class="media-heading">SOLICITUDES Y ENVIOS</h3>
                             <ul>
-                                <li>Creacion de solcitiudes.</li>
-                                <li>Aprovacion y reserva de unidades de forma automatica.</li>
+                                <li>Creacion de solicitudes.</li>
+                                <li>Aprobacion y reserva de unidades de forma automatica.</li>
                                 <li>Generacion de envios.</li>
                                 <li>Rerpotes.</li>
                             </ul>
@@ -221,11 +221,12 @@
                         <div class="media-body">
                             <h3 class="media-heading">VENTAS</h3>
                             <ul>
-                                <li>Reporte de ventas</li>
-                                <li>Detalle por mes</li>
-                                <li>Detalle por marca</li>
-                                <li>Detalle por regional</li>
-                                <li>Objetivos.</li>
+                                <li>Trafico de clientes</li>
+                                <li>Reporte de cotizaciones</li>
+                                <li>Reporte de reservas</li>
+                                <li>Reporte de facturas</li>
+                                <li>Reporte de entregas</li>
+                             
                             </ul>
                         </div>
                     </div>
