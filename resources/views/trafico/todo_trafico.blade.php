@@ -80,7 +80,7 @@
                     <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->genero)) -- @else {{$det->cliente->genero}}@endif @endif</td>
                     <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->telefono)) -- @else{{$det->cliente->telefono}}@endif @endif</td>
                      <td>@if(is_null($det->id_cliente)) -- @else @if(is_null($det->cliente->correo)) -- @else{{$det->cliente->correo}}@endif @endif</td>
-                    <td>@if($det->id_ejecutivo==null) No asignado @else{{strtoupper($det->ejecutivo->nombre ." ".$det->ejecutivo->paterno)}}@endif</td>
+                    <td>@if($det->id_ejecutivo==null) No asignado @else{{strtoupper($det->id_ejecutivo)}}@endif</td>
                     <td>{{$det->observaciones}}</td>
                     <td>{{$det->created_by}}</td>
                       <td align="right">
@@ -92,7 +92,7 @@
                           </div>
                         @endif
                       </td>        
-                    {{-- <td>{{$det->descripcion}}</td> --}}
+                    <td>{{$det->descripcion}}</td>
                 </tr>
                 @endforeach
               </tbody>
