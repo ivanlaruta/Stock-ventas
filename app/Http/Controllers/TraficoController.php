@@ -71,7 +71,7 @@ class TraficoController extends Controller
             join('trf_categorias', 'trf_categorias.id', '=', 'trf_motivo_categoria.id_categoria')
             ->orderBy('trf_categorias.observaciones', 'ASC')->get();
             $modelos=Trf_Modelo::all();
-            $vendedores=Trf_Ejecutivo::where('id_sucursal',$id_suc)->orderBy('id')->get();
+            $vendedores=Trf_Ejecutivo::where('id_sucursal',$id_suc)->where('estado','1')->orderBy('id')->get();
             
             return view('trafico.formulario2')
             ->with('encuesta',$encuesta)
@@ -84,7 +84,7 @@ class TraficoController extends Controller
         }
         else 
         {
-            return view('trafico.formulario')
+            return view('trafico.formulario2')
             ->with('encuesta',$encuesta)
             ;
         }        
