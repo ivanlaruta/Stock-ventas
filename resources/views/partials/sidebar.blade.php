@@ -123,7 +123,7 @@
                   <li><a><i class="fa fa-users"></i> Trafico de clientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       {{-- <li><a href="{{ route('trafico.formulario')}}">Formulario</a></li> --}}
-                      <li><a href="{{ route('trafico.formulario2')}}">Nuevo trafico</a></li>
+                      <li><a href="{{ route('trafico.formulario2')}}">Nuevo Tráfico</a></li>
                        <li><a href="{{ route('trafico.lista_visitas')}}">Detalle de Tráfico semanal</a></li>
                        @if(Auth::user()->rol=='101' || Auth::user()->rol=='1')
                        {{-- <li><a href="{{ route('trafico.reporte')}}">Reportes</a></li> --}}

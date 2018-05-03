@@ -279,7 +279,7 @@ ul.msg_list li a .times {
             <div class="modal-content">
               <div class="modal-header">
                 {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> --}}
-                Seleccione al menos una opcion
+                Seleccione al menos una opción
               </div>
               <div class="modal-body" >
                 
@@ -301,8 +301,8 @@ ul.msg_list li a .times {
                               
                               @endif
                                 <select class="form-control observaciones" name="txt_otros" >
-                                  <option disabled selected>Como se enetero</option>
-                                  <option value="Television">Television</option>
+                                  <option disabled selected>¿Como se enteró?</option>
+                                  <option value="Television">Televisión</option>
                                   <option value="Radio">Radio</option>
                                   <option value="Internet">Internet</option>
                                   <option value="Referencia">Referencia</option>
@@ -444,7 +444,7 @@ function acepta_clientes() {
     function myFunction() {
       var numberOfChecked = $('input:checkbox:checked').length;
       if (numberOfChecked > 0) {$('#myModal').modal('hide');}
-      else{alert('Seleccione al menos una opcion')};
+      else{alert('Seleccione al menos una opción')};
       
   }
    document.getElementById("btn_cancela_modelos").onclick = function() {

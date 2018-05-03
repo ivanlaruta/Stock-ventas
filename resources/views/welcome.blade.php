@@ -163,7 +163,7 @@
         <div class="container wow fadeIn">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
-                    <span class="quote">Gracias a la <span class="text-primary">informacion</span> generada en los sistemas <span class="text-primary">TEROS y SIC</span> podemos generar los reportes presentados a continuacion. 
+                    <span class="quote">Gracias a la <span class="text-primary">información</span> generada en los sistemas <span class="text-primary">TEROS y SIC</span> podemos generar los reportes presentados a continuaciÓn. 
                     <hr class=" colored">
                     <a class="btn btn-outline-light page-scroll" href="#contact">Ingresar</a>
                 </div>
