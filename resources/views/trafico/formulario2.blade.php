@@ -50,8 +50,8 @@ ul.msg_list li a .times {
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  {{-- <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> --}}
-                  </button>
+                  {{-- <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> </button>--}}
+                  
                   <h4 class="modal-title" id="myModalLabel">Datos de cliente</h4>
                 </div>
                 <div class="modal-body">
@@ -64,9 +64,9 @@ ul.msg_list li a .times {
                         <select id="clientes_ant" name="clientes_ant" class="form-control"  style="width: 100%;" ></select>
                          
                         </div>
-                        <div class="col-md-2">
-                          
-                        </div>
+                        {{-- <div class="col-md-2">
+                          <a class="btn btn-app editar" title="habilitar edicion" id="editar"><i class="fa fa-edit"></i> Editar</a>
+                        </div> --}}
                       </div>
                       <div class="form-group dato_antiguo ">
                         
@@ -190,6 +190,7 @@ ul.msg_list li a .times {
             <div class="clearfix" ></div>
           </div>
           <div class="x_content">
+
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="row" align="center">
                 @if(sizeof($motivos)>0)
@@ -198,7 +199,10 @@ ul.msg_list li a .times {
                       <tbody> 
                         @foreach($motivos as $det) 
                         <tr>
-                          <td style="width: 40%; padding: 2px; " ><label for="{{$det->motivo->id}}">{{$det->motivo->descripcion}} </label> </td>
+
+                          <td style="width: 40%; padding: 2px; " ><label for="{{$det->motivo->id}}">{{$det->motivo->descripcion}} </label> 
+                          @if ($det->motivo->id ==16)<span class="label label-danger">Nuevo!</span> @endif
+                          </td>
                           <td style="width: 1%; padding: 2px; " > <input type="radio" name="motivo" value="{{$det->motivo->id}}" id="{{$det->motivo->id}}" class="" autocomplete="off" required></td>
                           <td style="width: 10%; padding: 2px; " >
                             <a class=" ver ver_{{$det->motivo->id}}" href="#myModal" data-toggle="modal" data-target="#myModal">
@@ -301,7 +305,7 @@ ul.msg_list li a .times {
                                   <option value="Television">Television</option>
                                   <option value="Radio">Radio</option>
                                   <option value="Internet">Internet</option>
-                                  <option value="Contacto">Contacto</option>
+                                  <option value="Referencia">Referencia</option>
                                 </select>
                             @endif
                           @endforeach
@@ -349,6 +353,13 @@ $(document).ready(function() {
   // document.getElementById("btn_acepta_modelos").disabled = true;
   opcionesnuevo();
 
+
+  document.getElementById("editar").onclick = function() {editar()};
+
+
+  function editar() {
+    alert('se editara');
+  }
 
   document.getElementById("cancelar_cliente").onclick = function() {cancela_clientes()};
 

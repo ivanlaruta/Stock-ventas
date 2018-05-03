@@ -125,7 +125,7 @@
         <div class="container-fluid">
             <div class="row text-center">
                 <div class="col-lg-12 wow fadeIn">
-                    <h1>SOLICITUDES - ENVIOS &amp; STOCK - VENTAS </h1>
+                    <h1>SISTEMA INTEGRADO TOYOSA </h1>
                     <p>Sistema interactivo para creacion de solicitudes, envios y revision de ventas, stock.</p>
                     <hr class="colored">
                 </div>
@@ -135,20 +135,20 @@
                     <div class="about-content">
                         <i class="fa fa-eye fa-4x"></i>
                         <h3>NIVEL DE DETALLE</h3>
-                        <p>Los reportes del sistema tienene un alto nivel de detalle, tambien permite realizar busquedas avanzadas.</p>
+                        <p>Los reportes del sistema tienen un alto nivel de detalle y también permiten realizar búsquedas avanzadas.</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay=".4s">
                     <div class="about-content">
                         <i class="fa fa-edit fa-4x"></i>
                         <h3>FACIL INTERACCION</h3>
-                        <p>El sistema tiene una interfaz amigable por lo que al usuario no le resultara dificil la manipulacion de formularios y  reportes.</p>
+                        <p>El sistema tiene una interfaz amigable que permite al usuario entender fácilmente y hacer uso de los reportes y formularios.</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay=".6s">
                     <div class="about-content">
                         <i class="fa fa-tablet fa-4x"></i>
-                        <h3>Responsive</h3>
+                        <h3>DISEÑO ADAPTATIVO</h3>
                         <p>El sistema esta desarrollado para que pueda ser visto desde cualquier dispositivo, ya sea de escritorio o movil sin importar el sistema operativo.</p>
                     </div>
                 </div>
@@ -176,11 +176,11 @@
                 <div class="col-lg-12 wow fadeIn">
                     <h2>CONTENIDO DEL SISTEMA</h2>
                     <hr class="colored">
-                    <p>Dentro del sistema podra encontrar lo siguiente.</p>
+                    <p>Dentro del sistema podrá encontrar lo siguiente:</p>
                 </div>
             </div>
             <div class="row content-row">
-                <div class="col-md-4 wow fadeIn" data-wow-delay=".2s">
+                {{-- <div class="col-md-4 wow fadeIn" data-wow-delay=".2s">
                     <div class="media">
                         <div class="pull-left">
                             <i class="fa fa-clipboard"></i>
@@ -195,8 +195,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 wow fadeIn" data-wow-delay=".4s">
+                </div> --}}
+               {{--  <div class="col-md-6 wow fadeIn" data-wow-delay=".4s">
                     <div class="media">
                         <div class="pull-left">
                             <i class="fa fa-pencil"></i>
@@ -212,14 +212,14 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 wow fadeIn" data-wow-delay=".6s">
+                </div> --}}
+                <div class="col-md-12 wow fadeIn" data-wow-delay=".6s">
                     <div class="media">
                         <div class="pull-left">
                             <i class="fa fa-rocket"></i>
                         </div>
                         <div class="media-body">
-                            <h3 class="media-heading">VENTAS</h3>
+                            <h3 class="media-heading">COMERCIAL</h3>
                             <ul>
                                 <li>Trafico de clientes</li>
                                 <li>Reporte de cotizaciones</li>
