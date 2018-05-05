@@ -11,6 +11,7 @@ use App\Trf_Parametrica;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdministracionController extends Controller
 {
@@ -157,5 +158,31 @@ class AdministracionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public function pswd()
+    {   
+       return view('auth.pswd');
+    }
+
+    public function change_pswd(Request $request)
+    {   
+        // dd($request->all());
+
+        if(Hash::check($request->password_ant, Auth::user()->password))
+        {
+            $usuario=User::find(Auth::user()->id);
+            $usuario->password = bcrypt($request->password_nuevo);
+            $usuario->save();
+            return view('auth.pswd_msg')->with('resp',"si"); 
+
+        }
+        else
+        {
+            return view('auth.pswd_msg')->with('resp',"no"); 
+        }
+
     }
 }

@@ -31,7 +31,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/inicial', 'SesionController@index');
 
+Route::get('/pswd', 'AdministracionController@pswd')->name('pswd');
+
+Route::get('/change_pswd', 'AdministracionController@change_pswd')->name('change_pswd');
+
 Route::group(['prefix'=>'distribuidor','middleware'=>'auth'],function(){
+
 
 	// route::get('solicitudes/enviar_parcial',[
 	// 	'uses' =>'SolicitudesController@enviar_parcial',
@@ -42,6 +47,7 @@ Route::group(['prefix'=>'distribuidor','middleware'=>'auth'],function(){
 		'uses' =>'SolicitudesController@enviar',
 		'as'   =>	'solicitudes.enviar'
 	]);
+
 
 	// route::get('solicitudes/{id}/envio_parcial',[
 	// 	'uses' =>'SolicitudesController@envio_parcial',

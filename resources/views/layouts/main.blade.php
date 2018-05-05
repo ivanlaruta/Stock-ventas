@@ -103,6 +103,13 @@
                 @include('partials.footer')
                 <!-- /footer content -->
 
+                <div class="modal fade modal_generico " id="modal_generico" role="dialog" data-backdrop="static">
+                    <div class="modal-dialog modal-md">
+                      <div class="modal-content contenido_generico">
+                      </div>
+                    </div>
+                  </div>
+
             </div>
         </div>
 
@@ -226,6 +233,35 @@
     @yield('scripts')
 
 
+
+<script type="text/javascript">
+    
+var btn_nuevo = $(".btn_pswd");
+  btn_nuevo.on("click",function(){
+    frm_nuevo($(this));
+  });
+
+  var modal=$(".modal_generico");
+  var modalContent = $(".contenido_generico");
+
+  var frm_nuevo = function(objeto){
+    $.ajax({
+      type: "GET",
+      cache: false,
+      dataType: "html",
+      url: "{{ route('pswd')}}",
+      
+      success: function(dataResult)
+      {
+        console.log(dataResult);
+        modalContent.empty().html(dataResult);                        
+        modal.modal('show');
+        NProgress.done();
+      }
+    });
+  };
+
+</script>
 
     <!-- Custom Theme Scripts -->
     {{--     <script src="{{asset('bower_components/gentelella/build/js/custom.min.js')}}"></script> --}}   

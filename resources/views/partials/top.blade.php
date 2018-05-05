@@ -29,7 +29,8 @@
                             </li>
 
                             <li>
-                                <a href="#"> <i class="fa fa-cog pull-right"></i> Cotraseña </a>
+                                <a href="#" class="btn_pswd" data-toggle="tooltip" data-placement="bottom">  <i class="fa fa-cog pull-right"></i> Cotraseña </a>
+                              
                             </li>
 
                             <li>

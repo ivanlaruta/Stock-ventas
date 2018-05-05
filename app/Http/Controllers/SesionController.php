@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 use DB;
+
 
 class SesionController extends Controller
 {
@@ -43,4 +45,5 @@ class SesionController extends Controller
         }
 
     }
+
 }
