@@ -25,6 +25,7 @@
             <div class="col-md-6 col-sm-6 col-xs-10">
               <input type="password" id="password_nuevo" name="password_nuevo" required="required" class="form-control col-md-7 col-xs-12" style="background: #eeebfc;"  autocomplete="off">
             </div>
+            <small class="vali" style="color: #bf9414;"> Se necesitan al menos 5 caracteres</small>
           </div>
           <div class="form-group">
             <label class="control-label col-md-4 col-sm-4 col-xs-12" > 
@@ -111,15 +112,23 @@ var btn = $(".guardar");
 function valida() {
   var pss=document.getElementById("password_nuevo").value ;
   var pss2=document.getElementById("password_nuevo2").value ;
-  if(pss==pss2){
-    $('.bien').show();
-    $('.mal').hide();
-    $(".guardar").attr("disabled", false);
+  if(pss.length  >= 5)
+  {
+    $('.vali').hide();
+    if(pss==pss2){
+      $('.bien').show();
+      $('.mal').hide();
+      $(".guardar").attr("disabled", false);
+    }
+    else{
+      $('.bien').hide();
+      $('.mal').show();
+      $(".guardar").attr("disabled", true);
+    }
   }
-  else{
-    $('.bien').hide();
-    $('.mal').show();
-    $(".guardar").attr("disabled", true);
+  else
+  {
+    $('.vali').show();
   }
 
 }
