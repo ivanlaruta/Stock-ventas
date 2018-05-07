@@ -130,6 +130,7 @@
                        <li><a href="{{ route('trafico.todo_trafico')}}">Detalle de Tráfico mensual</a></li>
                        <li><a href="{{ route('trafico.reporte2')}}">Reporte consolidado</a></li>
                        <li><a href="{{ route('trafico.clientes')}}">Lista de Clientes</a></li>
+                       {{-- <li><a href="{{ route('trafico.detalle_mod')}}">Detalle trafico</a></li> --}}
                        <li><a href="{{ route('trafico.vendedores')}}">Lista de Vendedores</a></li>
                        @endif
                        @if(Auth::user()->rol=='1')

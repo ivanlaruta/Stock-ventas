@@ -668,6 +668,11 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'uses' =>'TraficoController@vendedores',
 		'as'   =>	'trafico.vendedores'
 	]);
+	
+	route::get('trafico/detalle_mod',[
+		'uses' =>'TraficoController@detalle_mod',
+		'as'   =>	'trafico.detalle_mod'
+	]);
 
 	route::resource('trafico','TraficoController');
 });

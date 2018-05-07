@@ -29,7 +29,7 @@
                             </li>
 
                             <li>
-                                <a href="#" class="btn_pswd" data-toggle="tooltip" data-placement="bottom">  <i class="fa fa-cog pull-right"></i> Cotraseña </a>
+                                <a href="#" class="btn_pswd" data-toggle="tooltip" data-placement="bottom">  <i class="fa fa-cog pull-right"></i> Contraseña </a>
                               
                             </li>
 

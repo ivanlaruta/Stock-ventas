@@ -424,7 +424,7 @@ class TraficoController extends Controller
                         $nuevo_visita_modelo -> id_modelo = $request->modelos[$i];
                         $nuevo_visita_modelo -> created_by = Auth::user()->usuario;
                         $nuevo_visita_modelo -> updated_by = Auth::user()->usuario;
-                        if($request->modelos[$i]=='33' || $request->modelos[$i]=='38' || $request->modelos[$i]=='43' )
+                        if($request->modelos[$i]=='33' || $request->modelos[$i]=='38'  )
                         {
                             $nuevo_visita_modelo -> descripcion = strtoupper($request->txt_otros_8).strtoupper($request->txt_otros_9);
                         }
@@ -504,9 +504,16 @@ class TraficoController extends Controller
                     $nuevo_visita_modelo -> created_by = Auth::user()->usuario;
                     $nuevo_visita_modelo -> updated_by = Auth::user()->usuario;
                     $nuevo_visita_modelo -> id_modelo = $request->modelos[$i];
-                    if($request->modelos[$i]=='33' || $request->modelos[$i]=='38' || $request->modelos[$i]=='43')
+                    if($request->modelos[$i]=='33' || $request->modelos[$i]=='38')
                     {
                         $nuevo_visita_modelo -> descripcion = strtoupper($request->txt_otros_8).strtoupper($request->txt_otros_9);
+                    }
+                    else
+                    {
+                        if($request->modelos[$i]=='43')
+                        {
+                            $nuevo_visita_modelo -> descripcion = strtoupper($request->txt_otros);
+                        }
                     }
                     $nuevo_visita_modelo ->save();
                 }
@@ -565,6 +572,17 @@ class TraficoController extends Controller
         // dd($vendedores);
         return view('trafico.vendedores')
         ->with('vendedores',$vendedores);
+    }
+
+    public function detalle_mod()
+    {
+        return view('trafico.datalle_mod');
+    }
+    public function table_detalle_mod() 
+    {
+         $clientes = trf_v_clientes::select(['id','ci','ex','nombre','genero','descripcion','telf1','telf2','correo','us','estado']);
+ 
+        return Datatables::of($clientes)->make(true);
     }
 
     public function detalle_visita(Request $request)
