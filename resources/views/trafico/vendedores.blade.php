@@ -39,8 +39,8 @@
                   <th>SUCURSAL</th>
                   <th>ESTADO</th>
                  
-                  <th>NOMBRE TEROS</th>
-                  <th>SUCURSAL TEROS</th>
+                  {{-- <th>NOMBRE TEROS</th>
+                  <th>SUCURSAL TEROS</th> --}}
                  
                 </tr>
               </thead>
@@ -53,8 +53,8 @@
                     <td>{{$det->cargo}}</td>
                     <td>{{$det->id_sucursal}}-{{$det->sucursal->nom_sucursal}}</td>
                     <td>{{$det->estado}}</td>
-                    <td>{{$det->nom_teros}}</td>
-                    <td>{{$det->suc_teros}}-{{$det->sucursal_teros->nom_sucursal}}</td>
+                    {{-- <td>{{$det->nom_teros}}</td>
+                    <td>{{$det->suc_teros}}-{{$det->sucursal_teros->nom_sucursal}}</td> --}}
                 </tr>
                 @endforeach
               </tbody>

@@ -128,6 +128,7 @@
                        @if(Auth::user()->rol=='101' || Auth::user()->rol=='1')
                        {{-- <li><a href="{{ route('trafico.reporte')}}">Reportes</a></li> --}}
                        <li><a href="{{ route('trafico.todo_trafico')}}">Detalle de Tráfico mensual</a></li>
+                       <li><a href="{{ route('trafico.gen_rep_tra')}}">Reporte por modelos</a></li>
                        <li><a href="{{ route('trafico.reporte2')}}">Reporte consolidado</a></li>
                        <li><a href="{{ route('trafico.clientes')}}">Lista de Clientes</a></li>
                        {{-- <li><a href="{{ route('trafico.detalle_mod')}}">Detalle trafico</a></li> --}}

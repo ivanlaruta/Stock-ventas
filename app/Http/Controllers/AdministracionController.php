@@ -87,7 +87,7 @@ class AdministracionController extends Controller
             {
                 $user=User::find($request->id_usuario);
                 $user->fill($request->all());
-                // $user->password = bcrypt($request->password);
+                $user->password = bcrypt($request->password);
                 $user->save();
                 return redirect()->route('administracion.index_users')->with('mensaje',"Editado exitosamente."); 
             }

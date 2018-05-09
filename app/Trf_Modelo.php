@@ -20,5 +20,5 @@ class Trf_Modelo extends Model
     {
         return $this->hasMany('App\Trf_Visita_Modelo');
     }
-
+    
 }

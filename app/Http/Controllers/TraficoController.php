@@ -17,6 +17,7 @@ use App\Trf_Ejecutivo;
 use App\Vendedores;
 use App\Trf_Cliente;
 use App\trf_v_clientes;
+use App\Trf_v_modelos;
 use Carbon\Carbon;
 use DB;
 use Yajra\Datatables\Datatables;
@@ -576,10 +577,94 @@ class TraficoController extends Controller
 
     public function detalle_mod()
     {
-        return view('trafico.datalle_mod');
+            
+        return view('trafico.reportes.totalizador');
     }
-    public function table_detalle_mod() 
+
+    public function totalizador_resumen(Request $request)
     {
+        // dd($request->all());
+
+        $año_actual = Carbon::now('America/La_Paz') -> year;
+        $mes_actual = Carbon::now('America/La_Paz') -> month;
+        $hoy = Carbon::now('America/La_Paz')->format('d/m/Y');
+
+        if(is_null($request->mes) || $request->mes=='14')
+        {
+
+            if(is_null($request->fecha))
+            {
+                $mes=$mes_actual;
+                $f_ini = TraficoController::fecha_inicio($mes);
+                $f_fin = TraficoController::fecha_final($mes);
+                $desc_mes=TraficoController::descripcion_mes($mes);
+            }
+            else
+            {
+                $fechas = explode("-", $request->fecha);
+                // dd($fechas);
+                $f_ini = $fechas[0];
+                $f_fin = $fechas[1];
+                $desc_mes=$f_ini.'-'.$f_fin;
+                $mes='14';
+            }
+        }
+        else
+        {
+            $mes=$request->mes;
+            $f_ini = TraficoController::fecha_inicio($mes);
+            $f_fin = TraficoController::fecha_final($mes);
+            $desc_mes=TraficoController::descripcion_mes($mes);
+        }
+        if ($request->regional == 'TODOS'){
+
+            $regional = 'TODAS LAS REGIONALES';
+
+            $totalizador = DB::select(  DB::raw("
+            select modelo,COUNT (*) as total 
+            from detalle_modelos 
+            where cast(fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
+            
+            group by modelo
+            order by modelo
+            "));
+        }
+        else{
+            $regional = $request->regional;
+            $totalizador = DB::select(  DB::raw("
+            select modelo,COUNT (*) as total 
+            from detalle_modelos 
+            where cast(fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
+            and regional = '".$request->regional."'
+            group by modelo
+            order by modelo
+            "));            
+        }   
+
+        // dd($totalizador);
+        return view('trafico.reportes.totalizador_Resumen')
+        ->with('totalizador',$totalizador)
+        ->with('f_ini',$f_ini)
+        ->with('f_fin',$f_fin)
+        ->with('desc_mes',$desc_mes)
+        ->with('regional',$regional)
+        ;
+    }
+
+    public function table_detalle_mod($request) 
+    {
+        $consolidado = DB::select(  DB::raw("select (cli.nombre + ' '+ cli.paterno) as nombre ,cli.genero,cli.telefono,cli.correo,mot.descripcion as motivo,CAT.descripcion AS categoria, mo.descripcion as modelo, vmo.descripcion as obs_modelo,ub.regional , ub.nom_sucursal as sucursal,CONVERT(date, vi.created_at) as fecha, ej.nombre+' '+ej.paterno as ejecutivo, vi.created_by as anfitrion, vi.id as visita
+            from trf_visita_modelo vmo
+            join trf_visitas as vi on vi.id = vmo.id_visita
+            left join trf_modelos as mo on mo.id =vmo.id_modelo
+            left join trf_categorias as cat on mo.id_categoria = cat.id
+            left join trf_motivo_categoria as mocat on cat.id = mocat.id_categoria
+            left join trf_motivos as mot on mot.id = mocat.id_motivo
+            left join trf_clientes as cli on cli.id = vi.id_cliente
+            left join trf_ejecutivos as ej on ej.id = vi.id_ejecutivo
+            left join v_ubicaciones as ub on ub.id= vi.id_sucursal
+            "));
+
          $clientes = trf_v_clientes::select(['id','ci','ex','nombre','genero','descripcion','telf1','telf2','correo','us','estado']);
  
         return Datatables::of($clientes)->make(true);
@@ -1306,4 +1391,81 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
         
     }
 
+
+    public function gen_rep_tra() 
+    {
+        $sucursales = DB::select(  DB::raw("select distinct regional,id_sucursal,sucursal  from detalle_modelos order by 1,3"));
+        $modelos = DB::select(  DB::raw("select distinct id_modelo,modelo  from detalle_modelos order by 2"));
+        return view('trafico.reportes.totalizador_busca')
+        ->with('sucursales',$sucursales)
+        ->with('modelos',$modelos)
+        ;
+    }
+
+    public function res_gen_rep_tra(Request $request) 
+    {
+         // dd($request->all());
+
+            $fechas = explode("-", $request->fecha);
+                $f_ini = $fechas[0];
+                $f_fin = $fechas[1];
+
+            $sucursales = "";
+            $modelos = "";
+
+            for ($i=0; $i < sizeof($request->modelo); $i++) {
+               $modelos = $modelos."'".$request->modelo[$i]."'";
+               if($i < (sizeof($request->modelo))-1){
+                $modelos = $modelos.",";
+               }
+            }
+            for ($i=0; $i < sizeof($request->sucursal); $i++) {
+               $sucursales = $sucursales."'".$request->sucursal[$i]."'";
+               if($i < (sizeof($request->sucursal))-1){
+                $sucursales = $sucursales.",";
+               }
+            }          
+        
+            $reporte = DB::select(  DB::raw("
+            select * 
+            from detalle_modelos 
+            where cast(fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
+            and id_sucursal IN (".$sucursales.")
+            and id_modelo IN (".$modelos.")
+            order by sucursal,modelo,fecha
+            "));
+
+
+            $des_modelos = DB::select(  DB::raw("
+            select distinct descripcion as modelo  from trf_modelos
+            where id IN (".$modelos.")
+            order by 1
+            "));
+
+            $des_sucursales = DB::select(  DB::raw("
+            select distinct nom_sucursal as sucursal from v_ubicaciones
+            where id IN (".$sucursales.")
+            order by 1
+            "));
+      
+        // dd($reporte);
+
+        return view('trafico.reportes.totalizador_resultado_busq')
+        ->with('reporte',$reporte)
+        ->with('f_ini',$f_ini)
+        ->with('f_fin',$f_fin)
+        ->with('modelos',$des_modelos)
+        ->with('sucursales',$des_sucursales)
+        ;
+    }
+
+    public function table_resultado() 
+    {    
+
+        $reporte = Trf_v_modelos::select(['nombre','genero','rango_edad','telefono','telefono_aux','correo','ci','expedido','motivo','categoria','modelo','obs_modelo','regional','sucursal','fecha','ejecutivo','anfitrion','visita']);
+        return Datatables::of($reporte)->make(true);
+    }
+
 }
+
+

@@ -29,7 +29,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/inicial', 'SesionController@index');
+Route::get('/inicial', 'SesionController@index')->name('inicial');;
 
 Route::get('/pswd', 'AdministracionController@pswd')->name('pswd');
 
@@ -668,10 +668,31 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'uses' =>'TraficoController@vendedores',
 		'as'   =>	'trafico.vendedores'
 	]);
-	
+
 	route::get('trafico/detalle_mod',[
 		'uses' =>'TraficoController@detalle_mod',
 		'as'   =>	'trafico.detalle_mod'
+	]);
+
+	route::get('trafico/totalizador_resumen',[
+		'uses' =>'TraficoController@totalizador_resumen',
+		'as'   =>	'trafico.totalizador_resumen'
+	]);
+	
+	route::get('trafico/gen_rep_tra',[
+		'uses' =>'TraficoController@gen_rep_tra',
+		'as'   =>	'trafico.gen_rep_tra'
+	]);
+
+	route::get('trafico/res_gen_rep_tra',[
+		'uses' =>'TraficoController@res_gen_rep_tra',
+		'as'   =>	'trafico.res_gen_rep_tra'
+	]);
+
+
+	route::get('trafico/table_resultado',[
+		'uses' =>'TraficoController@table_resultado',
+		'as'   =>	'trafico.table_resultado'
 	]);
 
 	route::resource('trafico','TraficoController');

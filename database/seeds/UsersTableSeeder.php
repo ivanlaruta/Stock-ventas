@@ -530,34 +530,34 @@ class UsersTableSeeder extends Seeder
             'rol'=>'1',
         ]);
 
-        DB::table('users')->insert([
-            'usuario' => 'aneli.ugalde@toyosa.com',
-            'password' => bcrypt('toyosa'),
-            'email'=> 'aneli.ugalde@toyosa.com',
-            'nombre'=> 'ANELI',
-            'paterno'=> 'UGALDE',
-            'id_ubicacion' =>'131C',
-            'rol'=>'1',
-        ]);
+        // DB::table('users')->insert([
+        //     'usuario' => 'aneli.ugalde@toyosa.com',
+        //     'password' => bcrypt('toyosa'),
+        //     'email'=> 'aneli.ugalde@toyosa.com',
+        //     'nombre'=> 'ANELI',
+        //     'paterno'=> 'UGALDE',
+        //     'id_ubicacion' =>'131C',
+        //     'rol'=>'1',
+        // ]);
 
-        DB::table('users')->insert([
-            'usuario' => 'fabiola.nunez@toyosa.com',
-            'password' => bcrypt('toyosa'),
-            'email'=> 'fabiola.nunez@toyosa.com',
-            'nombre'=> 'FABIOLA',
-            'paterno'=> 'NUÑES',
-            'id_ubicacion' =>'131C',
-            'rol'=>'1',
-        ]);
+        // DB::table('users')->insert([
+        //     'usuario' => 'fabiola.nunez@toyosa.com',
+        //     'password' => bcrypt('toyosa'),
+        //     'email'=> 'fabiola.nunez@toyosa.com',
+        //     'nombre'=> 'FABIOLA',
+        //     'paterno'=> 'NUÑES',
+        //     'id_ubicacion' =>'131C',
+        //     'rol'=>'1',
+        // ]);
 
-        DB::table('users')->insert([
-            'usuario' => 'marco.lazarte@toyosa.com',
-            'password' => bcrypt('toyosa'),
-            'email'=> 'marco.lazarte@toyosa.com',
-            'nombre'=> 'MARCO',
-            'paterno'=> 'LAZARTE',
-            'id_ubicacion' =>'131C',
-            'rol'=>'1',
-        ]);
+        // DB::table('users')->insert([
+        //     'usuario' => 'marco.lazarte@toyosa.com',
+        //     'password' => bcrypt('toyosa'),
+        //     'email'=> 'marco.lazarte@toyosa.com',
+        //     'nombre'=> 'MARCO',
+        //     'paterno'=> 'LAZARTE',
+        //     'id_ubicacion' =>'131C',
+        //     'rol'=>'1',
+        // ]);
     }
 }
