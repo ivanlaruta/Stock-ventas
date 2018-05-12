@@ -11,7 +11,7 @@
     <div class="page-title">
       <div class="title">
         <div class="col-md-8">
-        <h3><a href="">Reporte por modelos</a></h3>
+        <h3><a href="">Reporte Tráfico</a></h3>
         </div>
        
       </div>
@@ -58,17 +58,6 @@
                         </div>
                       </div>
 
-                      <div class="form-group">                                            
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Modelos: </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control select_mod" name="select_mod[]" multiple="multiple">
-                            @foreach($modelos as $det)
-                              <option value="{{$det->id_modelo}}">{{$det->modelo}}</option>
-                            @endforeach
-                          </select>
-                        </div>
-                      </div>
-
                       <a href="javascript:;" class="btn btn-primary pull-right" onclick="fn_datos();">Generar <span class="glyphicon glyphicon-chevron-right"></span></a>
                     </form>         
                   </div>
@@ -106,35 +95,34 @@
 <script type="text/javascript">
 
   $('.select_suc').select2();
-  $('.select_mod').select2();
+ 
 
   var desc_fecha = null;
   var desc_suc = null;
-  var des_mod =null;
+  
   var content = $(".tabla_resumen");
 
 
   function fn_datos() {
      desc_fecha = $("#fecha1").val();
      desc_suc = $('.select_suc').val(); 
-     des_mod = $('.select_mod').val(); 
+    
     generar();
   };
 
 
   function generar() {
-   reporte(desc_fecha,desc_suc,des_mod);
+   reporte(desc_fecha,desc_suc);
   };
 
-  function reporte (fec,suc,mod){
+  function reporte (fec,suc){
       $.ajax({
         type: "GET",
         cache: false,
         dataType: "html",
-        url: "{{ route('trafico.res_gen_rep_tra')}}",
+        url: "{{ route('trafico.res_rep_tra')}}",
         data: {
           sucursal: suc,
-          modelo:mod,
           fecha:fec
         },
         success: function(dataResult)
@@ -145,11 +133,6 @@
         }
       });
     };
-
-
-
-
-
 
     $(function() {
         $('input[name="fecha1"]').daterangepicker({

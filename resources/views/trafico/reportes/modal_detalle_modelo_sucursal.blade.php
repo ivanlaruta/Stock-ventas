@@ -1,29 +1,19 @@
 
-
-                      <div class=""> 
-                        <h2>Fecha <small>resultado entre las fechas:</small></h2>
-                        <h4>{{$f_ini}} y {{$f_fin}}</h4>
-                      </div>
-                      <br />
-
-                      <div class="">
-                        <h2>Sucursales <small>resultado para:</small></h2>
-                         @foreach($sucursales as $det)
-                          <span class="label label-primary">{{$det->sucursal}}</span>
-                        @endforeach
-                      </div>
-                      <br />
-
-                      <div class="">
-                        <h2>Modelos <small>resultado para:</small></h2>
-                         @foreach($modelos as $det)
-                          <span class="label label-success">{{$det->modelo}}</span>
-                        @endforeach
-                      </div>
-                      <br />
-
-                      <div class="table-responsive">
-            <table id="datatable1" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">TOTALIZADOR DE MODELOS </h4> 
+  </div>
+  <div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+          <div class="x_panel">
+            
+            <div class="x_content">
+            <div class="table-responsive">
+              
+            
+            <table id="datatable11" class="table table-striped table-bordered dt-responsive nowrap " cellspacing="0" width="100%">
+            
               <thead>
                 <tr>
                   <th>CLIENTE</th>
@@ -47,7 +37,7 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($reporte as $det)
+                @foreach($total as $det)
                   <tr>
                     <td>@if(is_null($det->nombre)) sin dato @else {{$det->nombre}} @endif</td>
                     <td>{{$det->genero}}</td>
@@ -73,11 +63,19 @@
               </tbody>
             </table>
             </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="modal-footer">
 
-                    
+  </div>
 
-<script type="text/javascript">
-$('#datatable1').DataTable( { "language": {
+  <script type="text/javascript">
+
+
+    $('#datatable11').DataTable( { "language": {
             
               "sProcessing":     "Procesando...",
               "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -111,4 +109,8 @@ $('#datatable1').DataTable( { "language": {
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "TODO"]],
         // "lengthMenu": [[-1], ["TODO"]]
     } );
-</script>
+  </script>
+
+
+
+         

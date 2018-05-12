@@ -297,6 +297,7 @@ Route::group(['prefix'=>'alerta_vehiculos','middleware'=>'auth'],function(){
 
 });
 
+
 Route::group(['prefix'=>'cotizaciones','middleware'=>'auth'],function(){
 
 	route::get('cotizaciones/{v_aux}/{title}/{f_ini}/{f_fin}/{mes}/{regional}/{marca}/{sucursal}/{modelo}/dashboard',[
@@ -679,6 +680,11 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.totalizador_resumen'
 	]);
 	
+	route::get('trafico/totalizador_resumen_regional',[
+		'uses' =>'TraficoController@totalizador_resumen_regional',
+		'as'   =>	'trafico.totalizador_resumen_regional'
+	]);
+	
 	route::get('trafico/gen_rep_tra',[
 		'uses' =>'TraficoController@gen_rep_tra',
 		'as'   =>	'trafico.gen_rep_tra'
@@ -689,11 +695,37 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.res_gen_rep_tra'
 	]);
 
+	route::get('trafico/res_rep_tra',[
+		'uses' =>'TraficoController@res_rep_tra',
+		'as'   =>	'trafico.res_rep_tra'
+	]);
 
 	route::get('trafico/table_resultado',[
 		'uses' =>'TraficoController@table_resultado',
 		'as'   =>	'trafico.table_resultado'
 	]);
 
+	route::get('trafico/detalle_modelo_sucursal',[
+		'uses' =>'TraficoController@detalle_modelo_sucursal',
+		'as'   =>	'trafico.detalle_modelo_sucursal'
+	]);
+
 	route::resource('trafico','TraficoController');
+});
+
+
+
+Route::group(['prefix'=>'importaciones','middleware'=>'auth'],function(){
+	
+	route::get('importaciones/mitsui',[
+		'uses' =>'ImportacionesController@mitsui',
+		'as'   =>	'importaciones.mitsui'
+	]);
+	route::get('importaciones/table_mitsui',[
+		'uses' =>'ImportacionesController@table_mitsui',
+		'as'   =>	'importaciones.table_mitsui'
+	]);
+	
+	route::resource('importaciones','ImportacionesController');
+
 });

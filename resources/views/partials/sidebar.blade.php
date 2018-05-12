@@ -127,11 +127,11 @@
                        <li><a href="{{ route('trafico.lista_visitas')}}">Detalle de Tráfico semanal</a></li>
                        @if(Auth::user()->rol=='101' || Auth::user()->rol=='1')
                        {{-- <li><a href="{{ route('trafico.reporte')}}">Reportes</a></li> --}}
-                       <li><a href="{{ route('trafico.todo_trafico')}}">Detalle de Tráfico mensual</a></li>
-                       <li><a href="{{ route('trafico.gen_rep_tra')}}">Reporte por modelos</a></li>
+                       <li><a href="{{ route('trafico.todo_trafico')}}">Reporte de Tráfico</a></li>
                        <li><a href="{{ route('trafico.reporte2')}}">Reporte consolidado</a></li>
-                       <li><a href="{{ route('trafico.clientes')}}">Lista de Clientes</a></li>
-                       {{-- <li><a href="{{ route('trafico.detalle_mod')}}">Detalle trafico</a></li> --}}
+                       <li><a href="{{ route('trafico.gen_rep_tra')}}">Reporte por modelos</a></li>
+                       <li><a href="{{ route('trafico.detalle_mod')}}">Totalizador de modelos</a></li>
+                       {{-- <li><a href="{{ route('trafico.clientes')}}">Lista de Clientes</a></li> --}}
                        <li><a href="{{ route('trafico.vendedores')}}">Lista de Vendedores</a></li>
                        @endif
                        @if(Auth::user()->rol=='1')
@@ -140,6 +140,15 @@
                        
                     </ul>
                   </li>
+
+              @if(Auth::user()->rol=='1' || Auth::user()->rol=='150')
+                  <li><a><i class="fa fa-plane"></i> Importaciones <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                       <li><a href="{{ route('importaciones.mitsui')}}">Facturas Mitsui</a></li>
+
+                    </ul>
+                  </li>
+              @endif
 
                   {{-- <li><a><i class="fa fa-cogs"></i> test <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

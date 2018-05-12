@@ -14,13 +14,7 @@
                       </div>
                       <br />
 
-                      <div class="">
-                        <h2>Modelos <small>resultado para:</small></h2>
-                         @foreach($modelos as $det)
-                          <span class="label label-success">{{$det->modelo}}</span>
-                        @endforeach
-                      </div>
-                      <br />
+                    
 
                       <div class="table-responsive">
             <table id="datatable1" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
@@ -35,15 +29,13 @@
                   <th>CI</th>
                   <th>EXP</th>
                   <th>MOTIVO</th>
-                  <th>CATEGORIA</th>
-                  <th>MODELO</th>
-                  <th>NOTA</th>
+                  
                   <th>REGIONAL</th>
                   <th>SUCURSAL</th>
                   <th>FECHA</th>
                   <th>EJECUTIVO</th>
                   <th>ANFITRION</th>
-                  <th>COD TRAFICO</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -58,15 +50,13 @@
                     <td>{{$det->ci}}</td>
                     <td>{{$det->expedido}}</td>
                     <td>{{$det->motivo}}</td>
-                    <td>{{$det->categoria}}</td>
-                    <td>{{$det->modelo}}</td>
-                    <td>{{$det->obs_modelo}}</td>
+                    
                     <td>{{$det->regional}}</td>
                     <td>{{$det->sucursal}}</td>
                     <td>{{$det->fecha}}</td>
                     <td>{{$det->ejecutivo}}</td>
                     <td>{{$det->anfitrion}}</td>
-                    <td>{{$det->visita}}</td>
+                    
                     
                   </tr>
                 @endforeach

@@ -538,22 +538,6 @@ class TraficoController extends Controller
         ->with('usuario',$usuario)
         ;
     }
-
-    public function todo_trafico()
-    {
-       $usuario = Auth::user()->usuario;
-        $inicio_mes=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');   //inicio de semana
-        $hoy = Carbon::now('America/La_Paz')->format('d/m/Y');  //fecha actual
-        $visitas = Trf_Visita::where(DB::raw('CAST(fecha AS date)'),'>=',$inicio_mes)
-        ->get();
-        return view('trafico.todo_trafico')
-        ->with('visitas',$visitas)
-        ->with('inicio_mes',$inicio_mes)
-        ->with('hoy',$hoy)
-        ->with('usuario',$usuario)
-        ;
-    }
-
     public function clientes() 
     {
         
@@ -616,30 +600,26 @@ class TraficoController extends Controller
             $f_fin = TraficoController::fecha_final($mes);
             $desc_mes=TraficoController::descripcion_mes($mes);
         }
-        if ($request->regional == 'TODOS'){
+      
 
             $regional = 'TODAS LAS REGIONALES';
 
             $totalizador = DB::select(  DB::raw("
-            select modelo,COUNT (*) as total 
-            from detalle_modelos 
-            where cast(fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
-            
-            group by modelo
-            order by modelo
+
+            select dm.id_modelo, dm.modelo,
+            COUNT (*) as total,
+             (select COUNT (*) as expr1 from detalle_modelos a where a.id_modelo=dm.id_modelo and a.regional = 'LA PAZ' and cast(a.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as LP,
+             (select COUNT (*) as expr1 from detalle_modelos b where b.id_modelo=dm.id_modelo and b.regional = 'SANTA CRUZ' and cast(b.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as SC,
+             (select COUNT (*) as expr1 from detalle_modelos c where c.id_modelo=dm.id_modelo and c.regional = 'COCHABAMBA' and cast(c.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as CBBA,
+             (select COUNT (*) as expr1 from detalle_modelos d where d.id_modelo=dm.id_modelo and d.regional = 'ORURO' and cast(d.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as ORU,
+             (select COUNT (*) as expr1 from detalle_modelos e where e.id_modelo=dm.id_modelo and e.regional = 'POTOSI' and cast(e.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as PT
+            from detalle_modelos dm
+            where cast(dm.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
+            group by dm.id_modelo, dm.modelo
+            order by dm.modelo
             "));
-        }
-        else{
-            $regional = $request->regional;
-            $totalizador = DB::select(  DB::raw("
-            select modelo,COUNT (*) as total 
-            from detalle_modelos 
-            where cast(fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
-            and regional = '".$request->regional."'
-            group by modelo
-            order by modelo
-            "));            
-        }   
+       
+       
 
         // dd($totalizador);
         return view('trafico.reportes.totalizador_Resumen')
@@ -678,6 +658,7 @@ class TraficoController extends Controller
         ->with('detalle_visita',$detalle_visita)
         ->with('id_vis',$id_vis);
     }
+
         // $consolidado =DB::select( DB::raw("
         // SELECT vi.id_sucursal,ub.nom_sucursal,count(vi.id) as totales,
         // (select count(ve.id) from trf_visitas ve where ve.id_motivo='1' and ve.id_sucursal=vi.id_sucursal) as vehiculos,
@@ -1068,6 +1049,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             $total_vehiculos_hn=Trf_Visita::where('id_motivo','3')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$request->sucursal)->count();
             $total_motos=Trf_Visita::where('id_motivo','4')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$request->sucursal)->count();
             $total_tramites=Trf_Visita::where('id_motivo','5')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$request->sucursal)->count();
+
             $total_repuestos=Trf_Visita::where('id_motivo','6')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$request->sucursal)->count();
             $total_servicios=Trf_Visita::where('id_motivo','7')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$request->sucursal)->count();
             $total_licitaciones=Trf_Visita::where('id_motivo','8')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$request->sucursal)->count();
@@ -1466,6 +1448,183 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
         return Datatables::of($reporte)->make(true);
     }
 
+
+
+    public function todo_trafico()
+    {
+        $sucursales = DB::select(  DB::raw("select distinct regional,id_sucursal,sucursal  from detalle_visitas order by 1,3"));
+        
+        return view('trafico.reportes.todo_trafico')
+        ->with('sucursales',$sucursales)
+        ;
+      
+        return 
+       
+        ;
+    }
+
+    public function res_rep_tra(Request $request) 
+    {
+         // dd($request->all());
+
+            $fechas = explode("-", $request->fecha);
+                $f_ini = $fechas[0];
+                $f_fin = $fechas[1];
+
+            $sucursales = "";
+           
+            for ($i=0; $i < sizeof($request->sucursal); $i++) {
+               $sucursales = $sucursales."'".$request->sucursal[$i]."'";
+               if($i < (sizeof($request->sucursal))-1){
+                $sucursales = $sucursales.",";
+               }
+            }          
+        
+            $reporte = DB::select(  DB::raw("
+            select * 
+            from detalle_visitas 
+            where cast(fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
+            and id_sucursal IN (".$sucursales.")
+            order by sucursal,fecha
+            "));
+
+            $des_sucursales = DB::select(  DB::raw("
+            select distinct nom_sucursal as sucursal from v_ubicaciones
+            where id IN (".$sucursales.")
+            order by 1
+            "));
+      
+        // dd($reporte);
+
+        return view('trafico.reportes.trafico_resultado_busq')
+        ->with('reporte',$reporte)
+        ->with('f_ini',$f_ini)
+        ->with('f_fin',$f_fin)
+        ->with('sucursales',$des_sucursales)
+        ;
+    }
+
+
+    public function totalizador_resumen_regional(Request $request)
+    {
+        
+        $año_actual = Carbon::now('America/La_Paz') -> year;
+        $mes_actual = Carbon::now('America/La_Paz') -> month;
+        $hoy = Carbon::now('America/La_Paz')->format('d/m/Y');
+
+        if(is_null($request->mes) || $request->mes=='14')
+        {
+            if(is_null($request->fecha))
+            {
+                $mes=$mes_actual;
+                $f_ini = TraficoController::fecha_inicio($mes);
+                $f_fin = TraficoController::fecha_final($mes);
+                $desc_mes=TraficoController::descripcion_mes($mes);
+            }
+            else
+            {
+                $fechas = explode("-", $request->fecha);
+                // dd($fechas);
+                $f_ini = $fechas[0];
+                $f_fin = $fechas[1];
+                $desc_mes=$f_ini.'-'.$f_fin;
+                $mes='14';
+            }
+        }
+        else
+        {
+            $mes=$request->mes;
+            $f_ini = TraficoController::fecha_inicio($mes);
+            $f_fin = TraficoController::fecha_final($mes);
+            $desc_mes=TraficoController::descripcion_mes($mes);
+        }
+      
+
+        $regional = $request->regional;
+
+        $sucursales =  DB::select(  DB::raw("
+            SELECT ROW_NUMBER() OVER (ORDER BY sucursal) AS num,* FROM
+            (SELECT DISTINCT id_sucursal, sucursal from detalle_visitas where regional ='".$regional."') aa
+            "));
+        
+            $totalizador_suc = DB::select(  DB::raw("
+            select dm.id_sucursal,dm.sucursal,dm.id_modelo, dm.modelo,COUNT (*) as total
+            from detalle_modelos dm
+            where cast(dm.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
+            group by dm.id_sucursal,dm.sucursal,dm.id_modelo, dm.modelo
+            order by dm.modelo
+            "));
+       
+       
+
+        // dd($totalizador);
+        return view('trafico.reportes.totalizador_resumen_regional')
+        ->with('totalizador_suc',$totalizador_suc)
+        ->with('f_ini',$f_ini)
+        ->with('f_fin',$f_fin)
+        ->with('desc_mes',$desc_mes)
+        ->with('regional',$regional)
+        ->with('sucursales',$sucursales)
+        ;
+        
+    }
+
+    public function detalle_modelo_sucursal(Request $request)
+    {
+        // dd($request->all());
+        $año_actual = Carbon::now('America/La_Paz') -> year;
+        $mes_actual = Carbon::now('America/La_Paz') -> month;
+        $hoy = Carbon::now('America/La_Paz')->format('d/m/Y');
+
+        if(is_null($request->mes) || $request->mes=='14')
+        {
+            if(is_null($request->fecha))
+            {
+                $mes=$mes_actual;
+                $f_ini = TraficoController::fecha_inicio($mes);
+                $f_fin = TraficoController::fecha_final($mes);
+                $desc_mes=TraficoController::descripcion_mes($mes);
+            }
+            else
+            {
+                $fechas = explode("-", $request->fecha);
+                // dd($fechas);
+                $f_ini = $fechas[0];
+                $f_fin = $fechas[1];
+                $desc_mes=$f_ini.'-'.$f_fin;
+                $mes='14';
+            }
+        }
+        else
+        {
+            $mes=$request->mes;
+            $f_ini = TraficoController::fecha_inicio($mes);
+            $f_fin = TraficoController::fecha_final($mes);
+            $desc_mes=TraficoController::descripcion_mes($mes);
+        }
+        $sucursal = $request->sucursal;
+        $modelo = $request->modelo;
+        // dd($f_ini,$f_ini,$modelo,$sucursal);
+        $total = DB::select(  DB::raw("
+            select dm.*
+            from detalle_modelos dm
+            where (cast(dm.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."')
+            and dm.id_modelo = '".$modelo."'
+            and dm.id_sucursal = '".$sucursal."'
+            order by dm.fecha
+            "));
+
+        // dd($total);
+
+        return view('trafico.reportes.modal_detalle_modelo_sucursal')
+        ->with('total',$total)
+        ->with('f_ini',$f_ini)
+        ->with('f_fin',$f_fin)
+        ->with('desc_mes',$desc_mes)
+        ->with('sucursal',$sucursal)
+        ->with('modelo',$modelo)
+       ;
+    }
 }
 
 
