@@ -44,6 +44,10 @@ class SesionController extends Controller
         {
             return redirect()->route('trafico.formulario2');
         }
+        if (Auth::user()->rol == '150')
+        {
+            return redirect()->route('importaciones.mitsui');
+        }
 
     }
 

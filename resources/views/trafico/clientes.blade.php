@@ -86,7 +86,7 @@
                   },
               },
             "dom": "Blfrtip",
-            "buttons": [ 'copy', 'excel','pdf'],
+            "buttons": [ 'copy', 'excel'],
             "processing": true,
             "serverSide": true,
             "ajax": "{{ route('trafico.table_clientes')}}",

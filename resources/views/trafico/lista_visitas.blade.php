@@ -178,7 +178,7 @@ $('#datatable_motivos').DataTable( { "language": {
         "dom": "Blfrtip",
         // "dom": "Brti",
         
-       "buttons": [ 'copy', 'excel','pdf'],
+       "buttons": [ 'copy', 'excel'],
 
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "TODO"]],
 

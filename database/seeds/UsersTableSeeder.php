@@ -520,15 +520,15 @@ class UsersTableSeeder extends Seeder
         //     ]);
 
 
-        DB::table('users')->insert([
-            'usuario' => 'marcelo.teran@toyosa.com',
-            'password' => bcrypt('toyosa'),
-            'email'=> 'marcelo.teran@toyosa.com',
-            'nombre'=> 'MARCELO',
-            'paterno'=> 'TERAN',
-            'id_ubicacion' =>'131C',
-            'rol'=>'1',
-        ]);
+        // DB::table('users')->insert([
+        //     'usuario' => 'marcelo.teran@toyosa.com',
+        //     'password' => bcrypt('toyosa'),
+        //     'email'=> 'marcelo.teran@toyosa.com',
+        //     'nombre'=> 'MARCELO',
+        //     'paterno'=> 'TERAN',
+        //     'id_ubicacion' =>'131C',
+        //     'rol'=>'1',
+        // ]);
 
         // DB::table('users')->insert([
         //     'usuario' => 'aneli.ugalde@toyosa.com',
@@ -559,5 +559,19 @@ class UsersTableSeeder extends Seeder
         //     'id_ubicacion' =>'131C',
         //     'rol'=>'1',
         // ]);
+
+
+
+        DB::table('users')->insert([
+            'usuario' => 'huacar.tito@toyosa.com',
+            'password' => bcrypt('toyosa'),
+            'email'=> 'huacar.tito@toyosa.com',
+            'nombre'=> 'HUASCAR',
+            'paterno'=> 'TITO',
+            'id_ubicacion' =>'131C',
+            'rol'=>'150',
+        ]);
+
+
     }
 }

@@ -40,8 +40,8 @@ ul.msg_list li a .times {
           <div class="x_content">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="row" align="center">
-                <strong>NUEVO <input type="radio" name="tipo_cliente" value="Nuevo" id="nuevo" class="radio_nuevo" autocomplete="off"> </strong> |
-                <strong>ANTIGUO <input type="radio" name="tipo_cliente" value="Antiguo" id="antiguo"  class="radio_antiguo" autocomplete="off"> </strong> 
+                <strong><label for="nuevo">NUEVO </label><input type="radio" name="tipo_cliente" value="Nuevo" id="nuevo" class="radio_nuevo" autocomplete="off"> </strong> |
+                <strong><label for="antiguo">ANTIGUO </label> <input type="radio" name="tipo_cliente" value="Antiguo" id="antiguo"  class="radio_antiguo" autocomplete="off"> </strong> 
                 <button type="button" class="btn btn-primary pull-right btn-sm" data-toggle="modal" data-target=".bs-example-modal"  a-toggle="tooltip" data-placement="bottom" title="Agregar informacion de cliente"><span class="fa fa-user"></span> Agregar datos de cliente</button>
               </div>
             </div>
@@ -201,7 +201,7 @@ ul.msg_list li a .times {
                         <tr>
 
                           <td style="width: 40%; padding: 2px; " ><label for="{{$det->motivo->id}}">{{$det->motivo->descripcion}} </label> 
-                          @if ($det->motivo->id ==16)<span class="label label-danger">Nuevo!</span> @endif
+                          {{-- @if ($det->motivo->id ==16)<span class="label label-danger">Nuevo!</span> @endif --}}
                           </td>
                           <td style="width: 1%; padding: 2px; " > <input type="radio" name="motivo" value="{{$det->motivo->id}}" id="{{$det->motivo->id}}" class="" autocomplete="off" required></td>
                           <td style="width: 10%; padding: 2px; " >
@@ -295,7 +295,11 @@ ul.msg_list li a .times {
                             <span class="message">
                               @foreach($modelos as $det3)
                             @if($det3->id_categoria == $det2->categoria->id)
-                            <label class="mio"><input type="checkbox" name="modelos[]" class="modelos mod_{{$det3->descripcion}}" value="{{$det3->id}}"> {{$det3->descripcion}}</label><br>
+                            <label class="mio"><input type="checkbox" name="modelos[]" class="modelos mod_{{$det3->descripcion}}" value="{{$det3->id}}"> {{$det3->descripcion}}
+                            @if($det3->descripcion=='AGYA')
+                            <span class="label label-danger">Nuevo!</span>
+                            @endif
+                            </label><br>
                               @if($det3->descripcion=='OTROS')
                                 <input type="text" class=" txt_otros" name="txt_otros_{{$det3->id_categoria}}" id="txt_otros" >
                               
@@ -356,10 +360,33 @@ $(document).ready(function() {
 
   // document.getElementById("editar").onclick = function() {editar()};
 
-
   // function editar() {
   //   alert('se editara');
-  // }
+  //   document.getElementById("telefono").disabled = false;
+  //   document.getElementById("telefono2").disabled = false;
+  //   document.getElementById("correo2").disabled = false;
+  //   document.getElementById("ci").disabled = false;
+  //   document.getElementById("exp").disabled = false;
+
+
+  //   var radio=document.getElementsByName("edad");
+  //      var len=radio.length;
+  //      for(var i=0;i<len;i++)
+  //      {
+  //          radio[i].disabled=false;
+  //      }
+
+  //   var radio2=document.getElementsByName("gen");
+  //      var len=radio2.length;
+  //      for(var i=0;i<len;i++)
+  //      {
+  //          radio2[i].disabled=false;
+  //      }
+
+
+  // };
+
+  
 
   document.getElementById("cancelar_cliente").onclick = function() {cancela_clientes()};
 
