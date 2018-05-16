@@ -726,6 +726,15 @@ Route::group(['prefix'=>'importaciones','middleware'=>'auth'],function(){
 		'as'   =>	'importaciones.table_mitsui'
 	]);
 	
+	route::get('importaciones/tasa',[
+		'uses' =>'ImportacionesController@tasa',
+		'as'   =>	'importaciones.tasa'
+	]);
+	route::get('importaciones/table_tasa',[
+		'uses' =>'ImportacionesController@table_tasa',
+		'as'   =>	'importaciones.table_tasa'
+	]);
+	
 	route::resource('importaciones','ImportacionesController');
 
 });

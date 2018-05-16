@@ -147,6 +147,7 @@
                   <li><a><i class="fa fa-plane"></i> Importaciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li><a href="{{ route('importaciones.mitsui')}}">Facturas Mitsui</a></li>
+                       <li><a href="{{ route('importaciones.tasa')}}">Facturas Tasa Argentina</a></li>
 
                     </ul>
                   </li>
