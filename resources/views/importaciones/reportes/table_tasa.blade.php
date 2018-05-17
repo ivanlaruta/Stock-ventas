@@ -82,7 +82,7 @@ $('#datatable1').DataTable( { "language": {
         
         "fixedHeader": true,
 
-        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "TODO"]],
+        "lengthMenu": [[-1,10, 25, 50, 100], ["TODO",10, 25, 50, 100 ]],
         // "lengthMenu": [[-1], ["TODO"]]
     } );
 </script>

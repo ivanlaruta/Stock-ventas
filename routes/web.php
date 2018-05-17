@@ -710,6 +710,16 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.detalle_modelo_sucursal'
 	]);
 
+	route::get('trafico/nuevo_ant',[
+		'uses' =>'TraficoController@nuevo_ant',
+		'as'   =>	'trafico.nuevo_ant'
+	]);
+
+	route::get('trafico/add_nuevo_ant',[
+		'uses' =>'TraficoController@add_nuevo_ant',
+		'as'   =>	'trafico.add_nuevo_ant'
+	]);
+
 	route::resource('trafico','TraficoController');
 });
 

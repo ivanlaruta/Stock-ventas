@@ -125,6 +125,7 @@ class TraficoController extends Controller
         ;
     }
 
+
     
     public function delete_encuesta(Request $request)
     {
@@ -485,6 +486,17 @@ class TraficoController extends Controller
                 if($request->tipo_cliente=='Antiguo')
                 {
                     $nuevo_visita -> id_cliente = $request->clientes_ant;
+                    $edit_cliente = Trf_Cliente::find($request->clientes_ant);
+                    $edit_cliente -> ci = $request->ci;
+                    $edit_cliente -> expedido = $request->exp;
+                    $edit_cliente -> genero = $request->gen;
+                    $edit_cliente -> rango_edad = $request->edad;
+                    $edit_cliente -> telefono = $request->telefono;
+                    $edit_cliente -> telefono_aux = $request->telefono2;
+                    $edit_cliente -> correo = $request->correo2;
+                    $edit_cliente -> estado = '1';
+                    $edit_cliente -> updated_by = $suc=Auth::user()->usuario;
+                    $edit_cliente -> save();
                 }
             }
             $nuevo_visita -> id_sucursal = $request->id_sucursal;
@@ -1624,6 +1636,38 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
         ->with('sucursal',$sucursal)
         ->with('modelo',$modelo)
        ;
+    }
+
+
+    
+    public function nuevo_ant()
+    {
+        $edades = Trf_Parametrica::where('tabla','rango_edades')->get();
+        return view('trafico.modal_nuevo_ant')
+        ->with('edades',$edades)
+        ;
+    }
+
+
+    public function add_nuevo_ant(Request $request)
+    {
+        // dd($request->all());
+        $nuevo_cliente = new Trf_Cliente();
+        $nuevo_cliente -> ci = $request->ci_a;
+        $nuevo_cliente -> expedido = $request->exp_a;
+        $nuevo_cliente -> nombre = strtoupper($request->nombre_a);
+        $nuevo_cliente -> paterno = strtoupper($request->paterno_a);
+        $nuevo_cliente -> materno = strtoupper($request->materno_a);
+        $nuevo_cliente -> genero = $request->gen_a;
+        $nuevo_cliente -> rango_edad = $request->edad_a;
+        $nuevo_cliente -> telefono = $request->telefono_a;
+        $nuevo_cliente -> telefono_aux = $request->telefono2_a;
+        if(!is_null($request->correo_a))$nuevo_cliente -> correo = $request->correo_a.$request->ter_correo_a;
+        $nuevo_cliente -> estado = '1';
+        $nuevo_cliente -> created_by = $suc=Auth::user()->usuario;
+        $nuevo_cliente -> updated_by = $suc=Auth::user()->usuario;
+        $nuevo_cliente -> save();
+        return redirect()->route('trafico.formulario2')->with('mensaje',"Creado exitosamente."); 
     }
 }
 

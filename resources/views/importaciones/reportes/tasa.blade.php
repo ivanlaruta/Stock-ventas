@@ -23,21 +23,22 @@
         <div class="x_panel">
           <div class="x_content form-horizontal form-label-left">
             <div class="form-group">                                            
-                      <label class="control-label col-md-2 col-sm-2 col-xs-12">Seleccione factura(s): </label>
-                      <div class="col-md-10 col-sm-10 col-xs-12">
-                        <select class="form-control facturas" id="facturas" name="facturas[]" multiple="multiple">
-                          @foreach($facturas as $det)
-                            <option value="{{$det->orden}}">{{$det->orden}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                    </div>
+              <label class="control-label col-md-2 col-sm-2 col-xs-12">Seleccione factura(s): </label>
+              <div class="col-md-7 col-sm-7 col-xs-12">
+                <select class="form-control facturas" id="facturas" name="facturas[]" multiple="multiple">
+                  @foreach($facturas as $det)
+                    <option value="{{$det->orden}}">{{$det->orden}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <input type="checkbox" id="checkbox" >Selecionar todo
+            </div>
             <div class="clearfix" ></div>
           </div>
           <div class="x_content">
             <div class="resultado">
 
-                
+
             </div>
           </div>
         </div>
@@ -79,6 +80,19 @@
         }
       });
     };
+
+    $(document).ready(function() {
+    $("#checkbox").click(function(){
+      if($("#checkbox").is(':checked') ){ //select all
+        $(".facturas").find('option').prop("selected",true);
+        $(".facturas").trigger('change');
+      } else { //deselect all
+        $(".facturas").find('option').prop("selected",false);
+        $(".facturas").trigger('change');
+      }
+  });
+});
+
 </script>
 @endsection
 

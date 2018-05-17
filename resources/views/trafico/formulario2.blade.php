@@ -51,31 +51,24 @@ ul.msg_list li a .times {
               <div class="modal-content">
                 <div class="modal-header">
                   {{-- <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> </button>--}}
-                  
                   <h4 class="modal-title" id="myModalLabel">Datos de cliente</h4>
                 </div>
                 <div class="modal-body">
-                    
-                    <div class="form-horizontal form-label-left input_mask">
-                      
-     
+                    <div class="form-horizontal form-label-left input_mask">     
                       <div class="form-group dato_antiguo ">
-                        <div class="col-md-10">
+                        <div class="col-md-8">
                         <select id="clientes_ant" name="clientes_ant" class="form-control"  style="width: 100%;" ></select>
                          
                         </div>
-                        {{-- <div class="col-md-2">
-                          <a class="btn btn-app editar" title="habilitar edicion" id="editar"><i class="fa fa-edit"></i> Editar</a>
-                        </div> --}}
+                        <div class="col-md-2">
+                          <a class="btn btn-app editar" title="Habilitar edicion" id="editar"><i class="fa fa-edit"></i> Editar</a>
+                        </div>
+                        <div class="col-md-2">
+                          <a class="btn btn-app nuevo_ant" title="Agregar cliente" id="nuevo_ant" onclick="frm_nuevo_cli_ant();"><i class="fa fa-plus"></i> Nuevo</a>
+                        </div>
                       </div>
                       <div class="form-group dato_antiguo ">
-                        
-                        
-                        
-                      </div>
-
-
-                      
+                    </div>
                       <div class="form-group dato_nuevo">
                         <div class="col-md-6">
                           <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre *" autocomplete="off" style="background: #eeebfc;">
@@ -341,6 +334,13 @@ ul.msg_list li a .times {
 </div>
 </div>
 
+<div class="modal fade modal_datos" id="Modal_nuevo" role="dialog" >
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content contenido">
+    </div>
+  </div>
+</div>
+
 @endsection
 
 @section('scripts')
@@ -358,39 +358,62 @@ $(document).ready(function() {
   opcionesnuevo();
 
 
-  // document.getElementById("editar").onclick = function() {editar()};
+  document.getElementById("editar").onclick = function() {editar()};
 
-  // function editar() {
-  //   alert('se editara');
-  //   document.getElementById("telefono").disabled = false;
-  //   document.getElementById("telefono2").disabled = false;
-  //   document.getElementById("correo2").disabled = false;
-  //   document.getElementById("ci").disabled = false;
-  //   document.getElementById("exp").disabled = false;
-
-
-  //   var radio=document.getElementsByName("edad");
-  //      var len=radio.length;
-  //      for(var i=0;i<len;i++)
-  //      {
-  //          radio[i].disabled=false;
-  //      }
-
-  //   var radio2=document.getElementsByName("gen");
-  //      var len=radio2.length;
-  //      for(var i=0;i<len;i++)
-  //      {
-  //          radio2[i].disabled=false;
-  //      }
+  function editar() {
+    
+    document.getElementById("telefono").disabled = false;
+    document.getElementById("telefono2").disabled = false;
+    document.getElementById("correo2").disabled = false;
+    document.getElementById("ci").disabled = false;
+    document.getElementById("exp").disabled = false;
 
 
-  // };
+    var radio=document.getElementsByName("edad");
+       var len=radio.length;
+       for(var i=0;i<len;i++)
+       {
+           radio[i].disabled=false;
+       }
+
+    var radio2=document.getElementsByName("gen");
+       var len=radio2.length;
+       for(var i=0;i<len;i++)
+       {
+           radio2[i].disabled=false;
+       }
+  };
+
+function no_editar() {
+    
+    document.getElementById("telefono").disabled = true;
+    document.getElementById("telefono2").disabled = true;
+    document.getElementById("correo2").disabled = true;
+    document.getElementById("ci").disabled = true;
+    document.getElementById("exp").disabled = true;
+
+
+    var radio=document.getElementsByName("edad");
+       var len=radio.length;
+       for(var i=0;i<len;i++)
+       {
+           radio[i].disabled=true;
+       }
+
+    var radio2=document.getElementsByName("gen");
+       var len=radio2.length;
+       for(var i=0;i<len;i++)
+       {
+           radio2[i].disabled=true;
+       }
+  };
 
   
 
   document.getElementById("cancelar_cliente").onclick = function() {cancela_clientes()};
 
   function cancela_clientes() {
+    no_editar();
 var r = confirm("Se pederan los datos seleccionados!");
 if (r == true) {
         document.getElementById("nombre").value = '';
@@ -798,6 +821,10 @@ $('#clientes_ant').select2({
            
 //     });
 
+
+
+
+
 $('form input').on('keypress', function(e) {
     return e.which !== 13;
 });
@@ -809,6 +836,24 @@ $.fn.modal.Constructor.prototype.enforceFocus = function() {};
 // function fn_submit() {
 //     document.getElementById("myForm").submit();
 // }
+
+  var modal=$(".modal_datos");
+  var modalContent = $(".contenido");
+
+  var frm_nuevo_cli_ant = function(objeto){
+    $.ajax({
+      type: "GET",
+      cache: false,
+      dataType: "html",
+      url: "{{ route('trafico.nuevo_ant')}}",
+      success: function(dataResult)
+      {
+        modalContent.empty().html(dataResult);                        
+        modal.modal('show');
+      }
+    });
+  };
+
 
 </script>
 @endsection
