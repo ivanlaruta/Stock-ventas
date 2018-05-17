@@ -748,3 +748,15 @@ Route::group(['prefix'=>'importaciones','middleware'=>'auth'],function(){
 	route::resource('importaciones','ImportacionesController');
 
 });
+
+
+Route::group(['prefix'=>'presidencia','middleware'=>'auth'],function(){
+	
+	route::get('presidencia/stock',[
+		'uses' =>'PresidenciaController@stock',
+		'as'   =>	'presidencia.stock'
+	]);
+
+	route::resource('presidencia','ImportacionesController');
+
+});

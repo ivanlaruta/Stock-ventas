@@ -361,7 +361,8 @@ $(document).ready(function() {
   document.getElementById("editar").onclick = function() {editar()};
 
   function editar() {
-    
+    if ( $("#clientes_ant").val()  != null )
+    {
     document.getElementById("telefono").disabled = false;
     document.getElementById("telefono2").disabled = false;
     document.getElementById("correo2").disabled = false;
@@ -382,6 +383,7 @@ $(document).ready(function() {
        {
            radio2[i].disabled=false;
        }
+    }
   };
 
 function no_editar() {

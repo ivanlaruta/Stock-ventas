@@ -263,7 +263,7 @@
                 <tr>
                   <th>MES</th>
                   <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
-                  <th "><SMALL>FACTURADOS</SMALL></th>
+                  {{-- <th "><SMALL>FACTURADOS</SMALL></th> --}}
                 </tr>
               </thead>
               <tbody>
@@ -307,7 +307,7 @@
                   @if ($mes-> MES == 12) DICIEMBRE @endif
                 </td>
                 <td align="center"><span class="badge badge-success">{{ $mes-> COTIZACIONES }}</span></td>
-                <td align="center"><span class="badge ">{{ $mes-> FACTURADOS }}</span></td>
+                {{-- <td align="center"><span class="badge ">{{ $mes-> FACTURADOS }}</span></td> --}}
               </tr>
               @endforeach
             </tbody>
@@ -328,7 +328,7 @@
               <tr>
                 <th>DIA</th>
                 <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
-          <th "><SMALL>FACTURADOS</SMALL></th>
+          {{-- <th "><SMALL>FACTURADOS</SMALL></th> --}}
               </tr>
             </thead>
             <tbody>
@@ -366,7 +366,7 @@
 
               <td>  <span class="label label-default">{{date('d',strtotime($dia-> FECHA_COTIZACION))}}</span> {{$dia->NOM_DIA}} </td>
               <td align="center"><span class="badge badge-success">{{ $dia-> COTIZACIONES }}</span></td>
-              <td align="center"><span class="badge  ">{{ $dia-> FACTURADOS }}</span></td>
+              {{-- <td align="center"><span class="badge  ">{{ $dia-> FACTURADOS }}</span></td> --}}
 
             </tr>
             @endforeach
@@ -388,7 +388,7 @@
             <tr>
               <th>REGIONAL</th>
               <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
-              <th "><SMALL>FACTURADOS</SMALL></th>
+              {{-- <th "><SMALL>FACTURADOS</SMALL></th> --}}
             </tr>
           </thead>
 
@@ -429,7 +429,7 @@
             >      
             <td> @if( is_null($reg-> REGIONAL)) Sin Dato @else {{ $reg-> REGIONAL }} @endif</td>
             <td align="center"><span class="badge badge-success">{{ $reg-> COTIZACIONES }}</span></td>
-            <td align="center"><span class="badge ">{{ $reg-> FACTURADOS }}</span></td>
+            {{-- <td align="center"><span class="badge ">{{ $reg-> FACTURADOS }}</span></td> --}}
           </tr>
           @endforeach
         </tbody>
@@ -451,7 +451,7 @@
           <tr>
             <th>SUCURSAL</th>
             <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
-          <th "><SMALL>FACTURADOS</SMALL></th>
+          {{-- <th "><SMALL>FACTURADOS</SMALL></th> --}}
           </tr>
         </thead>
 
@@ -482,7 +482,7 @@
           >                
           <td> {{ $suc-> SUCURSAL }}</td>
           <td align="center"><span class="badge badge-success">{{ $suc-> COTIZACIONES }}</span></td>
-          <td align="center"><span class="badge ">{{ $suc-> FACTURADOS }}</span></td>
+          {{-- <td align="center"><span class="badge ">{{ $suc-> FACTURADOS }}</span></td> --}}
         </tr>
         @endforeach
       </tbody>
@@ -503,7 +503,7 @@
         <tr>
           <th>MARCA</th>
           <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
-          <th "><SMALL>FACTURADOS</SMALL></th>
+          {{-- <th "><SMALL>FACTURADOS</SMALL></th> --}}
         </tr>
       </thead>
       <tbody>
@@ -540,7 +540,7 @@
         >                
         <td> {{ $mar-> MARCA }}</td>
         <td align="center"><span class="badge badge-success">{{ $mar-> COTIZACIONES }}</span></td>
-        <td align="center"><span class="badge ">{{ $mar-> FACTURADOS }}</span></td>
+        {{-- <td align="center"><span class="badge ">{{ $mar-> FACTURADOS }}</span></td> --}}
       </tr>
       @endforeach
     </tbody>
@@ -560,7 +560,7 @@
         <tr>
           <th>MODELO</th>
           <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
-          <th "><SMALL>FACTURADOS</SMALL></th>
+          {{-- <th "><SMALL>FACTURADOS</SMALL></th> --}}
         </tr>
       </thead>
       <tbody>
@@ -584,7 +584,7 @@
         >                
         <td> {{ $mod-> MODELO }}</td>
         <td align="center"><span class="badge badge-success">{{ $mod-> COTIZACIONES }}</span></td>
-        <td align="center"><span class="badge ">{{ $mod-> FACTURADOS }}</span></td>
+        {{-- <td align="center"><span class="badge ">{{ $mod-> FACTURADOS }}</span></td> --}}
       </tr>
       @endforeach
     </tbody>
@@ -604,7 +604,7 @@
         <tr>
           <th>MASTER</th>
           <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
-          <th "><SMALL>FACTURADOS</SMALL></th>
+          {{-- <th "><SMALL>FACTURADOS</SMALL></th> --}}
         </tr>
       </thead>
       <tbody>
@@ -638,7 +638,7 @@
         <tr>
           <th>VENDEDOR</th>
           <th style="text-align: center;"><SMALL>COTIZADOS</SMALL></th>
-          <th "><SMALL>FACTURADOS</SMALL></th>
+          {{-- <th "><SMALL>FACTURADOS</SMALL></th> --}}
         </tr>
       </thead>
       <tbody>
@@ -693,7 +693,7 @@
         >                
         <td> <span class="label label-default">{{$ven-> REG_ABRE }}</span> {{ strtoupper($ven-> VENDEDOR) }} </td>
         <td align="center"><span class="badge badge-success">{{ $ven-> COTIZACIONES }}</span></td>
-        <td align="center"><span class="badge ">{{ $ven-> FACTURADOS }}</span></td>
+        {{-- <td align="center"><span class="badge ">{{ $ven-> FACTURADOS }}</span></td> --}}
       </tr>
       @endforeach
     </tbody>

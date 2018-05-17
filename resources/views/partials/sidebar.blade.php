@@ -38,6 +38,12 @@
                   </li>
                   --}}
  
+                 {{--  <li><a><i class="fa fa-desktop"></i> Reportes Presidencia <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                       <li><a  href="{{ route('presidencia.stock')}}">  Reporte de Stock</a></li>
+                    </ul>
+                  </li> --}}
+
                   <li><a><i class="fa fa-puzzle-piece"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a  href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Cotizaciones</a></li> 
@@ -62,7 +68,7 @@
                     </ul>
                   </li> --}}
             
-                  <li><a><i class="fa fa-car"></i> Stock <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-car"></i> Stock Regionalizado <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       
                       <li><a href="{{ route('vehiculos.stock',['vista'=>'ver_dist','ciudad'=>'DISTRIBUIDOR','pais'=>'TODOS'])}}"> Stock regionales</a></li>

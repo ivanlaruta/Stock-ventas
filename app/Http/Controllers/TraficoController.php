@@ -487,6 +487,9 @@ class TraficoController extends Controller
                 {
                     $nuevo_visita -> id_cliente = $request->clientes_ant;
                     $edit_cliente = Trf_Cliente::find($request->clientes_ant);
+                    if (is_null($request->clientes_ant)) {
+                    }
+                    else{
                     $edit_cliente -> ci = $request->ci;
                     $edit_cliente -> expedido = $request->exp;
                     $edit_cliente -> genero = $request->gen;
@@ -497,6 +500,7 @@ class TraficoController extends Controller
                     $edit_cliente -> estado = '1';
                     $edit_cliente -> updated_by = $suc=Auth::user()->usuario;
                     $edit_cliente -> save();
+                    }
                 }
             }
             $nuevo_visita -> id_sucursal = $request->id_sucursal;
