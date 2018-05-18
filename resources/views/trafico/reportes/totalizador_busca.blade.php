@@ -41,31 +41,37 @@
                     <form class="form-horizontal form-label-left">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Rango de fechas: </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Rango de fechas: </label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
                           <input type="text" style="width: 100%" name="fecha1"  class="form-control fecha1" id="fecha1"/>
                         </div>
                       </div>
 
                       <div class="form-group">                                            
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sucursales: </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Sucursales: </label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
                           <select class="form-control select_suc" name="select_suc[]" multiple="multiple">
                             @foreach($sucursales as $det)
                               <option value="{{$det->id_sucursal}}">{{$det->regional}} - {{$det->sucursal}}</option>
                             @endforeach
                           </select>
                         </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                          <input type="checkbox" id="checkbox_suc" >Selecionar todas las sucursales
+                        </div>
                       </div>
 
                       <div class="form-group">                                            
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Modelos: </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Modelos: </label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
                           <select class="form-control select_mod" name="select_mod[]" multiple="multiple">
                             @foreach($modelos as $det)
                               <option value="{{$det->id_modelo}}">{{$det->modelo}}</option>
                             @endforeach
                           </select>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                          <input type="checkbox" id="checkbox_mod" >Selecionar todos los modelos
                         </div>
                       </div>
 
@@ -189,6 +195,31 @@
           }
         })
       });
+
+
+
+
+      $("#checkbox_suc").click(function(){
+        if($("#checkbox_suc").is(':checked') ){ //select all
+          $(".select_suc").find('option').prop("selected",true);
+          $(".select_suc").trigger('change');
+        } else { //deselect all
+          $(".select_suc").find('option').prop("selected",false);
+          $(".select_suc").trigger('change');
+        }
+      });
+
+      $("#checkbox_mod").click(function(){
+        if($("#checkbox_mod").is(':checked') ){ //select all
+          $(".select_mod").find('option').prop("selected",true);
+          $(".select_mod").trigger('change');
+        } else { //deselect all
+          $(".select_mod").find('option').prop("selected",false);
+          $(".select_mod").trigger('change');
+        }
+      });
+ 
+
 </script>
                         
 @endsection

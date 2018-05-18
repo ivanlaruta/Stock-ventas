@@ -38,11 +38,11 @@
                   </li>
                   --}}
  
-                 {{--  <li><a><i class="fa fa-desktop"></i> Reportes Presidencia <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i> Reportes Presidencia <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li><a  href="{{ route('presidencia.stock')}}">  Reporte de Stock</a></li>
                     </ul>
-                  </li> --}}
+                  </li>
 
                   <li><a><i class="fa fa-puzzle-piece"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

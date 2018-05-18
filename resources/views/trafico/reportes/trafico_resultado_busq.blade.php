@@ -20,21 +20,21 @@
             <table id="datatable1" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                  <th>CLIENTE</th>
-                  <th>GENERO</th>
-                  <th>EDAD</th>
-                  <th>TELEFONO</th>
-                  <th>TELEFONO FIJO</th>
-                  <th>CORREO</th>
-                  <th>CI</th>
-                  <th>EXP</th>
-                  <th>MOTIVO</th>
+                  <th  style="width: 1%;">CLIENTE</th>
+                  <th  style="width: 1%;">GENERO</th>
+                  <th  style="width: 1%;">EDAD</th>
+                  <th  style="width: 1%;">TELEFONO</th>
+                  <th  style="width: 1%;">TELEFONO FIJO</th>
+                  <th  style="width: 1%;">CORREO</th>
+                  <th  style="width: 1%;">CI</th>
+                  <th  style="width: 1%;">EXP</th>
+                  <th  style="width: 1%;">MOTIVO</th>
                   
-                  <th>REGIONAL</th>
-                  <th>SUCURSAL</th>
-                  <th>FECHA</th>
-                  <th>EJECUTIVO</th>
-                  <th>ANFITRION</th>
+                  <th  style="width: 1%;">REGIONAL</th>
+                  <th  style="width: 1%;">SUCURSAL</th>
+                  <th  style="width: 1%;">FECHA</th>
+                  <th  style="width: 1%;">EJECUTIVO</th>
+                  <th  style="width: 1%;">ANFITRION</th>
                   
                 </tr>
               </thead>

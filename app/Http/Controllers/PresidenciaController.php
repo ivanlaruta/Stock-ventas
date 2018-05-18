@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Presi_resumen_stock;
 use Carbon\Carbon;
 use DB;
 use Yajra\Datatables\Datatables;
@@ -13,7 +14,9 @@ class PresidenciaController extends Controller
 
     public function stock()
     {
-        return view('presidencia.stock.stock_index');    
+        $resumen_stock =Presi_resumen_stock::orderBy('MODELOS','ASC')->orderBy('MASTER','ASC')->get();
+        return view('presidencia.stock.stock_index')
+        ->with('resumen_stock',$resumen_stock);;    
     }
 
     public function index()
