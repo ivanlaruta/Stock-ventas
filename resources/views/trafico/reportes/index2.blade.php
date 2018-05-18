@@ -110,16 +110,19 @@ th.rotate > div > span {
             <div class="col-md-12">
               <div class="row">
                 <div class="row tile_count">
-                  <div class="col-md-2 col-sm-12 col-xs-12 tile_stats_count pull-right" align="center" style="height: 200px; padding: 50px 0px 0px;">
+{{--                   <div class="col-md-2 col-sm-12 col-xs-12 tile_stats_count pull-right" align="center" style="height: 200px; padding: 50px 0px 0px;">
                     <small class="count_top"> TOTAL TRAFICO</small>
                     <div class="count green" >  {{$totales['total']}}</div>
                     <span class="count_bottom"><small>{{$desc_mes}} 
                     @if($request->pantalla=='regional') | {{$regional}} @endif
                     @if($request->pantalla=='sucursal') | {{$sucursal}} @endif
                     </small></span>
-                    {{-- <span class="count_bottom"><i class="green"><i class="fa fa-eye"></i></i> <small>Ver detalle</small></span> --}}
-                  </div>
+                  </div> --}}
                   <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count " align="center">
+                    <small class="count_top"> PROMOCIONES</small>
+                    <div class="count" >  {{$totales['promos']}}</div>
+                    {{-- <span class="count_bottom"><i class="green"><i class="fa fa-eye"></i></i> <small>Ver detalle</small></span> --}}
+                  </div><div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count " align="center">
                     <small class="count_top"> TOYOTA</small>
                     <div class="count" >  {{$totales['vehiculos_ty']}}</div>
                     {{-- <span class="count_bottom"><i class="green"><i class="fa fa-eye"></i></i> <small>Ver detalle</small></span> --}}
@@ -169,6 +172,14 @@ th.rotate > div > span {
                     <div class="count" >  {{$totales['montacargas']+$totales['pesada']+$totales['agricola']}}</div>
                     {{-- <span class="count_bottom"><i class="green"><i class="fa fa-eye"></i></i> <small>Ver detalle</small></span> --}}
                   </div>
+                  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count " align="center">
+                    <small class="count_top"> TOTAL TRAFICO</small>
+                    <div class="count green" >  {{$totales['total']}}</div>
+                    <span class="count_bottom"><small>{{$desc_mes}} 
+                    @if($request->pantalla=='regional') | {{$regional}} @endif
+                    @if($request->pantalla=='sucursal') | {{$sucursal}} @endif
+                    </small></span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -177,25 +188,26 @@ th.rotate > div > span {
               <table class="table table-striped jambo_table bulk_action table-bordered" id="datatable1">
                 <thead>
                   <tr>
-                    <th>
+                    <th style="width: 1%;">
                       @if($request->pantalla=='index') Regional @endif
                       @if($request->pantalla=='regional') Sucursal @endif
                       @if($request->pantalla=='sucursal') Vendedor @endif
                     </th>
-                    <th class="rotate"><div><span>Toyota  </span></div></th>
-                    <th class="rotate"><div><span>Lexus  </span></div></th>
-                    <th class="rotate"><div><span>Hino  </span></div></th>
-                    <th class="rotate"><div><span>Yamaha  </span></div></th>
-                    <th class="rotate"><div><span>Tramites  </span></div></th>
-                    <th class="rotate"><div><span>Repuestos </span></div></th>
-                    <th class="rotate"><div><span>Servicios </span></div></th>
-                    <th class="rotate"><div><span>Licitaciones </span></div></th>
-                    <th class="rotate"><div><span>Neumaticos </span></div></th>
-                    <th class="rotate"><div><span>Maq pesada </span></div></th>
-                    <th class="rotate"><div><span>Total trafico </span></div></th>
-                    <th class="rotate"><div><span>Total cotizaciones </span></div></th>
-                    <th class="rotate"><div><span>Total reservas </span></div></th>
-                    <th class="rotate"><div><span>Totalizador modelos </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Promociones </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Toyota  </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Lexus  </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Hino  </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Yamaha  </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Tramites  </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Repuestos </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Servicios </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Licitaciones </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Neumaticos </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Maq pesada </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Total trafico </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Total cotizaciones </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Total reservas </span></div></th>
+                    <th style="width: 1%;" class="rotate"><div><span>Totalizador modelos </span></div></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -218,6 +230,7 @@ th.rotate > div > span {
                         </strong>
                       @endif
                     </td>
+                    <td align="right">{{$det->promo}}</td>
                     <td align="right">{{$det->vehiculos_t}}</td>
                     <td align="right">{{$det->vehiculos_l}}</td>
                     <td align="right">{{$det->vehiculos_h}}</td>

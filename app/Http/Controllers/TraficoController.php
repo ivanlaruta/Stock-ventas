@@ -792,6 +792,7 @@ class TraficoController extends Controller
         if(is_null($request->pantalla) || $request->pantalla=='index')
         {
             $request->pantalla='index';
+            $total_promo=Trf_Visita::where('id_motivo','16')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->count();
             $total_vehiculos_ty=Trf_Visita::where('id_motivo','1')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->count();
             $total_vehiculos_lx=Trf_Visita::where('id_motivo','2')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->count();
             $total_vehiculos_hn=Trf_Visita::where('id_motivo','3')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->count();
@@ -835,6 +836,7 @@ class TraficoController extends Controller
             ->count();
            
             $totales=array(
+                'promos' => $total_promo,
                 'vehiculos_ty' => $total_vehiculos_ty,
                 'vehiculos_lx' => $total_vehiculos_lx,
                 'vehiculos_hn' => $total_vehiculos_hn,
@@ -861,7 +863,7 @@ class TraficoController extends Controller
             // dd($totales['vehiculos']);           
 
             $consolidado = DB::select(  DB::raw("
-            select xx.regional,SUM(xx.totales) as totales , SUM(xx.vehiculos_t) as vehiculos_t, SUM(xx.vehiculos_l) as vehiculos_l, SUM(xx.vehiculos_h) as vehiculos_h, SUM(xx.yamaha) as yamaha, SUM(xx.tramites) as tramites, SUM(xx.repuestos) as repuestos, SUM(xx.servicios) as servicios, SUM(xx.licitaciones) as licitaciones, SUM(xx.montacargas) as montacargas, SUM(xx.pesada) as pesada, SUM(xx.llantas) as llantas, SUM(xx.agricola) as agricola,SUM(xx.cotizaciones) as cotizaciones,SUM(xx.reservas) as reservas,(select COUNT (vm.id) 
+            select xx.regional,SUM(xx.totales) as totales , SUM(xx.promo) as promo, SUM(xx.vehiculos_t) as vehiculos_t, SUM(xx.vehiculos_l) as vehiculos_l, SUM(xx.vehiculos_h) as vehiculos_h, SUM(xx.yamaha) as yamaha, SUM(xx.tramites) as tramites, SUM(xx.repuestos) as repuestos, SUM(xx.servicios) as servicios, SUM(xx.licitaciones) as licitaciones, SUM(xx.montacargas) as montacargas, SUM(xx.pesada) as pesada, SUM(xx.llantas) as llantas, SUM(xx.agricola) as agricola,SUM(xx.cotizaciones) as cotizaciones,SUM(xx.reservas) as reservas,(select COUNT (vm.id) 
 from trf_visita_modelo vm
 join trf_visitas as vv on vm.id_visita = vv.id
 left join v_ubicaciones as uu on uu.id = vv.id_sucursal
@@ -869,6 +871,7 @@ where uu.regional = xx.regional
 and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             from(
             SELECT vi.id_sucursal,ub.nom_sucursal,ub.regional,count(vi.id) as totales,
+            (select count(vet.id) from trf_visitas vet where vet.id_motivo='16' and vet.id_sucursal=vi.id_sucursal AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as promo,
             (select count(vet.id) from trf_visitas vet where vet.id_motivo='1' and vet.id_sucursal=vi.id_sucursal AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_t,
             (select count(vel.id) from trf_visitas vel where vel.id_motivo='2' and vel.id_sucursal=vi.id_sucursal AND cast(vel.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_l,
             (select count(veh.id) from trf_visitas veh where veh.id_motivo='3' and veh.id_sucursal=vi.id_sucursal AND cast(veh.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_h,
@@ -908,6 +911,12 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
                 // dd($request->all());
                 $pantalla=$request->pantalla;
 
+                $total_promo=Trf_Visita::join('v_ubicaciones', 'v_ubicaciones.id', '=', 'trf_visitas.id_sucursal')
+                ->where('trf_visitas.id_motivo','16')
+                ->where(DB::raw('CAST(trf_visitas.fecha AS date)'),'>=',$f_ini)
+                ->where(DB::raw('CAST(trf_visitas.fecha AS date)'),'<=',$f_fin)
+                ->where('v_ubicaciones.regional',$request->regional)
+                ->count();
                 $total_vehiculos_ty=Trf_Visita::join('v_ubicaciones', 'v_ubicaciones.id', '=', 'trf_visitas.id_sucursal')
                 ->where('trf_visitas.id_motivo','1')
                 ->where(DB::raw('CAST(trf_visitas.fecha AS date)'),'>=',$f_ini)
@@ -987,6 +996,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
                 ->count();
                                
                 $totales=array(
+                    'promos' => $total_promo,
                     'vehiculos_ty' => $total_vehiculos_ty,
                     'vehiculos_lx' => $total_vehiculos_lx,
                     'vehiculos_hn' => $total_vehiculos_hn,
@@ -1006,7 +1016,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
                 // dd($totales['vehiculos']);
 
                 $consolidado =DB::select( DB::raw("
-                select xx.id_sucursal,xx.nom_sucursal,SUM(xx.totales) as totales , SUM(xx.vehiculos_t) as vehiculos_t, SUM(xx.vehiculos_l) as vehiculos_l, SUM(xx.vehiculos_h) as vehiculos_h, SUM(xx.yamaha) as yamaha, SUM(xx.tramites) as tramites, SUM(xx.repuestos) as repuestos, SUM(xx.servicios) as servicios, SUM(xx.licitaciones) as licitaciones, SUM(xx.montacargas) as montacargas, SUM(xx.pesada) as pesada, SUM(xx.llantas) as llantas, SUM(xx.agricola) as agricola,SUM(xx.cotizaciones) as cotizaciones,SUM(xx.reservas) as reservas,
+                select xx.id_sucursal,xx.nom_sucursal,SUM(xx.totales) as totales , SUM(xx.promo) as promo , SUM(xx.vehiculos_t) as vehiculos_t, SUM(xx.vehiculos_l) as vehiculos_l, SUM(xx.vehiculos_h) as vehiculos_h, SUM(xx.yamaha) as yamaha, SUM(xx.tramites) as tramites, SUM(xx.repuestos) as repuestos, SUM(xx.servicios) as servicios, SUM(xx.licitaciones) as licitaciones, SUM(xx.montacargas) as montacargas, SUM(xx.pesada) as pesada, SUM(xx.llantas) as llantas, SUM(xx.agricola) as agricola,SUM(xx.cotizaciones) as cotizaciones,SUM(xx.reservas) as reservas,
                 (select COUNT (vm.id) 
                 from trf_visita_modelo vm
                 join trf_visitas as vv on vm.id_visita = vv.id
@@ -1015,6 +1025,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
                 ) as modelos
                 from(
                 SELECT vi.id_sucursal,ub.nom_sucursal,count(vi.id) as totales,
+                (select count(vet.id) from trf_visitas vet where vet.id_motivo='16' and vet.id_sucursal=vi.id_sucursal AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as promo,
                 (select count(vet.id) from trf_visitas vet where vet.id_motivo='1' and vet.id_sucursal=vi.id_sucursal AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_t,
                 (select count(vel.id) from trf_visitas vel where vel.id_motivo='2' and vel.id_sucursal=vi.id_sucursal AND cast(vel.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_l,
                 (select count(veh.id) from trf_visitas veh where veh.id_motivo='3' and veh.id_sucursal=vi.id_sucursal AND cast(veh.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_h,
@@ -1060,6 +1071,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             $sucursal = $aux_su[0];
             
             $pantalla=$request->pantalla;
+            $total_promo=Trf_Visita::where('id_motivo','16')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$request->sucursal)->count();
             $total_vehiculos_ty=Trf_Visita::where('id_motivo','1')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$request->sucursal)->count();
             $total_vehiculos_lx=Trf_Visita::where('id_motivo','2')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$request->sucursal)->count();
             $total_vehiculos_hn=Trf_Visita::where('id_motivo','3')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$request->sucursal)->count();
@@ -1075,6 +1087,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             $total_agricola=Trf_Visita::where('id_motivo','12')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$request->sucursal)->count();
             $total_visitas=Trf_Visita::where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$request->sucursal)->count();
             $totales=array(
+                'promos' => $total_promo,
                 'vehiculos_ty' => $total_vehiculos_ty,
                 'vehiculos_lx' => $total_vehiculos_lx,
                 'vehiculos_hn' => $total_vehiculos_hn,
@@ -1095,6 +1108,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             $consolidado = DB::select( DB::raw("
                 select distinct ej.id_sucursal,ej.id AS 'id_ejecutivo',ej.id_teros,ej.nombre,ej.paterno,
                 (select count(vet.id) from trf_visitas vet where  vet.id_sucursal=ej.id_sucursal and vet.id_ejecutivo = ej.id AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as totales,  
+                (select count(vet.id) from trf_visitas vet where vet.id_motivo='16' and vet.id_sucursal=ej.id_sucursal and vet.id_ejecutivo = ej.id AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as promo,  
                 (select count(vet.id) from trf_visitas vet where vet.id_motivo='1' and vet.id_sucursal=ej.id_sucursal and vet.id_ejecutivo = ej.id AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_t,  
                 (select count(vel.id) from trf_visitas vel where vel.id_motivo='2' and vel.id_sucursal=ej.id_sucursal and vel.id_ejecutivo = ej.id AND cast(vel.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_l,  
                 (select count(veh.id) from trf_visitas veh where veh.id_motivo='3' and veh.id_sucursal=ej.id_sucursal and veh.id_ejecutivo = ej.id AND cast(veh.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_h,  
@@ -1120,7 +1134,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
                 where ej.id_sucursal = '".$request->sucursal."'
 
                 union all
-                select vi.id_sucursal,vi.id_ejecutivo,'','-No aginado-','',count(vi.id),null,null,null,null,null,
+                select vi.id_sucursal,vi.id_ejecutivo,'','-No aginado-','',count(vi.id),null,null,null,null,null,null,
                 (select count(re.id) from trf_visitas re where re.id_motivo='6' and re.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(re.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as repuestos,
                 (select count(se.id) from trf_visitas se where se.id_motivo='7' and se.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(se.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as servicios,
                 (select count(li.id) from trf_visitas li where li.id_motivo='8' and li.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(li.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as licitaciones,
