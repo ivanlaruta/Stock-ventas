@@ -14,9 +14,12 @@ class PresidenciaController extends Controller
 
     public function stock()
     {
+        $now = Carbon::now('America/La_Paz')->format('d/m/Y H:i');
         $resumen_stock =Presi_resumen_stock::orderBy('MODELOS','ASC')->orderBy('MASTER','ASC')->get();
         return view('presidencia.stock.stock_index')
-        ->with('resumen_stock',$resumen_stock);;    
+        ->with('resumen_stock',$resumen_stock)
+        ->with('now',$now)
+        ;   
     }
 
     public function index()

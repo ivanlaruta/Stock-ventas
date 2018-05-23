@@ -1662,10 +1662,8 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
     {
         $edades = Trf_Parametrica::where('tabla','rango_edades')->get();
         return view('trafico.modal_nuevo_ant')
-        ->with('edades',$edades)
-        ;
+        ->with('edades',$edades);
     }
-
 
     public function add_nuevo_ant(Request $request)
     {
@@ -1686,6 +1684,92 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
         $nuevo_cliente -> updated_by = $suc=Auth::user()->usuario;
         $nuevo_cliente -> save();
         return redirect()->route('trafico.formulario2')->with('mensaje',"Creado exitosamente."); 
+    }
+
+    public function rep_vendedor(Request $request)
+    {
+        $sucursales = DB::select(  DB::raw("select distinct regional,id_sucursal,sucursal  from detalle_visitas order by 1,3"));
+         
+        return view('trafico.reportes.rep_vendedor')
+        ->with('sucursales',$sucursales)
+        ;
+    }
+     public function res_rep_vendedor(Request $request)
+    {
+        // dd($request->all());
+         $fechas = explode("-", $request->fecha);
+                $f_ini = $fechas[0];
+                $f_fin = $fechas[1];
+
+            $sucursales = "";
+           
+            for ($i=0; $i < sizeof($request->sucursal); $i++) {
+               $sucursales = $sucursales."'".$request->sucursal[$i]."'";
+               if($i < (sizeof($request->sucursal))-1){
+                $sucursales = $sucursales.",";
+               }
+            }          
+        
+            $des_sucursales = DB::select(  DB::raw("
+            select distinct nom_sucursal as sucursal from v_ubicaciones
+            where id IN (".$sucursales.")
+            order by 1
+            "));
+      
+            $reporte = DB::select(  DB::raw("
+
+            select ej.id,ej.estado,ej.nom_teros,ej.id_teros,LTRIM(RTRIM(v.cod_tit))+'-'+ub1.nom_sucursal AS ub_teros,ub2.REGIONAL+'-'+ub2.nom_sucursal as ub_trafico,
+            (select count (vi.id) from trf_visitas vi where vi.id_ejecutivo = ej.id AND cast(vi.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as trafico,
+            (select count(vet.id) from trf_visitas vet where vet.id_motivo='16' and vet.id_sucursal=ej.id_sucursal and vet.id_ejecutivo = ej.id AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as promo,  
+            (select count(vet.id) from trf_visitas vet where vet.id_motivo='1' and vet.id_sucursal=ej.id_sucursal and vet.id_ejecutivo = ej.id AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_t,  
+            (select count(vel.id) from trf_visitas vel where vel.id_motivo='2' and vel.id_sucursal=ej.id_sucursal and vel.id_ejecutivo = ej.id AND cast(vel.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_l,  
+            (select count(veh.id) from trf_visitas veh where veh.id_motivo='3' and veh.id_sucursal=ej.id_sucursal and veh.id_ejecutivo = ej.id AND cast(veh.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_h,  
+            (select count(ya.id) from trf_visitas ya where ya.id_motivo='4' and ya.id_sucursal=ej.id_sucursal and ya.id_ejecutivo = ej.id AND cast(ya.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as yamaha,  
+            (select count(tr.id) from trf_visitas tr where tr.id_motivo='5' and tr.id_sucursal=ej.id_sucursal and tr.id_ejecutivo = ej.id AND cast(tr.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as tramites,  
+
+            
+            (   select COUNT(ct.chasis) 
+                from gtauto.dbo.Cotizador ct 
+                where ct.codVendedor = ej.id_teros
+                and v.cod_tit = ej.id_sucursal
+                and cast(ct.fechaCreacion as date) BETWEEN '".$f_ini."' and '".$f_fin."'
+            ) as cotizaciones,
+            (   select COUNT(res.chassis) 
+                from gtauto.dbo.cpf_resvehokm res
+                where res.cod_vendedor = ej.id_teros
+                AND res.cod_docum = 'rvehokma'
+                AND res.cod_estado = 'R'
+                AND res.nro_contrato = '1'
+                and cast(res.fecha_mod as date) BETWEEN '".$f_ini."' and '".$f_fin."'
+                and v.cod_tit = ej.id_sucursal
+            ) as reservas,
+            (   select COUNT(fac.CHASIS) 
+                from v_facturados_aux fac
+                where fac.cod_vendedor = ej.id_teros
+                and cast(fac.FECHA_FACTURA as date) BETWEEN '".$f_ini."' and '".$f_fin."'
+                and v.cod_tit = ej.id_sucursal
+            ) as facturas
+            from trf_ejecutivos ej,
+            gtauto.dbo.ct_vendedores v,
+            v_ubicaciones ub1, v_ubicaciones ub2
+            where v.cod_vendedor = ej.id_teros
+            and ub1.id = v.cod_tit
+            and ub2.id = ej.id_sucursal
+            and ej.estado ='1'
+            and ej.id_sucursal IN (".$sucursales.")
+            order by 6,3
+
+
+            "));
+
+         // dd($reporte);
+
+        return view('trafico.reportes.rep_vendedor_result')
+        ->with('reporte',$reporte)
+        ->with('f_ini',$f_ini)
+        ->with('f_fin',$f_fin)
+        ->with('sucursales',$des_sucursales)
+        ;
     }
 }
 
