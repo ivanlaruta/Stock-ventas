@@ -47,7 +47,7 @@
               <tbody>
                @foreach($vendedores as $det)
                 <tr>
-                    <td>{{$det->nombre}} {{$det->paterno}} {{$det->materno}} </td>
+                    <td>{{strtoupper($det->nom_teros)}} </td>
                     <td>{{$det->telefono}}</td>
                     <td>{{$det->correo}}</td>
                     <td>{{$det->cargo}}</td>

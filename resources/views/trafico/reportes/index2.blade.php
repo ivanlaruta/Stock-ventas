@@ -213,7 +213,7 @@ th.rotate > div > span {
                 <tbody>
                 @foreach($consolidado as $det)                
                   <tr>
-                    <td align="right">
+                    <td >
                       @if($request->pantalla=='index')<strong><a href="{{ route('trafico.reporte2').'?fecha1='.$request->fecha1.'&pantalla=regional &mes='.$mes.'&regional='.$det->regional}}">{{$det->regional}}</a></strong>@endif
                       @if($request->pantalla=='regional')<strong><a href="{{ route('trafico.reporte2').'?fecha1='.$request->fecha1.'&pantalla=sucursal &mes='.$mes.'&sucursal='.$det->id_sucursal}}">{{$det->nom_sucursal}}</a></strong>@endif
                       @if($request->pantalla=='sucursal')
@@ -224,7 +224,7 @@ th.rotate > div > span {
                           </a>
                         @else
                           <a href="{{ route('trafico.reporte2').'?fecha1='.$request->fecha1.'&pantalla=detalle &mes='.$mes.'&sucursal='.$det->id_sucursal.'&id_ejecutivo='.$det->id_ejecutivo.'&nom='.$det->nombre.'&pat='.$det->paterno}}"> 
-                            {{$det->nombre}} {{$det->paterno}} 
+                            {{strtoupper($det->nom_teros)}} 
                           </a>
                         @endif
                         </strong>

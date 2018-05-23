@@ -91,7 +91,7 @@ $('#datatable1').DataTable( { "language": {
               },
         },
 
-        "dom": "Bfrtip",
+        "dom": "Bfrti",
         "buttons": [ 'copy', 'excel'],
         
         // "fixedHeader": true,

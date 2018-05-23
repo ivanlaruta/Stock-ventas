@@ -1106,7 +1106,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             // dd($totales['vehiculos']);           
 
             $consolidado = DB::select( DB::raw("
-                select distinct ej.id_sucursal,ej.id AS 'id_ejecutivo',ej.id_teros,ej.nombre,ej.paterno,
+                select distinct ej.id_sucursal,ej.id AS 'id_ejecutivo',ej.id_teros,ej.nombre,ej.paterno,ej.nom_teros,
                 (select count(vet.id) from trf_visitas vet where  vet.id_sucursal=ej.id_sucursal and vet.id_ejecutivo = ej.id AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as totales,  
                 (select count(vet.id) from trf_visitas vet where vet.id_motivo='16' and vet.id_sucursal=ej.id_sucursal and vet.id_ejecutivo = ej.id AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as promo,  
                 (select count(vet.id) from trf_visitas vet where vet.id_motivo='1' and vet.id_sucursal=ej.id_sucursal and vet.id_ejecutivo = ej.id AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_t,  
@@ -1134,7 +1134,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
                 where ej.id_sucursal = '".$request->sucursal."'
 
                 union all
-                select vi.id_sucursal,vi.id_ejecutivo,'','-No aginado-','',count(vi.id),null,null,null,null,null,null,
+                select vi.id_sucursal,vi.id_ejecutivo,'','-No aginado-','','-No aginado-',count(vi.id),null,null,null,null,null,null,
                 (select count(re.id) from trf_visitas re where re.id_motivo='6' and re.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(re.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as repuestos,
                 (select count(se.id) from trf_visitas se where se.id_motivo='7' and se.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(se.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as servicios,
                 (select count(li.id) from trf_visitas li where li.id_motivo='8' and li.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(li.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as licitaciones,
@@ -1718,7 +1718,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
       
             $reporte = DB::select(  DB::raw("
 
-            select ej.id,ej.estado,ej.nom_teros,ej.id_teros,LTRIM(RTRIM(v.cod_tit))+'-'+ub1.nom_sucursal AS ub_teros,ub2.REGIONAL+'-'+ub2.nom_sucursal as ub_trafico,
+            select ej.id,ej.estado,ej.nom_teros,ej.id_teros,LTRIM(RTRIM(v.cod_tit))+' - '+ub1.nom_sucursal AS ub_teros,ub2.REGIONAL+'-'+ub2.nom_sucursal as ub_trafico,
             (select count (vi.id) from trf_visitas vi where vi.id_ejecutivo = ej.id AND cast(vi.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as trafico,
             (select count(vet.id) from trf_visitas vet where vet.id_motivo='16' and vet.id_sucursal=ej.id_sucursal and vet.id_ejecutivo = ej.id AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as promo,  
             (select count(vet.id) from trf_visitas vet where vet.id_motivo='1' and vet.id_sucursal=ej.id_sucursal and vet.id_ejecutivo = ej.id AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_t,  

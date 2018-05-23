@@ -55,7 +55,7 @@
                           </select>
                         </div>
                         <div class="col-md-2 col-sm-2 col-xs-12">
-                          <input type="checkbox" id="checkbox_suc" >Selecionar todas
+                          <input type="checkbox" id="checkbox_suc" >Seleccionar todas
                         </div>
                       </div>
                       <a href="javascript:;" class="btn btn-primary pull-right" onclick="fn_datos();">Generar <span class="glyphicon glyphicon-chevron-right"></span></a>
