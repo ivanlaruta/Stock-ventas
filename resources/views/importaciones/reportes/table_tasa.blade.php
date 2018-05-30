@@ -14,31 +14,31 @@
                       <table id="datatable1" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                  <th>FACTURA</th>
-                  <th>ED</th>
-                  <th>PROD ORDER</th>
-                  <th>COD MODELO</th>
-                  <th>MODELO</th>
-                  <th>CHASIS</th>
-                  <th>MOTOR</th>
-                  <th>COLOR EXT</th>
-                  <th>COLOR INT</th>
-                  <th>LLAVE</th>
+                  <th style="width: 1%;">FACTURA</th>
+                  <th style="width: 1%;">ED</th>
+                  <th style="width: 1%;">PROD/ORDER</th>
+                  <th style="width: 1%;">COD MOD</th>
+                  <th style="width: 1%;">MOD</th>
+                  <th style="width: 1%;">CHASIS</th>
+                  <th style="width: 1%;">MOTOR</th>
+                  <th style="width: 1%;">COL/EXT</th>
+                  <th style="width: 1%;">COL/INT</th>
+                  <th style="width: 1%;">KEY</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($detalle_facturas as $det)
                   <tr>
-                    <td>{{$det->orden}}</td>
-                    <td>{{$det->ED}}</td>
-                    <td>{{$det->ORDER}}</td>
-                    <td>{{$det->MODELO}}</td>
-                    <td>{{$det->DESCRIPCION}}</td>
-                    <td>{{$det->CHASIS}}</td>
-                    <td>{{$det->MOTOR}}</td>
-                    <td>{{$det->COLOR_EXT}}</td>
-                    <td>{{$det->COLOR_INT}}</td>
-                    <td>{{$det->KEY}}</td>
+                    <td style="width: 1%;">{{$det->orden}}</td>
+                    <td style="width: 1%;">{{$det->ED}}</td>
+                    <td style="width: 1%;">{{$det->ORDER}}</td>
+                    <td style="width: 1%;">{{$det->MODELO}}</td>
+                    <td style="width: 1%;">{{$det->DESCRIPCION}}</td>
+                    <td style="width: 1%;">{{$det->CHASIS}}</td>
+                    <td style="width: 1%;">{{$det->MOTOR}}</td>
+                    <td style="width: 1%;">{{$det->COLOR_EXT}}</td>
+                    <td style="width: 1%;">{{$det->COLOR_INT}}</td>
+                    <td style="width: 1%;">{{$det->KEY}}</td>
                   </tr>
                 @endforeach
               </tbody>

@@ -1,5 +1,6 @@
 
 
+                  
                       <div class=""> 
                         <h2>Fecha <small>resultado entre las fechas:</small></h2>
                         <h4>{{$f_ini}} y {{$f_fin}}</h4>
@@ -21,7 +22,7 @@
                         @endforeach
                       </div>
                       <br />
-
+ 
                       <div class="table-responsive">
             <table id="datatable1" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
@@ -37,13 +38,14 @@
                   <th>MOTIVO</th>
                   <th>CATEGORIA</th>
                   <th>MODELO</th>
-                  <th>NOTA</th>
+                  <th>OBS</th>
                   <th>REGIONAL</th>
                   <th>SUCURSAL</th>
                   <th>FECHA</th>
                   <th>EJECUTIVO</th>
                   <th>ANFITRION</th>
                   <th>COD TRAFICO</th>
+                  <th>COMO SE ENETERO?</th>
                 </tr>
               </thead>
               <tbody>
@@ -67,6 +69,12 @@
                     <td>{{$det->ejecutivo}}</td>
                     <td>{{$det->anfitrion}}</td>
                     <td>{{$det->visita}}</td>
+                    <td>
+                    @if($det->obs_modelo == 'TELEVISION' || $det->obs_modelo == 'RADIO' || $det->obs_modelo == 'INTERNET' || $det->obs_modelo == 'REFERENCIA'  )
+                    {{$det->obs_modelo}}
+                    
+                    @endif
+                    </td>
                     
                   </tr>
                 @endforeach
@@ -77,6 +85,10 @@
                     
 
 <script type="text/javascript">
+
+
+
+
 $('#datatable1').DataTable( { "language": {
             
               "sProcessing":     "Procesando...",

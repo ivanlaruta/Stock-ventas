@@ -10,7 +10,7 @@
               
             @else
               <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                <strong>Opps!</strong> Su password actual no es el correcto.
+                <strong>Oops! </strong> Al parecer su password actual no es el correcto.
               </div>
             @endif
         </div>

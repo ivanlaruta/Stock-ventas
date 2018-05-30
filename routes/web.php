@@ -767,6 +767,21 @@ Route::group(['prefix'=>'presidencia','middleware'=>'auth'],function(){
 		'as'   =>	'presidencia.stock'
 	]);
 
+	route::get('presidencia/stock_tabla_resumen',[
+		'uses' =>'PresidenciaController@stock_tabla_resumen',
+		'as'   =>	'presidencia.stock_tabla_resumen'
+	]);
+
+	route::get('presidencia/stock_tabla_detalle',[
+		'uses' =>'PresidenciaController@stock_tabla_detalle',
+		'as'   =>	'presidencia.stock_tabla_detalle'
+	]);
+
+	route::get('presidencia/stock_tabla_detalle_data',[
+		'uses' =>'PresidenciaController@stock_tabla_detalle_data',
+		'as'   =>	'presidencia.stock_tabla_detalle_data'
+	]);
+
 	route::resource('presidencia','ImportacionesController');
 
 });

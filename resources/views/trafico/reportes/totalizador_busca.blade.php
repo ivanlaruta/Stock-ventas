@@ -80,7 +80,10 @@
                   </div>
                 </div>
               </div>
-
+<div id='loadingDiv' align="center">
+                    <h4>Estamos preparando su informacion por favor espere ... </h4>
+                   <i class="fa fa-spinner fa-spin fa-7x" style="font-size:40px"></i>
+                  </div>
 
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -110,7 +113,17 @@
 
 @section('scripts')
 <script type="text/javascript">
+var loading = $('#loadingDiv').hide();
 
+$(document)
+  .ajaxStart(function () {
+
+    loading.show();
+  })
+  .ajaxStop(function () {
+    loading.hide();
+  });
+  
   $('.select_suc').select2();
   $('.select_mod').select2();
 
