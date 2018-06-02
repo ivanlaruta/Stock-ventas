@@ -236,14 +236,37 @@ ul.msg_list li a .times {
 
           <div class="observaciones">  
             <div class="x_title">
-              <h2>Observaciones.</h2>
+              <h2>Notas y Observaciones.</h2>
               <div class="clearfix" ></div>
             </div>
             <div class="x_content">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="row" align="center"> 
-                  <input type="text" class="form-control" name="txt_obs" id="txt_obs" >
-                </div>
+              <div class="col-md-12 col-sm-12 col-xs-12 form-horizontal form-label-left input_mask">
+              
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Como se entero? </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="form-control observaciones" name="txt_otros" required="">
+                            <option disabled selected>¿Como se enteró?</option>
+                            <option value="Television">Televisión</option>
+                            <option value="Radio">Radio</option>
+                            <option value="Internet">Internet</option>
+                            <option value="Referencia">Referencia</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Observaciones</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" class="form-control" name="txt_obs" id="txt_obs" placeholder="Notas y/o Observaciones">
+                        </div>
+                      </div>
+                      <div class="form-group"></div>
+                      <div class="form-group"></div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group"></div>
+
+                   
+               
               </div>
             </div>
           </div>
@@ -297,13 +320,7 @@ ul.msg_list li a .times {
                                 <input type="text" class=" txt_otros" name="txt_otros_{{$det3->id_categoria}}" id="txt_otros" >
                               
                               @endif
-                                <select class="form-control observaciones" name="txt_otros" >
-                                  <option disabled selected>¿Como se enteró?</option>
-                                  <option value="Television">Televisión</option>
-                                  <option value="Radio">Radio</option>
-                                  <option value="Internet">Internet</option>
-                                  <option value="Referencia">Referencia</option>
-                                </select>
+                                
                             @endif
                           @endforeach
                         </span>
@@ -511,7 +528,7 @@ function acepta_clientes() {
     $('.modelos').attr('checked',false);
     $('.ver').hide();
     $('.categorias').hide();
-    if(id_motivo == 16){
+    if(id_motivo < 5 || id_motivo == 16){
        $('.observaciones').show();
     }
     else{

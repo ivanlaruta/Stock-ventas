@@ -69,12 +69,7 @@
                     <td>{{$det->ejecutivo}}</td>
                     <td>{{$det->anfitrion}}</td>
                     <td>{{$det->visita}}</td>
-                    <td>
-                    @if($det->obs_modelo == 'TELEVISION' || $det->obs_modelo == 'RADIO' || $det->obs_modelo == 'INTERNET' || $det->obs_modelo == 'REFERENCIA'  )
-                    {{$det->obs_modelo}}
-                    
-                    @endif
-                    </td>
+                    <td>{{$det->nota}}</td>
                     
                   </tr>
                 @endforeach

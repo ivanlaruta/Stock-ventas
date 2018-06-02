@@ -64,6 +64,11 @@
                 </div>
               </div>
 
+                  <div id='loadingDiv' align="center">
+                    <h4>Estamos preparando su informacion por favor espere ... </h4>
+                   <i class="fa fa-spinner fa-spin fa-7x" style="font-size:40px"></i>
+                  </div> 
+
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -93,6 +98,11 @@
 @section('scripts')
 <script type="text/javascript">
 
+
+
+var loading = $('#loadingDiv').hide();
+
+
   $('.select_suc').select2();
   
 
@@ -100,6 +110,18 @@
   var desc_suc = null;
  
   var content = $(".tabla_resumen");
+
+
+$(document)
+  .ajaxStart(function () {
+
+    loading.show();
+    content.empty();
+  })
+  .ajaxStop(function () {
+    loading.hide();
+     
+  });
 
 
   function fn_datos() {

@@ -521,17 +521,12 @@ class TraficoController extends Controller
                     $nuevo_visita_modelo -> created_by = Auth::user()->usuario;
                     $nuevo_visita_modelo -> updated_by = Auth::user()->usuario;
                     $nuevo_visita_modelo -> id_modelo = $request->modelos[$i];
+                    $nuevo_visita_modelo -> descripcion2 = strtoupper($request->txt_otros);
                     if($request->modelos[$i]=='33' || $request->modelos[$i]=='38')
                     {
                         $nuevo_visita_modelo -> descripcion = strtoupper($request->txt_otros_8).strtoupper($request->txt_otros_9);
                     }
-                    else
-                    {
-                        if($request->modelos[$i]=='43')
-                        {
-                            $nuevo_visita_modelo -> descripcion = strtoupper($request->txt_otros);
-                        }
-                    }
+                   
                     $nuevo_visita_modelo ->save();
                 }
             }

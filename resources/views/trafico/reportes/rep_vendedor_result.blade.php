@@ -1,4 +1,27 @@
 
+<style type="text/css">
+
+th.rotate {
+  /* Something you can count on */
+  height: 140px;
+  white-space: nowrap;
+}
+
+th.rotate > div {
+  transform: 
+    /* Magic Numbers */
+    /*translate(25px, 51px)*/
+    /* 45 is really 360 - 45 */
+    rotate(290deg);
+  width: 10px;
+}
+th.rotate > div > span {
+  border-bottom: 1px  #ccc;
+  padding: 5px 10px;
+}
+
+</style>
+                   
 
                       <div class=""> 
                         <h2>Fecha <small>resultado entre las fechas:</small></h2>
@@ -17,25 +40,25 @@
                     
 
                       <div class="table-responsive">
-            <table id="datatable1" class="table table-striped table-bordered table-hover nowrap" cellspacing="0" width="100%">
+            <table id="datatable1" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                  <th  rowspan="2" style="width: 1%;">Vendedor</th>
+                  <th  rowspan="2" style="width: 1%;" class="nowrap">Vendedor</th>
                   <th  rowspan="2" style="width: 1%;">Ubicacion</th>
-                  <th colspan="7" style="text-align: center">TRAFICO</th>
+                  <th colspan="7" style="text-align: center; background-color: #05484" >TRAFICO</th>
                   <th colspan="3" style="text-align: center">TEROS</th>
                 </tr>
                 <tr>
-                  <td style="width: 1%; text-align: right;">PROMO</td>
-                  <td style="width: 1%; text-align: right;">TOYOTA</td>
-                  <td style="width: 1%; text-align: right;">LEXUS</td>
-                  <td style="width: 1%; text-align: right;">HINO</td>
-                  <td style="width: 1%; text-align: right;">YAMAHA</td>
-                  <td style="width: 1%; text-align: right;">TRAMITES</td>
-                  <td style="width: 1%; text-align: right; font-weight: bold; background-color: #f4fff6;">TOTAL TRAFICO</td>
-                  <td style="width: 1%; text-align: right; font-weight: bold; background-color: #f4fff6;">COTIZACIONES</td>
-                  <td style="width: 1%; text-align: right; font-weight: bold; background-color: #f4fff6;">RESERVAS</td>
-                  <td style="width: 1%; text-align: right; font-weight: bold; background-color: #f4fff6;">FACTURAS</td>
+                  <th class="rotate"><div><span>PROMO</span></div></th>
+                  <th class="rotate"><div><span>TOYOTA</span></div></th>
+                  <th class="rotate"><div><span>LEXUS</span></div></th>
+                  <th class="rotate"><div><span>HINO</span></div></th>
+                  <th class="rotate"><div><span>YAMAHA</span></div></th>
+                  <th class="rotate"><div><span>TRAMITES</span></div></th>
+                  <th class="rotate" style="background-color: rgba(207, 243, 234, 0.47);"><div><span>TOTAL TRAFICO</span></div></th>
+                  <th class="rotate" style="background-color: rgba(207, 243, 234, 0.47);"><div><span>COTIZACIONES</span></div></th>
+                  <th class="rotate" style="background-color: rgba(207, 243, 234, 0.47);"><div><span>RESERVAS</span></div></th>
+                  <th class="rotate" style="background-color: rgba(207, 243, 234, 0.47);"><div><span>FACTURAS</span></div></th>
                   
                 </tr>
               </thead>
@@ -50,10 +73,10 @@
                     <td style="width: 1%; text-align: right;" >{{$det->vehiculos_h}}</td>
                     <td style="width: 1%; text-align: right;" >{{$det->yamaha}}</td>
                     <td style="width: 1%; text-align: right;" >{{$det->tramites}}</td>
-                    <td style="width: 1%; text-align: right; font-weight: bold;">{{$det->trafico}}</td>
-                    <td style="width: 1%; text-align: right; font-weight: bold;">{{$det->cotizaciones}}</td>
-                    <td style="width: 1%; text-align: right; font-weight: bold;">{{$det->reservas}}</td>
-                    <td style="width: 1%; text-align: right; font-weight: bold;">{{$det->facturas}}</td>
+                    <td style="width: 1%; text-align: right; font-weight: bold; background-color: rgba(214, 245, 237, 0.2);">{{$det->trafico}}</td>
+                    <td style="width: 1%; text-align: right; font-weight: bold; background-color: rgba(214, 245, 237, 0.2);">{{$det->cotizaciones}}</td>
+                    <td style="width: 1%; text-align: right; font-weight: bold; background-color: rgba(214, 245, 237, 0.2);">{{$det->reservas}}</td>
+                    <td style="width: 1%; text-align: right; font-weight: bold; background-color: rgba(214, 245, 237, 0.2);">{{$det->facturas}}</td>
                     
                     
                   </tr>
@@ -65,6 +88,11 @@
                     
 
 <script type="text/javascript">
+
+
+
+
+
 $('#datatable1').DataTable( { "language": {
             
               "sProcessing":     "Procesando...",
@@ -99,4 +127,6 @@ $('#datatable1').DataTable( { "language": {
         // "lengthMenu": [[ -1,10, 25, 50, 100], ["TODO",10, 25, 50, 100]],
         "lengthMenu": [[-1], ["TODO"]]
     } );
+
+
 </script>
