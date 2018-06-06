@@ -245,7 +245,7 @@ ul.msg_list li a .times {
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Como se entero? </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control observaciones" name="txt_como" required="">
+                          <select class="form-control observaciones txt_como" name="txt_como"  id="txt_como">
                             <option disabled selected>¿Como se enteró?</option>
                             <option value="Conoce la Marca">Conoce la Marca</option>
                             <option value="Periodico">Periodico</option>
@@ -541,17 +541,20 @@ function acepta_clientes() {
       $('#myModal').modal('show');
       $('.ejecutivo').show();
       $('.req_vendedor').attr('required',true);
+      $('.txt_como').attr('required',true);
     }
     else
     {
       if(id_motivo ==5){
         $('.ejecutivo').show();
         $('.req_vendedor').attr('required',true);
+        $('.txt_como').attr('required',true);
       }
       else
       {
         $('.ejecutivo').hide();
         $('.req_vendedor').attr('required',false);
+        $('.txt_como').attr('required',false);
       }
     }
 
