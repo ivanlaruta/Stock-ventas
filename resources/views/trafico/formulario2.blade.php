@@ -245,8 +245,9 @@ ul.msg_list li a .times {
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Como se entero? </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control observaciones" name="txt_otros" required="">
+                          <select class="form-control observaciones" name="txt_como" required="">
                             <option disabled selected>¿Como se enteró?</option>
+                            <option value="Conoce la Marca">Conoce la Marca</option>
                             <option value="Television">Televisión</option>
                             <option value="Radio">Radio</option>
                             <option value="Internet">Internet</option>
@@ -263,10 +264,7 @@ ul.msg_list li a .times {
                       <div class="form-group"></div>
                       <div class="form-group"></div>
                       <div class="ln_solid"></div>
-                      <div class="form-group"></div>
-
-                   
-               
+                      <div class="form-group"></div>                  
               </div>
             </div>
           </div>
