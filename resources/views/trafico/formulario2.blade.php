@@ -248,6 +248,7 @@ ul.msg_list li a .times {
                           <select class="form-control observaciones" name="txt_como" required="">
                             <option disabled selected>¿Como se enteró?</option>
                             <option value="Conoce la Marca">Conoce la Marca</option>
+                            <option value="Periodico">Periodico</option>
                             <option value="Television">Televisión</option>
                             <option value="Radio">Radio</option>
                             <option value="Internet">Internet</option>
