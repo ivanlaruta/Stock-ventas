@@ -245,8 +245,9 @@ ul.msg_list li a .times {
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Como se entero? </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control observaciones txt_como" name="txt_como"  id="txt_como">
-                            <option disabled selected>¿Como se enteró?</option>
+                          <select class="form-control txt_como" name="txt_como"  id="txt_como" required="required">
+                            {{-- <option disabled selected>¿Como se enteró?</option> --}}
+                            <option value="">Selecione una opcion</option>
                             <option value="Conoce la Marca">Conoce la Marca</option>
                             <option value="Periodico">Periodico</option>
                             <option value="Television">Televisión</option>
@@ -265,7 +266,7 @@ ul.msg_list li a .times {
                       <div class="form-group"></div>
                       <div class="form-group"></div>
                       <div class="ln_solid"></div>
-                      <div class="form-group"></div>                  
+                      <div class="form-group"></div>
               </div>
             </div>
           </div>
@@ -541,20 +542,17 @@ function acepta_clientes() {
       $('#myModal').modal('show');
       $('.ejecutivo').show();
       $('.req_vendedor').attr('required',true);
-      $('.txt_como').attr('required',true);
     }
     else
     {
       if(id_motivo ==5){
         $('.ejecutivo').show();
         $('.req_vendedor').attr('required',true);
-        $('.txt_como').attr('required',true);
       }
       else
       {
         $('.ejecutivo').hide();
         $('.req_vendedor').attr('required',false);
-        $('.txt_como').attr('required',false);
       }
     }
 
@@ -702,6 +700,11 @@ function acepta_clientes() {
    minimumResultsForSearch: -1,
    placeholder: 'Seleccione un vendedor (*)'
  });
+
+ //  $('.txt_como').select2({
+ //   minimumResultsForSearch: -1,
+ //   placeholder: 'Seleccione una opcion (*)'
+ // });
 
 } );
 
