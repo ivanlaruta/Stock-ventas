@@ -24,52 +24,58 @@
                       <br />
  
                       <div class="table-responsive">
-            <table id="datatable1" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+            <table id="datatable1" class="table table-striped table-bordered {{-- dt-responsive --}} nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
+                  
+                  <th>TIPO CLIENTE</th>
                   <th>CLIENTE</th>
                   <th>GENERO</th>
                   <th>EDAD</th>
                   <th>TELEFONO</th>
-                  <th>TELEFONO FIJO</th>
-                  <th>CORREO</th>
-                  <th>CI</th>
-                  <th>EXP</th>
+                  {{-- <th>TELEFONO FIJO</th> --}}
+                  {{-- <th>CORREO</th> --}}
+                  {{-- <th>CI</th> --}}
+                  {{-- <th>EXP</th> --}}
                   <th>MOTIVO</th>
                   <th>CATEGORIA</th>
+                  <th>MARCA</th>
                   <th>MODELO</th>
-                  <th>OBS</th>
+                  {{-- <th>OBS</th> --}}
                   <th>REGIONAL</th>
                   <th>SUCURSAL</th>
                   <th>FECHA</th>
                   <th>EJECUTIVO</th>
                   <th>ANFITRION</th>
-                  <th>COD TRAFICO</th>
                   <th>COMO SE ENETERO?</th>
+                  {{-- <th>COD TRAFICO</th> --}}
                 </tr>
               </thead>
               <tbody>
                 @foreach($reporte as $det)
                   <tr>
+                    
+                    <td>{{$det->tipo_cliente}}</td>
                     <td>@if(is_null($det->nombre)) sin dato @else {{$det->nombre}} @endif</td>
                     <td>{{$det->genero}}</td>
                     <td>{{$det->rango_edad}}</td>
                     <td>{{$det->telefono}}</td>
-                    <td>{{$det->telefono_aux}}</td>
-                    <td>{{$det->correo}}</td>
-                    <td>{{$det->ci}}</td>
-                    <td>{{$det->expedido}}</td>
+                    {{-- <td>{{$det->telefono_aux}}</td> --}}
+                    {{-- <td>{{$det->correo}}</td> --}}
+                    {{-- <td>{{$det->ci}}</td> --}}
+                    {{-- <td>{{$det->expedido}}</td> --}}
                     <td>{{$det->motivo}}</td>
                     <td>{{$det->categoria}}</td>
                     <td>{{$det->modelo}}</td>
-                    <td>{{$det->obs_modelo}}</td>
+                    <td>{{$det->descripcion}}</td>
+                    {{-- <td>{{$det->obs_modelo}}</td> --}}
                     <td>{{$det->regional}}</td>
                     <td>{{$det->sucursal}}</td>
                     <td>{{$det->fecha}}</td>
                     <td>{{$det->ejecutivo}}</td>
                     <td>{{$det->anfitrion}}</td>
-                    <td>{{$det->visita}}</td>
                     <td>{{$det->nota}}</td>
+                    {{-- <td>{{$det->visita}}</td> --}}
                     
                   </tr>
                 @endforeach

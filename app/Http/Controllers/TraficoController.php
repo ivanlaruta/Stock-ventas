@@ -1402,7 +1402,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
     public function gen_rep_tra() 
     {
         $sucursales = DB::select(  DB::raw("select distinct regional,id_sucursal,sucursal  from detalle_modelos order by 1,3"));
-        $modelos = DB::select(  DB::raw("select distinct id_modelo,modelo  from detalle_modelos order by 2"));
+        $modelos = DB::select(  DB::raw("select distinct id_modelo,descripcion as modelo  from detalle_modelos order by 2"));
         return view('trafico.reportes.totalizador_busca')
         ->with('sucursales',$sucursales)
         ->with('modelos',$modelos)
