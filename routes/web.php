@@ -635,6 +635,11 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.reporte2'
 	]);
 
+	route::get('trafico/reporte3',[
+		'uses' =>'TraficoController@reporte3',
+		'as'   =>	'trafico.reporte3'
+	]);
+
 	route::get('trafico/totalizador',[
 		'uses' =>'TraficoController@totalizador',
 		'as'   =>	'trafico.totalizador'

@@ -1198,6 +1198,186 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
        }      
     }
 
+    public function reporte3(Request $request)
+    {
+        // dd($request->all());
+
+        //dd(TraficoController::fecha_fin(3));
+        $año_actual = Carbon::now('America/La_Paz') -> year;
+        $mes_actual = Carbon::now('America/La_Paz') -> month;
+        $hoy = Carbon::now('America/La_Paz')->format('d/m/Y');
+
+        if(is_null($request->mes) || $request->mes=='14')
+        {
+
+            if(is_null($request->fecha1))
+            {
+                $mes=$mes_actual;
+                $f_ini = TraficoController::fecha_inicio($mes);
+                $f_fin = TraficoController::fecha_final($mes);
+                $desc_mes=TraficoController::descripcion_mes($mes);
+            }
+            else
+            {
+                $fechas = explode("-", $request->fecha1);
+                // dd($fechas);
+                $f_ini = $fechas[0];
+                $f_fin = $fechas[1];
+                $desc_mes=$f_ini.'-'.$f_fin;
+                $mes='14';
+            }
+        }
+        else
+        {
+            $mes=$request->mes;
+            $f_ini = TraficoController::fecha_inicio($mes);
+            $f_fin = TraficoController::fecha_final($mes);
+            $desc_mes=TraficoController::descripcion_mes($mes);
+        }
+        
+        if(is_null($request->pantalla) )
+        {
+            $sucu= Auth::user()->id_ubicacion ;
+            $aux_rg = Trf_Sucursal::where('id',$sucu)->pluck('regional');
+            $regional = $aux_rg[0];
+            
+            $aux_su = Trf_Sucursal::where('id',$sucu)->pluck('nom_sucursal');
+            $sucursal = $aux_su[0];
+            
+            $request->pantalla='sucursal';
+            $pantalla=$request->pantalla;
+            $total_promo=Trf_Visita::where('id_motivo','16')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+            $total_vehiculos_ty=Trf_Visita::where('id_motivo','1')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+            $total_vehiculos_lx=Trf_Visita::where('id_motivo','2')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+            $total_vehiculos_hn=Trf_Visita::where('id_motivo','3')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+            $total_motos=Trf_Visita::where('id_motivo','4')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+            $total_tramites=Trf_Visita::where('id_motivo','5')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+
+            $total_repuestos=Trf_Visita::where('id_motivo','6')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+            $total_servicios=Trf_Visita::where('id_motivo','7')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+            $total_licitaciones=Trf_Visita::where('id_motivo','8')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+            $total_montacargas=Trf_Visita::where('id_motivo','9')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+            $total_pesada=Trf_Visita::where('id_motivo','10')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+            $total_llantas=Trf_Visita::where('id_motivo','11')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+            $total_agricola=Trf_Visita::where('id_motivo','12')->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+            $total_visitas=Trf_Visita::where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)->where('id_sucursal',$sucu)->count();
+            $totales=array(
+                'promos' => $total_promo,
+                'vehiculos_ty' => $total_vehiculos_ty,
+                'vehiculos_lx' => $total_vehiculos_lx,
+                'vehiculos_hn' => $total_vehiculos_hn,
+                'motos' => $total_motos,
+                'tramites' => $total_tramites,
+                'repuestos' => $total_repuestos,
+                'servicios' => $total_servicios,
+                'licitaciones' => $total_licitaciones,
+                'montacargas' => $total_montacargas,
+                'pesada' => $total_pesada,
+                'llantas' => $total_llantas,
+                'agricola' => $total_agricola,
+                'total' => $total_visitas,
+                );
+
+            // dd($totales['vehiculos']);           
+
+            $consolidado = DB::select( DB::raw("
+                select distinct ej.id_sucursal,ej.id AS 'id_ejecutivo',ej.id_teros,ej.nombre,ej.paterno,ej.nom_teros,
+                (select count(vet.id) from trf_visitas vet where  vet.id_sucursal=ej.id_sucursal and vet.id_ejecutivo = ej.id AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as totales,  
+                (select count(vet.id) from trf_visitas vet where vet.id_motivo='16' and vet.id_sucursal=ej.id_sucursal and vet.id_ejecutivo = ej.id AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as promo,  
+                (select count(vet.id) from trf_visitas vet where vet.id_motivo='1' and vet.id_sucursal=ej.id_sucursal and vet.id_ejecutivo = ej.id AND cast(vet.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_t,  
+                (select count(vel.id) from trf_visitas vel where vel.id_motivo='2' and vel.id_sucursal=ej.id_sucursal and vel.id_ejecutivo = ej.id AND cast(vel.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_l,  
+                (select count(veh.id) from trf_visitas veh where veh.id_motivo='3' and veh.id_sucursal=ej.id_sucursal and veh.id_ejecutivo = ej.id AND cast(veh.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as vehiculos_h,  
+                (select count(ya.id) from trf_visitas ya where ya.id_motivo='4' and ya.id_sucursal=ej.id_sucursal and ya.id_ejecutivo = ej.id AND cast(ya.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as yamaha,  
+                (select count(tr.id) from trf_visitas tr where tr.id_motivo='5' and tr.id_sucursal=ej.id_sucursal and tr.id_ejecutivo = ej.id AND cast(tr.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as tramites,  
+                null as repuestos,  
+                null as servicios,  
+                null as licitaciones,  
+                null as montacargas,  
+                null as pesada,  
+                null as llantas,  
+                null as agricola  
+                ,(select COUNT (vc.NRO_COTIZACION) from v_cot vc where vc.FECHA_COTIZACION BETWEEN '".$f_ini."' and '".$f_fin."'  and vc.cod_vendedor = ej.id_teros) as cotizaciones  
+                ,(select COUNT (rs.CHASIS) from v_res rs where rs.FECHA_RESERVA BETWEEN '".$f_ini."' and '".$f_fin."' and rs.COD_VENDEDOR = ej.id_teros) as reservas  
+                , (select COUNT (vm.id) 
+                from trf_visita_modelo vm
+                join trf_visitas as vv on vm.id_visita = vv.id
+                where vv.id_ejecutivo = ej.id
+                and vv.id_sucursal=ej.id_sucursal
+                and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
+                FROM   trf_ejecutivos ej
+                LEFT JOIN trf_visitas as vi on ej.id= vi.id_ejecutivo
+                where ej.id_sucursal = '".$sucu."'
+
+                union all
+                select vi.id_sucursal,vi.id_ejecutivo,'','-No aginado-','','-No aginado-',count(vi.id),null,null,null,null,null,null,
+                (select count(re.id) from trf_visitas re where re.id_motivo='6' and re.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(re.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as repuestos,
+                (select count(se.id) from trf_visitas se where se.id_motivo='7' and se.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(se.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as servicios,
+                (select count(li.id) from trf_visitas li where li.id_motivo='8' and li.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(li.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as licitaciones,
+                (select count(mo.id) from trf_visitas mo where mo.id_motivo='9' and mo.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(mo.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as montacargas,
+                (select count(pe.id) from trf_visitas pe where pe.id_motivo='10' and pe.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(pe.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as pesada,
+                (select count(ll.id) from trf_visitas ll where ll.id_motivo='11' and ll.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(ll.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as llantas,
+                (select count(ag.id) from trf_visitas ag where ag.id_motivo='12' and ag.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(ag.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as agricola
+                ,'','',''
+                FROM trf_visitas vi
+                where vi.id_sucursal = '".$sucu."'
+                AND cast(vi.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
+                and vi.id_ejecutivo is null
+                GROUP BY vi.id_sucursal,vi.id_ejecutivo
+
+            "));
+
+            // dd($consolidado);
+            return view('trafico.reportes.index2')
+
+            ->with('f_ini',$f_ini)
+            ->with('f_fin',$f_fin)
+            ->with('totales',$totales)
+            ->with('consolidado',$consolidado)
+            ->with('request',$request)
+            ->with('desc_mes',$desc_mes)
+            ->with('año',$año_actual)
+            ->with('hoy',$hoy)
+            ->with('mes',$mes)
+            ->with('regional',$regional)
+            ->with('sucursal',$sucursal)
+            ;
+        }  
+
+       if($request->pantalla=='detalle')
+       {
+            $aux_rg = Trf_Sucursal::where('id',$request->sucursal)->pluck('regional');
+            $regional = $aux_rg[0];
+            
+            $aux_su = Trf_Sucursal::where('id',$request->sucursal)->pluck('nom_sucursal');
+            $sucursal = $aux_su[0];
+            if(is_null($request->id_ejecutivo))
+            {
+                $visitas = Trf_Visita::where('id_ejecutivo',null)
+                ->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)
+                ->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)
+                ->where('id_sucursal',$request->sucursal)
+                ->get();
+            }
+            else
+            {
+                $visitas = Trf_Visita::where('id_ejecutivo',$request->id_ejecutivo)
+                ->where(DB::raw('CAST(fecha AS date)'),'>=',$f_ini)
+                ->where(DB::raw('CAST(fecha AS date)'),'<=',$f_fin)
+                ->where('id_sucursal',$request->sucursal)
+                ->get();
+            }
+            return view('trafico.reportes.detalle')
+            ->with('request',$request)
+            ->with('desc_mes',$desc_mes)
+            ->with('año',$año_actual)
+            ->with('hoy',$hoy)
+            ->with('mes',$mes)
+            ->with('regional',$regional)
+            ->with('sucursal',$sucursal)
+            ->with('visitas',$visitas);
+       }      
+    }
+
     public function create()
     {
         //
@@ -1394,14 +1574,19 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             'exp'=>$tel->expedido,
             'correo'=>$tel->correo
         ]);
-
-        
     }
 
 
     public function gen_rep_tra() 
-    {
-        $sucursales = DB::select(  DB::raw("select distinct regional,id_sucursal,sucursal  from detalle_modelos order by 1,3"));
+    {   
+        if (Auth::user()->rol == '102'){
+            $id_succ=Auth::user()->id_ubicacion;
+            $sucursales = DB::select(  DB::raw("select distinct regional,id_sucursal,sucursal  from detalle_modelos where id_sucursal = '".$id_succ."' order by 1,3 "));
+        }
+        else{
+
+            $sucursales = DB::select(  DB::raw("select distinct regional,id_sucursal,sucursal  from detalle_modelos order by 1,3"));
+        }
         $modelos = DB::select(  DB::raw("select distinct id_modelo,descripcion as modelo  from detalle_modelos order by 2"));
         return view('trafico.reportes.totalizador_busca')
         ->with('sucursales',$sucursales)
@@ -1411,8 +1596,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
 
     public function res_gen_rep_tra(Request $request) 
     {
-         // dd($request->all());
-
+          // dd($request->all());
             $fechas = explode("-", $request->fecha);
                 $f_ini = $fechas[0];
                 $f_fin = $fechas[1];
@@ -1468,7 +1652,6 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
 
     public function table_resultado() 
     {    
-
         $reporte = Trf_v_modelos::select(['nombre','genero','rango_edad','telefono','telefono_aux','correo','ci','expedido','motivo','categoria','modelo','obs_modelo','regional','sucursal','fecha','ejecutivo','anfitrion','visita']);
         return Datatables::of($reporte)->make(true);
     }
@@ -1477,15 +1660,22 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
 
     public function todo_trafico()
     {
-        $sucursales = DB::select(  DB::raw("select distinct regional,id_sucursal,sucursal  from detalle_visitas order by 1,3"));
+        if (Auth::user()->rol == '102'){
+            $id_succ=Auth::user()->id_ubicacion;
+            $sucursales = DB::select(  DB::raw("select distinct regional,id_sucursal,sucursal  from detalle_visitas where id_sucursal = '".$id_succ."' order by 1,3"));
+        }
+        else{
+
+            $sucursales = DB::select(  DB::raw("select distinct regional,id_sucursal,sucursal  from detalle_visitas order by 1,3"));
+        }
         
         return view('trafico.reportes.todo_trafico')
         ->with('sucursales',$sucursales)
         ;
       
-        return 
+        // return 
        
-        ;
+        // ;
     }
 
     public function res_rep_tra(Request $request) 
@@ -1651,8 +1841,6 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
        ;
     }
 
-
-    
     public function nuevo_ant()
     {
         $edades = Trf_Parametrica::where('tabla','rango_edades')->get();
@@ -1683,8 +1871,14 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
 
     public function rep_vendedor(Request $request)
     {
-        $sucursales = DB::select(  DB::raw("select distinct regional,id_sucursal,sucursal  from detalle_visitas order by 1,3"));
-         
+        if (Auth::user()->rol == '102'){
+            $id_succ=Auth::user()->id_ubicacion;
+            $sucursales = DB::select(  DB::raw("select distinct regional,id_sucursal,sucursal  from detalle_visitas where id_sucursal = '".$id_succ."' order by 1,3"));
+            
+        }
+        else{
+            $sucursales = DB::select(  DB::raw("select distinct regional,id_sucursal,sucursal  from detalle_visitas order by 1,3"));
+        }
         return view('trafico.reportes.rep_vendedor')
         ->with('sucursales',$sucursales)
         ;
