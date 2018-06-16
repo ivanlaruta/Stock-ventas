@@ -617,7 +617,7 @@ class TraficoController extends Controller
 
             $totalizador = DB::select(  DB::raw("
 
-            select dm.id_modelo, dm.modelo,
+            select dm.id_modelo, dm.descripcion as modelo,
             COUNT (*) as total,
              (select COUNT (*) as expr1 from detalle_modelos a where a.id_modelo=dm.id_modelo and a.regional = 'LA PAZ' and cast(a.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as LP,
              (select COUNT (*) as expr1 from detalle_modelos b where b.id_modelo=dm.id_modelo and b.regional = 'SANTA CRUZ' and cast(b.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as SC,
@@ -626,8 +626,8 @@ class TraficoController extends Controller
              (select COUNT (*) as expr1 from detalle_modelos e where e.id_modelo=dm.id_modelo and e.regional = 'POTOSI' and cast(e.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as PT
             from detalle_modelos dm
             where cast(dm.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
-            group by dm.id_modelo, dm.modelo
-            order by dm.modelo
+            group by dm.id_modelo, dm.descripcion 
+            order by dm.descripcion 
             "));
        
        
@@ -1763,11 +1763,11 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             "));
         
             $totalizador_suc = DB::select(  DB::raw("
-            select dm.id_sucursal,dm.sucursal,dm.id_modelo, dm.modelo,COUNT (*) as total
+            select dm.id_sucursal,dm.sucursal,dm.id_modelo, dm.descripcion as modelo,COUNT (*) as total
             from detalle_modelos dm
             where cast(dm.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
-            group by dm.id_sucursal,dm.sucursal,dm.id_modelo, dm.modelo
-            order by dm.modelo
+            group by dm.id_sucursal,dm.sucursal,dm.id_modelo, dm.descripcion
+            order by dm.descripcion
             "));
        
        
