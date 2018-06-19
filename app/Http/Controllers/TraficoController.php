@@ -1889,7 +1889,20 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
         if (Auth::user()->rol == '102'){
             $id_succ=Auth::user()->id_ubicacion;
             
-            $vendedores = DB::select(  DB::raw("select id,id_sucursal,nombre+' '+paterno as nombre  from trf_ejecutivos where id_sucursal = '".$id_succ."' order by 1"));
+            $sucursales_regional = DB::select(  DB::raw(" SELECT id,nom_sucursal FROM v_ubicaciones WHERE regional = (select regional from v_ubicaciones where id ='".$id_succ."') order by 1"));
+
+            // dd($sucursales_regional);
+            $sucursales = "";
+           
+            for ($i=0; $i < sizeof($sucursales_regional); $i++) {
+               $sucursales = $sucursales."'".$sucursales_regional[$i]->id."'";
+               if($i < (sizeof($sucursales_regional))-1){
+                $sucursales = $sucursales.",";
+               }
+            }    
+
+            // dd($sucursucursalessales);
+            $vendedores = DB::select(  DB::raw("select id,id_sucursal,nombre+' '+paterno as nombre  from trf_ejecutivos where id_sucursal IN (".$sucursales.") order by 1"));
             
         }
         else{
