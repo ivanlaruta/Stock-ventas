@@ -1883,6 +1883,24 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
         ->with('sucursales',$sucursales)
         ;
     }
+
+    public function traf_vendedor(Request $request)
+    {
+        if (Auth::user()->rol == '102'){
+            $id_succ=Auth::user()->id_ubicacion;
+            
+            $vendedores = DB::select(  DB::raw("select id,id_sucursal,nombre+' '+paterno as nombre  from trf_ejecutivos where id_sucursal = '".$id_succ."' order by 1"));
+            
+        }
+        else{
+            $vendedores = DB::select(  DB::raw("select id,id_sucursal,nombre+' '+paterno as nombre  from trf_ejecutivos order by 1"));
+        }
+        return view('trafico.reportes.traf_vendedor')
+        ->with('vendedores',$vendedores)
+        ;
+    }
+
+
      public function res_rep_vendedor(Request $request)
     {
         // dd($request->all());
@@ -1960,6 +1978,47 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
         ->with('sucursales',$des_sucursales)
         ;
     }
+
+     public function res_traf_vendedor(Request $request)
+    {
+         // dd($request->all());
+         $fechas = explode("-", $request->fecha);
+                $f_ini = $fechas[0];
+                $f_fin = $fechas[1];
+
+            $vendedores = "";
+           
+            for ($i=0; $i < sizeof($request->vendedores); $i++) {
+               $vendedores = $vendedores."'".$request->vendedores[$i]."'";
+               if($i < (sizeof($request->vendedores))-1){
+                $vendedores = $vendedores.",";
+               }
+            }          
+        
+            $desc_vendedores = DB::select(  DB::raw("
+            select id,id_sucursal,nombre+' '+paterno as nombre  from trf_ejecutivos 
+            where id IN (".$vendedores.")
+            order by 1
+            "));
+
+
+            $reporte = DB::select(  DB::raw("
+            select dm.*
+            from detalle_modelos dm
+            where (cast(dm.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."')
+            and dm.id_ejecutivo IN (".$vendedores.")
+            order by dm.fecha
+            "));
+
+            // dd($reporte);
+
+         // dd($reporte);
+
+        return view('trafico.reportes.traf_vendedor_result')
+        ->with('reporte',$reporte)
+        ->with('f_ini',$f_ini)
+        ->with('f_fin',$f_fin)
+        ->with('vendedores',$desc_vendedores)
+        ;
+    }
 }
-
-

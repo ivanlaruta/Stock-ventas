@@ -730,9 +730,19 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.rep_vendedor'
 	]);
 
+	route::get('trafico/traf_vendedor',[
+		'uses' =>'TraficoController@traf_vendedor',
+		'as'   =>	'trafico.traf_vendedor'
+	]);
+
 	route::get('trafico/res_rep_vendedor',[
 		'uses' =>'TraficoController@res_rep_vendedor',
 		'as'   =>	'trafico.res_rep_vendedor'
+	]);
+
+	route::get('trafico/res_traf_vendedor',[
+		'uses' =>'TraficoController@res_traf_vendedor',
+		'as'   =>	'trafico.res_traf_vendedor'
 	]);
 
 	route::resource('trafico','TraficoController');

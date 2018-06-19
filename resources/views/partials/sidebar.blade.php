@@ -142,6 +142,7 @@
                        <li><a href="{{ route('trafico.detalle_mod')}}">Totalizador de modelos</a></li>
                        {{-- <li><a href="{{ route('trafico.clientes')}}">Lista de Clientes</a></li> --}}
                        <li><a href="{{ route('trafico.rep_vendedor')}}">Reporte por Vendedor</a></li>
+                       <li><a href="{{ route('trafico.traf_vendedor')}}">Trafico por Vendedor</a></li>
                        <li><a href="{{ route('trafico.vendedores')}}">Lista de Vendedores</a></li>
                        @endif
                        @if(Auth::user()->rol=='1')
@@ -155,6 +156,7 @@
                        <li><a href="{{ route('trafico.gen_rep_tra')}}">Reporte por modelos</a></li>
                        
                        <li><a href="{{ route('trafico.rep_vendedor')}}">Reporte por Vendedor</a></li>
+                       <li><a href="{{ route('trafico.traf_vendedor')}}">Trafico por Vendedor</a></li>
                        
                        @endif
                       
