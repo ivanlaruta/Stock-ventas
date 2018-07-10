@@ -254,6 +254,7 @@ ul.msg_list li a .times {
                             <option value="Radio">Radio</option>
                             <option value="Internet">Internet</option>
                             <option value="Referencia">Referencia</option>
+                            <option value="Feria">Feria</option>
                           </select>
                         </div>
                       </div>
