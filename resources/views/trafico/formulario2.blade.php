@@ -529,14 +529,14 @@ function acepta_clientes() {
     $('.modelos').attr('checked',false);
     $('.ver').hide();
     $('.categorias').hide();
-    if(id_motivo < 5 || id_motivo == 16){
+    if(id_motivo < 5 || id_motivo == 16 || id_motivo == 17 ){
        $('.observaciones').show();
     }
     else{
       $('.observaciones').hide();
     }
 
-    if(id_motivo < 5 || id_motivo == 16){
+    if(id_motivo < 5 || id_motivo == 16 || id_motivo == 17 ){
       // alert('mostrar clientes');
       $('.ver_'+id_motivo).show();
       $('.categoria_'+id_motivo).show();

@@ -372,6 +372,10 @@ Route::group(['prefix'=>'metas','middleware'=>'auth'],function(){
 	]);
 });
 
+Route::group(['prefix'=>'tiempos','middleware'=>'auth'],function(){
+	route::resource('tiempos','TiemposController');
+});
+
 Route::group(['prefix'=>'seguimiento','middleware'=>'auth'],function(){
 	route::resource('seguimiento','SeguimientoController');
 });

@@ -150,7 +150,7 @@ $(".DESCRIPCION").keyup(function(){
       document.getElementById('TITULO').innerHTML = tit;
   });
 
-$('#datatable1').DataTable( { "language": esp ,"dom": "ti"} );
+$('#datatable1').DataTable( { "language": esp ,"dom": "ti", "lengthMenu": [[-1,10, 25, 50, 100,], ["TODO",10, 25, 50, 100]],} );
 // $('#datatable2').DataTable( { "language": esp , "lengthMenu": [[8,15, 25, 50, 100, -1], [8,15, 25, 50, 100, "TODO"]]} );
 
 
