@@ -372,7 +372,7 @@ class TraficoController extends Controller
             $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;
             $nuevo_visita -> save();
 
-            if($request->id_motivo=='1' || $request->id_motivo=='2' || $request->id_motivo=='3' || $request->id_motivo=='4' || $request->id_motivo=='16' )
+            if($request->id_motivo=='1' || $request->id_motivo=='2' || $request->id_motivo=='3' || $request->id_motivo=='4' || $request->id_motivo=='16' || $request->id_motivo=='17' )
             {
                 for ($i=0; $i < sizeof($request->modelos); $i++) 
                 {
@@ -417,7 +417,7 @@ class TraficoController extends Controller
                 $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;
                 $nuevo_visita -> save();
 
-                if($request->id_motivo=='1' || $request->id_motivo=='2' || $request->id_motivo=='3' || $request->id_motivo=='4' || $request->id_motivo=='16' )
+                if($request->id_motivo=='1' || $request->id_motivo=='2' || $request->id_motivo=='3' || $request->id_motivo=='4' || $request->id_motivo=='16' || $request->id_motivo=='17' )
                 {
                     for ($i=0; $i < sizeof($request->modelos); $i++) 
                     {
@@ -512,7 +512,7 @@ class TraficoController extends Controller
             $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;
             $nuevo_visita -> save();
 
-            if($request->motivo=='1' || $request->motivo=='2' || $request->motivo=='3' || $request->motivo=='4' || $request->motivo=='16')
+            if($request->motivo=='1' || $request->motivo=='2' || $request->motivo=='3' || $request->motivo=='4' || $request->motivo=='16' || $request->motivo=='17')
             {
                 for ($i=0; $i < sizeof($request->modelos); $i++) 
                 {
