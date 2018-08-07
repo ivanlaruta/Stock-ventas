@@ -372,9 +372,6 @@ Route::group(['prefix'=>'metas','middleware'=>'auth'],function(){
 	]);
 });
 
-Route::group(['prefix'=>'tiempos','middleware'=>'auth'],function(){
-	route::resource('tiempos','TiemposController');
-});
 
 Route::group(['prefix'=>'seguimiento','middleware'=>'auth'],function(){
 	route::resource('seguimiento','SeguimientoController');
@@ -618,6 +615,7 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 	route::get('trafico/add_visita',[
 		'uses' =>'TraficoController@add_visita',
 		'as'   =>	'trafico.add_visita'
+
 	]);
 	route::get('trafico/add_visita2',[
 		'uses' =>'TraficoController@add_visita2',
@@ -803,4 +801,14 @@ Route::group(['prefix'=>'presidencia','middleware'=>'auth'],function(){
 
 	route::resource('presidencia','ImportacionesController');
 
+});
+
+Route::group(['prefix'=>'tiempos','middleware'=>'auth'],function(){
+
+	route::get('tiempos/reporte',[
+		'uses' =>'TiemposController@reporte',
+		'as'   =>	'tiempos.reporte'
+	]);
+
+	route::resource('tiempos','TiemposController');
 });

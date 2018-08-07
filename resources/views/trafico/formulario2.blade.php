@@ -245,16 +245,14 @@ ul.msg_list li a .times {
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Como se entero? </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control txt_como" name="txt_como"  id="txt_como" required="required">
+                            
+                          <select class="form-control txt_como req_vendedor" name="txt_como"  id="txt_como" >
                             {{-- <option disabled selected>¿Como se enteró?</option> --}}
                             <option value="">Selecione una opcion</option>
-                            <option value="Conoce la Marca">Conoce la Marca</option>
-                            <option value="Periodico">Periodico</option>
-                            <option value="Television">Televisión</option>
-                            <option value="Radio">Radio</option>
-                            <option value="Internet">Internet</option>
-                            <option value="Referencia">Referencia</option>
-                            <option value="Feria">Feria</option>
+                            @foreach($medios as $det)
+                              <option value="{{$det->descripcion}}">{{$det->descripcion}}</option>
+                            @endforeach
+                            
                           </select>
                         </div>
                       </div>

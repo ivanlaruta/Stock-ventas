@@ -125,8 +125,8 @@
         "bLengthChange" : false,
         
         
-        // "dom": "Blfrtip",
-        "dom": "Brti",
+         "dom": "Blfrti",
+        //"dom": "Brti",
         
        "buttons": [ 'copy', 'excel'],
 

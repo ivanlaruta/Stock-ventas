@@ -68,6 +68,7 @@ class TraficoController extends Controller
             $motivos =Trf_Motivo_Encuesta::where('id_encuesta',$id_encuesta)->orderBy('observaciones','ASC')->get();
             $clientes = Trf_Cliente::all();
             $edades = Trf_Parametrica::where('tabla','rango_edades')->get();
+            $medios = Trf_Parametrica::where('tabla','medios')->get();
             $motivo_Categoria=Trf_Motivo_Categoria::
             join('trf_categorias', 'trf_categorias.id', '=', 'trf_motivo_categoria.id_categoria')
             ->orderBy('trf_categorias.observaciones', 'ASC')->get();
@@ -79,6 +80,7 @@ class TraficoController extends Controller
             ->with('motivos',$motivos)
             ->with('clientes',$clientes)
             ->with('edades',$edades)
+            ->with('medios',$medios)
             ->with('motivo_Categoria',$motivo_Categoria)
             ->with('modelos',$modelos)
             ->with('vendedores',$vendedores);

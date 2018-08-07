@@ -10,51 +10,170 @@ use App\V_stock_todo;
 use App\Cotizacion;
 use App\Reserva;
 use App\Factura;
-
+use Carbon\Carbon;
 class TiemposController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $regionales =DB::select( DB::raw("
-                select REG_ASIGNADA,AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
+        $inicio_mes=Carbon::now('America/La_Paz')->startOfMonth()->format('d/m/Y');   //inicio de semana
+        $hoy = Carbon::now('America/La_Paz')->format('d/m/Y');  //fecha actual
+        return view('reportes.tiempos.index') 
+        ->with('inicio_mes',$inicio_mes)
+        ->with('hoy',$hoy)
+        ;
+    }
+
+ public function reporte(Request $request)
+    {
+         // dd($request->all());
+
+         $fechas = explode("-", $request->fecha);
+                // dd($fechas);
+                $f_ini = $fechas[0];
+                $f_fin = $fechas[1];
+
+         if($request->pantalla == 'nacional')
+         {
+             $result =DB::select( DB::raw("
+                select 
+                REG_ASIGNADA
+                ,AVG([cotizacion_contrato-adenda]) AS TIEMPO_COT_CONTR
+                ,AVG(contr_res) AS TIEMPO_CONTR_RES
+                ,AVG(reserva_factura) AS TIEMPO_RES_FAC
+                ,AVG(factura_nota) AS TIEMPO_FAC_NOTA
+                ,AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
                 from v_tiempos 
                 where COD_MARCA = 'T'
+                and f_nota between '".$f_ini."' and '".$f_fin."'
                 group by REG_ASIGNADA
             "));
+         }
 
-        $sucursales =DB::select( DB::raw("
-                select REG_ASIGNADA,SUCURSAL, AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
+         if($request->pantalla == 'regional')
+         {
+            // dd($request->all());
+             $result =DB::select( DB::raw("
+                select 
+                REG_ASIGNADA,SUC_ASIGNADA
+                ,AVG([cotizacion_contrato-adenda]) AS TIEMPO_COT_CONTR
+                ,AVG(contr_res) AS TIEMPO_CONTR_RES
+                ,AVG(reserva_factura) AS TIEMPO_RES_FAC
+                ,AVG(factura_nota) AS TIEMPO_FAC_NOTA
+                ,AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
                 from v_tiempos 
                 where COD_MARCA = 'T'
-                group by REG_ASIGNADA,SUCURSAL
-                ORDER BY 1
+                and f_nota between '".$f_ini."' and '".$f_fin."'
+                and REG_ASIGNADA = '".$request->regional."'
+                group by REG_ASIGNADA,SUC_ASIGNADA
             "));
-
-        $vendedores =DB::select( DB::raw("
-                select REG_ASIGNADA,SUCURSAL,VENDEDOR, AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
+         }
+         if($request->pantalla == 'sucursal')
+         {
+            // dd($request->all());
+             $result =DB::select( DB::raw("
+                select 
+                REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR
+                ,AVG([cotizacion_contrato-adenda]) AS TIEMPO_COT_CONTR
+                ,AVG(contr_res) AS TIEMPO_CONTR_RES
+                ,AVG(reserva_factura) AS TIEMPO_RES_FAC
+                ,AVG(factura_nota) AS TIEMPO_FAC_NOTA
+                ,AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
                 from v_tiempos 
                 where COD_MARCA = 'T'
-                group by REG_ASIGNADA,SUCURSAL,VENDEDOR
-                ORDER BY 1
+                and f_nota between '".$f_ini."' and '".$f_fin."'
+                and REG_ASIGNADA = '".$request->regional."'
+                and SUC_ASIGNADA = '".$request->sucursal."'
+                group by REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR
             "));
+         }
 
-        $detalle =DB::select( DB::raw("
-                 select REG_ASIGNADA,SUCURSAL, AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
+
+
+         if($request->pantalla == 'det_nacional')
+         {
+             $result =DB::select( DB::raw("
+                select *
                 from v_tiempos 
                 where COD_MARCA = 'T'
-                group by REG_ASIGNADA,SUCURSAL
-                ORDER BY 1
+                and f_nota between '".$f_ini."' and '".$f_fin."'
             "));
-         return view('reportes.tiempos.index')
-         ->with('regionales',$regionales)
-         ->with('sucursales',$sucursales)
-         ->with('vendedores',$vendedores)
-         ->with('detalle',$detalle)
+         }
+
+         if($request->pantalla == 'det_regional')
+         {
+            // dd($request->all());
+             $result =DB::select( DB::raw("
+                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,CLIENTE,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
+                from v_tiempos 
+                where COD_MARCA = 'T'
+                and f_nota between '".$f_ini."' and '".$f_fin."'
+                and REG_ASIGNADA = '".$request->regional."'
+            "));
+         }
+         if($request->pantalla == 'det_sucursal')
+         {
+            // dd($request->all());
+             $result =DB::select( DB::raw("
+                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,CLIENTE,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
+                from v_tiempos 
+                where COD_MARCA = 'T'
+                and f_nota between '".$f_ini."' and '".$f_fin."'
+                and REG_ASIGNADA = '".$request->regional."'
+                and SUC_ASIGNADA = '".$request->sucursal."'
+            "));
+         }
+
+         if($request->pantalla == 'vendedor')
+         {
+            // dd($request->all());
+             $result =DB::select( DB::raw("
+                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,CLIENTE,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
+                from v_tiempos 
+                where COD_MARCA = 'T'
+                and f_nota between '".$f_ini."' and '".$f_fin."'
+                and REG_ASIGNADA = '".$request->regional."'
+                and SUC_ASIGNADA = '".$request->sucursal."'
+                and VENDEDOR = '".$request->vendedor."'
+            "));
+         }
+
+
+
+       
+
+        // $sucursales =DB::select( DB::raw("
+        //         select REG_ASIGNADA,SUCURSAL, AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
+        //         from v_tiempos 
+        //         where COD_MARCA = 'T'
+        //         group by REG_ASIGNADA,SUCURSAL
+        //         ORDER BY 1
+        //     "));
+
+        // $vendedores =DB::select( DB::raw("
+        //         select REG_ASIGNADA,SUCURSAL,VENDEDOR, AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
+        //         from v_tiempos 
+        //         where COD_MARCA = 'T'
+        //         group by REG_ASIGNADA,SUCURSAL,VENDEDOR
+        //         ORDER BY 1
+        //     "));
+
+        // $detalle =DB::select( DB::raw("
+        //          select REG_ASIGNADA,SUCURSAL, AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
+        //         from v_tiempos 
+        //         where COD_MARCA = 'T'
+        //         group by REG_ASIGNADA,SUCURSAL
+        //         ORDER BY 1
+        //     "));
+
+         return view('reportes.tiempos.reporte')
+         ->with('result',$result)
+         // ->with('sucursales',$sucursales)
+         // ->with('vendedores',$vendedores)
+         // ->with('detalle',$detalle)
+         ->with('f_ini',$f_ini)
+         ->with('f_fin',$f_fin)
+         ->with('request',$request)
          ;
     }
 
