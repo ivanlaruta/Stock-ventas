@@ -33,9 +33,26 @@ class TiemposController extends Controller
                 $f_ini = $fechas[0];
                 $f_fin = $fechas[1];
 
+         $indicadores = null;
+
+
          if($request->pantalla == 'nacional')
          {
-             $result =DB::select( DB::raw("
+            $indicadores =DB::select( DB::raw("
+                select 
+                AVG([cotizacion_contrato-adenda]) AS TIEMPO_COT_CONTR
+                ,AVG(contr_res) AS TIEMPO_CONTR_RES
+                ,AVG(reserva_factura) AS TIEMPO_RES_FAC
+                ,AVG(factura_nota) AS TIEMPO_FAC_NOTA
+                ,AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
+                ,COUNT (*) AS CONTADOS
+                from v_tiempos 
+                where COD_MARCA = 'T'
+                and f_nota between '".$f_ini."' and '".$f_fin."'
+            "));
+          // dd($indicadores);
+
+            $result =DB::select( DB::raw("
                 select 
                 REG_ASIGNADA
                 ,AVG([cotizacion_contrato-adenda]) AS TIEMPO_COT_CONTR
@@ -43,6 +60,7 @@ class TiemposController extends Controller
                 ,AVG(reserva_factura) AS TIEMPO_RES_FAC
                 ,AVG(factura_nota) AS TIEMPO_FAC_NOTA
                 ,AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
+                ,COUNT (*) AS CONTADOS
                 from v_tiempos 
                 where COD_MARCA = 'T'
                 and f_nota between '".$f_ini."' and '".$f_fin."'
@@ -53,7 +71,22 @@ class TiemposController extends Controller
          if($request->pantalla == 'regional')
          {
             // dd($request->all());
-             $result =DB::select( DB::raw("
+             $indicadores =DB::select( DB::raw("
+                select 
+                AVG([cotizacion_contrato-adenda]) AS TIEMPO_COT_CONTR
+                ,AVG(contr_res) AS TIEMPO_CONTR_RES
+                ,AVG(reserva_factura) AS TIEMPO_RES_FAC
+                ,AVG(factura_nota) AS TIEMPO_FAC_NOTA
+                ,AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
+                ,COUNT (*) AS CONTADOS
+                from v_tiempos 
+                where COD_MARCA = 'T'
+                and f_nota between '".$f_ini."' and '".$f_fin."'
+                and REG_ASIGNADA = '".$request->regional."'
+                
+            "));
+
+            $result =DB::select( DB::raw("
                 select 
                 REG_ASIGNADA,SUC_ASIGNADA
                 ,AVG([cotizacion_contrato-adenda]) AS TIEMPO_COT_CONTR
@@ -61,6 +94,7 @@ class TiemposController extends Controller
                 ,AVG(reserva_factura) AS TIEMPO_RES_FAC
                 ,AVG(factura_nota) AS TIEMPO_FAC_NOTA
                 ,AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
+                ,COUNT (*) AS CONTADOS
                 from v_tiempos 
                 where COD_MARCA = 'T'
                 and f_nota between '".$f_ini."' and '".$f_fin."'
@@ -71,6 +105,21 @@ class TiemposController extends Controller
          if($request->pantalla == 'sucursal')
          {
             // dd($request->all());
+             $indicadores =DB::select( DB::raw("
+                select 
+                AVG([cotizacion_contrato-adenda]) AS TIEMPO_COT_CONTR
+                ,AVG(contr_res) AS TIEMPO_CONTR_RES
+                ,AVG(reserva_factura) AS TIEMPO_RES_FAC
+                ,AVG(factura_nota) AS TIEMPO_FAC_NOTA
+                ,AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
+                ,COUNT (*) AS CONTADOS
+                from v_tiempos 
+                where COD_MARCA = 'T'
+                and f_nota between '".$f_ini."' and '".$f_fin."'
+                and REG_ASIGNADA = '".$request->regional."'
+                and SUC_ASIGNADA = '".$request->sucursal."'
+                
+            "));
              $result =DB::select( DB::raw("
                 select 
                 REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR
@@ -79,6 +128,7 @@ class TiemposController extends Controller
                 ,AVG(reserva_factura) AS TIEMPO_RES_FAC
                 ,AVG(factura_nota) AS TIEMPO_FAC_NOTA
                 ,AVG(dias_proceso_ingreo) AS TIEMPO_PROMEDIO
+                ,COUNT (*) AS CONTADOS
                 from v_tiempos 
                 where COD_MARCA = 'T'
                 and f_nota between '".$f_ini."' and '".$f_fin."'
@@ -93,7 +143,7 @@ class TiemposController extends Controller
          if($request->pantalla == 'det_nacional')
          {
              $result =DB::select( DB::raw("
-                select *
+                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,razon_social,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
                 from v_tiempos 
                 where COD_MARCA = 'T'
                 and f_nota between '".$f_ini."' and '".$f_fin."'
@@ -104,7 +154,7 @@ class TiemposController extends Controller
          {
             // dd($request->all());
              $result =DB::select( DB::raw("
-                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,CLIENTE,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
+                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,razon_social,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
                 from v_tiempos 
                 where COD_MARCA = 'T'
                 and f_nota between '".$f_ini."' and '".$f_fin."'
@@ -115,7 +165,7 @@ class TiemposController extends Controller
          {
             // dd($request->all());
              $result =DB::select( DB::raw("
-                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,CLIENTE,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
+                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,razon_social,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
                 from v_tiempos 
                 where COD_MARCA = 'T'
                 and f_nota between '".$f_ini."' and '".$f_fin."'
@@ -126,9 +176,8 @@ class TiemposController extends Controller
 
          if($request->pantalla == 'vendedor')
          {
-            // dd($request->all());
              $result =DB::select( DB::raw("
-                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,CLIENTE,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
+                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,razon_social,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
                 from v_tiempos 
                 where COD_MARCA = 'T'
                 and f_nota between '".$f_ini."' and '".$f_fin."'
@@ -136,6 +185,7 @@ class TiemposController extends Controller
                 and SUC_ASIGNADA = '".$request->sucursal."'
                 and VENDEDOR = '".$request->vendedor."'
             "));
+             // dd($result);
          }
 
 
@@ -168,6 +218,7 @@ class TiemposController extends Controller
 
          return view('reportes.tiempos.reporte')
          ->with('result',$result)
+         ->with('indicadores',$indicadores)
          // ->with('sucursales',$sucursales)
          // ->with('vendedores',$vendedores)
          // ->with('detalle',$detalle)

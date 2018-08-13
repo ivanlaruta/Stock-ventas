@@ -176,7 +176,6 @@
         <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
         <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
         <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
-        <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
         <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
         <script src="{{asset('bower_components/gentelella/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}"></script>
         <script src="{{asset('bower_components/gentelella/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
@@ -186,6 +185,7 @@
         <script src="{{asset('bower_components/gentelella/vendors/jszip/dist/jszip.min.js')}}"></script>
         <script src="{{asset('bower_components/gentelella/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
         <script src="{{asset('bower_components/gentelella/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
 
         <!-- Switchery -->
         <script src="{{asset('bower_components/gentelella/vendors/switchery/dist/switchery.min.js')}}"></script>
