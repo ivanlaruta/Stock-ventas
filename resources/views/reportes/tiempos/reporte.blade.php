@@ -142,9 +142,13 @@
                   <th> MODELO </th>
                   <th> INGRESO A BOLIVIA </th>
                   <th> FECHA COTIZACION </th>
+                  <th> COTIZACION / CONTRATO </th>
                   <th> FECHA CONTRATO </th>
+                  <th> CONTRATO / RESERVA </th>
                   <th> FECHA RESERVA  </th>
+                  <th> RESERVA / FACTURA  </th>
                   <th> FECHA FACTURA </th>
+                  <th> FACTURA / NOTA ENTREGA </th>
                   <th> FECHA NOTA DE ENTREGA </th>
                   <th> DIAS DE PROCESO </th>
                 </tr>
@@ -159,12 +163,16 @@
                   <td>{{$det->CHASIS}} </td>
                   <td>{{$det->MODELO}} </td>
                   <td>{{$det->f_ingreso}} </td>
-                  <td>{{$det->f_cotiza}} </td>
-                  <td>{{$det->f_contr}} </td>
-                  <td>{{$det->f_res}}  </td>
-                  <td>{{$det->f_fac}} </td>
-                  <td>{{$det->f_nota}} </td>
-                  <td>{{$det->dias_proceso_ingreo}} </td>                      
+                  <td><strong>{{$det->f_cotiza}} </strong></td>
+                  <td @if($det->cotiza_contr <0) style="background: #fcdcdb;" @else style="background: #e0fcdb;" @endif>{{$det->cotiza_contr}} dias </td>
+                  <td><strong>{{$det->f_contr}} </strong></td>
+                  <td @if($det->contr_res <0) style="background: #fcdcdb;" @else style="background: #e0fcdb;" @endif>{{$det->contr_res}} dias</td>
+                  <td><strong>{{$det->f_res}} </strong> </td>
+                  <td @if($det->reserva_factura <0) style="background: #fcdcdb;" @else style="background: #e0fcdb;" @endif>{{$det->reserva_factura}} dias </td>
+                  <td><strong>{{$det->f_fac}} </strong></td>
+                  <td @if($det->factura_nota <0) style="background: #fcdcdb;" @else style="background: #e0fcdb;" @endif>{{$det->factura_nota}} dias</td>
+                  <td><strong>{{$det->f_nota}} </strong></td>
+                  <td @if($det->dias_proceso_ingreo <0) style="background: #fcdcdb;" @else style="background: #e0fcdb;" @endif>{{$det->dias_proceso_ingreo}} dias</td>                      
                 </tr>
               @endforeach
               </tbody>

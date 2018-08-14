@@ -119,7 +119,7 @@ var contenido = $(".contenido");
 
 
   function generar(fec,reg,suc,vend,pant) {
-    
+    document.body.scrollTop = 0;
     pantalla = pant;
     regional = reg;
     sucursal = suc;

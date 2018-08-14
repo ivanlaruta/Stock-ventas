@@ -143,7 +143,7 @@ class TiemposController extends Controller
          if($request->pantalla == 'det_nacional')
          {
              $result =DB::select( DB::raw("
-                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,razon_social,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
+                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,razon_social,CHASIS,MODELO,f_ingreso,f_cotiza,[cotizacion_contrato-adenda] AS cotiza_contr,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr',contr_res, f_res ,reserva_factura,f_fac,factura_nota,f_nota,dias_proceso_ingreo
                 from v_tiempos 
                 where COD_MARCA = 'T'
                 and f_nota between '".$f_ini."' and '".$f_fin."'
@@ -154,7 +154,7 @@ class TiemposController extends Controller
          {
             // dd($request->all());
              $result =DB::select( DB::raw("
-                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,razon_social,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
+                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,razon_social,CHASIS,MODELO,f_ingreso,f_cotiza,[cotizacion_contrato-adenda] AS cotiza_contr,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr',contr_res, f_res ,reserva_factura,f_fac,factura_nota,f_nota,dias_proceso_ingreo
                 from v_tiempos 
                 where COD_MARCA = 'T'
                 and f_nota between '".$f_ini."' and '".$f_fin."'
@@ -165,7 +165,7 @@ class TiemposController extends Controller
          {
             // dd($request->all());
              $result =DB::select( DB::raw("
-                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,razon_social,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
+                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,razon_social,CHASIS,MODELO,f_ingreso,f_cotiza,[cotizacion_contrato-adenda] AS cotiza_contr,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr',contr_res, f_res ,reserva_factura,f_fac,factura_nota,f_nota,dias_proceso_ingreo
                 from v_tiempos 
                 where COD_MARCA = 'T'
                 and f_nota between '".$f_ini."' and '".$f_fin."'
@@ -177,7 +177,7 @@ class TiemposController extends Controller
          if($request->pantalla == 'vendedor')
          {
              $result =DB::select( DB::raw("
-                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,razon_social,CHASIS,MODELO,f_ingreso,f_cotiza,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr', f_res ,f_fac,f_nota,dias_proceso_ingreo
+                select REG_ASIGNADA,SUC_ASIGNADA,VENDEDOR,razon_social,CHASIS,MODELO,f_ingreso,f_cotiza,[cotizacion_contrato-adenda] AS cotiza_contr,CASE WHEN f_contr IS NULL THEN f_aden ELSE f_contr end as 'f_contr',contr_res, f_res ,reserva_factura,f_fac,factura_nota,f_nota,dias_proceso_ingreo
                 from v_tiempos 
                 where COD_MARCA = 'T'
                 and f_nota between '".$f_ini."' and '".$f_fin."'
