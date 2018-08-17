@@ -164,15 +164,15 @@
                   <td>{{$det->MODELO}} </td>
                   <td>{{$det->f_ingreso}} </td>
                   <td><strong>{{$det->f_cotiza}} </strong></td>
-                  <td @if($det->cotiza_contr <0) style="background: #fcdcdb;" @else style="background: #e0fcdb;" @endif>{{$det->cotiza_contr}} dias </td>
+                  <td @if($det->cotiza_contr <0) class='red' @else style="background: #e0fcdb;" @endif>{{$det->cotiza_contr}} dias </td>
                   <td><strong>{{$det->f_contr}} </strong></td>
-                  <td @if($det->contr_res <0) style="background: #fcdcdb;" @else style="background: #e0fcdb;" @endif>{{$det->contr_res}} dias</td>
+                  <td @if($det->contr_res <0) class='red' @else style="background: #e0fcdb;" @endif>{{$det->contr_res}} dias</td>
                   <td><strong>{{$det->f_res}} </strong> </td>
-                  <td @if($det->reserva_factura <0) style="background: #fcdcdb;" @else style="background: #e0fcdb;" @endif>{{$det->reserva_factura}} dias </td>
+                  <td @if($det->reserva_factura <0) class='red' @else style="background: #e0fcdb;" @endif>{{$det->reserva_factura}} dias </td>
                   <td><strong>{{$det->f_fac}} </strong></td>
-                  <td @if($det->factura_nota <0) style="background: #fcdcdb;" @else style="background: #e0fcdb;" @endif>{{$det->factura_nota}} dias</td>
+                  <td @if($det->factura_nota <0) class='red' @else style="background: #e0fcdb;" @endif>{{$det->factura_nota}} dias</td>
                   <td><strong>{{$det->f_nota}} </strong></td>
-                  <td @if($det->dias_proceso_ingreo <0) style="background: #fcdcdb;" @else style="background: #e0fcdb;" @endif>{{$det->dias_proceso_ingreo}} dias</td>                      
+                  <td @if($det->dias_proceso_ingreo <0) class='red' @else style="background: #e0fcdb;" @endif>{{$det->dias_proceso_ingreo}} dias</td>                      
                 </tr>
               @endforeach
               </tbody>

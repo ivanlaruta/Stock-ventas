@@ -246,7 +246,7 @@ ul.msg_list li a .times {
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Como se entero? </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             
-                          <select class="form-control txt_como req_vendedor" name="txt_como"  id="txt_como" >
+                          <select class="form-control txt_como req_vendedor anula" name="txt_como"  id="txt_como" >
                             {{-- <option disabled selected>¿Como se enteró?</option> --}}
                             <option value="">Selecione una opcion</option>
                             @foreach($medios as $det)
@@ -547,6 +547,7 @@ function acepta_clientes() {
       if(id_motivo ==5){
         $('.ejecutivo').show();
         $('.req_vendedor').attr('required',true);
+        $('.req_vendedor.anula').attr('required',false);
       }
       else
       {
