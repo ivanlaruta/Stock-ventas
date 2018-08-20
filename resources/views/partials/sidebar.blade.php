@@ -132,7 +132,7 @@
                     <ul class="nav child_menu">
                       {{-- <li><a href="{{ route('trafico.formulario')}}">Formulario</a></li> --}}
                       <li><a href="{{ route('trafico.formulario2')}}">Nuevo Tráfico</a></li>
-                      @if(Auth::user()->rol=='100')<li>
+                      @if(Auth::user()->rol=='100'|| Auth::user()->rol=='102')<li>
                         <a href="{{ route('trafico.lista_visitas')}}">Detalle de Tráfico semanal</a></li>
                       @endif
                        @if(Auth::user()->rol=='101' || Auth::user()->rol=='1')
