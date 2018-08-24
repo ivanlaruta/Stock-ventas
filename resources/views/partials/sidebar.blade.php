@@ -15,7 +15,14 @@
                   </li> --}}
                   
                   {{-- <li><a  href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"><i class="glyphicon glyphicon-fire"></i> Cotizaciones</a></li>  --}}
-    @if(Auth::user()->rol<>'100' && Auth::user()->rol<>'101' && Auth::user()->rol<>'102' && Auth::user()->rol<>'150')
+                  @if(Auth::user()->rol=='200')
+                  <li><a><i class="fa fa-sun-o"></i> Post Venta <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                       <li><a  href="{{ route('postVenta.busca_clientes')}}">  Seguimiento de clientes</a></li>
+                    </ul>
+                  </li>
+                  @endif
+    @if(Auth::user()->rol<>'100' && Auth::user()->rol<>'101' && Auth::user()->rol<>'102' && Auth::user()->rol<>'150' && Auth::user()->rol<>'200')
                   {{-- <li><a  href="{{ route('resumen.index')}}"><i class="fa fa-bar-chart"></i>   Inicio</a></li> --}}
 
                   
@@ -37,7 +44,9 @@
                     </ul>
                   </li>
                   --}}
- 
+
+                  
+
                   <li><a><i class="fa fa-desktop"></i> Reportes Presidencia <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li><a  href="{{ route('presidencia.stock')}}">  Reporte de Stock</a></li>
@@ -127,7 +136,7 @@
                   </li>
              
           @endif
-          @if(Auth::user()->rol<>'150')
+          @if(Auth::user()->rol<>'150' && Auth::user()->rol<>'200')
                   <li><a><i class="fa fa-users"></i> Trafico de clientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       {{-- <li><a href="{{ route('trafico.formulario')}}">Formulario</a></li> --}}

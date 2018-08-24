@@ -812,3 +812,23 @@ Route::group(['prefix'=>'tiempos','middleware'=>'auth'],function(){
 
 	route::resource('tiempos','TiemposController');
 });
+
+Route::group(['prefix'=>'postVenta','middleware'=>'auth'],function(){
+
+	route::get('postVenta/busca_clientes',[
+		'uses' =>'PostVentaController@busca_clientes',
+		'as'   =>	'postVenta.busca_clientes'
+	]);
+
+	route::get('postVenta/busca_clientes_res',[
+		'uses' =>'PostVentaController@busca_clientes_res',
+		'as'   =>	'postVenta.busca_clientes_res'
+	]);
+
+	route::get('postVenta/perfil_cliente',[
+		'uses' =>'PostVentaController@perfil_cliente',
+		'as'   =>	'postVenta.perfil_cliente'
+	]);
+
+	route::resource('postVenta','PostVentaController');
+});

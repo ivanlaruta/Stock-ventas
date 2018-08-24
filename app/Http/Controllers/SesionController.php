@@ -52,6 +52,10 @@ class SesionController extends Controller
         {
             return redirect()->route('importaciones.mitsui');
         }
+        if (Auth::user()->rol == '200')
+        {
+            return redirect()->route('postVenta.busca_clientes');
+        }
 
     }
 
