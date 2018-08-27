@@ -111,7 +111,7 @@ ini_busqueda();
 function ini_busqueda ()
 {
   busca.show();
-  resultado.hide();
+  resultado_ajax();
   $(".perfil_cli").hide();
   var loading = $('#loadingDiv').hide();
 };

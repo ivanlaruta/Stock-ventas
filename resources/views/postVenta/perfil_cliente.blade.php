@@ -37,7 +37,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Perfil de cliente</h2>
+                    <h2>Perfil de Cliente</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -45,47 +45,46 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                          <img class="img-responsive avatar-view" src="{{URL::asset('images/pic.jpg')}}" alt="Avatar" title="Change the avatar">
+                          <img class="img-responsive avatar-view" src="{{URL::asset('images/123.png')}}" alt="Avatar" title="Change the avatar">
                         </div>
                       </div>
-                      <h3>Pedro Perez</h3>
+                      <h3>Pedro Perez Salcedo</h3>
 
                       <ul class="list-unstyled user_data">
                         <li><i class="fa fa-map-marker user-profile-icon"></i> Av del Ejercito # 174, La Paz
                         </li>
-
                         <li>
-                          <i class="fa fa-credit-card user-profile-icon"></i> Pedro.pp@toyosa.con LP
-                        </li>
-
-                        <li>
-                          <i class="fa fa-card user-profile-icon"></i> 8264209 LP
+                          <i class="fa fa-book user-profile-icon"></i> 8264209 LP
                         </li>
                         <li>
                           <i class="fa fa-phone user-profile-icon"></i> 22384170 - 77756103
                         </li>
+                        <li>
+                          <i class="fa fa-envelope user-profile-icon"></i> Pedro.pp@toyosa.con LP
+                        </li>
 
-                        
                       </ul>
 
-                      <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Editar Datos</a>
+                      <a class="btn btn-success btn-block"><i class="fa fa-edit m-right-xs"></i>Editar Datos</a>
                       <br />
 
                       <!-- start skills -->
-                      <h4>Resumen</h4>
-                      <ul class="list-unstyled user_data">
-                        <li class="sub">
-                          <p>Vehiculos <strong class="pull-right">2</strong></p>
-                        </li><br>
-
-                        <li class="sub">
-                          <p>Venta de repuestos <strong class="pull-right">1</strong></p>
-                        </li><br>
-
-                        <li class="sub">
-                          <p>Seguimiento <strong class="pull-right">4</strong></p>
-                        </li><br>
-                        
+                      <h4>Familia</h4>
+                      <ul class="list-inline">
+                      
+                        <li style="padding-left: 0px; padding-right: 0px;">
+                          Roberto Perez <span class="label label-default">Hermano</span><a href="#"><img src="{{URL::asset('images/124.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
+                        </li>
+                        <li style="padding-left: 0px; padding-right: 0px;">
+                          Monica Salcedo <span class="label label-default">Madre</span><a href="#"><img src="{{URL::asset('images/pic.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
+                        </li>
+                        <li style="padding-left: 0px; padding-right: 0px;">
+                          Natalia Rada <span class="label label-default">Esposa</span><a href="#"><img src="{{URL::asset('images/0.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
+                        </li>
+                        <li style="padding-left: 0px; padding-right: 0px;">
+                          Pedro Perez <span class="label label-default">Padre</span><a href="#"><img src="{{URL::asset('images/pic.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
+                        </li>
+                      
                       </ul>
                       <!-- end of skills -->
 
@@ -133,7 +132,7 @@
                                   <td>2012</td>
                                   <td>Rojo</td>
                                   <td>2578 UFK</td>
-                                  <td><a href="">Ver detalle</a></td>
+                                  <td><a href="#" class="btn-sm btn-success">Ver detalle</a></td>
                                   
                                 </tr>
                                 <tr>
@@ -143,7 +142,7 @@
                                   <td>2017</td>
                                   <td>Negro</td>
                                   <td>4898 LEI</td>
-                                  <td><a href="">Ver detalle</a></td>
+                                  <td><a href="#" class="btn-sm btn-success">Ver detalle</a></td>
                                  
                                 </tr>
                                 
@@ -173,7 +172,7 @@
                                   <td>05-05-2016</td>
                                   <td>El Alto</td>
                                   <td>Jose Mercado</td>
-                                  <td><a href="">Ver detalle</a></td>
+                                  <td><a data-toggle="modal" href="#modal_factura" class="btn-sm btn-success">Ver detalle</a></td>
                                   
                                 </tr>
                                 
@@ -249,6 +248,14 @@
                           <div role="tabpanel" class="tab-pane fade" id="Seguimiento2" aria-labelledby="profile-tab">
 
 
+                          <hr>
+                          <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+
+                          <a class="btn btn-success pull-right"><i class="fa fa-plus m-right-xs"></i> NUEVO</a>
+                          </div>
+                      <div class="clearfix"></div>
+
+  
 
                             <!-- start recent activity -->
                             <ul class="messages">
@@ -329,7 +336,7 @@
                                     <div class="form-horizontalform-label-left input_mask msg  col-md-11 col-sm-11 col-xs-11">
                                       <div class="form-group">
                                         <label class="control-label cab col-md-4 col-sm-4 col-xs-11">Se contacto a:</label>
-                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Susana Raldes de Perez <span class="badge badge-success">Esposa</span></label>
+                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Natalia Rada <span class="label label-default">Esposa</span></label>
                                       </div>
                                     
                                       <div class="form-group">
@@ -369,3 +376,139 @@
 
        
 
+<div class="modal fade" id="modal_factura" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">DETALLE FACTURA</h4>
+              </div>
+
+                <div class="modal-body">
+                  
+                <div class="col-md-12">
+                 
+                    
+                     <br>
+                   
+
+                      
+                        <!-- title row -->
+                        <div class="row">
+                          <div class="col-xs-12 invoice-header">
+                            <h3 align="right">
+                                             FACTURA.<br>
+                                            <small >Fecha: 16/08/2016</small>
+                                        </h3>
+                          </div>
+
+                          <!-- /.col -->
+                        </div>
+                        <hr>
+                        
+                        <div class="row invoice-info">
+                          <div class="col-sm-4 invoice-col">
+                            De
+                            <address>
+                              <strong>TOYOSA S.A.</strong>
+                              <br>Plaza Venezuela,1413
+                              <br>La Paz, Bolivia
+                              <br>Telefono: 2390930-35
+                              
+                            </address>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-4 invoice-col">
+                            Al señor(a)
+                            <address>
+                                            <strong>Pedro Perez</strong>
+                                            <br>Av del Ejercito # 174, La Paz
+                                            <br>8264209 LP
+                                            <br>Telefono: 22384170
+                                            <br>Email:Pedro.pp@toyosa.con LP
+                                        </address>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-4 invoice-col">
+                            <b>FACTURA #007612456</b>
+                            <br>
+                            <br>
+                            <b>Codigo de control:</b> 4F3S8J
+                            <br>
+                            <b>Limite emision:</b> 2/22/2014
+                            <br>
+                            <b>Cuenta:</b> 968-34567
+                          </div>
+                          <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+<hr>
+                        <!-- Table row -->
+                        <div class="row">
+                          <div class="col-xs-12 table">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  
+                                  <th>Producto</th>
+                                  <th>serie</th>
+                                  <th>Cantidad</th>
+                                  <th>Subtotal</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>Correa motor</td>
+                                  <td>455-981-221</td>
+                                  <td>1</td>
+                                  
+                                  <td>bs 80.50</td>
+                                </tr>
+                                <tr>
+                                  <td>Bujia</td>
+                                  <td>45-9a81-231</td>
+                                  <td>4</td>
+                                  
+                                  <td>900.00</td>
+                                </tr>
+                                <tr>
+                                  <td>Empaque</td>
+                                  <td>4a5-9a81-231</td>
+                                  <td>1</td>
+                                  
+                                  <td>bs 100.00</td>
+                                </tr> 
+                                <tr>
+                                  <td></td>
+                                  <td></td>
+                                  
+                                  <td align="right"><strong>Total</strong></td>
+                                  
+                                  <td><strong>bs 1080.50</strong></td>
+                                </tr>
+                                
+                              </tbody>
+                            </table>
+                          </div>
+                          <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+
+                        <!-- this row will not appear when printing -->
+                     
+                    
+                  
+                </div>
+              
+              </div>
+
+              <div class="modal-footer">
+                <button class="btn btn-primary " style="margin-right: 5px;"><i class="fa fa-print"></i> Imprimir</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
