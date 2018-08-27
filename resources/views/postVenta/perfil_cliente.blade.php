@@ -6,8 +6,32 @@
             overflow:auto;
         }
 
-</style>
+        .sub2 {
+            border-bottom: 2px solid #374b6033;
+            
+        }
 
+        .calen {
+            text-align: center !important;
+            border: 2px solid #374b6033;
+            padding: 1px;        
+        }
+ 
+        .cab {
+            text-align: right;  !important;
+            
+        }
+        .datos {
+            text-align: left  !important;
+            font-weight: normal  !important;     
+        }
+      .msg {
+            border-left: 5px solid #eee 
+        }
+
+
+
+</style>
 
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
@@ -83,6 +107,8 @@
                           </li>
                           <li role="presentation" class=""><a href="#Seguimiento" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Seguimiento</a>
                           </li>
+                          <li role="presentation" class=""><a href="#Seguimiento2" role="tab" id="profile-tab3" data-toggle="tab" aria-expanded="false">Seguimiento</a>
+                          </li>
                         </ul>
                         <div id="myTabContent" class="tab-content">
                           <div role="tabpanel" class="tab-pane fade active in" id="Vehiculos" aria-labelledby="home-tab">
@@ -149,9 +175,7 @@
                                   <td>Jose Mercado</td>
                                   <td><a href="">Ver detalle</a></td>
                                   
-                                  
                                 </tr>
-              
                                 
                               </tbody>
                             </table>
@@ -221,6 +245,120 @@
                             <!-- end user projects -->
 
                           </div>
+
+                          <div role="tabpanel" class="tab-pane fade" id="Seguimiento2" aria-labelledby="profile-tab">
+
+
+
+                            <!-- start recent activity -->
+                            <ul class="messages">
+                              <li>
+                                <div class="message_date">
+                                  <h3 class="date text-info sub2">24</h3>
+                                  <p class="month">May<br><small>2017</small></p>
+                                </div>
+                                <div class="message_wrapper">
+                                  <h4 class="heading">SEGUIMIENTO PERIODICO</h4>
+                                  <div class="row">
+                                    <div class="form-horizontalform-label-left input_mask msg  col-md-11 col-sm-11 col-xs-11">
+                                      <div class="form-group">
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">Se contacto a:</label>
+                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Pedro Perez</label>
+                                      </div>
+                                    
+                                      <div class="form-group">
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">Contactado por:</label>
+                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Roberto Marquez</label>
+                                      </div>
+                                    
+                                      <div class="form-group">
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">¿Que dijo?:</label>
+                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">No presenta dificultades con su vehiculo</label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <a href="#"><i class="fa fa-phone"></i> Contactado por telefono </a>
+                                  </div>
+                                </div>
+                              </li>
+                              
+
+                            
+                              <li>
+                                <div class="message_date">
+                                  <h3 class="date text-info sub2">19</h3>
+                                  <p class="month">Nov<br><small>2017</small></p>
+                                </div>
+                                <div class="message_wrapper">
+                                  <h4 class="heading">SEGUIMIENTO NO REALIZO MANTENIMIENTO 10K</h4>
+                                  <div class="row">
+                                    <div class="form-horizontalform-label-left input_mask msg  col-md-11 col-sm-11 col-xs-11">
+                                      <div class="form-group">
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">Se contacto a:</label>
+                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Pedro Perez</label>
+                                      </div>
+                                    
+                                      <div class="form-group">
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">Contactado por:</label>
+                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Roberto Marquez</label>
+                                      </div>
+                                    
+                                      <div class="form-group">
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">¿Que dijo?:</label>
+                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Olvido llevar su vehiculo al manetenimiento periodico, lo llevara le fin de semana</label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <a href="#"><i class="fa fa-phone"></i> Contactado por telefono </a>
+                                  </div>
+                                </div>
+                              </li>
+                              
+
+                            
+                              <li>
+                                <div class="message_date">
+                                  <h3 class="date text-info sub2">30</h3>
+                                  <p class="month">Abr<br><small>2018</small></p>
+                                </div>
+                                <div class="message_wrapper">
+                                  <h4 class="heading">INFORMAR SOBRE PROMOCION</h4>
+                                  <div class="row">
+                                    <div class="form-horizontalform-label-left input_mask msg  col-md-11 col-sm-11 col-xs-11">
+                                      <div class="form-group">
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">Se contacto a:</label>
+                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Susana Raldes de Perez <span class="badge badge-success">Esposa</span></label>
+                                      </div>
+                                    
+                                      <div class="form-group">
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">Contactado por:</label>
+                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Roberto Marquez</label>
+                                      </div>
+                                    
+                                      <div class="form-group">
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">¿Que dijo?:</label>
+                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Esta interesado, pasara por show room</label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <a href="#"><i class="fa fa-mobile-phone"></i> Contactado por celular </a>
+                                  </div>
+                                </div>
+                              </li>
+                              
+
+                            </ul>
+                            <!-- end recent activity -->
+
+                          
+
+                            
+
+                          </div>
+
                         </div>
                       </div>
                     </div>

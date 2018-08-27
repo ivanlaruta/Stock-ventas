@@ -141,9 +141,9 @@
                     <ul class="nav child_menu">
                       {{-- <li><a href="{{ route('trafico.formulario')}}">Formulario</a></li> --}}
                       <li><a href="{{ route('trafico.formulario2')}}">Nuevo Tráfico</a></li>
-                      @if(Auth::user()->rol=='100'|| Auth::user()->rol=='102')<li>
+                      {{-- @if(Auth::user()->rol=='100'|| Auth::user()->rol=='102'|| Auth::user()->rol=='101')<li> --}}
                         <a href="{{ route('trafico.lista_visitas')}}">Detalle de Tráfico semanal</a></li>
-                      @endif
+                      {{-- @endif --}}
                        @if(Auth::user()->rol=='101' || Auth::user()->rol=='1')
                        {{-- <li><a href="{{ route('trafico.reporte')}}">Reportes</a></li> --}}
                        <li><a href="{{ route('trafico.todo_trafico')}}">Reporte de Tráfico</a></li>

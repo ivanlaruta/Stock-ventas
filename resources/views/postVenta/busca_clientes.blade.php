@@ -11,7 +11,10 @@
 
             <div class="page-title">
               <div class="title_left">
-                <h4>SEGUIMIENTO DE CLIENTES</h4>
+                <h4>
+                  <a href="javascript:;" onclick="ini_busqueda()">BUSQUEDA DE CLIENTES </a>
+                  <a href="javascript:;" onclick="ver_cliente()"><span class="perfil_cli"></span></a>
+                </h4>
               </div>
               <div class="x_content busca">
                 <div class="form-horizontal form-label-left">
@@ -35,7 +38,7 @@
               </div>
             <div class="clearfix"></div>
             
-            <div class="row resultado">
+            <div class="resultado">
               
             </div>
 
@@ -56,11 +59,11 @@
                 <p>Buscar en: </p>
                 <input type="checkbox" class="flat" checked="checked"> Nombres <br>
                 <input type="checkbox" class="flat" checked="checked"> Apellidos <br>
-                <input type="checkbox" class="flat" checked="checked"> CI <br>
-                <input type="checkbox" class="flat" checked="checked"> NIT <br>
-                <input type="checkbox" class="flat" checked="checked"> Telefono <br>
-                <input type="checkbox" class="flat" checked="checked"> Celular <br>
-                <input type="checkbox" class="flat" checked="checked"> Direccion <br>
+                <input type="checkbox" class="flat" > CI <br>
+                <input type="checkbox" class="flat" > NIT <br>
+                <input type="checkbox" class="flat" > Telefono <br>
+                <input type="checkbox" class="flat" > Celular <br>
+                <input type="checkbox" class="flat" > Direccion <br>
               </div>
 
               <div class="modal-footer">
@@ -81,9 +84,14 @@
 
 <script type="text/javascript">
 
+
+
+
 var loading = $('#loadingDiv').hide();
 var resultado = $(".resultado");
 var busca = $(".busca");
+
+ini_busqueda();
 
   $(document)
     .ajaxStart(function () {loading.show(); resultado.hide();}) 
@@ -100,7 +108,13 @@ var busca = $(".busca");
     }
   }); 
 
-
+function ini_busqueda ()
+{
+  busca.show();
+  resultado.hide();
+  $(".perfil_cli").hide();
+  var loading = $('#loadingDiv').hide();
+};
   function resultado_ajax(){
     $.ajax({
       type: "GET",
@@ -116,8 +130,10 @@ var busca = $(".busca");
     });
   };
 
-  function generar(){
-    // busca.hide();
+  function ver_cliente(){
+    busca.hide();
+    $(".perfil_cli").html(' / PEDRO PEREZ');
+    $(".perfil_cli").show();
     $.ajax({
       type: "GET",
       cache: false,
