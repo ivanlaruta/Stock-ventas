@@ -6,6 +6,54 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+                    <div class="col-md-4 col-sm-4 col-xs-12 profile_left">
+                      <div class="profile_img">
+                        <div id="crop-avatar">
+                          <!-- Current avatar -->
+                          <img class="img-responsive avatar-view" src="{{URL::asset('images/rav.jpg')}}" alt="Avatar" title="Change the avatar">
+                        </div>
+                      </div>
+                      
+                      <hr>
+                      <ul class="list-unstyled user_data">
+                            <li><p class="title"><i class="fa fa-th-large"></i> MARCA: TOYOTA</p></li>
+                            <li><p class="title"><i class="fa fa-tasks"></i> MODELO: RAV4 2.500 cc</p></li>
+                            <li><p class="title"><i class="fa fa-calendar"></i> AÑO: 2017</p></li>
+                            <li><p class="title"><i class="fa fa-barcode"></i> PLACA: 2578 - UFK</p></li>
+                            <li><p class="title"><i class="fa fa-paint-brush"></i> COLOR: BLANCO PERLA</p></li>
+                            <li><p class="title"><i class="fa fa-paint-brush"></i> COLOR INT: NEGRO</p></li>
+                            <li><p class="title"><i class="fa fa-book"></i> MASTER: 32801-01</p></li>
+                            <li><p class="title"><i class="fa fa-truck"></i> CHASIS: JTMBF3EV1HJ151660</p></li>
+                            <li><a href="javascript:;" onclick="ver_cliente()"><p class="title"><i class="fa fa-user"></i> DUEÑO: Pedro Perez</p></a></li>
+                      </ul>
+
+                      <a class="btn btn-success btn-block"><i class="fa fa-edit m-right-xs"></i>Editar Datos</a>
+                      <br />
+
+                      <!-- start skills -->
+                      <h4>Proceso de venta</h4>
+
+                      <ul class="list-group list-group-flush">
+                      
+                        <li class="list-group-item" style="padding-left: 0px; padding-right: 0px;">
+                          COTIZACION<span class="badge badge-success"> 05-02-2017 </span>
+                        </li>
+                        <li class="list-group-item" style="padding-left: 0px; padding-right: 0px;">
+                          RESERVA<span class="badge badge-success"> 07-02-2017  </span>
+                        </li>
+                        <li class="list-group-item" style="padding-left: 0px; padding-right: 0px;">
+                          FACTURA<span class="badge badge-success"> 07-02-2017 </span>
+                        </li>
+                        <li class="list-group-item" style="padding-left: 0px; padding-right: 0px;">
+                          ENTREGA<span class="badge badge-success"> 10-02-2017  </span>
+                        </li>
+                      
+                      </ul>
+                      <!-- end of skills -->
+
+                    </div>
+{{-- 
+
                     <div class="col-md-3 col-sm-3 col-xs-12">
                       <section class="panel">
                         <div class="panel-body">
@@ -25,13 +73,13 @@
                           
                         </div>
                       </section>
-                    </div>
+                    </div> --}}
 
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                  <div class="col-md-8 col-sm-8 col-xs-12">
 
                       <div class="profile_title">
                         <div class="col-md-6">
-                          <h2>Actividad de cliente</h2>
+                          <h2>Actividad</h2>
                         </div>
                       </div>
                      
@@ -150,19 +198,46 @@
 
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">DETALLE MANTENIMIENTO</h4>
+                <h4 class="modal-title">DETALLE</h4>
               </div>
 
                 <div class="modal-body">
                 <div class="col-md-12">
-                     <br>
+                     
+
+                    <div class="row">
+                      <section class="panel">
+                        <div class="panel-body">
+                          <h3 class="green"><i class="fa fa-paint-brush"></i>Mantenimiento programado 1000 kilometros</h3>
+                          <br/>
+
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="project_detail">
+                                <p class="title">Cliente</p>
+                                <p>Pedro Perez</p>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <ul class="list-unstyled project_files">
+                                <li><a href=""><i class="fa fa-calendar"></i> 05-05-2017</a></li>
+                                <li><a href=""><i class="fa fa-dollar"></i> Bs. 0</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <br/>
+                          <p> El mantenimiento se realizo con normalidad, no se presento ningun tipo de desperfecto ni irregularidad.</p>
+                        </div>
+                      </section>
+                    </div>
+
                         <div class="row">
                           <div class="col-xs-12 table">
                             <table class="table table-striped">
                               <thead>
                                 <tr>
                                   <th>ACTIVIDAD</th>
-                                  <th>TIMEPO</th>
+                                  <th>TIEMPO</th>
                                   <th>OBSERVACION</th>
                                   
                                 </tr>
@@ -205,7 +280,7 @@
                               </tbody>
                             </table>
 
-                            El mantenimiento se realizo con normalidad, no se presento ningun tipo de desperfecto irregular
+                            
                           </div>
                           <!-- /.col -->
                         </div>
