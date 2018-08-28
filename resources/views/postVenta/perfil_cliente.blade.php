@@ -26,7 +26,7 @@
             font-weight: normal  !important;     
         }
       .msg {
-            border-left: 5px solid #eee 
+            border-left: 2px solid #60768F; 
         }
 
 
@@ -106,8 +106,7 @@
                           </li>
                           <li role="presentation" class=""><a href="#Seguimiento" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Seguimiento</a>
                           </li>
-                          <li role="presentation" class=""><a href="#Seguimiento2" role="tab" id="profile-tab3" data-toggle="tab" aria-expanded="false">Seguimiento</a>
-                          </li>
+                          
                         </ul>
                         <div id="myTabContent" class="tab-content">
                           <div role="tabpanel" class="tab-pane fade active in" id="Vehiculos" aria-labelledby="home-tab">
@@ -132,7 +131,7 @@
                                   <td>2012</td>
                                   <td>Rojo</td>
                                   <td>2578 UFK</td>
-                                  <td><a href="#" class="btn-sm btn-success">Ver detalle</a></td>
+                                  <td><a href="javascript:;" onclick="ver_vehiculo()" class="btn-sm btn-success">Ver detalle</a></td>
                                   
                                 </tr>
                                 <tr>
@@ -142,7 +141,7 @@
                                   <td>2017</td>
                                   <td>Negro</td>
                                   <td>4898 LEI</td>
-                                  <td><a href="#" class="btn-sm btn-success">Ver detalle</a></td>
+                                  <td><a href="javascript:;" onclick="ver_vehiculo()" class="btn-sm btn-success">Ver detalle</a></td>
                                  
                                 </tr>
                                 
@@ -181,71 +180,9 @@
                             <!-- end user projects -->
 
                           </div>
+                          
+
                           <div role="tabpanel" class="tab-pane fade" id="Seguimiento" aria-labelledby="profile-tab">
-
-                            <!-- start user projects -->
-                            <table class="data table table-striped no-margin">
-                              <thead>
-                                <tr>
-                                  <th>#</th>
-                                  <th>Fecha</th>
-                                  <th>Ejecutivo</th>
-                                  <th>Tipo de contacto</th>
-                                  <th>Conclucion</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>1</td>
-                                  <td>02-02-2016</td>
-                                  <td>Marco Martines</td>
-                                  <td class="hidden-phone">Llamada</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>05-08-2016</td>
-                                  <td>Julia Paco</td>
-                                  <td class="hidden-phone">LLamada</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td>11-05-2017</td>
-                                  <td>Marco Martines</td>
-                                  <td class="hidden-phone">Visita</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>4</td>
-                                  <td>25-11-2017</td>
-                                  <td>Marco Martines</td>
-                                  <td class="hidden-phone">Correo</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                            <!-- end user projects -->
-
-                          </div>
-
-                          <div role="tabpanel" class="tab-pane fade" id="Seguimiento2" aria-labelledby="profile-tab">
 
 
                           <hr>
@@ -258,28 +195,28 @@
   
 
                             <!-- start recent activity -->
-                            <ul class="messages">
+                            <ul class="messages" style="padding-left: 20px;">
                               <li>
-                                <div class="message_date">
+                                <div class="message_date" style="float: left !important; text-align: right;">
                                   <h3 class="date text-info sub2">24</h3>
                                   <p class="month">May<br><small>2017</small></p>
                                 </div>
-                                <div class="message_wrapper">
-                                  <h4 class="heading">SEGUIMIENTO PERIODICO</h4>
+                                <div class="message_wrapper" style="padding-left: 15px;">
+                                  <h4 class="">SEGUIMIENTO PERIODICO</h4>
                                   <div class="row">
                                     <div class="form-horizontalform-label-left input_mask msg  col-md-11 col-sm-11 col-xs-11">
                                       <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">Se contacto a:</label>
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">SE CONTACTO A:</label>
                                         <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Pedro Perez</label>
                                       </div>
                                     
                                       <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">Contactado por:</label>
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">CONTACTADO POR:</label>
                                         <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Roberto Marquez</label>
                                       </div>
                                     
                                       <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">¿Que dijo?:</label>
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">¿QUE DIJO?:</label>
                                         <label class="control-label datos col-md-7 col-sm-7 col-xs-11">No presenta dificultades con su vehiculo</label>
                                       </div>
                                     </div>
@@ -293,26 +230,26 @@
 
                             
                               <li>
-                                <div class="message_date">
+                                <div class="message_date" style="float: left !important; text-align: right;">
                                   <h3 class="date text-info sub2">19</h3>
                                   <p class="month">Nov<br><small>2017</small></p>
                                 </div>
-                                <div class="message_wrapper">
-                                  <h4 class="heading">SEGUIMIENTO NO REALIZO MANTENIMIENTO 10K</h4>
+                                <div class="message_wrapper" style="padding-left: 15px;">
+                                  <h4 class="">SEGUIMIENTO NO REALIZO MANTENIMIENTO 10K</h4>
                                   <div class="row">
                                     <div class="form-horizontalform-label-left input_mask msg  col-md-11 col-sm-11 col-xs-11">
                                       <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">Se contacto a:</label>
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">SE CONTACTO A:</label>
                                         <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Pedro Perez</label>
                                       </div>
                                     
                                       <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">Contactado por:</label>
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">CONTACTADO POR:</label>
                                         <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Roberto Marquez</label>
                                       </div>
                                     
                                       <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">¿Que dijo?:</label>
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">¿QUE DIJO?:</label>
                                         <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Olvido llevar su vehiculo al manetenimiento periodico, lo llevara le fin de semana</label>
                                       </div>
                                     </div>
@@ -326,26 +263,26 @@
 
                             
                               <li>
-                                <div class="message_date">
-                                  <h3 class="date text-info sub2">30</h3>
+                                <div class="message_date" style="float: left !important; text-align: right;">
+                                  <h3 class="date text-info sub2 ">30</h3>
                                   <p class="month">Abr<br><small>2018</small></p>
                                 </div>
-                                <div class="message_wrapper">
-                                  <h4 class="heading">INFORMAR SOBRE PROMOCION</h4>
+                                <div class="message_wrapper" style="padding-left: 15px;">
+                                  <h4 class="">INFORMAR SOBRE PROMOCION</h4>
                                   <div class="row">
                                     <div class="form-horizontalform-label-left input_mask msg  col-md-11 col-sm-11 col-xs-11">
                                       <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">Se contacto a:</label>
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">SE CONTACTO A:</label>
                                         <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Natalia Rada <span class="label label-default">Esposa</span></label>
                                       </div>
                                     
                                       <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">Contactado por:</label>
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">CONTACTADO POR:</label>
                                         <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Roberto Marquez</label>
                                       </div>
                                     
                                       <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">¿Que dijo?:</label>
+                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">¿QUE DIJO?:</label>
                                         <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Esta interesado, pasara por show room</label>
                                       </div>
                                     </div>
@@ -396,11 +333,15 @@
                       
                         <!-- title row -->
                         <div class="row">
-                          <div class="col-xs-12 invoice-header">
-                            <h3 align="right">
-                                             FACTURA.<br>
-                                            <small >Fecha: 16/08/2016</small>
-                                        </h3>
+                          <div class="col-md-5 col-xs-5  invoice-header">
+                            <h3>
+                                 FACTURA.<br>
+                                <small >Fecha: 16/08/2016</small>
+                            </h3>
+                          </div>
+                          <div class="col-md-7 col-xs-7">
+                            <img class="pull-right" src="{{URL::asset('images/toyo-logo.png')}}" style="width:60%">
+                            
                           </div>
 
                           <!-- /.col -->
@@ -412,6 +353,7 @@
                             De
                             <address>
                               <strong>TOYOSA S.A.</strong>
+                              <br>NIT: 1030029024
                               <br>Plaza Venezuela,1413
                               <br>La Paz, Bolivia
                               <br>Telefono: 2390930-35
@@ -467,14 +409,14 @@
                                 </tr>
                                 <tr>
                                   <td>Bujia</td>
-                                  <td>45-9a81-231</td>
+                                  <td>98-711-821</td>
                                   <td>4</td>
                                   
-                                  <td>900.00</td>
+                                  <td>bs 900.00</td>
                                 </tr>
                                 <tr>
                                   <td>Empaque</td>
-                                  <td>4a5-9a81-231</td>
+                                  <td>987-691-741</td>
                                   <td>1</td>
                                   
                                   <td>bs 100.00</td>

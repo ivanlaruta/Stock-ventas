@@ -28,6 +28,12 @@ class PostVentaController extends Controller
         
         return view('postVenta.perfil_cliente');
     }
+    
+    public function perfil_vehiculo()
+    {
+        
+        return view('postVenta.perfil_vehiculo');
+    }
 
     /**
      * Show the form for creating a new resource.

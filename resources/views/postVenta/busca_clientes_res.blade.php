@@ -118,7 +118,7 @@
                           <div class="col-sm-12">
                             
                             <div class="left col-xs-7">
-                              <h2>Nicole Rada</h2>
+                              <h2>Natalia Rada</h2>
                               <p><strong>CI/NIT: </strong> 8528765 LP</p>
                               <ul class="list-unstyled">
                                 <li><i class="fa fa-building"></i> Direccion: Av Ballivian #78, La Paz </li>

@@ -830,5 +830,10 @@ Route::group(['prefix'=>'postVenta','middleware'=>'auth'],function(){
 		'as'   =>	'postVenta.perfil_cliente'
 	]);
 
+	route::get('postVenta/perfil_vehiculo',[
+		'uses' =>'PostVentaController@perfil_vehiculo',
+		'as'   =>	'postVenta.perfil_vehiculo'
+	]);
+
 	route::resource('postVenta','PostVentaController');
 });

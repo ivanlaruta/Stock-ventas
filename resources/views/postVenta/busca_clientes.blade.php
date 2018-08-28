@@ -10,12 +10,14 @@
           <div class="">
 
             <div class="page-title">
-              <div class="title_left">
+              <div class="row title">
                 <h4>
                   <a href="javascript:;" onclick="ini_busqueda()">BUSQUEDA DE CLIENTES </a>
                   <a href="javascript:;" onclick="ver_cliente()"><span class="perfil_cli"></span></a>
+                  <a href="javascript:;" onclick="ver_vehiculo()"><span class="perfil_veh"></span></a>
                 </h4>
               </div>
+            <div class="clearfix"></div>
               <div class="x_content busca">
                 <div class="form-horizontal form-label-left">
                   <div class="col-md-8 col-sm-12 col-xs-12 col-lg-offset-2">
@@ -30,7 +32,8 @@
                 </div>
               </div>
             </div>
-
+            <br>
+            
             <div class="clearfix"></div>
               <div id='loadingDiv' align="center">
                 <h4>Buscando ... </h4>
@@ -113,6 +116,7 @@ function ini_busqueda ()
   busca.show();
   resultado_ajax();
   $(".perfil_cli").hide();
+  $(".perfil_veh").hide();
   var loading = $('#loadingDiv').hide();
 };
   function resultado_ajax(){
@@ -134,11 +138,30 @@ function ini_busqueda ()
     busca.hide();
     $(".perfil_cli").html(' / PEDRO PEREZ');
     $(".perfil_cli").show();
+    $(".perfil_veh").hide();
     $.ajax({
       type: "GET",
       cache: false,
       dataType: "html",
       url: "{{ route('postVenta.perfil_cliente')}}",
+      success: function(dataResult)
+      {
+        loading.hide();
+        resultado.show();
+        resultado.html(dataResult);
+      },
+    });
+  };
+
+  function ver_vehiculo(){
+    busca.hide();
+    $(".perfil_veh").html(' / JTMBF3EV1HJ151660');
+    $(".perfil_veh").show();
+    $.ajax({
+      type: "GET",
+      cache: false,
+      dataType: "html",
+      url: "{{ route('postVenta.perfil_vehiculo')}}",
       success: function(dataResult)
       {
         loading.hide();
