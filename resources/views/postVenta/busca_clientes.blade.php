@@ -9,30 +9,32 @@
         <div class="right_col" role="main">
           <div class="">
 
-            <div class="page-title">
-              <div class="row title">
-                <h4>
-                  <a href="javascript:;" onclick="ini_busqueda()">BUSQUEDA DE CLIENTES </a>
-                  <a href="javascript:;" onclick="ver_cliente()"><span class="perfil_cli"></span></a>
-                  <a href="javascript:;" onclick="ver_vehiculo()"><span class="perfil_veh"></span></a>
-                </h4>
-              </div>
-            <div class="clearfix"></div>
-              <div class="x_content busca">
-                <div class="form-horizontal form-label-left">
-                  <div class="col-md-8 col-sm-12 col-xs-12 col-lg-offset-2">
-                    <div class="input-group">
-                      <input type="text" name="busqueda" id="busqueda" class="form-control" placeholder="Que estas buscando?" autofocus >
-                      <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal_config"><i class="fa fa-cog"></i></button>
-                        <button type="button" id="res_btn" onclick="resultado_ajax();" class="btn group btn-primary">Buscar!</button>
-                      </span>
+            
+              <div class="page-title">
+                <div class="row title">
+                  <h4>
+                    <a href="javascript:;" onclick="ini_busqueda()"> CLIENTES </a>
+                    <a href="javascript:;" onclick="ver_cliente()"><span class="perfil_cli"></span></a>
+                    <a href="javascript:;" onclick="ver_vehiculo()"><span class="perfil_veh"></span></a>
+                  </h4>
+                </div>
+              <div class="clearfix"></div>
+                <div class="x_content busca">
+                  <div class="form-horizontal form-label-left">
+                    <div class="col-md-8 col-sm-12 col-xs-12 col-lg-offset-2">
+                      <div class="input-group">
+                        <input type="text" name="busqueda" id="busqueda" class="form-control" placeholder="Que estas buscando?" autofocus >
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal_config"><i class="fa fa-cog"></i></button>
+                          <button type="button" id="res_btn" onclick="resultado_ajax();" class="btn group btn-primary">Buscar!</button>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <br>
+            
+            
             
             <div class="clearfix"></div>
               <div id='loadingDiv' align="center">
@@ -40,9 +42,10 @@
                <i class="fa fa-spinner fa-spin fa-7x" style="font-size:40px"></i>
               </div>
             <div class="clearfix"></div>
-            
-            <div class="resultado">
-              
+            <br>
+            <br>
+            <div class="row">
+            <div class="resultado"></div>
             </div>
 
           </div>
