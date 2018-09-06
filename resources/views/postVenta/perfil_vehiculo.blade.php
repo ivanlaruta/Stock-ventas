@@ -63,43 +63,45 @@
                      
                       <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs sidebar-tabs" role="tablist">
-                          <li role="presentation" class="active"><a href="#Mantenimiento" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Mantenimiento</a>
+                          <li role="presentation" class="active"><a href="#Mantenimiento" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Historial de Mantenimiento</a>
                           </li>
-                          <li role="presentation" class=""><a href="#servicio" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Servicio de reparacion</a>
-                          </li>
+                         {{--  <li role="presentation" class=""><a href="#servicio" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Servicio de reparacion</a>
+                          </li> --}}
                          
                         </ul>
                         <div id="myTabContent" class="tab-content">
                           <div role="tabpanel" class="tab-pane fade active in" id="Mantenimiento" aria-labelledby="home-tab">
-                          
+                          <h5>Facturas de de Ot's</h5>
                             <div class="table-responsive">
 
                               <table class="data table table-striped no-margin">
                                 <thead>
                                   <tr>
-                                    <th>#</th>
-                                    <th>Mantenimiento</th>
+                                    <th>#Factura</th>
+                                    <th>Autorizacion</th>
                                     <th>Fecha</th>
                                     <th>Taller</th>
+                                    <th>OT</th>
                                     <th>Opcion</th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   <tr>
-                                    <td>1</td>
-                                    <td>mantenimiento 1K</td>
+                                    <td>00002</td>
+                                    <td>307101800000050</td>
                                     <td>05-05-2017</td>
                                     <td>Curva de Holguin</td>
+                                    <td>OT75778</td>
                                     <td><a data-toggle="modal" href="#modal_factura" class="btn-sm btn-success">Ver detalle</a></td>
                                   </tr>
-
                                   <tr>
-                                    <td>5</td>
-                                    <td>mantenimiento 5K</td>
-                                    <td>18-11-2017</td>
-                                    <td>Curva de Holguin</td>
+                                    <td>00004</td>
+                                    <td>307101800000050</td>
+                                    <td>12-09-2017</td>
+                                    <td>El Alto</td>
+                                    <td>OT75780</td>
                                     <td><a data-toggle="modal" href="#modal_factura" class="btn-sm btn-success">Ver detalle</a></td>
-                                  </tr>
+                                  </tr>                              
                                   
                                 </tbody>
                               </table>
@@ -149,84 +151,166 @@
               </div>
 
                 <div class="modal-body">
-                <div class="col-md-12">
-                     
-                    <div class="row">
-                      <section class="panel">
-                        <div class="panel-body">
-                          <h3 class="green"><i class="fa fa-paint-brush"></i>Mantenimiento programado 1000 kilometros</h3>
-                          <br/>
 
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div class="project_detail">
-                                <p class="title">Cliente</p>
-                                <p>Pedro Perez</p>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <ul class="list-unstyled project_files">
-                                <li><a href=""><i class="fa fa-calendar"></i> 05-05-2017</a></li>
-                                <li><a href=""><i class="fa fa-dollar"></i> Bs. 0</a></li>
-                              </ul>
-                            </div>
+
+
+                 
+                   
+                   
+
+                      
+                        <!-- title row -->
+                        <div class="row">
+                          <div class="col-md-5 col-xs-5  invoice-header">
+                            <h3>
+                                 FACTURA.<br>
+                                <small >N° FACTURA: 0004</small><br>
+                                <small >OT: OT75780 </small>
+                                
+                            </h3>
                           </div>
-                          <br/>
-                          <p> El mantenimiento se realizo con normalidad, no se presento ningun tipo de desperfecto ni irregularidad.</p>
-                        </div>
-                      </section>
-                    </div>
+                          <div class="col-md-7 col-xs-7">
+                            <img class="pull-right" src="{{URL::asset('images/toyo-logo.png')}}" style="width:60%">
+                            
+                          </div>
 
+                          <!-- /.col -->
+                        </div>
+                        <hr>
+                        
+                        <div class="row invoice-info">
+                          <div class="col-sm-4 invoice-col">
+                            De:
+                            <address>
+                              <strong>TOYOSA S.A.</strong>
+                              <br>NIT: 1030029024
+                              <br>Plaza Venezuela,1413
+                              <br>La Paz, Bolivia
+                              <br>Telefono: 2390930-35
+                              
+                            </address>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-4 invoice-col">
+                            Cliente:
+                            <address>
+                                <strong>Pedro Perez</strong>
+                                <br>Av del Ejercito # 174, La Paz
+                                <br>Nit: 4402099015
+                                <br>Telefono: 22384170
+                                <br>Email:Pedro.pp@toyosa.con LP
+                            </address>
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-4 invoice-col">
+                            <br>
+                            <b>Fecha: </b>12/09/2018
+                            <br>
+                            <b>Autorizacion: </b>307101800000050
+                            <br>
+                            <b>Codigo de control:</b> 4F3S8J
+                            <br>
+                            <b>Limite emision:</b> 2/2/2018
+                            <br>
+                            <b>Ubicacion:</b> Curva de Holguin
+                          </div>
+                          <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                      <hr>
+                        <!-- Table row -->
                         <div class="row">
                           <div class="col-xs-12 table">
                             <table class="table table-striped">
                               <thead>
                                 <tr>
-                                  <th>ACTIVIDAD</th>
-                                  <th>TIEMPO</th>
-                                  <th>OBSERVACION</th>
                                   
+                                  <th>#</th>
+                                  <th>Codigo</th>
+                                  <th>Detalle</th>
+                                  <th>Cantidad</th>
+                                  <th>Precio</th>
+                                  <th>Importe</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td>CAMBIO DE EMPAQUE </td>
-                                  <td>20 MIN</td>
-                                  <td></td>
-                                  
-                                  
+                                  <td>1</td>
+                                  <td>001/ENGRASE CRUCETAS</td>
+                                  <td>ENGRASE CRUCETAS</td>
+                                  <td>1</td>
+                                  <td>25</td>
+                                  <td>25</td>
                                 </tr>
                                 <tr>
-                                  <td>CAMBIO DE FILTRO</td>
-                                  <td>15 MIN</td>
-                                  <td></td>
-                                  
+                                  <td>2</td>
+                                  <td>002/CAMBIO ACEITE MO</td>
+                                  <td>CAMBIO DE ACEITE MOTOR</td>
+                                  <td>1</td>
+                                  <td>35</td>
+                                  <td>35</td>
                                 </tr>
                                 <tr>
-                                  <td>ENGRASE DE CARDAN</td>
-                                  <td>25 MIN</td>
-                                  <td></td>
-                                  
-                                </tr> 
-                                 <tr>
-                                  <td>CAMBIO DE LUBRICANTE</td>
-                                  <td>1 HR</td>
-                                  <td></td>
-                                 
-                                </tr> 
+                                  <td>3</td>
+                                  <td>004/REVISAR NIVELES </td>
+                                  <td>REVISION NIVEL DE ACEITES</td>
+                                  <td>1</td>
+                                  <td>50</td>
+                                  <td>50</td>
+                                </tr>
                                 <tr>
-                                  <td>LAVADO DE CORTESIA</td>
-                                  <td>25 MIN</td>
-                                  <td></td>
+                                  <td>4</td>
+                                  <td>011/REVISION DE FREN </td>
+                                  <td>REVISION DE FRENOS</td>
+                                  <td>1</td>
+                                  <td>220</td>
+                                  <td>220</td>
+                                </tr>
+                                <tr>
+                                  <td>5</td>
+                                  <td>90915-YZZD2</td>
+                                  <td>CAMBIO FILTRO DE ACEITE   </td>
+                                  <td>1</td>
+                                  <td>70</td>
+                                  <td>70</td>
+                                </tr>
+                                <tr>
+                                  <td>6</td>
+                                  <td>BRP037M08    </td>
+                                  <td>ACEITE REPSOL 15W40  </td>
+                                  <td>5600</td>
+                                  <td>0</td>
+                                  <td>280</td>
+                                </tr>
                                 
-                                </tr> 
+                                <tr>
+                                </tr>
+                                <tr>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  
+                                  <td align="right"><strong>Total bs</strong></td>
+                                  
+                                  <td><strong>680.00</strong></td>
+                                </tr>
+                                
                               </tbody>
-                            </table>                   
+                            </table>
                           </div>
+                          <!-- /.col -->
                         </div>
-                </div>
-              </div>
+                        <!-- /.row -->
+
+
+                        <!-- this row will not appear when printing -->
+                     
+                    
+                  
+          
               <div class="modal-footer">
+                <button class="btn btn-primary " style="margin-right: 5px;"><i class="fa fa-print"></i> Imprimir</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
               </div>
 

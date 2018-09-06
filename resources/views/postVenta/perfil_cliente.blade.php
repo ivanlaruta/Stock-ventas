@@ -227,7 +227,7 @@
                                           <small>0% Completo</small>
                                         </td>
                                         <td>
-                                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar </a>
+                                          <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Editar </a>
                                         </td>
                                       </tr>
 
@@ -245,12 +245,12 @@
                                         <td>Olvido llevar su vehiculo al manetenimiento periodico, lo llevara le fin de semana</td>
                                         <td class="project_progress">
                                           <div class="progress progress_sm">
-                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="0"></div>
+                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
                                           </div>
                                           <small>0% Completo</small>
                                         </td>
                                         <td>
-                                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar </a>
+                                          <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Editar </a>
                                         </td>
                                       </tr>
                                       
@@ -273,7 +273,7 @@
                                           <small>0% Completo</small>
                                         </td>
                                         <td>
-                                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar </a>
+                                          <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Editar </a>
                                         </td>
                                       </tr>
 
@@ -296,7 +296,7 @@
                                           <small>50% Completo</small>
                                         </td>
                                         <td>
-                                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar </a>
+                                          <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Editar </a>
                                         </td>
                                       </tr>
 
