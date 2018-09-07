@@ -25,8 +25,28 @@
                             <li><p class="title"><i class="fa fa-paint-brush"></i> COLOR INT: NEGRO</p></li>
                             <li><p class="title"><i class="fa fa-book"></i> MASTER: 32801-01</p></li>
                             <li><p class="title"><i class="fa fa-truck"></i> CHASIS: JTMBF3EV1HJ151660</p></li>
-                            <li><a href="javascript:;" onclick="ver_cliente()"><p class="title"><i class="fa fa-user"></i> DUEÑO: Pedro Perez</p></a></li>
+                            
                       </ul>
+
+                      <h4>Dueños</h4>
+                      <ul class="list-group">
+                      
+                        <li  class="list-group-item" style="padding-left: 0px; padding-right: 0px;">
+                          <a href="javascript:;" onclick="ver_cliente()">Pedro Perez</a> 
+                          <span class="label label-primary">Dueño titular</span>
+                          <i class="fa fa-car fa-lg pull-right"></i>
+                          <a href="#"><img src="{{URL::asset('images/123.png')}}" class="avatar" alt="Avatar" title="asdas"></a>
+                        </li>
+                        
+                        <li  class="list-group-item" style="padding-left: 0px; padding-right: 0px;">
+                          <a href="javascript:;" onclick="ver_cliente()">Miguel Pantoja</a>
+                          <span class="label label-default">Dueño anterior</span>
+                          <a href="#"><img src="{{URL::asset('images/c3.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
+                        </li>
+                     
+                      
+                      </ul>
+
 
                       <a class="btn btn-success btn-block"><i class="fa fa-edit m-right-xs"></i>Editar Datos</a>
                       <br />
@@ -147,24 +167,17 @@
 
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">DETALLE</h4>
+                
               </div>
 
                 <div class="modal-body">
 
-
-
-                 
-                   
-                   
-
-                      
                         <!-- title row -->
                         <div class="row">
                           <div class="col-md-5 col-xs-5  invoice-header">
                             <h3>
-                                 FACTURA.<br>
-                                <small >N° FACTURA: 0004</small><br>
+                                 FACTURA 0004<br>
+                                
                                 <small >OT: OT75780 </small>
                                 
                             </h3>
@@ -176,7 +189,7 @@
 
                           <!-- /.col -->
                         </div>
-                        <hr>
+                        <br>
                         
                         <div class="row invoice-info">
                           <div class="col-sm-4 invoice-col">

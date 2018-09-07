@@ -24,7 +24,7 @@
                               </ul>
                             </div>
                             <div class="right col-xs-5 text-center">
-                              <img src="{{URL::asset('images/pic.jpg')}}" alt="" class="img-circle img-responsive">
+                              <img src="{{URL::asset('images/c3.jpg')}}" alt="" class="img-circle img-responsive">
                             </div>
                           </div>
                           <div class="col-xs-12 bottom text-center">

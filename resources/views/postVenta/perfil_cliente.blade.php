@@ -73,16 +73,20 @@
                       <ul class="list-group">
                       
                         <li  class="list-group-item" style="padding-left: 0px; padding-right: 0px;">
-                          Roberto Perez <span class="label label-default">Hermano</span><a href="#"><img src="{{URL::asset('images/124.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
+                          <a href="">Roberto Perez</a> 
+                          <span class="label label-default">Hermano</span><a href="#"><img src="{{URL::asset('images/124.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
                         </li>
                         <li  class="list-group-item" style="padding-left: 0px; padding-right: 0px;">
-                          Monica Salcedo <span class="label label-default">Madre</span><a href="#"><img src="{{URL::asset('images/pic.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
+                          <a href="">Monica Salcedo</a> 
+                          <span class="label label-default">Madre</span><a href="#"><img src="{{URL::asset('images/pic.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
                         </li>
                         <li  class="list-group-item" style="padding-left: 0px; padding-right: 0px;">
-                          Natalia Rada <span class="label label-default">Esposa</span><a href="#"><img src="{{URL::asset('images/0.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
+                          <a href="">Natalia Rada</a> 
+                          <span class="label label-default">Esposa</span><a href="#"><img src="{{URL::asset('images/0.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
                         </li>
                         <li  class="list-group-item" style="padding-left: 0px; padding-right: 0px;">
-                          Pedro Perez <span class="label label-default">Padre</span><a href="#"><img src="{{URL::asset('images/pic.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
+                          <a href="">Pedro Perez</a> 
+                          <span class="label label-default">Padre</span><a href="#"><img src="{{URL::asset('images/pic.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
                         </li>
                       
                       </ul>
@@ -158,8 +162,8 @@
                               <table class="data table table-striped no-margin">
                                 <thead>
                                   <tr>
-                                    <th>#</th>
-                                    <th>Factura</th>
+                                    <th>#Factura</th>
+                                    <th>Autorizacion</th>
                                     <th>Fecha</th>
                                     <th>Sucursal</th>
                                     <th>Vendedor</th>
@@ -168,9 +172,9 @@
                                 </thead>
                                 <tbody>
                                   <tr>
-                                    <td>1</td>
-                                    <td>100453514</td>
-                                    <td>05-05-2016</td>
+                                    <td>000010</td>
+                                    <td>249401800030504</td>
+                                    <td>27/04/2018</td>
                                     <td>El Alto</td>
                                     <td>Jose Mercado</td>
                                     <td><a data-toggle="modal" href="#modal_factura" class="btn-sm btn-success">Ver detalle</a></td>
@@ -439,20 +443,15 @@
               </div>
 
                 <div class="modal-body">
-                  
-                <div class="col-md-12">
-                 
-                    
-                     <br>
-                   
 
-                      
                         <!-- title row -->
                         <div class="row">
                           <div class="col-md-5 col-xs-5  invoice-header">
                             <h3>
-                                 FACTURA.<br>
-                                <small >Fecha: 16/08/2016</small>
+                                 FACTURA 0010<br>
+                                
+                                {{-- <small >OT: OT75780 </small> --}}
+                                
                             </h3>
                           </div>
                           <div class="col-md-7 col-xs-7">
@@ -462,11 +461,11 @@
 
                           <!-- /.col -->
                         </div>
-                        <hr>
+                        <br>
                         
                         <div class="row invoice-info">
                           <div class="col-sm-4 invoice-col">
-                            De
+                            De:
                             <address>
                               <strong>TOYOSA S.A.</strong>
                               <br>NIT: 1030029024
@@ -478,72 +477,114 @@
                           </div>
                           <!-- /.col -->
                           <div class="col-sm-4 invoice-col">
-                            Al señor(a)
+                            Cliente:
                             <address>
-                                            <strong>Pedro Perez</strong>
-                                            <br>Av del Ejercito # 174, La Paz
-                                            <br>8264209 LP
-                                            <br>Telefono: 22384170
-                                            <br>Email:Pedro.pp@toyosa.con LP
-                                        </address>
+                                <strong>Pedro Perez</strong>
+                                <br>Av del Ejercito # 174, La Paz
+                                <br>Nit: 4402099015
+                                <br>Telefono: 22384170
+                                <br>Email:Pedro.pp@toyosa.con LP
+                            </address>
                           </div>
                           <!-- /.col -->
                           <div class="col-sm-4 invoice-col">
-                            <b>FACTURA #007612456</b>
                             <br>
+                            <b>Fecha: </b>27/04/2018
+                            <br>
+                            <b>Autorizacion: </b>249401800030504
                             <br>
                             <b>Codigo de control:</b> 4F3S8J
                             <br>
-                            <b>Limite emision:</b> 2/22/2014
+                            <b>Limite emision:</b> 25/05/2019
                             <br>
-                            <b>Cuenta:</b> 968-34567
+                            <b>Ubicacion:</b> Taller el alto
                           </div>
                           <!-- /.col -->
                         </div>
                         <!-- /.row -->
-<hr>
+                      <hr>
                         <!-- Table row -->
                         <div class="row">
                           <div class="col-xs-12 table">
                             <table class="table table-striped">
                               <thead>
                                 <tr>
-                                  
-                                  <th>Producto</th>
-                                  <th>serie</th>
+         
+         
+         
+         
+         
+         
+
+                                  <th>#</th>
+                                  <th>Codigo</th>
+                                  <th>Detalle</th>
                                   <th>Cantidad</th>
-                                  <th>Subtotal</th>
+                                  <th>Precio</th>
+                                  <th>Importe</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td>Correa motor</td>
-                                  <td>455-981-221</td>
                                   <td>1</td>
-                                  
-                                  <td>bs 80.50</td>
+                                  <td>44200-0K890</td>
+                                  <td>CREMALLERA</td>
+                                  <td>1</td>
+                                  <td>6668.38</td>
+                                  <td>6668.38</td>
                                 </tr>
                                 <tr>
-                                  <td>Bujia</td>
-                                  <td>98-711-821</td>
+                                  <td>2</td>
+                                  <td>48654-0K040</td>
+                                  <td>BUSH, LWRARM</td>
+                                  <td>2</td>
+                                  <td>219.935</td>
+                                  <td>439.87</td>
+                                </tr>
+                                <tr>
+                                  <td>3</td>
+                                  <td>48655-0K040</td>
+                                  <td>BUSH, LWRARM,NO.2</td>
+                                  <td>2</td>
+                                  <td>280.485</td>
+                                  <td>560.97</td>
+                                </tr>
+                                <tr>
                                   <td>4</td>
-                                  
-                                  <td>bs 900.00</td>
+                                  <td>48190-60020</td>
+                                  <td>CAM ASSY,CAMBER</td>
+                                  <td>2</td>
+                                  <td>57.075</td>
+                                  <td>114.15</td>
                                 </tr>
                                 <tr>
-                                  <td>Empaque</td>
-                                  <td>987-691-741</td>
+                                  <td>5</td>
+                                  <td>48190-0K010</td>
+                                  <td>LEVA DE AJUSTE</td>
                                   <td>1</td>
-                                  
-                                  <td>bs 100.00</td>
-                                </tr> 
+                                  <td>57.07</td>
+                                  <td>57.07</td>
+                                </tr>
+                                <tr>
+                                  <td>6</td>
+                                  <td>48510-09K91</td>
+                                  <td>AMORTIGUADOR DELANTERO</td>
+                                  <td>1</td>
+                                  <td>1213.13</td>
+                                  <td>1213.13</td>
+                                </tr>
+                                
+                                <tr>
+                                </tr>
                                 <tr>
                                   <td></td>
                                   <td></td>
+                                  <td></td>
+                                  <td></td>
                                   
-                                  <td align="right"><strong>Total</strong></td>
+                                  <td align="right"><strong>Total bs</strong></td>
                                   
-                                  <td><strong>bs 1080.50</strong></td>
+                                  <td><strong>9053.57</strong></td>
                                 </tr>
                                 
                               </tbody>
@@ -558,9 +599,9 @@
                      
                     
                   
-                </div>
-              
-              </div>
+        
+
+            </div>
 
               <div class="modal-footer">
                 <button class="btn btn-primary " style="margin-right: 5px;"><i class="fa fa-print"></i> Imprimir</button>
