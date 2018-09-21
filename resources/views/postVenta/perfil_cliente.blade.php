@@ -594,13 +594,6 @@
                         </div>
                         <!-- /.row -->
 
-
-                        <!-- this row will not appear when printing -->
-                     
-                    
-                  
-        
-
             </div>
 
               <div class="modal-footer">
@@ -611,10 +604,5 @@
             </div>
           </div>
         </div>
-
-
-
-
-  
-          <script src="{{asset('bower_components/gentelella/vendors/nprogress/nprogress.js')}}"></script>
+        <script src="{{asset('bower_components/gentelella/vendors/nprogress/nprogress.js')}}"></script>
  

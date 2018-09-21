@@ -33,9 +33,7 @@
                   </div>
                 </div>
               </div>
-            
-            
-            
+                        
             <div class="clearfix"></div>
               <div id='loadingDiv' align="center">
                 <h4>Buscando ... </h4>
