@@ -835,5 +835,10 @@ Route::group(['prefix'=>'postVenta','middleware'=>'auth'],function(){
 		'as'   =>	'postVenta.perfil_vehiculo'
 	]);
 
+	route::get('postVenta/factura_taller',[
+		'uses' =>'PostVentaController@factura_taller',
+		'as'   =>	'postVenta.factura_taller'
+	]);
+
 	route::resource('postVenta','PostVentaController');
 });

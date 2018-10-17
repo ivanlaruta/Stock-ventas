@@ -1,36 +1,26 @@
-
 <style type="text/css">
-
-        .sub {
-            border-bottom: 1px solid #1abb9c;
-            overflow:auto;
-        }
-
-        .sub2 {
-            border-bottom: 2px solid #374b6033;
-            
-        }
-
-        .calen {
-            text-align: center !important;
-            border: 2px solid #374b6033;
-            padding: 1px;        
-        }
- 
-        .cab {
-            text-align: right;  !important;
-            
-        }
-        .datos {
-            text-align: left  !important;
-            font-weight: normal  !important;     
-        }
-      .msg {
-            border-left: 2px solid #60768F; 
-        }
-
-
-
+.sub {
+    border-bottom: 1px solid #1abb9c;
+    overflow:auto;
+}
+.sub2 {
+    border-bottom: 2px solid #374b6033;
+}
+.calen {
+    text-align: center !important;
+    border: 2px solid #374b6033;
+    padding: 1px;        
+}
+.cab {
+    text-align: right;  !important;
+}
+.datos {
+    text-align: left  !important;
+    font-weight: normal  !important;     
+}
+.msg {
+    border-left: 2px solid #60768F; 
+}
 </style>
 
             <div class="row">
@@ -41,35 +31,28 @@
                     <div class="clearfix"></div>
                   </div><br>
                   <div class="x_content">
-                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                    <div class="col-md-4 col-sm-4 col-xs-12 profile_left">
                       <div class="profile_img">
                         <div id="crop-avatar" align="center">
                           <!-- Current avatar -->
-                          <img class="img-responsive avatar-view img-thumbnail" src="{{URL::asset('images/123.png')}}" alt="Avatar" title="Change the avatar" style="max-width: 65%;">
+                          <img class="img-responsive avatar-view img-thumbnail" src="{{URL::asset('images/pic.jpg')}}" alt="Avatar" title="Change the avatar" style="max-width: 50%;">
                         </div>
                       </div>
-                      <h3>Pedro Perez Salcedo</h3>
-
+                      <h3 class="rs">{{$clientes->razon_social}}</h3>
+                      
                       <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-map-marker user-profile-icon"></i> Av del Ejercito # 174, La Paz
-                        </li>
-                        <li>
-                          <i class="fa fa-book user-profile-icon"></i> 8264209 LP
-                        </li>
-                        <li>
-                          <i class="fa fa-phone user-profile-icon"></i> 22384170 - 77756103
-                        </li>
-                        <li>
-                          <i class="fa fa-envelope user-profile-icon"></i> Pedro.pp@toyosa.con LP
-                        </li>
-
+                        <li><strong>CI/NIT : </strong>@if(!empty($clientes->nro_doc_uni)) {{$clientes->nro_doc_uni}}@else sin dato @endif</li>
+                        <li><strong>DIRECCION : </strong>@if(!empty($clientes->direccion)) {{$clientes->direccion}}@else sin dato @endif</li>
+                        <li><strong>TELEFONO : </strong>@if(!empty($clientes->telefono)) {{$clientes->telefono}}@else sin dato @endif</li>
+                        <li><strong>CELULAR : </strong>@if(!empty($clientes->celular)) {{$clientes->celular}}@else sin dato @endif</li>
+                        <li><strong>CORREO : </strong>@if(!empty($clientes->email)) {{$clientes->email}}@else sin dato @endif</li>
                       </ul>
 
                       <a class="btn btn-success btn-block"><i class="fa fa-edit m-right-xs"></i>Editar Datos</a>
                       <br />
 
                       <!-- start skills -->
-                      <h4>Familia</h4>
+                     {{--  <h4>Familia</h4>
                       <ul class="list-group">
                       
                         <li  class="list-group-item" style="padding-left: 0px; padding-right: 0px;">
@@ -88,12 +71,11 @@
                           <a href="">Pedro Perez</a> 
                           <span class="label label-default">Padre</span><a href="#"><img src="{{URL::asset('images/pic.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
                         </li>
-                      
-                      </ul>
+                      </ul> --}}
                       <!-- end of skills -->
 
                     </div>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="col-md-8 col-sm-8 col-xs-12">
 
                       <div class="profile_title">
                         <div class="col-md-6">
@@ -106,10 +88,10 @@
                         <ul id="myTabs" class="nav nav-tabs sidebar-tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#Vehiculos" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Vehiculos</a>
                           </li>
-                          <li role="presentation" class=""><a href="#Repuestos" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Venta de Repuestos</a>
+                         {{--  <li role="presentation" class=""><a href="#Repuestos" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Venta de Repuestos</a>
                           </li>
                           <li role="presentation" class=""><a href="#Seguimiento" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Seguimiento</a>
-                          </li>
+                          </li> --}}
                           
                         </ul>
                         <div id="myTabContent" class="tab-content">
@@ -124,32 +106,24 @@
                                     <th>Modelo</th>
                                     <th>Año</th>
                                     <th>Color</th>
-                                    <th>Placa</th>
+                                    <th>Chasis</th>
+                                    {{-- <th>Placa</th> --}}
                                     <th>Opcion</th>
                                   </tr>
                                 </thead>
                                 <tbody>
+                                  @foreach($vehiculos as $det)
                                   <tr>
-                                    <td>1</td>
-                                    <td>Toyota</td>
-                                    <td>Yaris</td>
-                                    <td>2012</td>
-                                    <td>Rojo</td>
-                                    <td>2578 UFK</td>
-                                    <td><a href="javascript:;" onclick="ver_vehiculo()" class="btn-sm btn-success">Ver detalle</a></td>
-                                    
+                                    <td>{{$det->ITEM}}</td>
+                                    <td>{{$det->MARCA}}</td>
+                                    <td>{{$det->MODELOS}}</td>
+                                    <td>{{$det->ANIO}}</td>
+                                    <td>{{$det->COLOR_EXTERNO}}</td>
+                                    <td>{{$det->CHASIS}}</td>
+                                    {{-- <td>{{$det->ITEM}}</td> --}}
+                                    <td><a href="javascript:;" onclick="ver_vehiculo('{{$det->CHASIS}}')" class="btn-sm btn-success">Ver detalle</a></td>
                                   </tr>
-                                  <tr>
-                                    <td>2</td>
-                                    <td>Toyota</td>
-                                    <td>Rav4</td>
-                                    <td>2017</td>
-                                    <td>Negro</td>
-                                    <td>4898 LEI</td>
-                                    <td><a href="javascript:;" onclick="ver_vehiculo()" class="btn-sm btn-success">Ver detalle</a></td>
-                                   
-                                  </tr>
-                                  
+                                  @endforeach
                                 </tbody>
                               </table>
                               <!-- end user projects -->
@@ -308,121 +282,7 @@
                                   </table>
                                 </div>
                               
-                        
-                        
-                      
-
-  
-
-                            <!-- start recent activity -->
-                           {{--  <ul class="messages" style="padding-left: 20px;">
-                              <li>
-                                <div class="message_date" style="float: left !important; text-align: right;">
-                                  <h3 class="date text-info sub2">24</h3>
-                                  <p class="month">May<br><small>2017</small></p>
-                                </div>
-                                <div class="message_wrapper" style="padding-left: 15px;">
-                                  <h4 class="">SEGUIMIENTO PERIODICO</h4>
-                                  <div class="row">
-                                    <div class="form-horizontalform-label-left input_mask msg  col-md-11 col-sm-11 col-xs-11">
-                                      <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">SE CONTACTO A:</label>
-                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Pedro Perez</label>
-                                      </div>
-                                    
-                                      <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">CONTACTADO POR:</label>
-                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Roberto Marquez</label>
-                                      </div>
-                                    
-                                      <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">¿QUE DIJO?:</label>
-                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">No presenta dificultades con su vehiculo</label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <a href="#"><i class="fa fa-phone"></i> Contactado por telefono </a>
-                                  </div>
-                                </div>
-                              </li>
-                              
-
-                            
-                              <li>
-                                <div class="message_date" style="float: left !important; text-align: right;">
-                                  <h3 class="date text-info sub2">19</h3>
-                                  <p class="month">Nov<br><small>2017</small></p>
-                                </div>
-                                <div class="message_wrapper" style="padding-left: 15px;">
-                                  <h4 class="">SEGUIMIENTO NO REALIZO MANTENIMIENTO 10K</h4>
-                                  <div class="row">
-                                    <div class="form-horizontalform-label-left input_mask msg  col-md-11 col-sm-11 col-xs-11">
-                                      <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">SE CONTACTO A:</label>
-                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Pedro Perez</label>
-                                      </div>
-                                    
-                                      <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">CONTACTADO POR:</label>
-                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Roberto Marquez</label>
-                                      </div>
-                                    
-                                      <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">¿QUE DIJO?:</label>
-                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Olvido llevar su vehiculo al manetenimiento periodico, lo llevara le fin de semana</label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <a href="#"><i class="fa fa-phone"></i> Contactado por telefono </a>
-                                  </div>
-                                </div>
-                              </li>
-                              
-
-                            
-                              <li>
-                                <div class="message_date" style="float: left !important; text-align: right;">
-                                  <h3 class="date text-info sub2 ">30</h3>
-                                  <p class="month">Abr<br><small>2018</small></p>
-                                </div>
-                                <div class="message_wrapper" style="padding-left: 15px;">
-                                  <h4 class="">INFORMAR SOBRE PROMOCION</h4>
-                                  <div class="row">
-                                    <div class="form-horizontalform-label-left input_mask msg  col-md-11 col-sm-11 col-xs-11">
-                                      <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">SE CONTACTO A:</label>
-                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Natalia Rada <span class="label label-default">Esposa</span></label>
-                                      </div>
-                                    
-                                      <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">CONTACTADO POR:</label>
-                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Roberto Marquez</label>
-                                      </div>
-                                    
-                                      <div class="form-group">
-                                        <label class="control-label cab col-md-4 col-sm-4 col-xs-11">¿QUE DIJO?:</label>
-                                        <label class="control-label datos col-md-7 col-sm-7 col-xs-11">Esta interesado, pasara por show room</label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <a href="#"><i class="fa fa-mobile-phone"></i> Contactado por celular </a>
-                                  </div>
-                                </div>
-                              </li>
-                              
-
-                            </ul> --}}
-                            <!-- end recent activity -->
-
-                          
-
-                            
-
                           </div>
-
                         </div>
                       </div>
                     </div>
@@ -509,13 +369,6 @@
                             <table class="table table-striped">
                               <thead>
                                 <tr>
-         
-         
-         
-         
-         
-         
-
                                   <th>#</th>
                                   <th>Codigo</th>
                                   <th>Detalle</th>

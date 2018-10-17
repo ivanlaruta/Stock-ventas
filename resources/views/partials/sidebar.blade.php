@@ -23,7 +23,7 @@
                   </li>
                   @endif
     @if(Auth::user()->rol<>'100' && Auth::user()->rol<>'101' && Auth::user()->rol<>'102' && Auth::user()->rol<>'150' && Auth::user()->rol<>'200')
-                  {{-- <li><a  href="{{ route('resumen.index')}}"><i class="fa fa-bar-chart"></i>   Inicio</a></li> --}}
+                  <li><a  href="{{ route('resumen.index')}}"><i class="fa fa-bar-chart"></i>   Inicio</a></li>
 
                   
                   {{-- <li><a  href="{{ route('ventas.index')}}"> <i class="fa fa-line-chart"></i> Ventas </a></li> --}}
