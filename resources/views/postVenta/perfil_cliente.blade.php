@@ -121,7 +121,7 @@
                                     <td>{{$det->COLOR_EXTERNO}}</td>
                                     <td>{{$det->CHASIS}}</td>
                                     {{-- <td>{{$det->ITEM}}</td> --}}
-                                    <td><a href="javascript:;" onclick="ver_vehiculo('{{$det->CHASIS}}')" class="btn-sm btn-success">Ver detalle</a></td>
+                                    <td><a href="javascript:;" onclick="ver_vehiculo('{{$det->CHASIS}}')" class="btn-sm btn-success">Detalle</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>

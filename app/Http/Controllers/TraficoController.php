@@ -65,14 +65,17 @@ class TraficoController extends Controller
         if(sizeof($encuesta)>0)
         {
             $id_encuesta=$encuesta->id;
-            $motivos =Trf_Motivo_Encuesta::where('id_encuesta',$id_encuesta)->orderBy('observaciones','ASC')->get();
+            $motivos =Trf_Motivo_Encuesta::where('id_encuesta',$id_encuesta)->orderBy('observaciones','ASC')->where('estado','1')->get();
             // $clientes = Trf_Cliente::all();
         // dd($clientes);
             $edades = Trf_Parametrica::where('tabla','rango_edades')->get();
             $medios = Trf_Parametrica::where('tabla','medios')->get();
             $motivo_Categoria=Trf_Motivo_Categoria::
             join('trf_categorias', 'trf_categorias.id', '=', 'trf_motivo_categoria.id_categoria')
-            ->orderBy('trf_categorias.observaciones', 'ASC')->get();
+            ->orderBy('trf_categorias.observaciones', 'ASC')
+            ->where('trf_categorias.estado','1')
+            ->where('trf_motivo_categoria.estado','1')
+            ->get();
             $modelos=Trf_Modelo::all();
             $vendedores=Trf_Ejecutivo::where('id_sucursal',$id_suc)->where('estado','1')->orderBy('id')->get();
             

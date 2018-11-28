@@ -15,15 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/inicio', function () {
     return view('welcome');
 })->name('inicio');
 
-
 Route::get('/test', function () {
     return view('pruebas');
 })->name('test');
+
+Route::get('/odoo', function () {
+    return view('odoo.inicio');
+})->name('odoo');
 
 Auth::routes();
 
@@ -34,6 +36,18 @@ Route::get('/inicial', 'SesionController@index')->name('inicial');;
 Route::get('/pswd', 'AdministracionController@pswd')->name('pswd');
 
 Route::get('/change_pswd', 'AdministracionController@change_pswd')->name('change_pswd');
+
+
+Route::group(['prefix'=>'odoo','middleware'=>'auth'],function(){
+
+	route::get('odoo.funcion',[
+		'uses' =>'OdooController@funcion',
+		'as'   =>	'odoo.funcion'
+	]);
+
+	route::resource('odoo','OdooController');
+});
+
 
 Route::group(['prefix'=>'distribuidor','middleware'=>'auth'],function(){
 
@@ -501,9 +515,6 @@ Route::group(['prefix'=>'administracion','middleware'=>'auth'],function(){
 });
 
 
-Route::group(['prefix'=>'odoo','middleware'=>'auth'],function(){
-	route::resource('odoo','OdooController');
-});
 
 Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 	
@@ -825,6 +836,11 @@ Route::group(['prefix'=>'postVenta','middleware'=>'auth'],function(){
 		'as'   =>	'postVenta.busca_clientes_res'
 	]);
 
+	route::get('postVenta/busca_vehiculos_res',[
+		'uses' =>'PostVentaController@busca_vehiculos_res',
+		'as'   =>	'postVenta.busca_vehiculos_res'
+	]);
+
 	route::get('postVenta/perfil_cliente',[
 		'uses' =>'PostVentaController@perfil_cliente',
 		'as'   =>	'postVenta.perfil_cliente'
@@ -841,4 +857,13 @@ Route::group(['prefix'=>'postVenta','middleware'=>'auth'],function(){
 	]);
 
 	route::resource('postVenta','PostVentaController');
+});
+
+Route::group(['prefix'=>'analisis','middleware'=>'auth'],function(){
+
+	route::get('analisis/precios',[
+		'uses' =>'AnalisisComercialController@precios',
+		'as'   =>	'analisis.precios'
+	]);
+
 });

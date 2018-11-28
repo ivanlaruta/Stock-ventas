@@ -15,15 +15,15 @@
                   </li> --}}
                   
                   {{-- <li><a  href="{{ route('cotizaciones.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"><i class="glyphicon glyphicon-fire"></i> Cotizaciones</a></li>  --}}
-                  @if(Auth::user()->rol=='200')
+                  {{-- @if(Auth::user()->rol=='200')
                   <li><a><i class="fa fa-sun-o"></i> Post Venta <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li><a  href="{{ route('postVenta.busca_clientes')}}">  Seguimiento de clientes</a></li>
                     </ul>
                   </li>
-                  @endif
-    @if(Auth::user()->rol<>'100' && Auth::user()->rol<>'101' && Auth::user()->rol<>'102' && Auth::user()->rol<>'150' && Auth::user()->rol<>'200')
-                  <li><a  href="{{ route('resumen.index')}}"><i class="fa fa-bar-chart"></i>   Inicio</a></li>
+                  @endif --}}
+    @if(Auth::user()->rol<>'100' && Auth::user()->rol<>'101' && Auth::user()->rol<>'102' && Auth::user()->rol<>'150')
+                  {{-- <li><a  href="{{ route('resumen.index')}}"><i class="fa fa-bar-chart"></i>   Inicio</a></li> --}}
 
                   
                   {{-- <li><a  href="{{ route('ventas.index')}}"> <i class="fa fa-line-chart"></i> Ventas </a></li> --}}
@@ -45,7 +45,17 @@
                   </li>
                   --}}
 
-                  
+                  <li><a><i class="fa fa-folder-open"  ></i> Analisis comercial <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                       <li><a  href="{{ route('analisis.precios')}}">  Lista de precios</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-sun-o"></i> Post Venta <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                       <li><a  href="{{ route('postVenta.busca_clientes')}}">  Seguimiento</a></li>
+                    </ul>
+                  </li>
 
                   <li><a><i class="fa fa-desktop"></i> Reportes Presidencia <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -78,35 +88,35 @@
                     </ul>
                   </li> --}}
             
-                  <li><a><i class="fa fa-car"></i> Stock Regionalizado <span class="fa fa-chevron-down"></span></a>
+                  {{-- <li><a><i class="fa fa-car"></i> Stock Regionalizado <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       
                       <li><a href="{{ route('vehiculos.stock',['vista'=>'ver_dist','ciudad'=>'DISTRIBUIDOR','pais'=>'TODOS'])}}"> Stock regionales</a></li>
                       <li><a href="{{ route('vehiculos.index')}}">Unidades</a></li>
                       <li><a  href="{{ route('alerta_vehiculos.index')}}"> Vehiculos estacionados</a>  </li> 
                     </ul>
-                  </li>
+                  </li> --}}
 
-                  <li><a><i class="fa fa-wrench"></i> Vehiculos Usados <span class="fa fa-chevron-down"></span></a>
+                 {{--  <li><a><i class="fa fa-wrench"></i> Vehiculos Usados <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('usados.index')}}">Unidades</a></li>
                       <li><a href="{{ route('usados.admin')}}">Administracion</a></li>
                     </ul>
-                  </li>
+                  </li> --}}
 
-                  @if(Auth::user()->rol=='1' || Auth::user()->rol=='2' || Auth::user()->rol=='3')
+                 {{--  @if(Auth::user()->rol=='1' || Auth::user()->rol=='2' || Auth::user()->rol=='3')
                   <li><a><i class="fa fa-table"></i> Solicitudes <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
+                    <ul class="nav child_menu"> --}}
                       
                       {{-- <li><a href="{{ route('solicitudes.index_espera')}}">En espera de aprobacion</a></li>
                       <li><a href="{{ route('solicitudes.index_aprobados')}}">Aprobados</a></li> --}}
                       {{-- <li><a href="{{ route('principal.index')}}">Reporte</a></li> --}}
-                      <li><a href="{{ route('solicitudes.index')}}">Lista de solicitudes</a></li>
+                     {{--  <li><a href="{{ route('solicitudes.index')}}">Lista de solicitudes</a></li>
                       <li><a href="{{ route('solicitudes.create')}}">Crear solicitud</a></li>
                     </ul>
                   </li>
-                  @endif
-
+                  @endif --}}
+{{-- 
                   @if(Auth::user()->rol=='1' || Auth::user()->rol=='5' || Auth::user()->rol=='4')
                   <li><a><i class="fa fa-truck"></i> Envios <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -116,14 +126,14 @@
                     
                     </ul>
                   </li>
-                  @endif
-                  
+                  @endif --}}
+                {{--   
                   <li><a><i class="fa fa-exclamation-triangle"></i> Alertas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                             <li><a href="#">Reposicion Regular</a></li>
                             <li><a href="#">Reposicion Extraordinaria</a></li>
                     </ul>
-                  </li>
+                  </li> --}}
               
                   <li><a><i class="fa fa-cogs"></i> Administracion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -136,7 +146,7 @@
                   </li>
              
           @endif
-          @if(Auth::user()->rol<>'150' && Auth::user()->rol<>'200')
+          @if(Auth::user()->rol<>'150')
                   <li><a><i class="fa fa-users"></i> Trafico de clientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       {{-- <li><a href="{{ route('trafico.formulario')}}">Formulario</a></li> --}}
@@ -184,12 +194,16 @@
                     </ul>
                   </li>
               @endif
-
-                  {{-- <li><a><i class="fa fa-cogs"></i> test <span class="fa fa-chevron-down"></span></a>
+            
+                  
+                  <li><a><i class="fa fa-cogs"></i> Odoo <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('test')}}">Conexion ODOO</a></li>
+                      <li><a href="{{ route('odoo')}}">Conexion ODOO</a></li>
                     </ul>
-                  </li> --}}
+                  </li>
+
+             
+
                   {{-- <li><a><i class="fa fa-bar-chart-o"></i> Solicitudes Pendientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">Lista de solicitudes</a></li>

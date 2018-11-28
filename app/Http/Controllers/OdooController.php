@@ -6,101 +6,47 @@ use Illuminate\Http\Request;
 
 class OdooController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function funcion(Request $request)
     {
-       // $url = 'http://35.184.166.207:8069';
-       $url = 'https://35.193.0.10';
-        $db = 'TOYO-INTEGRACION';
-        $username = 'laura.sainz@toyosa.com';
-        $password = 'toyosa';
-      
-         $info = ripcord::client('https://demo.odoo.com/start')->start();
-         list($url, $db, $username, $password) = array($info['host'], $info['database'], $info['user'], $info['password']);
-
+        $url = "https://odoo.toyosa.com";
+        $db = "TEST-TOYOSA-2";
+        $username = "marco.lazarte@toyosa.com";
+        $password = "toyosa2018";
         $common = ripcord::client("$url/xmlrpc/2/common");
-        
-
-        $uid = $common->authenticate($db, $username, $password, array());
-
+        $uid  =  $common -> authenticate ( $db ,  $username ,  $password ,  array ());
         $models = ripcord::client("$url/xmlrpc/2/object");
-        $test = $models->execute_kw($db, $uid, $password,
-            'res.partner', 'check_access_rights',
-            array('read'), array('raise_exception' => false));
+        // dd($request->all());
+        switch ($request->funcion) {
+          case 'V_stock_gtauto':
+              $titulo='V_stock_gtauto';
+              $objeto="'stock.picking', 'service_get_stock'";
+              $data = $models->execute_kw($db, $uid, $password,'stock.picking', 'service_get_stock', array());
+              break;
+          case 'V_cotizaciones':
+              $titulo='V_cotizaciones';
+              $objeto="'sale.order', 'service_get_sale_order'";
+              $data = $models->execute_kw($db, $uid, $password,'sale.order', 'service_get_sale_order', array());
+              break;
+          case 'V_reservas':
+              $titulo='V_reservas';
+              $objeto="'stock.production.lot', 'service_get_reserves'";
+              $data = $models->execute_kw($db, $uid, $password,'stock.production.lot', 'service_get_reserves', array());
+              break;
+          case 'V_facturados':
+              $titulo='V_facturados';
+              $objeto="'account.invoice', 'service_get_invoices'";
+              $data = $models->execute_kw($db, $uid, $password,'account.invoice', 'service_get_invoices', array());
+              break;
+          default:
+            $titulo='sin datos';
+              $objeto="sin datos";
+              $data = null;
+          
+        }
 
-        $stock_chasis = $models->execute_kw($db, $uid, $password, 'stock.picking', 'LeerChasis', array(array()), array());
-        
-        dd($common->version());
-        dd($stock_chasis);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('odoo.respuesta') 
+            ->with('titulo',$titulo)
+            ->with('objeto',$objeto)
+            ->with('data',$data);
     }
 }

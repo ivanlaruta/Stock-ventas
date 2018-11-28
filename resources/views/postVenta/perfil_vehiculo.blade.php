@@ -29,7 +29,20 @@
                   <li><p class="title"><i class="fa fa-barcode"></i> PLACA: </p></li>
                   
             </ul> --}}
-        <ul class="list-unstyled user_data">
+            <ul class="list-unstyled user_data">
+              <li><strong>MARCA :</strong>{{$vehiculos->MARCA}}</li>
+              <li><strong>MODELO GENERICO :</strong>{{$vehiculos->MODELOS}}</li>
+              <li><strong>MODELO :</strong>{{$vehiculos->COD_MODELO}} - {{$vehiculos->MODELO}}</li>
+              <li><strong>MASTER :</strong>{{$vehiculos->cod_master}} - {{$vehiculos->MASTER}}</li>
+              <li><strong>CHASIS :</strong>{{$vehiculos->CHASIS}}</li>
+              <li><strong>MOTOR :</strong>{{$vehiculos->nro_motor}}</li>
+              <li><strong>AÑO :</strong>{{$vehiculos->ANIO}}</li>
+              <li><strong>COLOR EXTERNO :</strong>{{$vehiculos->COLOR_EXTERNO}}</li>
+              <li><strong>COLOR INTERNO :</strong>{{$vehiculos->COLOR_INTERNO}}</li>
+              <li><strong>PLACA :</strong>{{$vehiculos->PLACA}}</li>
+            </ul>
+
+{{--         <ul class="list-unstyled user_data">
           <div class="form-horizontal form-label-left">
 
             <div class="form-group">
@@ -74,12 +87,12 @@
             </div>
             
           </div>
-        </ul>
+        </ul> --}}
 <hr>
             <h4><strong>TITULAR</strong></h4>
             <ul class="list-group">
               <li  class="list-group-item" style="padding-left: 0px; padding-right: 0px;">
-                <a href="javascript:;" onclick="ver_cliente()">{{$vehiculos->razon_social}}</a> 
+                <a href="javascript:;" onclick="ver_cliente({{$vehiculos->nro_doc_uni}},'{{$vehiculos->razon_social}}')">{{$vehiculos->razon_social}}</a> 
                 <span class="label label-primary pull-right">Dueño titular</span>
                 
                 <a href="#"><img src="{{URL::asset('images/pic.jpg')}}" class="avatar" alt="Avatar" title="asdas"></a>
@@ -202,7 +215,7 @@
                           <td>Servicio de reparacion</td>
                           <td>01-03-2018</td>
                           <td>Curva de Holguin</td>
-                          <td><a  href="#" class="btn btn-success"> Ver detalle</a></td>
+                          <td><a  href="#" class="btn btn-success"> Detalle</a></td>
                         </tr>
                       </tbody>
                     </table>

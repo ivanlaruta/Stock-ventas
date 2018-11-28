@@ -16,6 +16,24 @@ class PostVentaController extends Controller
         return view('postVenta.busca_clientes') ;
     }
 
+    public function busca_vehiculos_res(Request $request)
+    {
+        $txt = $request->busqueda;
+        $vehiculos = Factura::query();
+        if(empty($request->busqueda)){
+            $vehiculos = $vehiculos->orderBy('FECHA_FACTURA', 'desc')->paginate(12);   
+        }
+        else{
+            $parametros = explode(" ", $request->busqueda);
+            for ($i=0; $i < sizeof($parametros); $i++) {
+               $vehiculos = $vehiculos->where('busqueda','like', "%".$parametros[$i]."%");
+            }
+            $vehiculos = $vehiculos->orderBy('busqueda', 'desc')->paginate(50);
+        }
+        // dd($vehiculos);
+        return view('postVenta.busca_vehiculos_res')->with('vehiculos',$vehiculos);
+    }
+
     public function busca_clientes_res(Request $request)
     {
         $txt = $request->busqueda;
