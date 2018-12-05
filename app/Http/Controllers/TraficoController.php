@@ -76,7 +76,7 @@ class TraficoController extends Controller
             ->where('trf_categorias.estado','1')
             ->where('trf_motivo_categoria.estado','1')
             ->get();
-            $modelos=Trf_Modelo::all();
+            $modelos=Trf_Modelo::where('estado','1')->get();
             $vendedores=Trf_Ejecutivo::where('id_sucursal',$id_suc)->where('estado','1')->orderBy('id')->get();
             
             return view('trafico.formulario2')

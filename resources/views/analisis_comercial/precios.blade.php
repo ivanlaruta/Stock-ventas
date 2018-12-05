@@ -61,72 +61,72 @@
                 </td>
                 <td align="right">
                   @if($det->sin_seguro_us=='si')
-                    <strong>{{$det->Precio_SIN_SEGURO_US}}</strong>
+                    <strong>{{number_format($det->Precio_SIN_SEGURO_US, 2)}}</strong>
                   @else
-                    <del class="opaco">{{$det->Precio_SIN_SEGURO_US}}</del> 
+                    <del class="opaco">{{number_format($det->Precio_SIN_SEGURO_US, 2)}}</del> 
                   @endif
                 </td>
                 <td align="right">
                   @if($det->con_seguro_us=='si')
-                    <strong>{{$det->Precio_CON_SEGURO_US}}</strong>
+                    <strong>{{number_format($det->Precio_CON_SEGURO_US, 2)}}</strong>
                   @else
-                    <del class="opaco">{{$det->Precio_CON_SEGURO_US}}</del> 
+                    <del class="opaco">{{number_format($det->Precio_CON_SEGURO_US, 2)}}</del> 
                   @endif
                 </td>
                 <td align="right">
                   @if($det->cero_interes_us=='si')
-                    <strong>{{$det->Precio_0_INTERES_US}}</strong>
+                    <strong>{{number_format($det->Precio_0_INTERES_US, 2)}}</strong>
                   @else
-                    <del class="opaco">{{$det->Precio_0_INTERES_US}}</del> 
+                    <del class="opaco">{{number_format($det->Precio_0_INTERES_US, 2)}}</del> 
                   @endif
                 </td>
                 <td align="right">
                   @if($det->credito_directo_us=='si')
-                    <strong>{{$det->Precio_CREDITO_DIRECTO_US}}</strong>
+                    <strong>{{number_format($det->Precio_CREDITO_DIRECTO_US, 2)}}</strong>
                   @else
-                    <del class="opaco">{{$det->Precio_CREDITO_DIRECTO_US}}</del> 
+                    <del class="opaco">{{number_format($det->Precio_CREDITO_DIRECTO_US, 2)}}</del> 
                   @endif
                 </td>
                 <td align="right">
                   @if($det->zona_franca_us=='si')
-                    <strong>{{$det->Precio_ZONA_FRANCA_US}}</strong>
+                    <strong>{{number_format($det->Precio_ZONA_FRANCA_US, 2)}}</strong>
                   @else
-                    <del class="opaco">{{$det->Precio_ZONA_FRANCA_US}}</del> 
+                    <del class="opaco">{{number_format($det->Precio_ZONA_FRANCA_US, 2)}}</del> 
                   @endif
                 </td>
                 <td align="right">
                   @if($det->sin_seguro_bs=='si')
-                    <strong>{{$det->Precio_SIN_SEGURO_BS}}</strong>
+                    <strong>{{number_format($det->Precio_SIN_SEGURO_BS, 2)}}</strong>
                   @else
-                    <del class="opaco">{{$det->Precio_SIN_SEGURO_BS}}</del> 
+                    <del class="opaco">{{number_format($det->Precio_SIN_SEGURO_BS, 2)}}</del> 
                   @endif
                 </td>
                 <td align="right">
                   @if($det->con_seguro_bs=='si')
-                    <strong>{{$det->Precio_CON_SEGURO_BS}}</strong>
+                    <strong>{{number_format($det->Precio_CON_SEGURO_BS, 2)}}</strong>
                   @else
-                    <del class="opaco">{{$det->Precio_CON_SEGURO_BS}}</del> 
+                    <del class="opaco">{{number_format($det->Precio_CON_SEGURO_BS, 2)}}</del> 
                   @endif
                 </td>
                 <td align="right">
                   @if($det->cero_interes_bs=='si')
-                    <strong>{{$det->Precio_0_INTERES_BS}}</strong>
+                    <strong>{{number_format($det->Precio_0_INTERES_BS, 2)}}</strong>
                   @else
-                    <del class="opaco">{{$det->Precio_0_INTERES_BS}}</del> 
+                    <del class="opaco">{{number_format($det->Precio_0_INTERES_BS, 2)}}</del> 
                   @endif
                 </td>
                 <td align="right">
                   @if($det->credito_directo_bs=='si')
-                    <strong>{{$det->Precio_CREDITO_DIRECTO_BS}}</strong>
+                    <strong>{{number_format($det->Precio_CREDITO_DIRECTO_BS, 2)}}</strong>
                   @else
-                    <del class="opaco">{{$det->Precio_CREDITO_DIRECTO_BS}}</del> 
+                    <del class="opaco">{{number_format($det->Precio_CREDITO_DIRECTO_BS, 2)}}</del> 
                   @endif
                 </td>
                 <td align="right">
                   @if($det->zona_franca_bs=='si')
-                    <strong>{{$det->Precio_ZONA_FRANCA_BS}}</strong>
+                    <strong>{{number_format($det->Precio_ZONA_FRANCA_BS, 2)}}</strong>
                   @else
-                    <del class="opaco">{{$det->Precio_ZONA_FRANCA_BS}}</del> 
+                    <del class="opaco">{{number_format($det->Precio_ZONA_FRANCA_BS, 2)}}</del> 
                   @endif
                 </td>
               </tr>
