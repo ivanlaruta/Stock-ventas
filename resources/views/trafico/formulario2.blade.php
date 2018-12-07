@@ -234,6 +234,27 @@ ul.msg_list li a .times {
             </div>
           </div>
 
+          <div class="ejecutivo_y">  
+            <div class="x_title">
+              <h2>Ejecutivo yamaha.</h2>
+              <div class="clearfix" ></div>
+            </div>
+
+            <div class="x_content">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="row" align="center"> 
+                <select class="form-control select3 col-md-6 offset-md-4 req_vendedor_y"  data-width="50%" name="id_ejecutivo_y" id="id_ejecutivo_y">
+                <option value="">Selecione un Ejecutivo de venta</option>
+                @foreach($vendedores_y as $det)
+                  {{-- <option value="{{$det->cod_vendedor}}">{{strtoupper($det->nom_vendedor)}}</option> --}}
+                  <option value="{{$det->id}}">{{strtoupper($det->nombre.' '.$det->paterno)}}</option>
+                @endforeach
+              </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="observaciones">  
             <div class="x_title">
               <h2>Notas y Observaciones.</h2>
@@ -369,6 +390,7 @@ $(document).ready(function() {
   $('.ver').hide();
   $('.categorias').hide();
   $('.ejecutivo').hide();
+  $('.ejecutivo_y').hide();
   // $('#myModal').modal({backdrop: 'static', keyboard: false})  
   // document.getElementById("btn_acepta_modelos").disabled = true;
   opcionesnuevo();
@@ -520,6 +542,7 @@ function acepta_clientes() {
     $('input[name="motivo"]').attr('checked',false);
     $('#myModal').modal('hide');
     $('.ejecutivo').hide();
+    $('.ejecutivo_y').hide();
    };
   
   $('input[name="motivo"]').change(function() {
@@ -534,13 +557,25 @@ function acepta_clientes() {
       $('.observaciones').hide();
     }
 
-    if(id_motivo < 5 || id_motivo == 16 || id_motivo == 17 ){
+    if(id_motivo <= 4 || id_motivo == 16 || id_motivo == 17 ){
       // alert('mostrar clientes');
       $('.ver_'+id_motivo).show();
       $('.categoria_'+id_motivo).show();
       $('#myModal').modal('show');
-      $('.ejecutivo').show();
-      $('.req_vendedor').attr('required',true);
+      if(id_motivo == 4)
+      {
+        $('.ejecutivo_y').show();
+        $('.ejecutivo').hide();
+        $('.req_vendedor').attr('required',false);
+        $('.req_vendedor_y').attr('required',true);
+      }
+      else{
+        $('.ejecutivo').show();
+        $('.ejecutivo_y').hide();
+        $('.req_vendedor').attr('required',true);
+        $('.req_vendedor_y').attr('required',false);
+      }
+      
     }
     else
     {
@@ -552,6 +587,7 @@ function acepta_clientes() {
       else
       {
         $('.ejecutivo').hide();
+        $('.ejecutivo_y').hide();
         $('.req_vendedor').attr('required',false);
       }
     }
