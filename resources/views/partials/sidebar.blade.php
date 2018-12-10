@@ -44,13 +44,13 @@
                     </ul>
                   </li>
                   --}}
-
                   <li><a><i class="fa fa-folder-open"  ></i> Analisis comercial <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li><a  href="{{ route('analisis.precios')}}">  Lista de precios</a></li>
                     </ul>
                   </li>
-
+                      
+                   @if(Auth::user()->rol<>'11')
                   <li><a><i class="fa fa-sun-o"></i> Post Venta <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li><a  href="{{ route('postVenta.busca_clientes')}}">  Seguimiento</a></li>
@@ -62,7 +62,7 @@
                        <li><a  href="{{ route('presidencia.stock')}}">  Reporte de Stock</a></li>
                     </ul>
                   </li>
-
+                  @endif
                   <li><a><i class="fa fa-puzzle-piece"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a  href="{{ route('tiempos.index')}}"> Control de tiempos</a></li>
@@ -77,8 +77,9 @@
                       <li><a  href="{{ route('notas.dashboard',['v_aux'=>'0','f_ini'=>'0','f_fin'=>'0','title'=>'index','mes'=>'0','regional'=>'0','marca'=>'0','sucursal'=>'0','modelo'=>'0'])}}"> Notas de entrega</a></li> 
                       
                        {{-- <li><a href="{{ route('metas.index',['periodo'=>'0','marca'=>'0','regional'=>'0','sucursal'=>'0'])}}">Metas</a></li> --}}
-
+                        @if(Auth::user()->rol<>'11')
                        <li><a  href="{{ route('seguimiento.index')}}"> Seguimineto de unidades</a></li>
+                       @endif
                     </ul>
                   </li>
 
@@ -134,7 +135,7 @@
                             <li><a href="#">Reposicion Extraordinaria</a></li>
                     </ul>
                   </li> --}}
-              
+              @if(Auth::user()->rol<>'11')
                   <li><a><i class="fa fa-cogs"></i> Administracion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('administracion.index_sucursales')}}">Sucursales</a></li>
@@ -144,7 +145,7 @@
                       {{-- <li><a href="{{ route('stocks.index')}}">Asignacion de Stock a regionales</a></li> --}}
                     </ul>
                   </li>
-             
+             @endif
           @endif
           @if(Auth::user()->rol<>'150')
                   <li><a><i class="fa fa-users"></i> Trafico de clientes <span class="fa fa-chevron-down"></span></a>
@@ -184,7 +185,7 @@
                     </ul>
                   </li>
                @endif
-
+@if(Auth::user()->rol<>'11')
               @if(Auth::user()->rol=='1' || Auth::user()->rol=='150')
                   <li><a><i class="fa fa-plane"></i> Importaciones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -202,7 +203,7 @@
                     </ul>
                   </li>
 
-             
+             @endif
 
                   {{-- <li><a><i class="fa fa-bar-chart-o"></i> Solicitudes Pendientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

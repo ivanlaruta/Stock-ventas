@@ -56,6 +56,10 @@ class SesionController extends Controller
         {
             return redirect()->route('postVenta.busca_clientes');
         }
+        if (Auth::user()->rol == '11')
+        {
+            return redirect()->route('analisis.precios');
+        }
 
     }
 

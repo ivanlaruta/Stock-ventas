@@ -243,7 +243,7 @@ ul.msg_list li a .times {
             <div class="x_content">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="row" align="center"> 
-                <select class="form-control select3 col-md-6 offset-md-4 req_vendedor_y"  data-width="50%" name="id_ejecutivo_y" id="id_ejecutivo_y">
+                <select class="form-control select3 col-md-6 offset-md-4 req_vendedor_y"  data-width="50%" name="id_ejecutivo" id="id_ejecutivo">
                 <option value="">Selecione un Ejecutivo de venta</option>
                 @foreach($vendedores_y as $det)
                   {{-- <option value="{{$det->cod_vendedor}}">{{strtoupper($det->nom_vendedor)}}</option> --}}
