@@ -56,13 +56,13 @@
                        <li><a  href="{{ route('postVenta.busca_clientes')}}">  Seguimiento</a></li>
                     </ul>
                   </li>
+                  @endif
 
                   <li><a><i class="fa fa-desktop"></i> Reportes Presidencia <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li><a  href="{{ route('presidencia.stock')}}">  Reporte de Stock</a></li>
                     </ul>
                   </li>
-                  @endif
                   <li><a><i class="fa fa-puzzle-piece"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a  href="{{ route('tiempos.index')}}"> Control de tiempos</a></li>
@@ -155,7 +155,7 @@
                       @if(Auth::user()->rol=='100'|| Auth::user()->rol=='102'|| Auth::user()->rol=='101')<li>
                         <a href="{{ route('trafico.lista_visitas')}}">Detalle de Tráfico semanal</a></li>
                       @endif
-                       @if(Auth::user()->rol=='101' || Auth::user()->rol=='1')
+                       @if(Auth::user()->rol=='101' || Auth::user()->rol=='1'|| Auth::user()->rol=='11')
                        {{-- <li><a href="{{ route('trafico.reporte')}}">Reportes</a></li> --}}
                        <li><a href="{{ route('trafico.todo_trafico')}}">Reporte de Tráfico</a></li>
                        <li><a href="{{ route('trafico.reporte2')}}">Reporte consolidado</a></li>
