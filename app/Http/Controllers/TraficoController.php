@@ -518,11 +518,20 @@ class TraficoController extends Controller
             }
             $nuevo_visita -> id_sucursal = $request->id_sucursal;
             $nuevo_visita -> id_motivo = $request->motivo;
-            $nuevo_visita -> id_ejecutivo = $request->id_ejecutivo;
+
+            if ($request->motivo == '4'){
+                $nuevo_visita -> id_ejecutivo = $request->id_ejecutivo_y;
+            }
+            else{
+                $nuevo_visita -> id_ejecutivo = $request->id_ejecutivo;
+            }
+
+            // $nuevo_visita -> id_ejecutivo = $request->id_ejecutivo;
             $nuevo_visita -> observaciones = $request->txt_obs;
             $nuevo_visita -> fecha = $hoy;
             $nuevo_visita -> created_by = $suc=Auth::user()->usuario;
             $nuevo_visita -> updated_by = $suc=Auth::user()->usuario;
+            // dd($nuevo_visita);
             $nuevo_visita -> save();
 
             if($request->motivo=='1' || $request->motivo=='2' || $request->motivo=='3' || $request->motivo=='4' || $request->motivo=='16' || $request->motivo=='17')
