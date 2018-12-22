@@ -44,6 +44,12 @@
                     </ul>
                   </li>
                   --}}
+                  <li><a><i class="fa fa-barcode"  ></i> Codigo de barras <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                       <li><a  href="{{ route('cb.danio_inicio')}}"> Reporte daños</a></li>
+                    </ul>
+                  </li>
+
                   <li><a><i class="fa fa-folder-open"  ></i> Analisis comercial <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li><a  href="{{ route('analisis.precios')}}">  Lista de precios</a></li>

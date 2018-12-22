@@ -46,6 +46,7 @@
                   <a data-toggle="tooltip" data-original-title="Modelo">{{$det->MODELO}}</a><br/>
                   <small><strong>Cod modelo :</strong>{{$det->CODIGO_MODELO}}</small><br/>
                   <strong><a data-toggle="tooltip" data-original-title="Año">{{$det->ANIO}}</a></strong><br/>
+                  <small>{{$det->MARCA}}</small><br/>
                   <div class="btn-group pull-right" >
                     <button data-toggle="dropdown" class="btn btn-round dropdown-toggle btn-xs" type="button"> Stock
                       <span class="badge badge-success">{{$det->TOTAL}}</span>
@@ -142,10 +143,34 @@
   @endsection
   @section('scripts')
   <script>
-    $('#datatable1').DataTable( { "language": { "sSearch": "Buscar:"},
+    $('#datatable1').DataTable( {"language": {
+            
+              "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar en Todo:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst":    "Primero",
+                  "sLast":     "Último",
+                  "sNext":     "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              },
+        },
         "bLengthChange" : true,       
-        "dom": "fti",
-        "lengthMenu": [[-1], ["TODO"]],
+        "dom": "lfrtip",
+        "lengthMenu": [[30, 60, 100, -1], [30, 60, 100, "TODO"]],
         "pageResize": true
     } );
   </script>

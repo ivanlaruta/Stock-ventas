@@ -867,3 +867,17 @@ Route::group(['prefix'=>'analisis','middleware'=>'auth'],function(){
 	]);
 
 });
+
+Route::group(['prefix'=>'cb','middleware'=>'auth'],function(){
+
+	route::get('cb/danio_inicio',[
+		'uses' =>'CodBarrasController@danio_inicio',
+		'as'   =>	'cb.danio_inicio'
+	]);
+
+	route::get('cb/danio_det/{id}',[
+		'uses' =>'CodBarrasController@danio_det',
+		'as'   =>	'cb.danio_det'
+	]);
+
+});
