@@ -688,6 +688,11 @@ Route::group(['prefix'=>'trafico','middleware'=>'auth'],function(){
 		'as'   =>	'trafico.vendedores'
 	]);
 
+	route::get('trafico/vendedores_modal',[
+		'uses' =>'TraficoController@vendedores_modal',
+		'as'   =>	'trafico.vendedores_modal'
+	]);
+
 	route::get('trafico/detalle_mod',[
 		'uses' =>'TraficoController@detalle_mod',
 		'as'   =>	'trafico.detalle_mod'
@@ -864,6 +869,11 @@ Route::group(['prefix'=>'analisis','middleware'=>'auth'],function(){
 	route::get('analisis/precios',[
 		'uses' =>'AnalisisComercialController@precios',
 		'as'   =>	'analisis.precios'
+	]);
+
+	route::get('analisis/resultado',[
+		'uses' =>'AnalisisComercialController@resultado',
+		'as'   =>	'analisis.resultado'
 	]);
 
 });

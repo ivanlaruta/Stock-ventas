@@ -2056,4 +2056,41 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
         ->with('vendedores',$desc_vendedores)
         ;
     }
+
+    public function vendedores_modal(Request $request)
+    {
+         // dd( $request->all());
+         $vendedor=Trf_Ejecutivo::find($request->id_vendedor);
+         // dd($vendedor);
+         $sucursales=Trf_Sucursal::all();
+         
+                return view('trafico.vendedores_modal')
+                  ->with('sucursales',$sucursales) 
+                  ->with('request',$request) 
+                  ->with('vendedor',$vendedor);
+        
+        // if($request->tipo=="nuevo")
+        // {
+        //     $sucursales=Trf_Sucursal::all();
+        //     $roles=Trf_Parametrica::where('tabla','rol')->orderBy('codigo')->get();
+        //     return view('administracion.users.modal')
+        //       ->with('sucursales',$sucursales) 
+        //       ->with('request',$request) 
+        //       ->with('roles',$roles) ;
+        // }
+        // else
+        // {
+        //     if($request->tipo=="editar")
+        //     {
+        //         $usuario=User::find($request->id_usuario);
+        //         $sucursales=Trf_Sucursal::all();
+        //         $roles=Trf_Parametrica::where('tabla','rol')->orderBy('codigo')->get();
+        //         return view('administracion.users.modal')
+        //           ->with('sucursales',$sucursales) 
+        //           ->with('request',$request) 
+        //           ->with('usuario',$usuario) 
+        //           ->with('roles',$roles);
+        //     }
+        // }
+    }
 }

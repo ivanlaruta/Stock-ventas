@@ -3,7 +3,7 @@
 @section('content')
 
 <style type="text/css">
-
+.opaco{color: #b5bec8;}
 </style>
  <!-- page content -->
 <div class="right_col" role="main">
@@ -33,36 +33,59 @@
                 <tr>
                   
                   <th>NOMBRE</th>
-                  <th>TELEFONO</th>
-                  <th>CORREO</th>
-                  <th>CARGO</th>
                   <th>SUCURSAL</th>
+                  <th>MARCA</th>
                   <th>ESTADO</th>
-                 
-                  <th>NOMBRE TEROS</th>
-                  <th>SUCURSAL TEROS</th>
-                 
+                  <th>OPCIONES</th>
+
                 </tr>
               </thead>
               <tbody>
                @foreach($vendedores as $det)
-                <tr>
-                    <td>{{strtoupper($det->nom_teros)}} </td>
-                    <td>{{$det->telefono}}</td>
-                    <td>{{$det->correo}}</td>
-                    <td>{{$det->cargo}}</td>
-                    <td>{{$det->id_sucursal}}{{-- -{{$det->sucursal->nom_sucursal}} --}}</td>
-                    <td>{{$det->estado}}</td>
-                    <td>{{$det->nom_teros}}</td>
-                    <td>{{$det->suc_teros}}-{{-- {{$det->sucursal_teros->nom_sucursal}} --}}</td>
+                <tr @if($det->estado == '0') class="opaco" @endif>
+                    <td>{{strtoupper($det->nombre.' '.$det->paterno)}} </td>
+                    <td>{{$det->id_sucursal}} - {{$det->sucursal->nom_sucursal}}</td>
+                    <td>
+                        @if(strpos($det->marca, 'T') !== false)
+                        <span class="label label-primary">TOYOTA</span>
+                        @endif
+                        @if(strpos($det->marca, 'Y') !== false)
+                        <span class="label label-primary">YAMAHA</span>
+                        @endif
+                      
+                    </td>
+                    <td>
+                      @if($det->estado == '1')
+                        ACTIVO
+                      @else
+                        INACTIVO
+                      @endif
+                    </td>
+                    <td>
+                     <div class="btn-group" role="group" >
+                        <a href="#" class="btn btn-warning btn-xs btn_editar" id_vendedor = '{{ $det -> id}}'  data-toggle="tooltip" data-placement="bottom" title="Editar vendedor">
+                          <span class="fa fa-edit"></span> 
+                        </a>
+                          @if($det->estado == '0')
+                            <a href="#" class="btn btn-info btn-xs " data-toggle="tooltip" data-placement="bottom" title="Habilitar vendedor">
+                              <span class="fa fa-check"></span> 
+                            </a>
+                          @else
+                            <a href="#" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="bottom" title="Deshabilitar vendedor">
+                              <span class="fa fa-trash"></span> 
+                            </a>
+                          @endif
+                        
+                      </div>
+                    </td>  
                 </tr>
                 @endforeach
               </tbody>
             </table>
             </div>
-            <div class="modal fade modal_detalle" id="modal_detalle" role="dialog" >
+            <div class="modal fade modal_datos" id="modal_detalle" role="dialog" >
               <div class="modal-dialog modal-lg">
-                <div class="modal-content contenido_modal_detalle">
+                <div class="modal-content contenido">
                 </div>
               </div>
             </div>
@@ -79,54 +102,54 @@
 
 <script type="text/javascript">
 
-var btnVer = $(".ver_detalle");
-btnVer.on("click",function(){
-  // alert($(this).attr('id'));
-  frm_ver_detalle($(this));
-});
-
-var modalVer=$(".modal_detalle");
-var modalContentVer = $(".contenido_modal_detalle");
-
-var frm_ver_detalle = function(objeto){ 
-  $.ajax({
-    type: "GET",
-    cache: false,
-    dataType: "html",
-    url: "{{ route('trafico.detalle_visita')}}",
-    data: {
-      id_visita: objeto.attr("id_visita")
-    },
-    success: function(dataResult)
-    {
-      console.log(dataResult);
-      modalContentVer.empty().html(dataResult);                        
-      modalVer.modal('show');
-      NProgress.done();
-    },
-    error: function(jqXHR, exception)
-    {
-      var msg = '';
-      if (jqXHR.status === 0) {
-          msg = 'Not connect.\n Verify Network.';
-      } else if (jqXHR.status == 404) {
-          msg = 'Requested page not found. [404]';
-      } else if (jqXHR.status == 500) {
-          msg = 'Internal Server Error [500].';
-      } else if (exception === 'parsererror') {
-          msg = 'Requested JSON parse failed.';
-      } else if (exception === 'timeout') {
-          msg = 'Time out error.';
-      } else if (exception === 'abort') {
-          msg = 'Ajax request aborted.';
-      } else {
-          msg = 'Uncaught Error.\n' + jqXHR.responseText;
-      }
-      alert(msg);
-      NProgress.done();
-    }
+var btn_editar = $(".btn_editar");
+  btn_editar.on("click",function(){
+    frm_editar($(this));
   });
-}
+
+  var modalContent = $(".contenido");
+  var modal=$(".modal_datos");
+
+  var frm_editar = function(objeto){
+    $.ajax({
+      type: "GET",
+      cache: false,
+      dataType: "html",
+      url: "{{ route('trafico.vendedores_modal')}}",
+      data: {
+        tipo: "editar",
+        id_vendedor: objeto.attr("id_vendedor")
+      },
+      success: function(dataResult)
+      {
+        console.log(dataResult);
+        modalContent.empty().html(dataResult);                        
+        modal.modal('show');
+        NProgress.done();
+      },
+      error: function(jqXHR, exception)
+      {
+        var msg = '';
+        if (jqXHR.status === 0) {
+            msg = 'Not connect.\n Verify Network.';
+        } else if (jqXHR.status == 404) {
+            msg = 'Requested page not found. [404]';
+        } else if (jqXHR.status == 500) {
+            msg = 'Internal Server Error [500].';
+        } else if (exception === 'parsererror') {
+            msg = 'Requested JSON parse failed.';
+        } else if (exception === 'timeout') {
+            msg = 'Time out error.';
+        } else if (exception === 'abort') {
+            msg = 'Ajax request aborted.';
+        } else {
+            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+        }
+        alert(msg);
+        NProgress.done();
+      }
+    });
+  };
 
 $('#vendedores').DataTable( { "language": {
             
