@@ -202,12 +202,13 @@
                   </li>
               @endif
             
-                  
+                  @if(Auth::user()->rol=='1')
                   <li><a><i class="fa fa-cogs"></i> Odoo <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('odoo')}}">Conexion ODOO</a></li>
                     </ul>
                   </li>
+                  @endif
 
              @endif
 
