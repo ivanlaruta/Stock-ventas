@@ -95,14 +95,14 @@
                     </ul>
                   </li> --}}
             
-                  {{-- <li><a><i class="fa fa-car"></i> Stock Regionalizado <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-car"></i> Stock Regionalizado <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       
                       <li><a href="{{ route('vehiculos.stock',['vista'=>'ver_dist','ciudad'=>'DISTRIBUIDOR','pais'=>'TODOS'])}}"> Stock regionales</a></li>
-                      <li><a href="{{ route('vehiculos.index')}}">Unidades</a></li>
-                      <li><a  href="{{ route('alerta_vehiculos.index')}}"> Vehiculos estacionados</a>  </li> 
+                      {{-- <li><a href="{{ route('vehiculos.index')}}">Unidades</a></li> --}}
+                      {{-- <li><a  href="{{ route('alerta_vehiculos.index')}}"> Vehiculos estacionados</a>  </li>  --}}
                     </ul>
-                  </li> --}}
+                  </li>
 
                  {{--  <li><a><i class="fa fa-wrench"></i> Vehiculos Usados <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
