@@ -454,7 +454,7 @@ function no_editar() {
 
   function cancela_clientes() {
     no_editar();
-var r = confirm("Se pederan los datos seleccionados!");
+var r = confirm("Se perderán los datos seleccionados!");
 if (r == true) {
         document.getElementById("nombre").value = '';
         document.getElementById("paterno").value = '';
