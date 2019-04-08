@@ -1149,7 +1149,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
                 FROM   trf_ejecutivos ej
                 LEFT JOIN trf_visitas as vi on ej.id= vi.id_ejecutivo
                 where ej.id_sucursal = '".$request->sucursal."'
-
+                AND ej.estado = 1
                 union all
                 select vi.id_sucursal,vi.id_ejecutivo,'','-No aginado-','','-No aginado-',count(vi.id),null,null,null,null,null,null,
                 (select count(re.id) from trf_visitas re where re.id_motivo='6' and re.id_sucursal=vi.id_sucursal and vi.id_ejecutivo IS NULL AND cast(re.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as repuestos,
