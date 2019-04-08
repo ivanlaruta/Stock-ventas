@@ -27,7 +27,7 @@
                     <small><strong>Cod modelo :</strong>{{$det->CODIGO_MODELO}}</small><br/>
                     <strong><a data-toggle="tooltip" data-original-title="Año">{{$det->ANIO}}</a></strong><br/>
                     <small>{{$det->MARCA}}</small><br/>
-                    <small>Ultima Modificacion por <strong>{{$det->USUARIO_MODIFICACION}}</strong> en fecha: <strong>{{date("m-d-Y",strtotime($det->FECHA_MODIFICACION))}}</strong></small><br/>
+                    <small>Ultima Modificacion por <strong>{{$det->USUARIO_MODIFICACION}}</strong> en fecha: <strong>{{date("d/m/Y",strtotime($det->FECHA_MODIFICACION))}}</strong></small><br/>
 
                     <div class="btn-group pull-right" >
                       <button data-toggle="dropdown" class="btn btn-round dropdown-toggle btn-xs" type="button"> Stock
