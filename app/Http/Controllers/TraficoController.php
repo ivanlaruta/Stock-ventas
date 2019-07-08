@@ -69,7 +69,7 @@ class TraficoController extends Controller
             // $clientes = Trf_Cliente::all();
         // dd($clientes);
             $edades = Trf_Parametrica::where('tabla','rango_edades')->get();
-            $medios = Trf_Parametrica::where('tabla','medios')->orderBy('codigo','ASC')->get();
+            $medios = Trf_Parametrica::where('tabla','medios')->where('estado','1')->orderBy('codigo','ASC')->get();
             $motivo_Categoria=Trf_Motivo_Categoria::
             join('trf_categorias', 'trf_categorias.id', '=', 'trf_motivo_categoria.id_categoria')
             ->orderBy('trf_categorias.observaciones', 'ASC')
