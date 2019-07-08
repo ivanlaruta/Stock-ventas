@@ -332,7 +332,7 @@ ul.msg_list li a .times {
                               @foreach($modelos as $det3)
                             @if($det3->id_categoria == $det2->categoria->id)
                             <label class="mio"><input type="checkbox" name="modelos[]" class="modelos mod_{{$det3->descripcion}}" value="{{$det3->id}}"> {{$det3->descripcion}}
-                            @if($det3->descripcion=='AGYA')
+                            @if($det3->otro=='NUEVO')
                             <span class="label label-danger">Nuevo!</span>
                             @endif
                             </label><br>
