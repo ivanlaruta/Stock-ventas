@@ -76,7 +76,7 @@ class TraficoController extends Controller
             ->where('trf_categorias.estado','1')
             ->where('trf_motivo_categoria.estado','1')
             ->get();
-            $modelos=Trf_Modelo::where('estado','1')->get();
+            $modelos=Trf_Modelo::where('estado','1')->orderBy('descripcion','ASC')->get();
             $vendedores=Trf_Ejecutivo::where('id_sucursal',$id_suc)->where('estado','1')->orderBy('id')->get();
             $marca_y = 'Y';
             $vendedores_y=Trf_Ejecutivo::where('id_sucursal',$id_suc)
@@ -500,16 +500,16 @@ class TraficoController extends Controller
                 {
                     $nuevo_visita -> id_cliente = $request->clientes_ant;
                     $edit_cliente = Trf_Cliente::find($request->clientes_ant);
-                    if (is_null($request->clientes_ant)) {
-                    }
-                    else{
-                    $edit_cliente -> ci = $request->ci;
-                    $edit_cliente -> expedido = $request->exp;
-                    $edit_cliente -> genero = $request->gen;
-                    $edit_cliente -> rango_edad = $request->edad;
-                    $edit_cliente -> telefono = $request->telefono;
-                    $edit_cliente -> telefono_aux = $request->telefono2;
-                    $edit_cliente -> correo = $request->correo2;
+                    if (!is_null($request->clientes_ant)) {
+
+                    if(!is_null($request->ci)){$edit_cliente -> ci = $request->ci;}
+                    if(!is_null($request->exp)){$edit_cliente -> expedido = $request->exp;}
+                    if(!is_null($request->gen)){$edit_cliente -> genero = $request->gen;}
+                    if(!is_null($request->edad)){$edit_cliente -> rango_edad = $request->edad;}
+                    if(!is_null($request->telefono)){$edit_cliente -> telefono = $request->telefono;}
+                    if(!is_null($request->telefono2)){$edit_cliente -> telefono_aux = $request->telefono2;}
+                    if(!is_null($request->correo2)){$edit_cliente -> correo = $request->correo2;}
+
                     $edit_cliente -> estado = '1';
                     $edit_cliente -> updated_by = $suc=Auth::user()->usuario;
                     $edit_cliente -> save();
@@ -771,7 +771,7 @@ class TraficoController extends Controller
 
     public function reporte2(Request $request)
     {
-        // dd($request->all());
+         // dd($request->all());
 
         //dd(TraficoController::fecha_fin(3));
         $año_actual = Carbon::now('America/La_Paz') -> year;
@@ -877,7 +877,7 @@ class TraficoController extends Controller
                 'otros_mod' => $otros_mod,
                 );
 
-            // dd($totales['vehiculos']);           
+             // dd($totales);           
 
             $consolidado = DB::select(  DB::raw("
             select xx.regional,SUM(xx.totales) as totales , SUM(xx.promo) as promo, SUM(xx.vehiculos_t) as vehiculos_t, SUM(xx.vehiculos_l) as vehiculos_l, SUM(xx.vehiculos_h) as vehiculos_h, SUM(xx.yamaha) as yamaha, SUM(xx.tramites) as tramites, SUM(xx.repuestos) as repuestos, SUM(xx.servicios) as servicios, SUM(xx.licitaciones) as licitaciones, SUM(xx.montacargas) as montacargas, SUM(xx.pesada) as pesada, SUM(xx.llantas) as llantas, SUM(xx.agricola) as agricola,SUM(xx.cotizaciones) as cotizaciones,SUM(xx.reservas) as reservas,(select COUNT (vm.id) 
@@ -908,7 +908,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             AND cast(vi.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
             GROUP BY vi.id_sucursal,ub.nom_sucursal,ub.regional) as xx GROUP BY xx.regional
             "));
-             // dd($consolidado);
+              dd($consolidado);
             return view('trafico.reportes.index2')
 
             ->with('f_ini',$f_ini)

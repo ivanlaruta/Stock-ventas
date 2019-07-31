@@ -562,16 +562,189 @@ class UsersTableSeeder extends Seeder
 
 
 
-        DB::table('users')->insert([
-            'usuario' => 'huacar.tito@toyosa.com',
-            'password' => bcrypt('toyosa'),
-            'email'=> 'huacar.tito@toyosa.com',
-            'nombre'=> 'HUASCAR',
-            'paterno'=> 'TITO',
-            'id_ubicacion' =>'131C',
-            'rol'=>'150',
-        ]);
+        // DB::table('users')->insert([
+        //     'usuario' => 'huacar.tito@toyosa.com',
+        //     'password' => bcrypt('toyosa'),
+        //     'email'=> 'huacar.tito@toyosa.com',
+        //     'nombre'=> 'HUASCAR',
+        //     'paterno'=> 'TITO',
+        //     'id_ubicacion' =>'131C',
+        //     'rol'=>'150',
+        // ]);
 
+
+
+ DB::table('users')->insert([
+    'usuario'=>'sheila.zuniga',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>   'SHEILA',
+    'paterno' =>  'ZUÑIGA',
+    'email'=>  'sheila.zuniga@toyosa.com',
+    'rol'=>    '100',
+    'id_ubicacion'=> '131C',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'carla.quintanilla',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>   'CARLA',
+    'paterno' =>   'QUINTANILLA',
+    'email'=> 'carla.quintanilla@toyosa.com',
+    'rol'=>    '100',
+    'id_ubicacion'=> '131C',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'cinthya.ruiz',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>    'CINTHYA',
+    'paterno' => 'RUIZ',
+    'email'=>    'cinthya.ruiz@toyosa.com',
+    'rol'=> '100',
+    'id_ubicacion'=> '134',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'carlos.sanchez',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>  'CARLOS',
+    'paterno' =>  'SANCHEZ',
+    'email'=> 'carlos.sanchez@toyosa.com',
+    'rol'=>   '100',
+    'id_ubicacion'=> '137',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'andrea.luizaga',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>  'ANDREA',
+    'paterno' =>  'LUIZAGA',
+    'email'=> 'andrea.luizaga@toyosa.com',
+    'rol'=>   '100',
+    'id_ubicacion'=> '137',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'jacqueline.cossio',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>   'JACQUELINE',
+    'paterno' =>  'COSSIO',
+    'email'=>  'jacqueline.cossio@toyosa.com',
+    'rol'=>    '100',
+    'id_ubicacion'=> '152',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'jorge.suaznabar',
+    'password' => bcrypt('toyosa'),
+    'nombre'=> 'JORGE',
+    'paterno' =>   'SUAZNABAR',
+    'email'=>   'jorge.suaznabar@toyosa.com',
+    'rol'=>  '100',
+    'id_ubicacion'=> '152',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'jorge.aguilar',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>   'JORGE',
+    'paterno' =>   'AGUILAR',
+    'email'=> 'jorge.aguilar@toyosa.com',
+    'rol'=>    '100',
+    'id_ubicacion'=> '151',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'guillermo.murillo',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>   'GUILLERMO',
+    'paterno' =>   'MURILLO',
+    'email'=> 'guillermo.murillo@toyosa.com',
+    'rol'=>    '100',
+    'id_ubicacion'=> '151',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'liliana.anez',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>    'LILIANA',
+    'paterno' => 'AÑEZ',
+    'email'=>    'liliana.anez@toyosa.com',
+    'rol'=> '100',
+    'id_ubicacion'=> '141E',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'andrea.cuba',
+    'password' => bcrypt('toyosa'),
+    'nombre'=> 'ANDREA',
+    'paterno' =>  'CUBA',
+    'email'=>    'andrea.cuba@toyosa.com',
+    'rol'=>  '100',
+    'id_ubicacion'=> '121',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'nicolas.vera',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>    'NICOLAS',
+    'paterno' => 'VERA',
+    'email'=>    'nicolas.vera@toyosa.com',
+    'rol'=> '100',
+    'id_ubicacion'=> '121K',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'virginia.leon',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>   'VIRGINIA',
+    'paterno' =>    'LEON',
+    'email'=>    'virginia.leon@toyosa.com',
+    'rol'=>    '100',
+    'id_ubicacion'=> '143',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'julian.gabela',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>   'JULIAN',
+    'paterno' =>  'GABELA',
+    'email'=>  'julian.gabela@toyosa.com',
+    'rol'=>    '100',
+    'id_ubicacion'=> '141BRISA',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'pamela.tejada',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>   'PAMELA',
+    'paterno' =>  'TEJADA',
+    'email'=>  'pamela.tejada@toyosa.com',
+    'rol'=>    '100',
+    'id_ubicacion'=> '141BRISA',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'erwin.barbery',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>   'ERWIN',
+    'paterno' =>   'BARBERY',
+    'email'=> 'erwin.barbery@toyosa.com',
+    'rol'=>    '100',
+    'id_ubicacion'=> '141BRISA',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'rolando.moreno',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>  'ROLANDO',
+    'paterno' => 'MORENO',
+    'email'=>  'rolando.moreno@toyosa.com',
+    'rol'=>   '100',
+    'id_ubicacion'=> '141BRISA',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'carmen.barba',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>    'CARMEN',
+    'paterno' =>  'BARBA',
+    'email'=>   'carmen.barba@toyosa.com',
+    'rol'=> '100',
+    'id_ubicacion'=> '142',
+    ]);
+ DB::table('users')->insert([
+    'usuario'=>'ariani.justiniano',
+    'password' => bcrypt('toyosa'),
+    'nombre'=>   'ARIANI',
+    'paterno' =>  'JUSTINIANO',
+    'email'=>  'ariani.justiniano@toyosa.com',
+    'rol'=>    '100',
+    'id_ubicacion'=> '141B',
+    ]);
 
     }
 }

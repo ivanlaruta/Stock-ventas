@@ -41,7 +41,7 @@
               <tbody>
                 @foreach($reporte as $det)
                   <tr>
-                    <td>@if(is_null($det->nombre)) sin dato @else {{$det->nombre}} @endif</td>
+                    <td>@if(is_null($det->nombre)) SIN REGISTRO @else {{$det->nombre}} @endif</td>
                     <td>{{$det->genero}}</td>
                     <td>{{$det->rango_edad}}</td>
                     <td>{{$det->telefono}}</td>
