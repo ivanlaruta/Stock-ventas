@@ -55,12 +55,12 @@
                     <td>{{$det->rango_edad}}</td>
                     <td>{{$det->telefono}}</td>
                     {{-- <td>{{$det->telefono_aux}}</td> --}}
-                    <td>{{$det->correo}}</td>
+                    <td>@if(is_null($det->correo)) sin dato @else {{$det->correo}} @endif</td>
                     {{-- <td>{{$det->ci}}</td> --}}
                     {{-- <td>{{$det->expedido}}</td> --}}
                     <td>{{$det->motivo}}</td>
                     <td>{{$det->categoria}}</td>
-                    <td>{{$det->modelo}}</td>
+                    <td>{{$det->marca}}</td>
                     <td>{{$det->descripcion}}</td>
                     {{-- <td>{{$det->obs_modelo}}</td> --}}
                     <td>{{$det->regional}}</td>

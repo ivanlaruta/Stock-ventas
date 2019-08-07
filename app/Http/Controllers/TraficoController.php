@@ -901,14 +901,14 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             (select count(pe.id) from trf_visitas pe where pe.id_motivo='10' and pe.id_sucursal=vi.id_sucursal AND cast(pe.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as pesada,
             (select count(ll.id) from trf_visitas ll where ll.id_motivo='11' and ll.id_sucursal=vi.id_sucursal AND cast(ll.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as llantas,
             (select count(ag.id) from trf_visitas ag where ag.id_motivo='12' and ag.id_sucursal=vi.id_sucursal AND cast(ag.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as agricola
-            ,(select COUNT (vc.NRO_COTIZACION) from v_cot vc where vc.FECHA_COTIZACION between '".$f_ini."' and '".$f_fin."' and vi.id_sucursal  = vc.ubi_vendedor) as cotizaciones 
-            ,(select COUNT (rs.CHASIS) from v_res rs where rs.FECHA_RESERVA between '".$f_ini."' and '".$f_fin."' and vi.id_sucursal  = rs.id_sucrsal) as reservas 
+            ,(select COUNT (vc.NRO_COTIZACION) from v_cotizaciones vc where vc.FECHA_COTIZACION between '".$f_ini."' and '".$f_fin."' and vi.id_sucursal  = vc.cod_ubicacion) as cotizaciones 
+            ,(select COUNT (rs.CHASIS) from v_reservados rs where rs.FECHA_RESERVA between '".$f_ini."' and '".$f_fin."' and vi.id_sucursal  = rs.cod_ubicacion) as reservas 
             FROM trf_visitas vi, v_ubicaciones ub
             where ub.id=vi.id_sucursal
             AND cast(vi.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
             GROUP BY vi.id_sucursal,ub.nom_sucursal,ub.regional) as xx GROUP BY xx.regional
             "));
-              dd($consolidado);
+              // dd($consolidado);
             return view('trafico.reportes.index2')
 
             ->with('f_ini',$f_ini)
@@ -1055,8 +1055,8 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
                 (select count(pe.id) from trf_visitas pe where pe.id_motivo='10' and pe.id_sucursal=vi.id_sucursal AND cast(pe.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as pesada,
                 (select count(ll.id) from trf_visitas ll where ll.id_motivo='11' and ll.id_sucursal=vi.id_sucursal AND cast(ll.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as llantas,
                 (select count(ag.id) from trf_visitas ag where ag.id_motivo='12' and ag.id_sucursal=vi.id_sucursal AND cast(ag.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as agricola
-                ,(select COUNT (vc.NRO_COTIZACION) from v_cot vc where vc.FECHA_COTIZACION between '".$f_ini."' and '".$f_fin."' and vi.id_sucursal  = vc.ubi_vendedor) as cotizaciones 
-                ,(select COUNT (rs.CHASIS) from v_res rs where rs.FECHA_RESERVA between '".$f_ini."' and '".$f_fin."' and vi.id_sucursal  = rs.id_sucrsal) as reservas 
+                ,(select COUNT (vc.NRO_COTIZACION) from v_cotizaciones vc where vc.FECHA_COTIZACION between '".$f_ini."' and '".$f_fin."' and vi.id_sucursal  = vc.cod_ubicacion) as cotizaciones 
+                ,(select COUNT (rs.CHASIS) from v_reservados rs where rs.FECHA_RESERVA between '".$f_ini."' and '".$f_fin."' and vi.id_sucursal  = rs.cod_ubicacion) as reservas 
                 FROM trf_visitas vi, v_ubicaciones ub
                 where ub.id=vi.id_sucursal
                 AND ub.regional = '".$request->regional."'
@@ -1138,8 +1138,8 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
                 null as pesada,  
                 null as llantas,  
                 null as agricola  
-                ,(select COUNT (vc.NRO_COTIZACION) from v_cot vc where vc.FECHA_COTIZACION BETWEEN '".$f_ini."' and '".$f_fin."'  and vc.cod_vendedor = ej.id_teros) as cotizaciones  
-                ,(select COUNT (rs.CHASIS) from v_res rs where rs.FECHA_RESERVA BETWEEN '".$f_ini."' and '".$f_fin."' and rs.COD_VENDEDOR = ej.id_teros) as reservas  
+                ,(select COUNT (vc.NRO_COTIZACION) from v_cotizaciones vc where vc.FECHA_COTIZACION BETWEEN '".$f_ini."' and '".$f_fin."'  and vc.cod_vendedor = ej.id_teros) as cotizaciones  
+                ,(select COUNT (rs.CHASIS) from v_reservados rs where rs.FECHA_RESERVA BETWEEN '".$f_ini."' and '".$f_fin."' and rs.cod_vendedor = ej.id_teros) as reservas  
                 , (select COUNT (vm.id) 
                 from trf_visita_modelo vm
                 join trf_visitas as vv on vm.id_visita = vv.id
@@ -1318,8 +1318,8 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
                 null as pesada,  
                 null as llantas,  
                 null as agricola  
-                ,(select COUNT (vc.NRO_COTIZACION) from v_cot vc where vc.FECHA_COTIZACION BETWEEN '".$f_ini."' and '".$f_fin."'  and vc.cod_vendedor = ej.id_teros) as cotizaciones  
-                ,(select COUNT (rs.CHASIS) from v_res rs where rs.FECHA_RESERVA BETWEEN '".$f_ini."' and '".$f_fin."' and rs.COD_VENDEDOR = ej.id_teros) as reservas  
+                ,(select COUNT (vc.NRO_COTIZACION) from v_cotizaciones vc where vc.FECHA_COTIZACION BETWEEN '".$f_ini."' and '".$f_fin."'  and vc.cod_vendedor = ej.id_teros) as cotizaciones  
+                ,(select COUNT (rs.CHASIS) from v_reservados rs where rs.FECHA_RESERVA BETWEEN '".$f_ini."' and '".$f_fin."' and rs.cod_vendedor = ej.id_teros) as reservas  
                 , (select COUNT (vm.id) 
                 from trf_visita_modelo vm
                 join trf_visitas as vv on vm.id_visita = vv.id
@@ -1618,7 +1618,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
 
     public function res_gen_rep_tra(Request $request) 
     {
-          // dd($request->all());
+           // dd($request->all());
             $fechas = explode("-", $request->fecha);
                 $f_ini = $fechas[0];
                 $f_fin = $fechas[1];
@@ -1638,14 +1638,16 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
                 $sucursales = $sucursales.",";
                }
             }          
-        
+            
+            // dd($f_ini,$f_fin,$sucursales,$modelos);
+
             $reporte = DB::select(  DB::raw("
             select * 
             from detalle_modelos 
             where cast(fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."'
             and id_sucursal IN (".$sucursales.")
             and id_modelo IN (".$modelos.")
-            order by sucursal,modelo,fecha
+            order by sucursal,descripcion,fecha
             "));
 
 
@@ -1661,7 +1663,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             order by 1
             "));
       
-        // dd($reporte);
+           // dd($reporte);
 
         return view('trafico.reportes.totalizador_resultado_busq')
         ->with('reporte',$reporte)
@@ -1938,7 +1940,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
 
      public function res_rep_vendedor(Request $request)
     {
-        // dd($request->all());
+         // dd($request->all());
          $fechas = explode("-", $request->fecha);
                 $f_ini = $fechas[0];
                 $f_fin = $fechas[1];
@@ -1957,6 +1959,9 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             where id IN (".$sucursales.")
             order by 1
             "));
+
+             // dd($f_ini,$f_fin,$sucursales);
+
       
             $reporte = DB::select(  DB::raw("
 
@@ -1972,9 +1977,11 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             
             (   select COUNT(ct.chasis) 
                 from gtauto.dbo.Cotizador ct 
-                where ct.codVendedor = ej.id_teros
+                where  ct.ventaEmp=1 -- 1 TOYOSA 2 CROWN
+                and ct.nombreVendedor NOT like '%Alvaro Vicente Quispe Alcocer%'
+                and ct.codVendedor = ej.id_teros
                 and v.cod_tit = ej.id_sucursal
-                and cast(ct.fechaCreacion as date) BETWEEN '".$f_ini."' and '".$f_fin."'
+                and cast(CONVERT(DATE,LTRIM(RTRIM(ct.fechaCreacion)),103)  as date) BETWEEN '".$f_ini."' and '".$f_fin."'
             ) as cotizaciones,
             (   select COUNT(res.chassis) 
                 from gtauto.dbo.cpf_resvehokm res
@@ -1986,7 +1993,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
                 and v.cod_tit = ej.id_sucursal
             ) as reservas,
             (   select COUNT(fac.CHASIS) 
-                from v_facturados_aux fac
+                from v_facturados fac
                 where fac.cod_vendedor = ej.id_teros
                 and cast(fac.FECHA_FACTURA as date) BETWEEN '".$f_ini."' and '".$f_fin."'
                 and v.cod_tit = ej.id_sucursal
@@ -2004,7 +2011,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
 
             "));
 
-         // dd($reporte);
+
 
         return view('trafico.reportes.rep_vendedor_result')
         ->with('reporte',$reporte)
@@ -2045,7 +2052,7 @@ and cast(vv.fecha as date) BETWEEN '".$f_ini."' and '".$f_fin."') as modelos
             order by dm.fecha
             "));
 
-            // dd($reporte);
+             
 
          // dd($reporte);
 

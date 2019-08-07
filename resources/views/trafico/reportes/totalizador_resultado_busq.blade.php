@@ -66,7 +66,7 @@
                     {{-- <td>{{$det->expedido}}</td> --}}
                     <td>{{$det->motivo}}</td>
                     <td>{{$det->categoria}}</td>
-                    <td>{{$det->modelo}}</td>
+                    <td>{{$det->marca}}</td>
                     <td>{{$det->descripcion}}</td>
                     {{-- <td>{{$det->obs_modelo}}</td> --}}
                     <td>{{$det->regional}}</td>
