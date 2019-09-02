@@ -53,7 +53,7 @@
                  <td>{{$det->nombre}}</td> 
                  <td>{{$det->paterno}}</td> 
                  <td>{{$det->id_ubicacion}}-{{$det->sucursal->nom_sucursal}}</td> 
-                 <td>{{$det->rol}}</td> 
+                 <td>{{$det->roldesc()->descripcion}}</td> 
                  <td>
                    <div class="btn-group" role="group" >
                      
